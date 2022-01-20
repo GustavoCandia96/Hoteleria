@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace WebHoteletia
+namespace WebHoteleria
 {
     public class BundleConfig
     {
