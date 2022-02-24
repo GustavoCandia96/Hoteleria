@@ -1,0 +1,146 @@
+﻿
+
+@model WebHoteleria.Models.BarrioModel
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#IdPais").change(function () {
+            var valorIdPais = $("#IdPais").val();
+            $.ajax({
+                url: '/Departamentos/ObtenerListadoDepartamentos',
+                type: 'POST',
+                data: {
+                    paisId: valorIdPais
+                }
+            }).done(function (response) {
+                $("[name = IdDepartamento]").html(response);
+                $("[name = IdDepartamento]").prepend("<option value='' selected='selected'>--Seleccionar--</option>");
+            });
+        });
+
+        $("#IdDepartamento").change(function () {
+            var valorIdDepartamento = $("#IdDepartamento").val();
+            $.ajax({
+                url: '/Ciudades/ObtenerListadoCiudades',
+                type: 'POST',
+                data: {
+                    departamentoId: valorIdDepartamento
+                }
+            }).done(function (response) {
+                $("[name = IdCiudad]").html(response);
+                $("[name = IdCiudad]").prepend("<option value='' selected='selected'>--Seleccionar--</option>");
+            });
+        });
+
+    });
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Crear nuevo barrio <small></small></h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("Create", "Barrios", FormMethod.Post, new { id = "frmCrearBarrio" }))
+{
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    @if (@ViewBag.msg != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            @Html.ValidationMessage("Duplicado")
+                            @Html.ValidationMessage("Error")
+                        </div>
+                    }
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.Label("* Paises", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdPais, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdPais)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Departamentos", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdDepartamento, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdDepartamento)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Ciudades", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdCiudad, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdCiudad)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Barrio / Localidad", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.NombreBarrio, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-sort-alpha-desc form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.NombreBarrio)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Tipo", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" checked="@Model.Barrio" value="B" id="Barrio" name="Area"> Barrio
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" checked="@Model.Localidad" value="L" id="Localidad" name="Area"> Localidad
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-primary" })
+                        <input type="submit" value="Guardar" id="btnGuardar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+
