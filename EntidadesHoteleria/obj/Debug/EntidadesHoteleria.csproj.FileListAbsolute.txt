@@ -1,0 +1,11 @@
+C:\Users\Guty\Documents\Visual Studio 2017\Hoteleria\Hoteleria\EntidadesHoteleria\bin\Debug\EntidadesHoteleria.dll.config
+C:\Users\Guty\Documents\Visual Studio 2017\Hoteleria\Hoteleria\EntidadesHoteleria\bin\Debug\EntidadesHoteleria.dll
+C:\Users\Guty\Documents\Visual Studio 2017\Hoteleria\Hoteleria\EntidadesHoteleria\bin\Debug\EntidadesHoteleria.pdb
+C:\Users\Guty\Documents\Visual Studio 2017\Hoteleria\Hoteleria\EntidadesHoteleria\bin\Debug\EntityFramework.dll
+C:\Users\Guty\Documents\Visual Studio 2017\Hoteleria\Hoteleria\EntidadesHoteleria\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Guty\Documents\Visual Studio 2017\Hoteleria\Hoteleria\EntidadesHoteleria\bin\Debug\EntityFramework.xml
+C:\Users\Guty\Documents\Visual Studio 2017\Hoteleria\Hoteleria\EntidadesHoteleria\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Guty\Documents\Visual Studio 2017\Hoteleria\Hoteleria\EntidadesHoteleria\obj\Debug\EntidadesHoteleria.csproj.CoreCompileInputs.cache
+C:\Users\Guty\Documents\Visual Studio 2017\Hoteleria\Hoteleria\EntidadesHoteleria\obj\Debug\EntidadesHoteleria.csproj.CopyComplete
+C:\Users\Guty\Documents\Visual Studio 2017\Hoteleria\Hoteleria\EntidadesHoteleria\obj\Debug\EntidadesHoteleria.dll
+C:\Users\Guty\Documents\Visual Studio 2017\Hoteleria\Hoteleria\EntidadesHoteleria\obj\Debug\EntidadesHoteleria.pdb

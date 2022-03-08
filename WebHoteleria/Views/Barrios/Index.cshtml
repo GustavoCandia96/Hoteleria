@@ -1,0 +1,276 @@
+﻿
+
+@using PagedList.Mvc;
+@model PagedList.IPagedList<WebHoteleria.Models.BarrioModel>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+     $("#txtBarrio").focus();
+
+        $(function () {
+
+            $("#txtBarrio").autocomplete({
+                source: "/Barrios/BuscarBarrios"
+
+
+            });
+
+        });
+
+
+        $("[name=btnBuscar]").click(function () {
+            $("#frmListado").attr("action", "/Barrios/Index/");
+            $("#frmListado").submit();
+        });
+
+        $("#ddlPaises").change(function () {
+
+            var idPais = $("#ddlPaises").val();
+            $.ajax({
+                url: '/Departamentos/ObtenerListadoDepartamentos',
+                type: 'POST',
+                data:
+                {
+                    paisId: idPais
+                }
+            }).done(function (response) {
+                $("[name = ddlDepartamentos]").html(response);
+                $("[name = ddlDepartamentos]").prepend("<option value='' selected='selected'>--Seleccionar--</option>");
+            });
+
+        });
+
+        $("#ddlDepartamentos").change(function () {
+
+            var idDepartamento = $("#ddlDepartamentos").val();
+            if (idDepartamento != "") {
+                $.ajax({
+                    url: '/Ciudades/ObtenerListadoCiudades',
+                    type: 'POST',
+                    data:
+                    {
+                        departamentoId: idDepartamento
+                    }
+                }).done(function (response) {
+                    $("[name = ddlCiudades]").html(response);
+                    $("[name = ddlCiudades]").prepend("<option value='' selected='selected'>--Seleccionar--</option>");
+                });
+            }
+
+        });
+
+    });
+
+    function EliminarBarrio(id, barrio, ciudad, departamento, pais) {
+        var pregunta = "<strong> ¿Estas seguro de eliminar el barrio " + barrio + " de la ciudad de " + ciudad + " del departamento de " + departamento + " que pertenece al país de " + pais + "?</strong></br>";
+        var dialog = bootbox.dialog({
+            title: '<strong>Eliminación de Barrio</strong>',
+            message: pregunta,
+            buttons: {
+                cancel: {
+                    label: "Cancelar",
+                    className: 'btn-danger',
+                    callback: function () {
+                        dialog.modal('hide');
+                    }
+                },
+                ok: {
+                    label: "Aceptar",
+                    className: 'btn-info',
+                    callback: function () {
+                        dialog.modal('hide');
+                        EjecutarEliminacionBarrio(id);
+                    }
+                }
+            }
+        });
+    }
+
+    function EjecutarEliminacionBarrio(idBarrio) {
+        var send = {
+            barrioId: idBarrio
+        }
+        var dialog = bootbox.dialog({
+            title: 'Guardando datos',
+            message: '<p><i class="fa fa-spin fa-spinner"></i> Procesando...</p>'
+        });
+
+        $.ajax({
+            url: '/Barrios/EliminarBarrio',
+            type: 'POST',
+            data: JSON.stringify(send),
+            contentType: 'application/json',
+            error: function (xhr, status, error) {
+                alertaSoloMensaje(xhr.responseText);
+            },
+            success: function (data) {
+                if (data.success) {
+                    dialog.find('.bootbox-body').html('La eliminación del barrio se ejecuto correctamente!!');
+                    setTimeout(function () {
+                        window.location.href = data.urlRedirect;
+                    }, 300);
+                }
+                else {
+                    dialog.modal('hide');
+                    if (data.respuesta != "") {
+                        alertaSoloMensaje(data.respuesta);
+                    } else {
+                        alertaSoloMensaje("Ocurrio un error al eliminar el barrio seleccionado");
+                    }
+                }
+            }
+        });
+    }
+
+    function alertaSoloMensaje(mensaje) {
+        bootbox.alert({
+            title: "<strong>Alerta</strong>",
+            message: mensaje,
+            size: 'medium'
+        });
+    }
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Barrios / Localidades <small></small></h3>
+    </div>
+</div>
+
+
+
+@using (Html.BeginForm("Index", "Barrios", FormMethod.Post, new { id = "frmListado" }))
+{
+    <div class="row">
+        <div class="pull-right" style="margin-right: 10px;">
+            <a href="@Url.Action("Create", "Barrios")" title="Agregar Barrio / Localidad" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Agregar Barrio / Localidad</a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Buscador <small>Ingrese los campos para la búsqueda</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="form-group">
+
+                        <div class="col-sm-4">
+                            <label>País</label>
+                            @Html.DropDownList("ddlPaises", null, "--Seleccionar--", new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label>Departamento</label>
+                            @Html.DropDownList("ddlDepartamentos", null, "--Seleccionar--", new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label>Ciudad</label>
+                            @Html.DropDownList("ddlCiudades", null, "--Seleccionar--", new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label>Descripción</label>
+                            @Html.TextBox("txtBarrio", null, new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="" style="margin-top: 24px;"></div>
+                            <button name="btnBuscar" id="btnBuscar" class="btn btn-primary" style="margin-right: 5px;"><i class="fa fa-search"></i> Buscar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Listado de barrios / localidades <small></small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                @if (@ViewBag.msg != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade in">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        @ViewBag.msg
+                    </div>
+                }
+
+                @if (Model.Count() == 0)
+                {
+                    <p>#No existen coincidencias</p>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="table" id="tbgrilla">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Barrio / Localidad</th>
+                                    <th>Ciudad</th>
+                                    <th>Departamento</th>
+                                    <th>País</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.NombreBarrio</td>
+                                        <td>@item.NombreCiudad</td>
+                                        <td>@item.NombreDepartamento</td>
+                                        <td>@item.NombrePais</td>
+                                        <td>@item.EstadoDescrip</td>
+                                        <td>
+                                            <a href="@Url.Action("Edit", "Barrios", new { id = item.Id })" title="Editar" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            <a href="javascript:EliminarBarrio('@item.Id','@item.NombreBarrio','@item.NombreCiudad','@item.NombreDepartamento','@item.NombrePais')" title="Eliminar" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                        <div class="pagination" style="margin-left: 400px">
+                            Pág. @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                            de @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
