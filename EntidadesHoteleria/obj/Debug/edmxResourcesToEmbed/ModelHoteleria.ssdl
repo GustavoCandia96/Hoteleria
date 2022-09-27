@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hoteleria_erp_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="actividades_economicas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="actividad" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="areas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_area" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="bancos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_banco" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="bancos_cuentas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_banco" Type="int" />
+    <Property Name="id_tipo_cuenta" Type="int" />
+    <Property Name="nro_cuenta" Type="varchar" MaxLength="50" />
+    <Property Name="id_moneda" Type="int" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="bancos_tipos_cuentas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="barrios">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_ciudad" Type="int" />
+    <Property Name="nombre_barrio" Type="varchar" MaxLength="50" />
+    <Property Name="localidad" Type="bit" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cargos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_area" Type="int" />
+    <Property Name="nombre_cargo" Type="varchar" MaxLength="50" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="categorias">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_categoria" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="ciudades">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_departamento" Type="int" />
+    <Property Name="nombre_ciudad" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="departamentos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_pais" Type="int" />
+    <Property Name="nombre_departamento" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="funcionarios">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_tipo_documento" Type="int" />
+    <Property Name="nro_documento" Type="varchar" MaxLength="50" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="apellido" Type="varchar" MaxLength="50" />
+    <Property Name="id_area" Type="int" />
+    <Property Name="id_cargo" Type="int" />
+    <Property Name="nro_telefono_principal" Type="varchar" MaxLength="50" />
+    <Property Name="direccion" Type="varchar" MaxLength="100" />
+    <Property Name="id_sucursal" Type="int" />
+    <Property Name="es_supervisor" Type="bit" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="modulos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="modulo" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="modulos_operaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_modulo" Type="int" />
+    <Property Name="operacion" Type="varchar" MaxLength="50" />
+    <Property Name="descripcion" Type="varchar" MaxLength="200" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="monedas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_moneda" Type="varchar" MaxLength="50" />
+    <Property Name="simbolo" Type="varchar" MaxLength="2" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="paises">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_pais" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="parametros">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="parametro" Type="varchar" MaxLength="50" />
+    <Property Name="valor" Type="varchar" MaxLength="50" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="perfiles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="perfil" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="permisos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_perfil" Type="int" />
+    <Property Name="id_modulo" Type="int" />
+    <Property Name="habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="profesiones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_profesion" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="sucursales">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_sucursal" Type="varchar" MaxLength="50" />
+    <Property Name="id_pais" Type="int" />
+    <Property Name="id_departamento" Type="int" />
+    <Property Name="id_ciudad" Type="int" />
+    <Property Name="id_barrio" Type="int" />
+    <Property Name="direccion" Type="varchar" MaxLength="100" />
+    <Property Name="casa_matriz" Type="bit" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tipos_documentos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_funcionario" Type="int" />
+    <Property Name="id_perfil" Type="int" />
+    <Property Name="usuario" Type="varchar" MaxLength="50" />
+    <Property Name="clave" Type="varchar" MaxLength="250" />
+    <Property Name="email" Type="varchar" MaxLength="200" />
+    <Property Name="primera_vez" Type="bit" />
+    <Property Name="fecha_alta" Type="datetime" />
+    <Property Name="token_recovery" Type="varchar" MaxLength="300" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <Association Name="FK_bancos_cuentas_bancos">
+    <End Role="bancos" Type="Self.bancos" Multiplicity="0..1" />
+    <End Role="bancos_cuentas" Type="Self.bancos_cuentas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bancos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bancos_cuentas">
+        <PropertyRef Name="id_banco" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bancos_cuentas_bancos_tipos_cuentas">
+    <End Role="bancos_tipos_cuentas" Type="Self.bancos_tipos_cuentas" Multiplicity="0..1" />
+    <End Role="bancos_cuentas" Type="Self.bancos_cuentas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bancos_tipos_cuentas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bancos_cuentas">
+        <PropertyRef Name="id_tipo_cuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bancos_cuentas_monedas">
+    <End Role="monedas" Type="Self.monedas" Multiplicity="0..1" />
+    <End Role="bancos_cuentas" Type="Self.bancos_cuentas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="monedas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bancos_cuentas">
+        <PropertyRef Name="id_moneda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_barrios_ciudades">
+    <End Role="ciudades" Type="Self.ciudades" Multiplicity="0..1" />
+    <End Role="barrios" Type="Self.barrios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ciudades">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="barrios">
+        <PropertyRef Name="id_ciudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cargos_areas">
+    <End Role="areas" Type="Self.areas" Multiplicity="0..1" />
+    <End Role="cargos" Type="Self.cargos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="areas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargos">
+        <PropertyRef Name="id_area" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ciudades_departamentos">
+    <End Role="departamentos" Type="Self.departamentos" Multiplicity="0..1" />
+    <End Role="ciudades" Type="Self.ciudades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departamentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ciudades">
+        <PropertyRef Name="id_departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_departamentos_paises">
+    <End Role="paises" Type="Self.paises" Multiplicity="0..1" />
+    <End Role="departamentos" Type="Self.departamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="paises">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="departamentos">
+        <PropertyRef Name="id_pais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_funcionarios_areas">
+    <End Role="areas" Type="Self.areas" Multiplicity="0..1" />
+    <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="areas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="funcionarios">
+        <PropertyRef Name="id_area" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_funcionarios_cargos">
+    <End Role="cargos" Type="Self.cargos" Multiplicity="0..1" />
+    <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cargos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="funcionarios">
+        <PropertyRef Name="id_cargo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_funcionarios_sucursales">
+    <End Role="sucursales" Type="Self.sucursales" Multiplicity="0..1" />
+    <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sucursales">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="funcionarios">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_funcionarios_tipos_documentos">
+    <End Role="tipos_documentos" Type="Self.tipos_documentos" Multiplicity="0..1" />
+    <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_documentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="funcionarios">
+        <PropertyRef Name="id_tipo_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_modulos_operaciones_modulos">
+    <End Role="modulos" Type="Self.modulos" Multiplicity="0..1" />
+    <End Role="modulos_operaciones" Type="Self.modulos_operaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="modulos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="modulos_operaciones">
+        <PropertyRef Name="id_modulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_permisos_modulos">
+    <End Role="modulos" Type="Self.modulos" Multiplicity="0..1" />
+    <End Role="permisos" Type="Self.permisos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="modulos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="permisos">
+        <PropertyRef Name="id_modulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_permisos_perfiles">
+    <End Role="perfiles" Type="Self.perfiles" Multiplicity="0..1" />
+    <End Role="permisos" Type="Self.permisos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="perfiles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="permisos">
+        <PropertyRef Name="id_perfil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sucursales_barrios">
+    <End Role="barrios" Type="Self.barrios" Multiplicity="0..1" />
+    <End Role="sucursales" Type="Self.sucursales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="barrios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sucursales">
+        <PropertyRef Name="id_barrio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sucursales_ciudades">
+    <End Role="ciudades" Type="Self.ciudades" Multiplicity="0..1" />
+    <End Role="sucursales" Type="Self.sucursales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ciudades">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sucursales">
+        <PropertyRef Name="id_ciudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sucursales_departamentos">
+    <End Role="departamentos" Type="Self.departamentos" Multiplicity="0..1" />
+    <End Role="sucursales" Type="Self.sucursales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departamentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sucursales">
+        <PropertyRef Name="id_departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sucursales_paises">
+    <End Role="paises" Type="Self.paises" Multiplicity="0..1" />
+    <End Role="sucursales" Type="Self.sucursales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="paises">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sucursales">
+        <PropertyRef Name="id_pais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usuarios_funcionarios">
+    <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="0..1" />
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="funcionarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="usuarios">
+        <PropertyRef Name="id_funcionario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usuarios_perfiles">
+    <End Role="perfiles" Type="Self.perfiles" Multiplicity="0..1" />
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="perfiles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="usuarios">
+        <PropertyRef Name="id_perfil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="hoteleria_erp_dbModelStoreContainer">
+    <EntitySet Name="actividades_economicas" EntityType="Self.actividades_economicas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="areas" EntityType="Self.areas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="bancos" EntityType="Self.bancos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="bancos_cuentas" EntityType="Self.bancos_cuentas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="bancos_tipos_cuentas" EntityType="Self.bancos_tipos_cuentas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="barrios" EntityType="Self.barrios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cargos" EntityType="Self.cargos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="categorias" EntityType="Self.categorias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ciudades" EntityType="Self.ciudades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="departamentos" EntityType="Self.departamentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="funcionarios" EntityType="Self.funcionarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="modulos" EntityType="Self.modulos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="modulos_operaciones" EntityType="Self.modulos_operaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="monedas" EntityType="Self.monedas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="paises" EntityType="Self.paises" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="parametros" EntityType="Self.parametros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="perfiles" EntityType="Self.perfiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="permisos" EntityType="Self.permisos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="profesiones" EntityType="Self.profesiones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sucursales" EntityType="Self.sucursales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tipos_documentos" EntityType="Self.tipos_documentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_bancos_cuentas_bancos" Association="Self.FK_bancos_cuentas_bancos">
+      <End Role="bancos" EntitySet="bancos" />
+      <End Role="bancos_cuentas" EntitySet="bancos_cuentas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bancos_cuentas_bancos_tipos_cuentas" Association="Self.FK_bancos_cuentas_bancos_tipos_cuentas">
+      <End Role="bancos_tipos_cuentas" EntitySet="bancos_tipos_cuentas" />
+      <End Role="bancos_cuentas" EntitySet="bancos_cuentas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bancos_cuentas_monedas" Association="Self.FK_bancos_cuentas_monedas">
+      <End Role="monedas" EntitySet="monedas" />
+      <End Role="bancos_cuentas" EntitySet="bancos_cuentas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_barrios_ciudades" Association="Self.FK_barrios_ciudades">
+      <End Role="ciudades" EntitySet="ciudades" />
+      <End Role="barrios" EntitySet="barrios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cargos_areas" Association="Self.FK_cargos_areas">
+      <End Role="areas" EntitySet="areas" />
+      <End Role="cargos" EntitySet="cargos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ciudades_departamentos" Association="Self.FK_ciudades_departamentos">
+      <End Role="departamentos" EntitySet="departamentos" />
+      <End Role="ciudades" EntitySet="ciudades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_departamentos_paises" Association="Self.FK_departamentos_paises">
+      <End Role="paises" EntitySet="paises" />
+      <End Role="departamentos" EntitySet="departamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_funcionarios_areas" Association="Self.FK_funcionarios_areas">
+      <End Role="areas" EntitySet="areas" />
+      <End Role="funcionarios" EntitySet="funcionarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_funcionarios_cargos" Association="Self.FK_funcionarios_cargos">
+      <End Role="cargos" EntitySet="cargos" />
+      <End Role="funcionarios" EntitySet="funcionarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_funcionarios_sucursales" Association="Self.FK_funcionarios_sucursales">
+      <End Role="sucursales" EntitySet="sucursales" />
+      <End Role="funcionarios" EntitySet="funcionarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_funcionarios_tipos_documentos" Association="Self.FK_funcionarios_tipos_documentos">
+      <End Role="tipos_documentos" EntitySet="tipos_documentos" />
+      <End Role="funcionarios" EntitySet="funcionarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_modulos_operaciones_modulos" Association="Self.FK_modulos_operaciones_modulos">
+      <End Role="modulos" EntitySet="modulos" />
+      <End Role="modulos_operaciones" EntitySet="modulos_operaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_permisos_modulos" Association="Self.FK_permisos_modulos">
+      <End Role="modulos" EntitySet="modulos" />
+      <End Role="permisos" EntitySet="permisos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_permisos_perfiles" Association="Self.FK_permisos_perfiles">
+      <End Role="perfiles" EntitySet="perfiles" />
+      <End Role="permisos" EntitySet="permisos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sucursales_barrios" Association="Self.FK_sucursales_barrios">
+      <End Role="barrios" EntitySet="barrios" />
+      <End Role="sucursales" EntitySet="sucursales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sucursales_ciudades" Association="Self.FK_sucursales_ciudades">
+      <End Role="ciudades" EntitySet="ciudades" />
+      <End Role="sucursales" EntitySet="sucursales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sucursales_departamentos" Association="Self.FK_sucursales_departamentos">
+      <End Role="departamentos" EntitySet="departamentos" />
+      <End Role="sucursales" EntitySet="sucursales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sucursales_paises" Association="Self.FK_sucursales_paises">
+      <End Role="paises" EntitySet="paises" />
+      <End Role="sucursales" EntitySet="sucursales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usuarios_funcionarios" Association="Self.FK_usuarios_funcionarios">
+      <End Role="funcionarios" EntitySet="funcionarios" />
+      <End Role="usuarios" EntitySet="usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usuarios_perfiles" Association="Self.FK_usuarios_perfiles">
+      <End Role="perfiles" EntitySet="perfiles" />
+      <End Role="usuarios" EntitySet="usuarios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="hoteleria_erp_dbModelStoreContainer" CdmEntityContainer="hoteleria_erp_dbEntities">
+    <EntitySetMapping Name="actividades_economicas">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.actividades_economicas">
+        <MappingFragment StoreEntitySet="actividades_economicas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="actividad" ColumnName="actividad" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="areas">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.areas">
+        <MappingFragment StoreEntitySet="areas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre_area" ColumnName="nombre_area" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bancos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.bancos">
+        <MappingFragment StoreEntitySet="bancos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre_banco" ColumnName="nombre_banco" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bancos_cuentas">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.bancos_cuentas">
+        <MappingFragment StoreEntitySet="bancos_cuentas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_banco" ColumnName="id_banco" />
+          <ScalarProperty Name="id_tipo_cuenta" ColumnName="id_tipo_cuenta" />
+          <ScalarProperty Name="nro_cuenta" ColumnName="nro_cuenta" />
+          <ScalarProperty Name="id_moneda" ColumnName="id_moneda" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bancos_tipos_cuentas">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.bancos_tipos_cuentas">
+        <MappingFragment StoreEntitySet="bancos_tipos_cuentas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="barrios">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.barrios">
+        <MappingFragment StoreEntitySet="barrios">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+          <ScalarProperty Name="nombre_barrio" ColumnName="nombre_barrio" />
+          <ScalarProperty Name="localidad" ColumnName="localidad" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cargos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cargos">
+        <MappingFragment StoreEntitySet="cargos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_area" ColumnName="id_area" />
+          <ScalarProperty Name="nombre_cargo" ColumnName="nombre_cargo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categorias">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.categorias">
+        <MappingFragment StoreEntitySet="categorias">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre_categoria" ColumnName="nombre_categoria" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ciudades">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.ciudades">
+        <MappingFragment StoreEntitySet="ciudades">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_departamento" ColumnName="id_departamento" />
+          <ScalarProperty Name="nombre_ciudad" ColumnName="nombre_ciudad" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="departamentos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.departamentos">
+        <MappingFragment StoreEntitySet="departamentos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_pais" ColumnName="id_pais" />
+          <ScalarProperty Name="nombre_departamento" ColumnName="nombre_departamento" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="funcionarios">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.funcionarios">
+        <MappingFragment StoreEntitySet="funcionarios">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_tipo_documento" ColumnName="id_tipo_documento" />
+          <ScalarProperty Name="nro_documento" ColumnName="nro_documento" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="id_area" ColumnName="id_area" />
+          <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+          <ScalarProperty Name="nro_telefono_principal" ColumnName="nro_telefono_principal" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="es_supervisor" ColumnName="es_supervisor" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="modulos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.modulos">
+        <MappingFragment StoreEntitySet="modulos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="modulo" ColumnName="modulo" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="modulos_operaciones">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.modulos_operaciones">
+        <MappingFragment StoreEntitySet="modulos_operaciones">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_modulo" ColumnName="id_modulo" />
+          <ScalarProperty Name="operacion" ColumnName="operacion" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="monedas">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.monedas">
+        <MappingFragment StoreEntitySet="monedas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre_moneda" ColumnName="nombre_moneda" />
+          <ScalarProperty Name="simbolo" ColumnName="simbolo" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="paises">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.paises">
+        <MappingFragment StoreEntitySet="paises">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre_pais" ColumnName="nombre_pais" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="parametros">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.parametros">
+        <MappingFragment StoreEntitySet="parametros">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="parametro" ColumnName="parametro" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="perfiles">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.perfiles">
+        <MappingFragment StoreEntitySet="perfiles">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="perfil" ColumnName="perfil" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="permisos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.permisos">
+        <MappingFragment StoreEntitySet="permisos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_perfil" ColumnName="id_perfil" />
+          <ScalarProperty Name="id_modulo" ColumnName="id_modulo" />
+          <ScalarProperty Name="habilitado" ColumnName="habilitado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="profesiones">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.profesiones">
+        <MappingFragment StoreEntitySet="profesiones">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre_profesion" ColumnName="nombre_profesion" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sucursales">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.sucursales">
+        <MappingFragment StoreEntitySet="sucursales">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre_sucursal" ColumnName="nombre_sucursal" />
+          <ScalarProperty Name="id_pais" ColumnName="id_pais" />
+          <ScalarProperty Name="id_departamento" ColumnName="id_departamento" />
+          <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+          <ScalarProperty Name="id_barrio" ColumnName="id_barrio" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="casa_matriz" ColumnName="casa_matriz" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipos_documentos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.tipos_documentos">
+        <MappingFragment StoreEntitySet="tipos_documentos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuarios">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.usuarios">
+        <MappingFragment StoreEntitySet="usuarios">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+          <ScalarProperty Name="id_perfil" ColumnName="id_perfil" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="clave" ColumnName="clave" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="primera_vez" ColumnName="primera_vez" />
+          <ScalarProperty Name="fecha_alta" ColumnName="fecha_alta" />
+          <ScalarProperty Name="token_recovery" ColumnName="token_recovery" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

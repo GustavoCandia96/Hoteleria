@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e9487656b9204edb8861d6daf9efb4d1" Name="Diagram1">
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.actividades_economicas" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.areas" Width="1.5" PointX="9.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.bancos" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.bancos_cuentas" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.bancos_tipos_cuentas" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.barrios" Width="1.5" PointX="7.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cargos" Width="1.5" PointX="9.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.categorias" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.ciudades" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.departamentos" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.funcionarios" Width="1.5" PointX="12" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.modulos" Width="1.5" PointX="12" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.modulos_operaciones" Width="1.5" PointX="14.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.monedas" Width="1.5" PointX="0.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.paises" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.parametros" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.perfiles" Width="1.5" PointX="12" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.permisos" Width="1.5" PointX="14.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.profesiones" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.sucursales" Width="1.5" PointX="9.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.sysdiagrams" Width="1.5" PointX="6.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.tipos_documentos" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.usuarios" Width="1.5" PointX="14.25" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cargos_areas" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_funcionarios_areas" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_bancos_cuentas_bancos" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_bancos_cuentas_bancos_tipos_cuentas" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_bancos_cuentas_monedas" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_barrios_ciudades" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_sucursales_barrios" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_funcionarios_cargos" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_ciudades_departamentos" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_sucursales_ciudades" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_departamentos_paises" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_sucursales_departamentos" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_funcionarios_sucursales" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_funcionarios_tipos_documentos" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_usuarios_funcionarios" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_modulos_operaciones_modulos" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_permisos_modulos" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_sucursales_paises" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_permisos_perfiles" ManuallyRouted="false" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_usuarios_perfiles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,219 @@
+﻿
+@using PagedList.Mvc;
+@model PagedList.IPagedList<WebHoteleria.Models.DepartamentoModel>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+     $("#txtDepartamento").focus();
+
+        $(function () {
+
+            $("#txtDepartamento").autocomplete({
+                source: "/Departamentos/BuscarDepartamentos"
+
+
+            });
+
+        });
+
+        $("[name=btnBuscar]").click(function () {
+            $("#frmListado").attr("action", "/Departamentos/Index/");
+            $("#frmListado").submit();
+        });
+
+    });
+
+    function EliminarDepartamento(id, nombreDepartamento, nombrePais) {
+        var pregunta = "<strong> ¿Estas seguro de eliminar el departamento " + nombreDepartamento + " del país " + nombrePais + "?</strong></br>";
+        var dialog = bootbox.dialog({
+            title: '<strong>Eliminación de Departamento</strong>',
+            message: pregunta,
+            buttons: {
+                cancel: {
+                    label: "Cancelar",
+                    className: 'btn-danger',
+                    callback: function () {
+                        dialog.modal('hide');
+                    }
+                },
+                ok: {
+                    label: "Aceptar",
+                    className: 'btn-info',
+                    callback: function () {
+                        dialog.modal('hide');
+                        EjecutarEliminacionDepartamento(id);
+                    }
+                }
+            }
+        });
+    }
+
+    function EjecutarEliminacionDepartamento(idDepartamento) {
+        var send = {
+            departamentoId: idDepartamento
+        }
+        var dialog = bootbox.dialog({
+            title: 'Guardando datos',
+            message: '<p><i class="fa fa-spin fa-spinner"></i> Procesando...</p>'
+        });
+
+        $.ajax({
+            url: '/Departamentos/EliminarDepartamento',
+            type: 'POST',
+            data: JSON.stringify(send),
+            contentType: 'application/json',
+            error: function (xhr, status, error) {
+                alertaSoloMensaje(xhr.responseText);
+            },
+            success: function (data) {
+                if (data.success) {
+                    dialog.find('.bootbox-body').html('La eliminación del departamento se ejecuto correctamente!!');
+                    setTimeout(function () {
+                        window.location.href = data.urlRedirect;
+                    }, 300);
+                }
+                else {
+                    dialog.modal('hide');
+                    if (data.respuesta != "") {
+                        alertaSoloMensaje(data.respuesta);
+                    } else {
+                        alertaSoloMensaje("Ocurrio un error al eliminar el departamento seleccionado");
+                    }
+                }
+            }
+        });
+    }
+
+    function alertaSoloMensaje(mensaje) {
+        bootbox.alert({
+            title: "<strong>Alerta</strong>",
+            message: mensaje,
+            size: 'medium'
+        });
+    }
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Departamentos <small></small></h3>
+    </div>
+</div>
+
+
+
+@using (Html.BeginForm("Index", "Departamentos", FormMethod.Post, new { id = "frmListado" }))
+{
+    <div class="row">
+        <div class="pull-right" style="margin-right: 10px;">
+            <a href="@Url.Action("Create", "Departamentos")" title="Agregar Departamento" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Agregar Departamento</a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Buscador <small>Ingrese los campos para la búsqueda</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="form-group">
+
+                        <div class="col-sm-4">
+                            <label>País</label>
+                            @Html.DropDownList("ddlPaises", null, "--Seleccionar--", new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label>Nombre Departamento</label>
+                            @Html.TextBox("txtDepartamento", null, new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="" style="margin-top: 24px;"></div>
+                            <button name="btnBuscar" id="btnBuscar" class="btn btn-primary" style="margin-right: 5px;"><i class="fa fa-search"></i> Buscar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Listado de departamentos <small></small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                @if (@ViewBag.msg != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade in">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        @ViewBag.msg
+                    </div>
+                }
+
+                @if (Model.Count() == 0)
+                {
+                    <p>#No existen coincidencias</p>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="table" id="tbgrilla">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Departamento</th>
+                                    <th>País</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.NombreDepartamento</td>
+                                        <td>@item.NombrePais</td>
+                                        <td>@item.EstadoDescrip</td>
+                                        <td>
+                                            <a href="@Url.Action("Edit", "Departamentos", new { id = item.Id })" title="Editar" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            <a href="javascript:EliminarDepartamento('@item.Id','@item.NombreDepartamento','@item.NombrePais')" title="Eliminar" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                        <div class="pagination" style="margin-left: 400px">
+                            Pág. @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                            de @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,12 @@
+C:\Users\Gustavo Candia\source\repos\Hoteleria\EntidadesHoteleria\bin\Debug\EntidadesHoteleria.dll.config
+C:\Users\Gustavo Candia\source\repos\Hoteleria\EntidadesHoteleria\bin\Debug\EntidadesHoteleria.dll
+C:\Users\Gustavo Candia\source\repos\Hoteleria\EntidadesHoteleria\bin\Debug\EntidadesHoteleria.pdb
+C:\Users\Gustavo Candia\source\repos\Hoteleria\EntidadesHoteleria\bin\Debug\EntityFramework.dll
+C:\Users\Gustavo Candia\source\repos\Hoteleria\EntidadesHoteleria\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Gustavo Candia\source\repos\Hoteleria\EntidadesHoteleria\bin\Debug\EntityFramework.xml
+C:\Users\Gustavo Candia\source\repos\Hoteleria\EntidadesHoteleria\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Gustavo Candia\source\repos\Hoteleria\EntidadesHoteleria\obj\Debug\EntidadesHoteleria.csproj.CoreCompileInputs.cache
+C:\Users\Gustavo Candia\source\repos\Hoteleria\EntidadesHoteleria\obj\Debug\EntidadesHoteleria.csproj.CopyComplete
+C:\Users\Gustavo Candia\source\repos\Hoteleria\EntidadesHoteleria\obj\Debug\EntidadesHoteleria.dll
+C:\Users\Gustavo Candia\source\repos\Hoteleria\EntidadesHoteleria\obj\Debug\EntidadesHoteleria.pdb
+C:\Users\Gustavo Candia\source\repos\Hoteleria\EntidadesHoteleria\obj\Debug\EntidadesHoteleria.csprojAssemblyReference.cache
