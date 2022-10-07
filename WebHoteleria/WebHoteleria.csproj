@@ -157,10 +157,12 @@
     <Compile Include="Controllers\CerrarSesionController.cs" />
     <Compile Include="Controllers\CiudadesController.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
+    <Compile Include="Controllers\HabitacionesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PaisesController.cs" />
     <Compile Include="Controllers\SucursalesController.cs" />
+    <Compile Include="Controllers\TiposHabitacionesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -173,9 +175,11 @@
     <Compile Include="Models\CategoriaModel.cs" />
     <Compile Include="Models\CiudadModel.cs" />
     <Compile Include="Models\DepartamentoModel.cs" />
+    <Compile Include="Models\HabitacionModel.cs" />
     <Compile Include="Models\PaisModel.cs" />
     <Compile Include="Models\RecuperarPasswordModel.cs" />
     <Compile Include="Models\SucursalModel.cs" />
+    <Compile Include="Models\TipoHabitacionModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -4571,6 +4575,11 @@
     <Content Include="Views\Sucursales\Create.cshtml" />
     <Content Include="Views\Sucursales\Edit.cshtml" />
     <Content Include="Views\Sucursales\Index.cshtml" />
+    <Content Include="Views\Habitaciones\Index.cshtml" />
+    <Content Include="Views\Habitaciones\Create.cshtml" />
+    <Content Include="Views\TiposHabitaciones\Index.cshtml" />
+    <Content Include="Views\TiposHabitaciones\Create.cshtml" />
+    <Content Include="Views\TiposHabitaciones\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

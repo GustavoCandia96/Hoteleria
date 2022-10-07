@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="hoteleria_erp_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="hoteleria_erp_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="actividades_economicas">
           <Key>
             <PropertyRef Name="id" />
@@ -109,6 +109,33 @@
           <Property Name="direccion" Type="varchar" MaxLength="100" />
           <Property Name="id_sucursal" Type="int" />
           <Property Name="es_supervisor" Type="bit" />
+          <Property Name="estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="habitaciones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_tipo_habitacion" Type="int" />
+          <Property Name="id_habitacion_estado" Type="int" />
+          <Property Name="numero" Type="varchar" MaxLength="50" />
+          <Property Name="estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="habitaciones_estados">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="habitaciones_tipos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="abreviatura" Type="varchar" MaxLength="5" />
           <Property Name="estado" Type="bit" />
         </EntityType>
         <EntityType Name="modulos">
@@ -360,6 +387,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_habitaciones_habitaciones_estados">
+          <End Role="habitaciones_estados" Type="Self.habitaciones_estados" Multiplicity="0..1" />
+          <End Role="habitaciones" Type="Self.habitaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habitaciones_estados">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="habitaciones">
+              <PropertyRef Name="id_habitacion_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_habitaciones_habitaciones_tipos">
+          <End Role="habitaciones_tipos" Type="Self.habitaciones_tipos" Multiplicity="0..1" />
+          <End Role="habitaciones" Type="Self.habitaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habitaciones_tipos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="habitaciones">
+              <PropertyRef Name="id_tipo_habitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_modulos_operaciones_modulos">
           <End Role="modulos" Type="Self.modulos" Multiplicity="0..1" />
           <End Role="modulos_operaciones" Type="Self.modulos_operaciones" Multiplicity="*" />
@@ -480,6 +531,9 @@
           <EntitySet Name="ciudades" EntityType="Self.ciudades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="departamentos" EntityType="Self.departamentos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="funcionarios" EntityType="Self.funcionarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="habitaciones" EntityType="Self.habitaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="habitaciones_estados" EntityType="Self.habitaciones_estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="habitaciones_tipos" EntityType="Self.habitaciones_tipos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="modulos" EntityType="Self.modulos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="modulos_operaciones" EntityType="Self.modulos_operaciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="monedas" EntityType="Self.monedas" Schema="dbo" store:Type="Tables" />
@@ -536,6 +590,14 @@
             <End Role="tipos_documentos" EntitySet="tipos_documentos" />
             <End Role="funcionarios" EntitySet="funcionarios" />
           </AssociationSet>
+          <AssociationSet Name="FK_habitaciones_habitaciones_estados" Association="Self.FK_habitaciones_habitaciones_estados">
+            <End Role="habitaciones_estados" EntitySet="habitaciones_estados" />
+            <End Role="habitaciones" EntitySet="habitaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_habitaciones_habitaciones_tipos" Association="Self.FK_habitaciones_habitaciones_tipos">
+            <End Role="habitaciones_tipos" EntitySet="habitaciones_tipos" />
+            <End Role="habitaciones" EntitySet="habitaciones" />
+          </AssociationSet>
           <AssociationSet Name="FK_modulos_operaciones_modulos" Association="Self.FK_modulos_operaciones_modulos">
             <End Role="modulos" EntitySet="modulos" />
             <End Role="modulos_operaciones" EntitySet="modulos_operaciones" />
@@ -573,8 +635,7 @@
             <End Role="usuarios" EntitySet="usuarios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="hoteleria_erp_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1185,7 +1246,73 @@
             <End Role="perfiles" EntitySet="perfiles" />
             <End Role="usuarios" EntitySet="usuarios" />
           </AssociationSet>
+          <EntitySet Name="habitaciones" EntityType="hoteleria_erp_dbModel.habitaciones" />
+          <EntitySet Name="habitaciones_estados" EntityType="hoteleria_erp_dbModel.habitaciones_estados" />
+          <EntitySet Name="habitaciones_tipos" EntityType="hoteleria_erp_dbModel.habitaciones_tipos" />
+          <AssociationSet Name="FK_habitaciones_habitaciones_estados" Association="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_estados">
+            <End Role="habitaciones_estados" EntitySet="habitaciones_estados" />
+            <End Role="habitaciones" EntitySet="habitaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_habitaciones_habitaciones_tipos" Association="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_tipos">
+            <End Role="habitaciones_tipos" EntitySet="habitaciones_tipos" />
+            <End Role="habitaciones" EntitySet="habitaciones" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="habitaciones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_tipo_habitacion" Type="Int32" />
+          <Property Name="id_habitacion_estado" Type="Int32" />
+          <Property Name="numero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Boolean" />
+          <NavigationProperty Name="habitaciones_estados" Relationship="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_estados" FromRole="habitaciones" ToRole="habitaciones_estados" />
+          <NavigationProperty Name="habitaciones_tipos" Relationship="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_tipos" FromRole="habitaciones" ToRole="habitaciones_tipos" />
+        </EntityType>
+        <EntityType Name="habitaciones_estados">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Boolean" />
+          <NavigationProperty Name="habitaciones" Relationship="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_estados" FromRole="habitaciones_estados" ToRole="habitaciones" />
+        </EntityType>
+        <EntityType Name="habitaciones_tipos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="abreviatura" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Boolean" />
+          <NavigationProperty Name="habitaciones" Relationship="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_tipos" FromRole="habitaciones_tipos" ToRole="habitaciones" />
+        </EntityType>
+        <Association Name="FK_habitaciones_habitaciones_estados">
+          <End Type="hoteleria_erp_dbModel.habitaciones_estados" Role="habitaciones_estados" Multiplicity="0..1" />
+          <End Type="hoteleria_erp_dbModel.habitaciones" Role="habitaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habitaciones_estados">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="habitaciones">
+              <PropertyRef Name="id_habitacion_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_habitaciones_habitaciones_tipos">
+          <End Type="hoteleria_erp_dbModel.habitaciones_tipos" Role="habitaciones_tipos" Multiplicity="0..1" />
+          <End Type="hoteleria_erp_dbModel.habitaciones" Role="habitaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habitaciones_tipos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="habitaciones">
+              <PropertyRef Name="id_tipo_habitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1435,6 +1562,36 @@
                 <ScalarProperty Name="fecha_alta" ColumnName="fecha_alta" />
                 <ScalarProperty Name="token_recovery" ColumnName="token_recovery" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="habitaciones">
+            <EntityTypeMapping TypeName="hoteleria_erp_dbModel.habitaciones">
+              <MappingFragment StoreEntitySet="habitaciones">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="id_habitacion_estado" ColumnName="id_habitacion_estado" />
+                <ScalarProperty Name="id_tipo_habitacion" ColumnName="id_tipo_habitacion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="habitaciones_estados">
+            <EntityTypeMapping TypeName="hoteleria_erp_dbModel.habitaciones_estados">
+              <MappingFragment StoreEntitySet="habitaciones_estados">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="habitaciones_tipos">
+            <EntityTypeMapping TypeName="hoteleria_erp_dbModel.habitaciones_tipos">
+              <MappingFragment StoreEntitySet="habitaciones_tipos">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="abreviatura" ColumnName="abreviatura" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

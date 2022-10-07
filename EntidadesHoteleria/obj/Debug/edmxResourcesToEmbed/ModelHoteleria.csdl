@@ -607,5 +607,71 @@
       <End Role="perfiles" EntitySet="perfiles" />
       <End Role="usuarios" EntitySet="usuarios" />
     </AssociationSet>
+    <EntitySet Name="habitaciones" EntityType="hoteleria_erp_dbModel.habitaciones" />
+    <EntitySet Name="habitaciones_estados" EntityType="hoteleria_erp_dbModel.habitaciones_estados" />
+    <EntitySet Name="habitaciones_tipos" EntityType="hoteleria_erp_dbModel.habitaciones_tipos" />
+    <AssociationSet Name="FK_habitaciones_habitaciones_estados" Association="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_estados">
+      <End Role="habitaciones_estados" EntitySet="habitaciones_estados" />
+      <End Role="habitaciones" EntitySet="habitaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_habitaciones_habitaciones_tipos" Association="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_tipos">
+      <End Role="habitaciones_tipos" EntitySet="habitaciones_tipos" />
+      <End Role="habitaciones" EntitySet="habitaciones" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="habitaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_tipo_habitacion" Type="Int32" />
+    <Property Name="id_habitacion_estado" Type="Int32" />
+    <Property Name="numero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="habitaciones_estados" Relationship="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_estados" FromRole="habitaciones" ToRole="habitaciones_estados" />
+    <NavigationProperty Name="habitaciones_tipos" Relationship="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_tipos" FromRole="habitaciones" ToRole="habitaciones_tipos" />
+  </EntityType>
+  <EntityType Name="habitaciones_estados">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="habitaciones" Relationship="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_estados" FromRole="habitaciones_estados" ToRole="habitaciones" />
+  </EntityType>
+  <EntityType Name="habitaciones_tipos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="abreviatura" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="habitaciones" Relationship="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_tipos" FromRole="habitaciones_tipos" ToRole="habitaciones" />
+  </EntityType>
+  <Association Name="FK_habitaciones_habitaciones_estados">
+    <End Type="hoteleria_erp_dbModel.habitaciones_estados" Role="habitaciones_estados" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.habitaciones" Role="habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="habitaciones_estados">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="habitaciones">
+        <PropertyRef Name="id_habitacion_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_habitaciones_habitaciones_tipos">
+    <End Type="hoteleria_erp_dbModel.habitaciones_tipos" Role="habitaciones_tipos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.habitaciones" Role="habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="habitaciones_tipos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="habitaciones">
+        <PropertyRef Name="id_tipo_habitacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -181,7 +181,6 @@ namespace WebHoteleria.Controllers
 
         #endregion
 
-
         #region Editar Area
 
         [HttpGet]

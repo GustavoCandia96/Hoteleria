@@ -106,6 +106,33 @@
     <Property Name="es_supervisor" Type="bit" />
     <Property Name="estado" Type="bit" />
   </EntityType>
+  <EntityType Name="habitaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_tipo_habitacion" Type="int" />
+    <Property Name="id_habitacion_estado" Type="int" />
+    <Property Name="numero" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="habitaciones_estados">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="habitaciones_tipos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="abreviatura" Type="varchar" MaxLength="5" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
   <EntityType Name="modulos">
     <Key>
       <PropertyRef Name="id" />
@@ -355,6 +382,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_habitaciones_habitaciones_estados">
+    <End Role="habitaciones_estados" Type="Self.habitaciones_estados" Multiplicity="0..1" />
+    <End Role="habitaciones" Type="Self.habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="habitaciones_estados">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="habitaciones">
+        <PropertyRef Name="id_habitacion_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_habitaciones_habitaciones_tipos">
+    <End Role="habitaciones_tipos" Type="Self.habitaciones_tipos" Multiplicity="0..1" />
+    <End Role="habitaciones" Type="Self.habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="habitaciones_tipos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="habitaciones">
+        <PropertyRef Name="id_tipo_habitacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_modulos_operaciones_modulos">
     <End Role="modulos" Type="Self.modulos" Multiplicity="0..1" />
     <End Role="modulos_operaciones" Type="Self.modulos_operaciones" Multiplicity="*" />
@@ -475,6 +526,9 @@
     <EntitySet Name="ciudades" EntityType="Self.ciudades" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="departamentos" EntityType="Self.departamentos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="funcionarios" EntityType="Self.funcionarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="habitaciones" EntityType="Self.habitaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="habitaciones_estados" EntityType="Self.habitaciones_estados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="habitaciones_tipos" EntityType="Self.habitaciones_tipos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="modulos" EntityType="Self.modulos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="modulos_operaciones" EntityType="Self.modulos_operaciones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="monedas" EntityType="Self.monedas" Schema="dbo" store:Type="Tables" />
@@ -530,6 +584,14 @@
     <AssociationSet Name="FK_funcionarios_tipos_documentos" Association="Self.FK_funcionarios_tipos_documentos">
       <End Role="tipos_documentos" EntitySet="tipos_documentos" />
       <End Role="funcionarios" EntitySet="funcionarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_habitaciones_habitaciones_estados" Association="Self.FK_habitaciones_habitaciones_estados">
+      <End Role="habitaciones_estados" EntitySet="habitaciones_estados" />
+      <End Role="habitaciones" EntitySet="habitaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_habitaciones_habitaciones_tipos" Association="Self.FK_habitaciones_habitaciones_tipos">
+      <End Role="habitaciones_tipos" EntitySet="habitaciones_tipos" />
+      <End Role="habitaciones" EntitySet="habitaciones" />
     </AssociationSet>
     <AssociationSet Name="FK_modulos_operaciones_modulos" Association="Self.FK_modulos_operaciones_modulos">
       <End Role="modulos" EntitySet="modulos" />

@@ -48,6 +48,11 @@
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_sucursales_paises" ManuallyRouted="false" />
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_permisos_perfiles" ManuallyRouted="false" />
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_usuarios_perfiles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.habitaciones" Width="1.5" PointX="14.625" PointY="14" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.habitaciones_estados" Width="1.5" PointX="12.375" PointY="17.25" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.habitaciones_tipos" Width="1.5" PointX="12.375" PointY="14.125" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_estados" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_tipos" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

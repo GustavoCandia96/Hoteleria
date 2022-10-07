@@ -48,5 +48,8 @@ namespace EntidadesHoteleria
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tipos_documentos> tipos_documentos { get; set; }
         public virtual DbSet<usuarios> usuarios { get; set; }
+        public virtual DbSet<habitaciones> habitaciones { get; set; }
+        public virtual DbSet<habitaciones_estados> habitaciones_estados { get; set; }
+        public virtual DbSet<habitaciones_tipos> habitaciones_tipos { get; set; }
     }
 }

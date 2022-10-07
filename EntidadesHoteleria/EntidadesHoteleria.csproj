@@ -83,6 +83,15 @@
     <Compile Include="funcionarios.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
+    <Compile Include="habitaciones.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="habitaciones_estados.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="habitaciones_tipos.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelHoteleria.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
