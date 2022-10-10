@@ -158,6 +158,7 @@
     <Compile Include="Controllers\CiudadesController.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\HabitacionesController.cs" />
+    <Compile Include="Controllers\HabitacionesEstadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PaisesController.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="Models\CategoriaModel.cs" />
     <Compile Include="Models\CiudadModel.cs" />
     <Compile Include="Models\DepartamentoModel.cs" />
+    <Compile Include="Models\HabitacionEstadoModel.cs" />
     <Compile Include="Models\HabitacionModel.cs" />
     <Compile Include="Models\PaisModel.cs" />
     <Compile Include="Models\RecuperarPasswordModel.cs" />
@@ -4580,6 +4582,9 @@
     <Content Include="Views\TiposHabitaciones\Index.cshtml" />
     <Content Include="Views\TiposHabitaciones\Create.cshtml" />
     <Content Include="Views\TiposHabitaciones\Edit.cshtml" />
+    <Content Include="Views\HabitacionesEstados\Index.cshtml" />
+    <Content Include="Views\HabitacionesEstados\Create.cshtml" />
+    <Content Include="Views\HabitacionesEstados\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

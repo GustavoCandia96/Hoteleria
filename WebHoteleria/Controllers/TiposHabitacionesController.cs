@@ -201,7 +201,7 @@ namespace WebHoteleria.Controllers
 
         #endregion
 
-        #region Editar Area
+        #region Editar Tipos Habitaciones
 
         [HttpGet]
         [AutorizarUsuario("TiposHabitaciones", "Edit")]
