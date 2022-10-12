@@ -14,8 +14,17 @@ namespace EntidadesHoteleria
     
     public partial class actividades_economicas
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public actividades_economicas()
+        {
+            this.proveedores = new HashSet<proveedores>();
+        }
+    
         public int id { get; set; }
         public string actividad { get; set; }
         public Nullable<bool> estado { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<proveedores> proveedores { get; set; }
     }
 }

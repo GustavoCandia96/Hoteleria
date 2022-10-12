@@ -18,6 +18,7 @@ namespace EntidadesHoteleria
         public tipos_documentos()
         {
             this.funcionarios = new HashSet<funcionarios>();
+            this.proveedores = new HashSet<proveedores>();
         }
     
         public int id { get; set; }
@@ -26,5 +27,7 @@ namespace EntidadesHoteleria
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<funcionarios> funcionarios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<proveedores> proveedores { get; set; }
     }
 }

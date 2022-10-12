@@ -19,6 +19,7 @@ namespace EntidadesHoteleria
         {
             this.barrios = new HashSet<barrios>();
             this.sucursales = new HashSet<sucursales>();
+            this.proveedores = new HashSet<proveedores>();
         }
     
         public int id { get; set; }
@@ -31,5 +32,7 @@ namespace EntidadesHoteleria
         public virtual departamentos departamentos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sucursales> sucursales { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<proveedores> proveedores { get; set; }
     }
 }

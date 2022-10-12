@@ -1,0 +1,25 @@
+﻿@model WebHoteleria.Models.ProveedorModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutModal.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<div class="form-group">
+    @Html.Label("* Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-6 col-xs-12">
+        @Html.TextBoxFor(model => model.Nombre, null, new { @class = "form-control has-feedback-left", required = "required" })
+        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+        @Html.ValidationMessageFor(m => m.Nombre)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.Label("* Apellido", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-6">
+        @Html.TextBoxFor(model => model.Apellido, null, new { @class = "form-control has-feedback-left", required = "required" })
+        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+        @Html.ValidationMessageFor(m => m.Apellido)
+    </div>
+</div>
+

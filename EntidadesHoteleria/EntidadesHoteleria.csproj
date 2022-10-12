@@ -132,10 +132,19 @@
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="proveedores.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="proveedores_contactos.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
     <Compile Include="sucursales.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tipos_contactos.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
     <Compile Include="tipos_documentos.cs">

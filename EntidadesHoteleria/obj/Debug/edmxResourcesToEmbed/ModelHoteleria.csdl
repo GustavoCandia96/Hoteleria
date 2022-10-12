@@ -7,6 +7,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="actividad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="proveedores" Relationship="hoteleria_erp_dbModel.FK_proveedores_actividades_economicas" FromRole="actividades_economicas" ToRole="proveedores" />
   </EntityType>
   <EntityType Name="areas">
     <Key>
@@ -61,6 +62,7 @@
     <Property Name="estado" Type="Boolean" />
     <NavigationProperty Name="ciudades" Relationship="Self.FK_barrios_ciudades" FromRole="barrios" ToRole="ciudades" />
     <NavigationProperty Name="sucursales" Relationship="Self.FK_sucursales_barrios" FromRole="barrios" ToRole="sucursales" />
+    <NavigationProperty Name="proveedores" Relationship="hoteleria_erp_dbModel.FK_proveedores_barrios" FromRole="barrios" ToRole="proveedores" />
   </EntityType>
   <EntityType Name="cargos">
     <Key>
@@ -93,6 +95,7 @@
     <NavigationProperty Name="barrios" Relationship="Self.FK_barrios_ciudades" FromRole="ciudades" ToRole="barrios" />
     <NavigationProperty Name="departamentos" Relationship="Self.FK_ciudades_departamentos" FromRole="ciudades" ToRole="departamentos" />
     <NavigationProperty Name="sucursales" Relationship="Self.FK_sucursales_ciudades" FromRole="ciudades" ToRole="sucursales" />
+    <NavigationProperty Name="proveedores" Relationship="hoteleria_erp_dbModel.FK_proveedores_ciudades" FromRole="ciudades" ToRole="proveedores" />
   </EntityType>
   <EntityType Name="departamentos">
     <Key>
@@ -105,6 +108,7 @@
     <NavigationProperty Name="ciudades" Relationship="Self.FK_ciudades_departamentos" FromRole="departamentos" ToRole="ciudades" />
     <NavigationProperty Name="paises" Relationship="Self.FK_departamentos_paises" FromRole="departamentos" ToRole="paises" />
     <NavigationProperty Name="sucursales" Relationship="Self.FK_sucursales_departamentos" FromRole="departamentos" ToRole="sucursales" />
+    <NavigationProperty Name="proveedores" Relationship="hoteleria_erp_dbModel.FK_proveedores_departamentos" FromRole="departamentos" ToRole="proveedores" />
   </EntityType>
   <EntityType Name="funcionarios">
     <Key>
@@ -168,6 +172,7 @@
     <Property Name="estado" Type="Boolean" />
     <NavigationProperty Name="departamentos" Relationship="Self.FK_departamentos_paises" FromRole="paises" ToRole="departamentos" />
     <NavigationProperty Name="sucursales" Relationship="Self.FK_sucursales_paises" FromRole="paises" ToRole="sucursales" />
+    <NavigationProperty Name="proveedores" Relationship="hoteleria_erp_dbModel.FK_proveedores_paises" FromRole="paises" ToRole="proveedores" />
   </EntityType>
   <EntityType Name="parametros">
     <Key>
@@ -245,6 +250,7 @@
     <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="Boolean" />
     <NavigationProperty Name="funcionarios" Relationship="Self.FK_funcionarios_tipos_documentos" FromRole="tipos_documentos" ToRole="funcionarios" />
+    <NavigationProperty Name="proveedores" Relationship="hoteleria_erp_dbModel.FK_proveedores_tipos_documentos" FromRole="tipos_documentos" ToRole="proveedores" />
   </EntityType>
   <EntityType Name="usuarios">
     <Key>
@@ -618,6 +624,41 @@
       <End Role="habitaciones_tipos" EntitySet="habitaciones_tipos" />
       <End Role="habitaciones" EntitySet="habitaciones" />
     </AssociationSet>
+    <EntitySet Name="proveedores" EntityType="hoteleria_erp_dbModel.proveedores" />
+    <AssociationSet Name="FK_proveedores_actividades_economicas" Association="hoteleria_erp_dbModel.FK_proveedores_actividades_economicas">
+      <End Role="actividades_economicas" EntitySet="actividades_economicas" />
+      <End Role="proveedores" EntitySet="proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_barrios" Association="hoteleria_erp_dbModel.FK_proveedores_barrios">
+      <End Role="barrios" EntitySet="barrios" />
+      <End Role="proveedores" EntitySet="proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_ciudades" Association="hoteleria_erp_dbModel.FK_proveedores_ciudades">
+      <End Role="ciudades" EntitySet="ciudades" />
+      <End Role="proveedores" EntitySet="proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_departamentos" Association="hoteleria_erp_dbModel.FK_proveedores_departamentos">
+      <End Role="departamentos" EntitySet="departamentos" />
+      <End Role="proveedores" EntitySet="proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_paises" Association="hoteleria_erp_dbModel.FK_proveedores_paises">
+      <End Role="paises" EntitySet="paises" />
+      <End Role="proveedores" EntitySet="proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_tipos_documentos" Association="hoteleria_erp_dbModel.FK_proveedores_tipos_documentos">
+      <End Role="tipos_documentos" EntitySet="tipos_documentos" />
+      <End Role="proveedores" EntitySet="proveedores" />
+    </AssociationSet>
+    <EntitySet Name="proveedores_contactos" EntityType="hoteleria_erp_dbModel.proveedores_contactos" />
+    <EntitySet Name="tipos_contactos" EntityType="hoteleria_erp_dbModel.tipos_contactos" />
+    <AssociationSet Name="FK_proveedores_contactos_proveedores" Association="hoteleria_erp_dbModel.FK_proveedores_contactos_proveedores">
+      <End Role="proveedores" EntitySet="proveedores" />
+      <End Role="proveedores_contactos" EntitySet="proveedores_contactos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_contactos_tipos_contactos" Association="hoteleria_erp_dbModel.FK_proveedores_contactos_tipos_contactos">
+      <End Role="tipos_contactos" EntitySet="tipos_contactos" />
+      <End Role="proveedores_contactos" EntitySet="proveedores_contactos" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="habitaciones">
     <Key>
@@ -671,6 +712,150 @@
       </Principal>
       <Dependent Role="habitaciones">
         <PropertyRef Name="id_tipo_habitacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="proveedores">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_tipo_documento" Type="Int32" />
+    <Property Name="id_actividad_economica" Type="Int32" />
+    <Property Name="nro_documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="razon_social" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="id_pais" Type="Int32" />
+    <Property Name="id_departamento" Type="Int32" />
+    <Property Name="id_ciudad" Type="Int32" />
+    <Property Name="id_barrio" Type="Int32" />
+    <Property Name="direccion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="email_principal" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="nro_telefono_principal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="actividades_economicas" Relationship="hoteleria_erp_dbModel.FK_proveedores_actividades_economicas" FromRole="proveedores" ToRole="actividades_economicas" />
+    <NavigationProperty Name="barrios" Relationship="hoteleria_erp_dbModel.FK_proveedores_barrios" FromRole="proveedores" ToRole="barrios" />
+    <NavigationProperty Name="ciudades" Relationship="hoteleria_erp_dbModel.FK_proveedores_ciudades" FromRole="proveedores" ToRole="ciudades" />
+    <NavigationProperty Name="departamentos" Relationship="hoteleria_erp_dbModel.FK_proveedores_departamentos" FromRole="proveedores" ToRole="departamentos" />
+    <NavigationProperty Name="paises" Relationship="hoteleria_erp_dbModel.FK_proveedores_paises" FromRole="proveedores" ToRole="paises" />
+    <NavigationProperty Name="tipos_documentos" Relationship="hoteleria_erp_dbModel.FK_proveedores_tipos_documentos" FromRole="proveedores" ToRole="tipos_documentos" />
+    <NavigationProperty Name="proveedores_contactos" Relationship="hoteleria_erp_dbModel.FK_proveedores_contactos_proveedores" FromRole="proveedores" ToRole="proveedores_contactos" />
+  </EntityType>
+  <Association Name="FK_proveedores_actividades_economicas">
+    <End Type="hoteleria_erp_dbModel.actividades_economicas" Role="actividades_economicas" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.proveedores" Role="proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="actividades_economicas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores">
+        <PropertyRef Name="id_actividad_economica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_barrios">
+    <End Type="hoteleria_erp_dbModel.barrios" Role="barrios" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.proveedores" Role="proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="barrios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores">
+        <PropertyRef Name="id_barrio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_ciudades">
+    <End Type="hoteleria_erp_dbModel.ciudades" Role="ciudades" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.proveedores" Role="proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ciudades">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores">
+        <PropertyRef Name="id_ciudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_departamentos">
+    <End Type="hoteleria_erp_dbModel.departamentos" Role="departamentos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.proveedores" Role="proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departamentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores">
+        <PropertyRef Name="id_departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_paises">
+    <End Type="hoteleria_erp_dbModel.paises" Role="paises" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.proveedores" Role="proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="paises">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores">
+        <PropertyRef Name="id_pais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_tipos_documentos">
+    <End Type="hoteleria_erp_dbModel.tipos_documentos" Role="tipos_documentos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.proveedores" Role="proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_documentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores">
+        <PropertyRef Name="id_tipo_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="proveedores_contactos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_proveedor" Type="Int32" />
+    <Property Name="id_tipo_contacto" Type="Int32" />
+    <Property Name="contacto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="proveedores" Relationship="hoteleria_erp_dbModel.FK_proveedores_contactos_proveedores" FromRole="proveedores_contactos" ToRole="proveedores" />
+    <NavigationProperty Name="tipos_contactos" Relationship="hoteleria_erp_dbModel.FK_proveedores_contactos_tipos_contactos" FromRole="proveedores_contactos" ToRole="tipos_contactos" />
+  </EntityType>
+  <EntityType Name="tipos_contactos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="proveedores_contactos" Relationship="hoteleria_erp_dbModel.FK_proveedores_contactos_tipos_contactos" FromRole="tipos_contactos" ToRole="proveedores_contactos" />
+  </EntityType>
+  <Association Name="FK_proveedores_contactos_proveedores">
+    <End Type="hoteleria_erp_dbModel.proveedores" Role="proveedores" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.proveedores_contactos" Role="proveedores_contactos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores_contactos">
+        <PropertyRef Name="id_proveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_contactos_tipos_contactos">
+    <End Type="hoteleria_erp_dbModel.tipos_contactos" Role="tipos_contactos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.proveedores_contactos" Role="proveedores_contactos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_contactos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores_contactos">
+        <PropertyRef Name="id_tipo_contacto" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -162,6 +162,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PaisesController.cs" />
+    <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\SucursalesController.cs" />
     <Compile Include="Controllers\TiposHabitacionesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -179,6 +180,8 @@
     <Compile Include="Models\HabitacionEstadoModel.cs" />
     <Compile Include="Models\HabitacionModel.cs" />
     <Compile Include="Models\PaisModel.cs" />
+    <Compile Include="Models\ProveedorContactoModel.cs" />
+    <Compile Include="Models\ProveedorModel.cs" />
     <Compile Include="Models\RecuperarPasswordModel.cs" />
     <Compile Include="Models\SucursalModel.cs" />
     <Compile Include="Models\TipoHabitacionModel.cs" />
@@ -4586,6 +4589,11 @@
     <Content Include="Views\HabitacionesEstados\Create.cshtml" />
     <Content Include="Views\HabitacionesEstados\Edit.cshtml" />
     <Content Include="Views\Habitaciones\Edit.cshtml" />
+    <Content Include="Views\Proveedores\Create.cshtml" />
+    <Content Include="Views\Proveedores\Edit.cshtml" />
+    <Content Include="Views\Proveedores\Index.cshtml" />
+    <Content Include="Views\Proveedores\PartialProveedorFisico.cshtml" />
+    <Content Include="Views\Proveedores\PartialProveedorJuridico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

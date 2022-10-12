@@ -203,6 +203,36 @@
     <Property Name="nombre_profesion" Type="varchar" MaxLength="50" />
     <Property Name="estado" Type="bit" />
   </EntityType>
+  <EntityType Name="proveedores">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_tipo_documento" Type="int" />
+    <Property Name="id_actividad_economica" Type="int" />
+    <Property Name="nro_documento" Type="varchar" MaxLength="50" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" />
+    <Property Name="apellido" Type="varchar" MaxLength="100" />
+    <Property Name="razon_social" Type="varchar" MaxLength="200" />
+    <Property Name="id_pais" Type="int" />
+    <Property Name="id_departamento" Type="int" />
+    <Property Name="id_ciudad" Type="int" />
+    <Property Name="id_barrio" Type="int" />
+    <Property Name="direccion" Type="varchar" MaxLength="300" />
+    <Property Name="email_principal" Type="varchar" MaxLength="200" />
+    <Property Name="nro_telefono_principal" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="proveedores_contactos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_proveedor" Type="int" />
+    <Property Name="id_tipo_contacto" Type="int" />
+    <Property Name="contacto" Type="varchar" MaxLength="100" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
   <EntityType Name="sucursales">
     <Key>
       <PropertyRef Name="id" />
@@ -226,6 +256,14 @@
     <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tipos_contactos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
   </EntityType>
   <EntityType Name="tipos_documentos">
     <Key>
@@ -442,6 +480,102 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_proveedores_actividades_economicas">
+    <End Role="actividades_economicas" Type="Self.actividades_economicas" Multiplicity="0..1" />
+    <End Role="proveedores" Type="Self.proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="actividades_economicas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores">
+        <PropertyRef Name="id_actividad_economica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_barrios">
+    <End Role="barrios" Type="Self.barrios" Multiplicity="0..1" />
+    <End Role="proveedores" Type="Self.proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="barrios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores">
+        <PropertyRef Name="id_barrio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_ciudades">
+    <End Role="ciudades" Type="Self.ciudades" Multiplicity="0..1" />
+    <End Role="proveedores" Type="Self.proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ciudades">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores">
+        <PropertyRef Name="id_ciudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_contactos_proveedores">
+    <End Role="proveedores" Type="Self.proveedores" Multiplicity="0..1" />
+    <End Role="proveedores_contactos" Type="Self.proveedores_contactos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores_contactos">
+        <PropertyRef Name="id_proveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_contactos_tipos_contactos">
+    <End Role="tipos_contactos" Type="Self.tipos_contactos" Multiplicity="0..1" />
+    <End Role="proveedores_contactos" Type="Self.proveedores_contactos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_contactos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores_contactos">
+        <PropertyRef Name="id_tipo_contacto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_departamentos">
+    <End Role="departamentos" Type="Self.departamentos" Multiplicity="0..1" />
+    <End Role="proveedores" Type="Self.proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departamentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores">
+        <PropertyRef Name="id_departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_paises">
+    <End Role="paises" Type="Self.paises" Multiplicity="0..1" />
+    <End Role="proveedores" Type="Self.proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="paises">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores">
+        <PropertyRef Name="id_pais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_tipos_documentos">
+    <End Role="tipos_documentos" Type="Self.tipos_documentos" Multiplicity="0..1" />
+    <End Role="proveedores" Type="Self.proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_documentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores">
+        <PropertyRef Name="id_tipo_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_sucursales_barrios">
     <End Role="barrios" Type="Self.barrios" Multiplicity="0..1" />
     <End Role="sucursales" Type="Self.sucursales" Multiplicity="*" />
@@ -537,8 +671,11 @@
     <EntitySet Name="perfiles" EntityType="Self.perfiles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="permisos" EntityType="Self.permisos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="profesiones" EntityType="Self.profesiones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proveedores" EntityType="Self.proveedores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proveedores_contactos" EntityType="Self.proveedores_contactos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sucursales" EntityType="Self.sucursales" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tipos_contactos" EntityType="Self.tipos_contactos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tipos_documentos" EntityType="Self.tipos_documentos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_bancos_cuentas_bancos" Association="Self.FK_bancos_cuentas_bancos">
@@ -604,6 +741,38 @@
     <AssociationSet Name="FK_permisos_perfiles" Association="Self.FK_permisos_perfiles">
       <End Role="perfiles" EntitySet="perfiles" />
       <End Role="permisos" EntitySet="permisos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_actividades_economicas" Association="Self.FK_proveedores_actividades_economicas">
+      <End Role="actividades_economicas" EntitySet="actividades_economicas" />
+      <End Role="proveedores" EntitySet="proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_barrios" Association="Self.FK_proveedores_barrios">
+      <End Role="barrios" EntitySet="barrios" />
+      <End Role="proveedores" EntitySet="proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_ciudades" Association="Self.FK_proveedores_ciudades">
+      <End Role="ciudades" EntitySet="ciudades" />
+      <End Role="proveedores" EntitySet="proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_contactos_proveedores" Association="Self.FK_proveedores_contactos_proveedores">
+      <End Role="proveedores" EntitySet="proveedores" />
+      <End Role="proveedores_contactos" EntitySet="proveedores_contactos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_contactos_tipos_contactos" Association="Self.FK_proveedores_contactos_tipos_contactos">
+      <End Role="tipos_contactos" EntitySet="tipos_contactos" />
+      <End Role="proveedores_contactos" EntitySet="proveedores_contactos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_departamentos" Association="Self.FK_proveedores_departamentos">
+      <End Role="departamentos" EntitySet="departamentos" />
+      <End Role="proveedores" EntitySet="proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_paises" Association="Self.FK_proveedores_paises">
+      <End Role="paises" EntitySet="paises" />
+      <End Role="proveedores" EntitySet="proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_tipos_documentos" Association="Self.FK_proveedores_tipos_documentos">
+      <End Role="tipos_documentos" EntitySet="tipos_documentos" />
+      <End Role="proveedores" EntitySet="proveedores" />
     </AssociationSet>
     <AssociationSet Name="FK_sucursales_barrios" Association="Self.FK_sucursales_barrios">
       <End Role="barrios" EntitySet="barrios" />

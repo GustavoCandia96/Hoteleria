@@ -53,6 +53,17 @@
         <EntityTypeShape EntityType="hoteleria_erp_dbModel.habitaciones_tipos" Width="1.5" PointX="12.375" PointY="14.125" />
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_estados" />
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_tipos" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.proveedores" Width="1.5" PointX="17" PointY="4.375" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_proveedores_actividades_economicas" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_proveedores_barrios" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_proveedores_ciudades" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_proveedores_departamentos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_proveedores_paises" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_proveedores_tipos_documentos" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.proveedores_contactos" Width="1.5" PointX="19.25" PointY="5.875" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.tipos_contactos" Width="1.5" PointX="17" PointY="1.125" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_proveedores_contactos_proveedores" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_proveedores_contactos_tipos_contactos" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

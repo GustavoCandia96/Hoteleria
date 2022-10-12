@@ -51,5 +51,8 @@ namespace EntidadesHoteleria
         public virtual DbSet<habitaciones> habitaciones { get; set; }
         public virtual DbSet<habitaciones_estados> habitaciones_estados { get; set; }
         public virtual DbSet<habitaciones_tipos> habitaciones_tipos { get; set; }
+        public virtual DbSet<proveedores> proveedores { get; set; }
+        public virtual DbSet<proveedores_contactos> proveedores_contactos { get; set; }
+        public virtual DbSet<tipos_contactos> tipos_contactos { get; set; }
     }
 }

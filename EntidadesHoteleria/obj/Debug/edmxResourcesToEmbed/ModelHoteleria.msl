@@ -277,5 +277,46 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="proveedores">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.proveedores">
+        <MappingFragment StoreEntitySet="proveedores">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="nro_telefono_principal" ColumnName="nro_telefono_principal" />
+          <ScalarProperty Name="email_principal" ColumnName="email_principal" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="id_barrio" ColumnName="id_barrio" />
+          <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+          <ScalarProperty Name="id_departamento" ColumnName="id_departamento" />
+          <ScalarProperty Name="id_pais" ColumnName="id_pais" />
+          <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="nro_documento" ColumnName="nro_documento" />
+          <ScalarProperty Name="id_actividad_economica" ColumnName="id_actividad_economica" />
+          <ScalarProperty Name="id_tipo_documento" ColumnName="id_tipo_documento" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proveedores_contactos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.proveedores_contactos">
+        <MappingFragment StoreEntitySet="proveedores_contactos">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="contacto" ColumnName="contacto" />
+          <ScalarProperty Name="id_tipo_contacto" ColumnName="id_tipo_contacto" />
+          <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipos_contactos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.tipos_contactos">
+        <MappingFragment StoreEntitySet="tipos_contactos">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
