@@ -315,7 +315,40 @@ namespace WebHoteleria.Controllers
             }
         }
 
-#endregion
+        #endregion
+
+        #region Ajax
+        [HttpGet]
+        public ActionResult ObtenerListadoDeHabitacionesEstados(string nombre)
+        {
+            string respuesta = string.Empty;
+            string msg = string.Empty;
+            string row = string.Empty;
+            try
+            {
+                List<habitaciones_estados> listaHabitacionesEstados = new List<habitaciones_estados>();
+                if (nombre != string.Empty)
+                {
+                    listaHabitacionesEstados = db.habitaciones_estados.Where(s => s.descripcion.Trim().ToUpper().Contains(nombre.Trim().ToUpper()) && s.estado != null).ToList();
+                }
+                foreach (var item in listaHabitacionesEstados)
+                {
+                    var elHidden = "<input type=\"hidden\"  name=\"HabitacionesEstados\" value=\"" + item.id + "\"> ";
+
+                    row += "<tr>" +
+                        "<td>" + item.id + " </td>" +
+                        "<td>" + item.descripcion + " </td>";
+                    row += "<td><button type=\'button\' title='Seleccionar Habitacion Estado' class=\'btn btn-success btn-xs seleccionarHabitacionEstado\'><i class=\'glyphicon glyphicon-saved\'></i></button></td>" + "<td>" + elHidden + " </td>" + "</tr>";
+                }
+            }
+            catch (Exception)
+            {
+                respuesta = "Error";
+            }
+            return Json(new { succes = true, respuesta = respuesta, msg = msg, row = row }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
 
 
 

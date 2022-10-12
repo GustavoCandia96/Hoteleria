@@ -4585,6 +4585,7 @@
     <Content Include="Views\HabitacionesEstados\Index.cshtml" />
     <Content Include="Views\HabitacionesEstados\Create.cshtml" />
     <Content Include="Views\HabitacionesEstados\Edit.cshtml" />
+    <Content Include="Views\Habitaciones\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -343,6 +343,39 @@ namespace WebHoteleria.Controllers
         }
         #endregion
 
+        #region Ajax
+        [HttpGet]
+        public ActionResult ObtenerListadoTiposServicios(string descripcion)
+        {
+            string respuesta = string.Empty;
+            string msg = string.Empty;
+            string row = string.Empty;
+            try
+            {
+                List<habitaciones_tipos> listaTiposServicios = new List<habitaciones_tipos>();
+                if (descripcion != string.Empty)
+                {
+                    listaTiposServicios = db.habitaciones_tipos.Where(s => s.nombre.Trim().ToUpper().Contains(descripcion.Trim().ToUpper()) && s.estado != null).ToList();
+                }
+                foreach (var item in listaTiposServicios)
+                {
+                    var elHidden = "<input type=\"hidden\"  name=\"TiposHabitaciones\" value=\"" + item.id + "\"> ";
+
+                    row += "<tr>" +
+                        "<td>" + item.id + " </td>" +
+                        "<td>" + item.nombre + " </td>" +
+                         "<td>" + item.abreviatura + " </td>";
+                    row += "<td><button type=\'button\' title='Seleccionar Tipo Habitacion' class=\'btn btn-success btn-xs seleccionarTipoHabitacion\'><i class=\'glyphicon glyphicon-saved\'></i></button></td>" + "<td>" + elHidden + " </td>" + "</tr>";
+                }
+            }
+            catch (Exception)
+            {
+                respuesta = "Error";
+            }
+            return Json(new { succes = true, respuesta = respuesta, msg = msg, row = row }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
 
 
     }

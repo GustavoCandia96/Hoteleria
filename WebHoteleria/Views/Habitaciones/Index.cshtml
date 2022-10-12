@@ -34,10 +34,10 @@
 
     });
 
-    function EliminarBarrio(id, barrio, ciudad, departamento, pais) {
-        var pregunta = "<strong> ¿Estas seguro de eliminar el barrio " + barrio + " de la ciudad de " + ciudad + " del departamento de " + departamento + " que pertenece al país de " + pais + "?</strong></br>";
+    function EliminarHabitacion(id, tipoHabitacion, estadoHabitacion, numero) {
+        var pregunta = "<strong> ¿Estas seguro de eliminar la habitacion " + tipoHabitacion + " numero " + numero + " estado habitacion " + estadoHabitacion + "?</strong></br>";
         var dialog = bootbox.dialog({
-            title: '<strong>Eliminación de Barrio</strong>',
+            title: '<strong>Eliminación de Habitacion</strong>',
             message: pregunta,
             buttons: {
                 cancel: {
@@ -52,16 +52,16 @@
                     className: 'btn-info',
                     callback: function () {
                         dialog.modal('hide');
-                        EjecutarEliminacionBarrio(id);
+                        EjecutarEliminacionHabitacion(id);
                     }
                 }
             }
         });
     }
 
-    function EjecutarEliminacionBarrio(idBarrio) {
+    function EjecutarEliminacionHabitacion(idHabitacion) {
         var send = {
-            barrioId: idBarrio
+            habitacionId: idHabitacion
         }
         var dialog = bootbox.dialog({
             title: 'Guardando datos',
@@ -69,7 +69,7 @@
         });
 
         $.ajax({
-            url: '/Barrios/EliminarBarrio',
+            url: '/Habitaciones/EliminarHabitacion',
             type: 'POST',
             data: JSON.stringify(send),
             contentType: 'application/json',
@@ -78,7 +78,7 @@
             },
             success: function (data) {
                 if (data.success) {
-                    dialog.find('.bootbox-body').html('La eliminación del barrio se ejecuto correctamente!!');
+                    dialog.find('.bootbox-body').html('La eliminación de la habitacion se ejecuto correctamente!!');
                     setTimeout(function () {
                         window.location.href = data.urlRedirect;
                     }, 300);
@@ -88,7 +88,7 @@
                     if (data.respuesta != "") {
                         alertaSoloMensaje(data.respuesta);
                     } else {
-                        alertaSoloMensaje("Ocurrio un error al eliminar el barrio seleccionado");
+                        alertaSoloMensaje("Ocurrio un error al eliminar la habitacion seleccionado");
                     }
                 }
             }
@@ -185,10 +185,9 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Barrio / Localidad</th>
-                                    <th>Ciudad</th>
-                                    <th>Departamento</th>
-                                    <th>País</th>
+                                    <th>Tipo Habitacion</th>
+                                    <th>Estado Habitacion</th>
+                                    <th>Numero Habitacion</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>

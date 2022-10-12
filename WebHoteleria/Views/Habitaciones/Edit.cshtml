@@ -1,0 +1,116 @@
+﻿
+@model WebHoteleria.Models.HabitacionModel
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#IdTipoHabitacion").change(function () {
+            var valorIdPais = $("#IdPais").val();
+            $.ajax({
+                url: '/Departamentos/ObtenerListadoDepartamentos',
+                type: 'POST',
+                data: {
+                    paisId: valorIdPais
+                }
+            }).done(function (response) {
+                $("[name = IdDepartamento]").html(response);
+                $("[name = IdDepartamento]").prepend("<option value='' selected='selected'>--Seleccionar--</option>");
+            });
+        });
+
+        $("#IdDepartamento").change(function () {
+            var valorIdDepartamento = $("#IdDepartamento").val();
+            $.ajax({
+                url: '/Ciudades/ObtenerListadoCiudades',
+                type: 'POST',
+                data: {
+                    departamentoId: valorIdDepartamento
+                }
+            }).done(function (response) {
+                $("[name = IdCiudad]").html(response);
+                $("[name = IdCiudad]").prepend("<option value='' selected='selected'>--Seleccionar--</option>");
+            });
+        });
+
+    });</script>
+<div class="page-title">
+    <div class="title_left">
+        <h3>Editar habitacion <small></small></h3>
+    </div>
+</div>
+@using (Html.BeginForm("Edit", "Habitaciones", FormMethod.Post, new { id = "frmCrearHabitacion" }))
+{
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    @if (@ViewBag.msg != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            @Html.ValidationMessage("Duplicado")
+                            @Html.ValidationMessage("Error")
+                        </div>
+                    }
+                    <div class="form-horizontal">
+                        @Html.HiddenFor(model => model.Id)
+                        <div class="form-group">
+                            @Html.Label("* Tipos Habitaciones", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdTipoHabitacion, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdTipoHabitacion)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("* Estados Habitaciones", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdHabitacionEstado, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdHabitacionEstado)
+                            </div>
+                        </div>
+                     
+                        <div class="form-group">
+                            @Html.Label("* Numero", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Numero, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-sort-alpha-desc form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Numero)
+                            </div>
+                        </div>
+                      
+                        <div class="form-group">
+                            @Html.Label("* Estado", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.EstadoDescrip, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.EstadoDescrip)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-primary" })
+                        <input type="submit" value="Guardar" id="btnGuardar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
