@@ -1,0 +1,98 @@
+﻿@model WebHoteleria.Models.ModuloOperacionModel
+
+<script type="text/javascript">
+
+
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Editar modulo operación <small></small></h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("Edit", "ModulosOperaciones", FormMethod.Post, new { id = "frmEditarModuloOperacion" }))
+{
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    @if (@ViewBag.msg != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            @Html.ValidationMessage("Duplicado")
+                            @Html.ValidationMessage("Error")
+                        </div>
+                    }
+
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.Label("* Modulo", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdModulo, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdModulo)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Operación", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Operacion, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-exchange form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Operacion)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Descripción", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-edit form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Descripcion)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Estado", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.EstadoDescrip, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.EstadoDescrip)
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-primary" })
+                        <input type="submit" value="Guardar" id="btnGuardar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

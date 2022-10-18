@@ -1,0 +1,314 @@
+﻿@model WebHoteleria.Models.PermisoModel
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#tablaPermisosEliminados").css("display", "none");
+
+        $("#IdModulo").change(function () {
+            var valorIdModulo = $("#IdModulo").val();
+            $.ajax({
+                url: '/ModulosOperaciones/ObtenerListadoOperacionesPorDescripcion',
+                type: 'POST',
+                data: {
+                    moduloId: valorIdModulo
+                }
+            }).done(function (response) {
+                $("[name = IdModuloOperacion]").html(response);
+                $("[name = IdModuloOperacion]").prepend("<option value='' selected='selected'>--Seleccionar--</option>");
+            });
+        });
+
+        $("#btnAgregarPermiso").click(function () {
+
+            var moduloId = $("#IdModulo").val();
+            var moduloOperacionId = $("#IdModuloOperacion").val();
+            var moduloNombre = $("#IdModulo option:selected").text();
+            var moduloOperacionNombre = $("#IdModuloOperacion option:selected").text();
+
+            if (Validaciones(moduloId, moduloOperacionId)) {
+                if (VerificarSobreposicion(moduloOperacionId)) {
+                    if (VerificarListaEliminados(moduloOperacionId)){
+                        AgregarFila(moduloId, moduloOperacionId, moduloNombre, moduloOperacionNombre);
+                    }
+                } else {
+                    alertaSoloMensaje("El permiso que quiere agregar ya existe en la lista");
+                }
+            }
+
+        });
+
+        $("#tblPermisos").on('click', '.deleteLink', function () {
+            var $tr = $(this).closest('tr');
+
+            //OBTENEMOS LOS DATOS PARA AGREGAR A LA TABLA OCULTA
+            var moduloOperacionId = $tr.find("td:eq(0)").html();
+            var moduloNombre = $tr.find("td:eq(1)").html();
+            var moduloOperacionNombre = $tr.find("td:eq(2)").html();
+            var permisoId = $('input:hidden[name=arrIdPermiso]').val();
+
+
+            //AGREGAMOS A LA TABLA OCULTA DE ELIMINADOS
+            var eliminar = "<button type='button' class='btn btn-danger btn-xs deleteLink'><i class='glyphicon glyphicon-remove'></i></button>";
+            var tr;
+            tr = $('<tr/>');
+            tr.append("<td>" + moduloOperacionId + "</td>");
+            tr.append("<td>" + moduloNombre + "</td>");
+            tr.append("<td>" + moduloOperacionNombre + "</td>");
+            tr.append("<td>" + eliminar + "</td>");
+            tr.append("<td><input type='hidden' name='arrIdPermisoEliminado'  value='" + permisoId + "'/></td>");
+            tr.append("<td><input type='hidden' name='arrIdOperacionEliminado'  value='" + moduloOperacionId + "'/></td>");
+            $('#tblPermisosEliminados').append(tr);
+
+            $tr.css("background-color", "#FF3700");
+            $tr.fadeOut(400, function () {
+                $tr.remove();
+            });
+            return false;
+        });
+
+    });
+
+    function alertaSoloMensaje(mensaje) {
+        bootbox.alert({
+            title: "<strong>Alerta</strong>",
+            message: mensaje,
+            size: 'medium'
+        });
+    }
+
+    function Validaciones(moduloId, moduloOperacionId) {
+
+        if (moduloId == "") {
+            alertaSoloMensaje("Tiene que seleccionar un modulo para agregar permisos");
+            return false;
+        }
+
+        if (moduloOperacionId == "") {
+            alertaSoloMensaje("Tiene que seleccionar una operación del modulo para agregar permisos");
+            return false;
+        }
+        return true;
+    }
+
+    function VerificarSobreposicion(moduloOperacionId) {
+
+        var retorno = true;
+
+        if (parseInt(("#tblPermisos > tbody > tr").length) > 0) {
+            $('#tblPermisos >tbody >tr').each(function () {
+                var $tr = $(this).closest("tr");
+                var elId = $tr.find("td:eq(0)").html();
+                if (elId == moduloOperacionId) {
+                    retorno = false;
+                }
+            });
+        }
+
+        return retorno;
+    }
+
+    function VerificarListaEliminados(moduloOperacionId) {
+
+        var retorno = true;
+
+        if (parseInt(("#tblPermisosEliminados > tbody > tr").length) > 0) {
+            $('#tblPermisosEliminados >tbody >tr').each(function () {
+                var $tr = $(this).closest("tr");
+                var elId = $tr.find("td:eq(0)").html();
+                if (elId == moduloOperacionId) {
+                    $tr.css("background-color", "#FF3700");
+                    $tr.fadeOut(400, function () {
+                        $tr.remove();
+                    });
+                }
+            });
+        }
+
+        return retorno;
+    }
+
+    function AgregarFila(moduloId, moduloOperacionId, moduloNombre, moduloOperacionNombre) {
+        var eliminar = "<button type='button' class='btn btn-danger btn-xs deleteLink'><i class='glyphicon glyphicon-remove'></i></button>";
+        var permisoId = 0;
+
+        if (parseInt(("#tblPermisosEliminados > tbody > tr").length) > 0) {
+            $('#tblPermisosEliminados >tbody >tr').each(function () {
+                var $tr = $(this).closest("tr");
+                var id = $tr.find("td:eq(0)").html();
+                var moduloDescripcion = $tr.find("td:eq(1)").html();
+                var operacionDescripcion = $tr.find("td:eq(2)").html();
+
+                if (moduloDescripcion == moduloNombre && operacionDescripcion == moduloOperacionNombre) {
+                    permisoId = id;
+                }
+
+            });
+        }
+
+        var tr;
+        tr = $('<tr/>');
+        tr.append("<td>" + moduloOperacionId + "</td>");
+        tr.append("<td>" + moduloNombre + "</td>");
+        tr.append("<td>" + moduloOperacionNombre + "</td>");
+        tr.append("<td>" + eliminar + "</td>");
+        tr.append("<td><input type='hidden' name='arrIdPermiso'  value='" + permisoId + "'/></td>");
+        tr.append("<td><input type='hidden' name='arrIdOperacion'  value='" + moduloOperacionId + "'/></td>");
+        $('#tblPermisos').append(tr);
+    }
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Asignar permisos <small></small></h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("Asignar", "Permisos", FormMethod.Post, new { id = "frmAsignarPermisos" }))
+{
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    @if (@ViewBag.msg != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            @Html.ValidationMessage("Duplicado")
+                            @Html.ValidationMessage("Error")
+                        </div>
+                    }
+
+                    @Html.HiddenFor(model => model.IdPerfil)
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.Label("* Perfil", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.NombrePerfil, null, new { @class = "form-control has-feedback-left", @readonly = "readonly" })
+                                <span class="fa fa-check-square-o form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.NombrePerfil)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Modulo", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdModulo, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdModulo)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Operación", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdModuloOperacion, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdModuloOperacion)
+                            </div>
+
+                            <div class="col-md-2">
+                                <input type="button" name="btnAgregarPermiso" id="btnAgregarPermiso" value="Agregar Permiso" class="btn btn-warning " />
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            <div class="col-md-12 ">
+                                <table class="table" id="tblPermisos">
+                                    <caption><strong>Listado de permisos:</strong>  </caption>
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Modulo</th>
+                                            <th>Operación</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bdPermisos">
+                                        @{
+                                            List<WebHoteleria.Models.PermisoModel> listaPermisos = (List<WebHoteleria.Models.PermisoModel>)ViewBag.ListaPermisos;
+                                            if (listaPermisos.Count > 0)
+                                            {
+                                                foreach (var item in listaPermisos)
+                                                {
+                                                    <tr>
+                                                        <td>@item.IdModuloOperacion</td>
+                                                        <td>@item.NombreModulo</td>
+                                                        <td>@item.NombreModuloOperacion</td>
+                                                        <td><button type='button' class='btn btn-danger btn-xs deleteLink'><i class='glyphicon glyphicon-remove'></i></button></td>
+                                                        <td><input type='hidden' name='arrIdPermiso' value='@item.Id' /></td>
+                                                        <td><input type='hidden' name='arrIdOperacion' value='@item.IdModuloOperacion' /></td>
+                                                    </tr>
+                                                }
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="tablaPermisosEliminados">
+                            <div class="col-md-12 ">
+                                <table class="table" id="tblPermisosEliminados">
+                                    <caption><strong>Listado de permisos eliminados:</strong>  </caption>
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bdPermisosEliminados"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                    @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-primary" })
+                    <input type="submit" value="Guardar" id="btnGuardar" class="btn btn-success" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

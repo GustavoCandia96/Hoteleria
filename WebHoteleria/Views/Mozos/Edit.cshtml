@@ -1,0 +1,123 @@
+﻿@model WebHoteleria.Models.MozoModel
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#btnGuardar").click(function () {
+            $("#btnGuardar").css("display", "none");
+            $("#frmEditarMozo").submit();
+        });
+
+    });
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Editar nuevo mozo <small></small></h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("Edit", "Mozos", FormMethod.Post, new { id = "frmEditarMozo" }))
+{
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    @if (@ViewBag.msg != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            @Html.ValidationMessage("Duplicado")
+                            @Html.ValidationMessage("Error")
+                        </div>
+                    }
+
+                    <div class="form-horizontal">
+
+                        @Html.HiddenFor(model => model.Id)
+
+                        <div class="form-group">
+                            @Html.Label("* N° Documento", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.NroDocumento, null, new { @class = "form-control has-feedback-left", required = "required" })
+                                <span class="fa fa-book form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.NroDocumento, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6 col-xs-12">
+                                @Html.TextBoxFor(model => model.Nombre, null, new { @class = "form-control has-feedback-left", required = "required" })
+                                <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Nombre, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Apellido", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Apellido, null, new { @class = "form-control has-feedback-left", required = "required" })
+                                <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Apellido, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Dirección", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Direccion, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Direccion, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("N° Celular", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Celular, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Celular, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Estado", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.EstadoDescrip, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.EstadoDescrip, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-primary" })
+                        <input type="button" value="Guardar" id="btnGuardar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

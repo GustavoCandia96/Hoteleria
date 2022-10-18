@@ -77,7 +77,22 @@
     <Compile Include="ciudades.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
+    <Compile Include="compras_productos.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="compras_productos_detalles.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="condiciones_compras_ventas.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
     <Compile Include="departamentos.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="depositos.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="estados_civiles.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
     <Compile Include="funcionarios.cs">
@@ -89,7 +104,19 @@
     <Compile Include="habitaciones_estados.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
+    <Compile Include="habitaciones_servicios.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
     <Compile Include="habitaciones_tipos.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="marcas.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mesas.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mesas_estados.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelHoteleria.Context.cs">
@@ -116,6 +143,9 @@
     <Compile Include="monedas.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
+    <Compile Include="mozos.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
     <Compile Include="paises.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
@@ -128,6 +158,15 @@
     <Compile Include="permisos.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
+    <Compile Include="productos.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productos_lotes.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productos_lotes_ajustes.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
     <Compile Include="profesiones.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
@@ -138,16 +177,34 @@
     <Compile Include="proveedores_contactos.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
+    <Compile Include="proveedores_sucursales.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
     <Compile Include="sucursales.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
+    <Compile Include="tarifas.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tarifas_detalles.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tarifas_tipos.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
     <Compile Include="tipos_contactos.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
     <Compile Include="tipos_documentos.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tipos_ivas.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="unidades.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
     <Compile Include="usuarios.cs">

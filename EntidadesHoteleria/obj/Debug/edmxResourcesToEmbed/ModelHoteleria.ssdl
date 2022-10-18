@@ -68,7 +68,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre_categoria" Type="varchar" MaxLength="50" />
+    <Property Name="nombre_categoria" Type="varchar" MaxLength="100" />
     <Property Name="estado" Type="bit" />
   </EntityType>
   <EntityType Name="ciudades">
@@ -80,6 +80,49 @@
     <Property Name="nombre_ciudad" Type="varchar" MaxLength="50" />
     <Property Name="estado" Type="bit" />
   </EntityType>
+  <EntityType Name="compras_productos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_condicion_compra" Type="int" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="id_usuario" Type="int" />
+    <Property Name="id_proveedor" Type="int" />
+    <Property Name="id_proveedor_sucursal" Type="int" />
+    <Property Name="nro_factura" Type="varchar" MaxLength="50" />
+    <Property Name="descuento" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="total_neto" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="total_bruto" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_factura" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="total_gravada_iva" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="observarcion" Type="varchar" MaxLength="300" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="compras_productos_detalles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_sucursal" Type="int" />
+    <Property Name="id_deposito" Type="int" />
+    <Property Name="id_compra_producto" Type="int" />
+    <Property Name="id_producto" Type="int" />
+    <Property Name="cantidad" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="precio_unitario" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="gravada_10" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="gravada_5" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="gravada_excenta" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="condiciones_compras_ventas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
   <EntityType Name="departamentos">
     <Key>
       <PropertyRef Name="id" />
@@ -87,6 +130,23 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="id_pais" Type="int" />
     <Property Name="nombre_departamento" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="depositos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_sucursal" Type="int" />
+    <Property Name="nombre_deposito" Type="varchar" MaxLength="100" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="estados_civiles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
     <Property Name="estado" Type="bit" />
   </EntityType>
   <EntityType Name="funcionarios">
@@ -124,6 +184,14 @@
     <Property Name="descripcion" Type="varchar" MaxLength="50" />
     <Property Name="estado" Type="bit" />
   </EntityType>
+  <EntityType Name="habitaciones_servicios">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_servicio" Type="varchar" MaxLength="100" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
   <EntityType Name="habitaciones_tipos">
     <Key>
       <PropertyRef Name="id" />
@@ -131,6 +199,31 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="varchar" MaxLength="50" />
     <Property Name="abreviatura" Type="varchar" MaxLength="5" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="marcas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_marca" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="mesas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_estado_mesa" Type="int" />
+    <Property Name="denominacion" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="mesas_estados">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
     <Property Name="estado" Type="bit" />
   </EntityType>
   <EntityType Name="modulos">
@@ -158,6 +251,18 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre_moneda" Type="varchar" MaxLength="50" />
     <Property Name="simbolo" Type="varchar" MaxLength="2" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="mozos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nro_documento" Type="varchar" MaxLength="50" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" />
+    <Property Name="apellido" Type="varchar" MaxLength="100" />
+    <Property Name="direccion" Type="varchar" MaxLength="150" />
+    <Property Name="celular" Type="varchar" MaxLength="50" />
     <Property Name="estado" Type="bit" />
   </EntityType>
   <EntityType Name="paises">
@@ -192,8 +297,48 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="id_perfil" Type="int" />
-    <Property Name="id_modulo" Type="int" />
+    <Property Name="id_modulo_operacion" Type="int" />
     <Property Name="habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="productos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_producto" Type="varchar" MaxLength="100" />
+    <Property Name="id_categoria" Type="int" />
+    <Property Name="id_marca" Type="int" />
+    <Property Name="id_unidad" Type="int" />
+    <Property Name="precio_venta" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="precio_costo" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="stock" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="id_tipo_iva" Type="int" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="productos_lotes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_producto" Type="int" />
+    <Property Name="cantidad" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="id_sucursal" Type="int" />
+    <Property Name="id_deposito" Type="int" />
+    <Property Name="ubicacion" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="productos_lotes_ajustes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="id_usuario" Type="int" />
+    <Property Name="id_producto_lote" Type="int" />
+    <Property Name="cantidad" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="observacion" Type="varchar" MaxLength="300" />
+    <Property Name="ingreso_lote" Type="bit" />
+    <Property Name="estado" Type="bit" />
   </EntityType>
   <EntityType Name="profesiones">
     <Key>
@@ -233,6 +378,23 @@
     <Property Name="contacto" Type="varchar" MaxLength="100" />
     <Property Name="estado" Type="bit" />
   </EntityType>
+  <EntityType Name="proveedores_sucursales">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_proveedor" Type="int" />
+    <Property Name="nombre_sucursal" Type="varchar" MaxLength="50" />
+    <Property Name="id_pais" Type="int" />
+    <Property Name="id_departamento" Type="int" />
+    <Property Name="id_ciudad" Type="int" />
+    <Property Name="id_barrio" Type="int" />
+    <Property Name="direccion" Type="varchar" MaxLength="300" />
+    <Property Name="email_principal" Type="varchar" MaxLength="200" />
+    <Property Name="nro_telefono_principal" Type="varchar" MaxLength="50" />
+    <Property Name="casa_matriz" Type="bit" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
   <EntityType Name="sucursales">
     <Key>
       <PropertyRef Name="id" />
@@ -257,6 +419,36 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <EntityType Name="tarifas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_tipo_tarifa" Type="int" />
+    <Property Name="nombre_tarifa" Type="varchar" MaxLength="100" />
+    <Property Name="valido_desde" Type="date" />
+    <Property Name="valido_hasta" Type="date" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="tarifas_detalles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_tarifa" Type="int" />
+    <Property Name="id_habitacion" Type="int" />
+    <Property Name="id_servicio_habitacion" Type="int" />
+    <Property Name="precio" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="tarifas_tipos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
   <EntityType Name="tipos_contactos">
     <Key>
       <PropertyRef Name="id" />
@@ -271,6 +463,24 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="tipo" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="tipos_ivas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="iva" Type="varchar" MaxLength="50" />
+    <Property Name="porcentaje" Type="int" />
+    <Property Name="valor_division" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="unidades">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_unidad" Type="varchar" MaxLength="50" />
     <Property Name="estado" Type="bit" />
   </EntityType>
   <EntityType Name="usuarios">
@@ -360,6 +570,90 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_compras_productos_condiciones_compras_ventas">
+    <End Role="condiciones_compras_ventas" Type="Self.condiciones_compras_ventas" Multiplicity="0..1" />
+    <End Role="compras_productos" Type="Self.compras_productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="condiciones_compras_ventas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="compras_productos">
+        <PropertyRef Name="id_condicion_compra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_compras_productos_detalles_compras_productos">
+    <End Role="compras_productos" Type="Self.compras_productos" Multiplicity="0..1" />
+    <End Role="compras_productos_detalles" Type="Self.compras_productos_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="compras_productos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="compras_productos_detalles">
+        <PropertyRef Name="id_compra_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_compras_productos_detalles_depositos">
+    <End Role="depositos" Type="Self.depositos" Multiplicity="0..1" />
+    <End Role="compras_productos_detalles" Type="Self.compras_productos_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="depositos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="compras_productos_detalles">
+        <PropertyRef Name="id_deposito" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_compras_productos_detalles_sucursales">
+    <End Role="sucursales" Type="Self.sucursales" Multiplicity="0..1" />
+    <End Role="compras_productos_detalles" Type="Self.compras_productos_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sucursales">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="compras_productos_detalles">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_compras_productos_proveedores">
+    <End Role="proveedores" Type="Self.proveedores" Multiplicity="0..1" />
+    <End Role="compras_productos" Type="Self.compras_productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="compras_productos">
+        <PropertyRef Name="id_proveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_compras_productos_proveedores_sucursales">
+    <End Role="proveedores_sucursales" Type="Self.proveedores_sucursales" Multiplicity="0..1" />
+    <End Role="compras_productos" Type="Self.compras_productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedores_sucursales">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="compras_productos">
+        <PropertyRef Name="id_proveedor_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_compras_productos_usuarios">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="compras_productos" Type="Self.compras_productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="compras_productos">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_departamentos_paises">
     <End Role="paises" Type="Self.paises" Multiplicity="0..1" />
     <End Role="departamentos" Type="Self.departamentos" Multiplicity="*" />
@@ -369,6 +663,18 @@
       </Principal>
       <Dependent Role="departamentos">
         <PropertyRef Name="id_pais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_depositos_sucursales">
+    <End Role="sucursales" Type="Self.sucursales" Multiplicity="0..1" />
+    <End Role="depositos" Type="Self.depositos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sucursales">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="depositos">
+        <PropertyRef Name="id_sucursal" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -444,6 +750,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_mesas_mesas_estados">
+    <End Role="mesas_estados" Type="Self.mesas_estados" Multiplicity="0..1" />
+    <End Role="mesas" Type="Self.mesas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mesas_estados">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="mesas">
+        <PropertyRef Name="id_estado_mesa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_modulos_operaciones_modulos">
     <End Role="modulos" Type="Self.modulos" Multiplicity="0..1" />
     <End Role="modulos_operaciones" Type="Self.modulos_operaciones" Multiplicity="*" />
@@ -456,15 +774,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_permisos_modulos">
-    <End Role="modulos" Type="Self.modulos" Multiplicity="0..1" />
+  <Association Name="FK_permisos_modulos_operaciones">
+    <End Role="modulos_operaciones" Type="Self.modulos_operaciones" Multiplicity="0..1" />
     <End Role="permisos" Type="Self.permisos" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="modulos">
+      <Principal Role="modulos_operaciones">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="permisos">
-        <PropertyRef Name="id_modulo" />
+        <PropertyRef Name="id_modulo_operacion" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -477,6 +795,114 @@
       </Principal>
       <Dependent Role="permisos">
         <PropertyRef Name="id_perfil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_productos_categorias">
+    <End Role="categorias" Type="Self.categorias" Multiplicity="0..1" />
+    <End Role="productos" Type="Self.productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categorias">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productos">
+        <PropertyRef Name="id_categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_productos_lotes_ajustes_productos_lotes">
+    <End Role="productos_lotes" Type="Self.productos_lotes" Multiplicity="0..1" />
+    <End Role="productos_lotes_ajustes" Type="Self.productos_lotes_ajustes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos_lotes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productos_lotes_ajustes">
+        <PropertyRef Name="id_producto_lote" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_productos_lotes_ajustes_usuarios">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="productos_lotes_ajustes" Type="Self.productos_lotes_ajustes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productos_lotes_ajustes">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_productos_lotes_depositos">
+    <End Role="depositos" Type="Self.depositos" Multiplicity="0..1" />
+    <End Role="productos_lotes" Type="Self.productos_lotes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="depositos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productos_lotes">
+        <PropertyRef Name="id_deposito" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_productos_lotes_productos">
+    <End Role="productos" Type="Self.productos" Multiplicity="0..1" />
+    <End Role="productos_lotes" Type="Self.productos_lotes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productos_lotes">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_productos_lotes_sucursales">
+    <End Role="sucursales" Type="Self.sucursales" Multiplicity="0..1" />
+    <End Role="productos_lotes" Type="Self.productos_lotes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sucursales">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productos_lotes">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_productos_marcas">
+    <End Role="marcas" Type="Self.marcas" Multiplicity="0..1" />
+    <End Role="productos" Type="Self.productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="marcas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productos">
+        <PropertyRef Name="id_marca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_productos_tipos_ivas">
+    <End Role="tipos_ivas" Type="Self.tipos_ivas" Multiplicity="0..1" />
+    <End Role="productos" Type="Self.productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_ivas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productos">
+        <PropertyRef Name="id_tipo_iva" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_productos_unidades">
+    <End Role="unidades" Type="Self.unidades" Multiplicity="0..1" />
+    <End Role="productos" Type="Self.productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="unidades">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productos">
+        <PropertyRef Name="id_unidad" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -564,6 +990,66 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_proveedores_sucursales_barrios">
+    <End Role="barrios" Type="Self.barrios" Multiplicity="0..1" />
+    <End Role="proveedores_sucursales" Type="Self.proveedores_sucursales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="barrios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores_sucursales">
+        <PropertyRef Name="id_barrio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_sucursales_ciudades">
+    <End Role="ciudades" Type="Self.ciudades" Multiplicity="0..1" />
+    <End Role="proveedores_sucursales" Type="Self.proveedores_sucursales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ciudades">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores_sucursales">
+        <PropertyRef Name="id_ciudad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_sucursales_departamentos">
+    <End Role="departamentos" Type="Self.departamentos" Multiplicity="0..1" />
+    <End Role="proveedores_sucursales" Type="Self.proveedores_sucursales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departamentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores_sucursales">
+        <PropertyRef Name="id_departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_sucursales_paises">
+    <End Role="paises" Type="Self.paises" Multiplicity="0..1" />
+    <End Role="proveedores_sucursales" Type="Self.proveedores_sucursales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="paises">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores_sucursales">
+        <PropertyRef Name="id_pais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proveedores_sucursales_proveedores">
+    <End Role="proveedores" Type="Self.proveedores" Multiplicity="0..1" />
+    <End Role="proveedores_sucursales" Type="Self.proveedores_sucursales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="proveedores_sucursales">
+        <PropertyRef Name="id_proveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_proveedores_tipos_documentos">
     <End Role="tipos_documentos" Type="Self.tipos_documentos" Multiplicity="0..1" />
     <End Role="proveedores" Type="Self.proveedores" Multiplicity="*" />
@@ -624,6 +1110,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tarifas_detalles_habitaciones">
+    <End Role="habitaciones" Type="Self.habitaciones" Multiplicity="0..1" />
+    <End Role="tarifas_detalles" Type="Self.tarifas_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="habitaciones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tarifas_detalles">
+        <PropertyRef Name="id_habitacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tarifas_detalles_habitaciones_servicios">
+    <End Role="habitaciones_servicios" Type="Self.habitaciones_servicios" Multiplicity="0..1" />
+    <End Role="tarifas_detalles" Type="Self.tarifas_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="habitaciones_servicios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tarifas_detalles">
+        <PropertyRef Name="id_servicio_habitacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tarifas_detalles_tarifas">
+    <End Role="tarifas" Type="Self.tarifas" Multiplicity="0..1" />
+    <End Role="tarifas_detalles" Type="Self.tarifas_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tarifas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tarifas_detalles">
+        <PropertyRef Name="id_tarifa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tarifas_tarifas_tipos">
+    <End Role="tarifas_tipos" Type="Self.tarifas_tipos" Multiplicity="0..1" />
+    <End Role="tarifas" Type="Self.tarifas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tarifas_tipos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tarifas">
+        <PropertyRef Name="id_tipo_tarifa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_usuarios_funcionarios">
     <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="0..1" />
     <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
@@ -658,25 +1192,44 @@
     <EntitySet Name="cargos" EntityType="Self.cargos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="categorias" EntityType="Self.categorias" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ciudades" EntityType="Self.ciudades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="compras_productos" EntityType="Self.compras_productos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="compras_productos_detalles" EntityType="Self.compras_productos_detalles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="condiciones_compras_ventas" EntityType="Self.condiciones_compras_ventas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="departamentos" EntityType="Self.departamentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="depositos" EntityType="Self.depositos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="estados_civiles" EntityType="Self.estados_civiles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="funcionarios" EntityType="Self.funcionarios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="habitaciones" EntityType="Self.habitaciones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="habitaciones_estados" EntityType="Self.habitaciones_estados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="habitaciones_servicios" EntityType="Self.habitaciones_servicios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="habitaciones_tipos" EntityType="Self.habitaciones_tipos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="marcas" EntityType="Self.marcas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mesas" EntityType="Self.mesas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mesas_estados" EntityType="Self.mesas_estados" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="modulos" EntityType="Self.modulos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="modulos_operaciones" EntityType="Self.modulos_operaciones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="monedas" EntityType="Self.monedas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mozos" EntityType="Self.mozos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="paises" EntityType="Self.paises" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="parametros" EntityType="Self.parametros" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="perfiles" EntityType="Self.perfiles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="permisos" EntityType="Self.permisos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="productos" EntityType="Self.productos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="productos_lotes" EntityType="Self.productos_lotes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="productos_lotes_ajustes" EntityType="Self.productos_lotes_ajustes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="profesiones" EntityType="Self.profesiones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="proveedores" EntityType="Self.proveedores" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="proveedores_contactos" EntityType="Self.proveedores_contactos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proveedores_sucursales" EntityType="Self.proveedores_sucursales" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sucursales" EntityType="Self.sucursales" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tarifas" EntityType="Self.tarifas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tarifas_detalles" EntityType="Self.tarifas_detalles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tarifas_tipos" EntityType="Self.tarifas_tipos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tipos_contactos" EntityType="Self.tipos_contactos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tipos_documentos" EntityType="Self.tipos_documentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tipos_ivas" EntityType="Self.tipos_ivas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="unidades" EntityType="Self.unidades" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_bancos_cuentas_bancos" Association="Self.FK_bancos_cuentas_bancos">
       <End Role="bancos" EntitySet="bancos" />
@@ -702,9 +1255,41 @@
       <End Role="departamentos" EntitySet="departamentos" />
       <End Role="ciudades" EntitySet="ciudades" />
     </AssociationSet>
+    <AssociationSet Name="FK_compras_productos_condiciones_compras_ventas" Association="Self.FK_compras_productos_condiciones_compras_ventas">
+      <End Role="condiciones_compras_ventas" EntitySet="condiciones_compras_ventas" />
+      <End Role="compras_productos" EntitySet="compras_productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_compras_productos_detalles_compras_productos" Association="Self.FK_compras_productos_detalles_compras_productos">
+      <End Role="compras_productos" EntitySet="compras_productos" />
+      <End Role="compras_productos_detalles" EntitySet="compras_productos_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_compras_productos_detalles_depositos" Association="Self.FK_compras_productos_detalles_depositos">
+      <End Role="depositos" EntitySet="depositos" />
+      <End Role="compras_productos_detalles" EntitySet="compras_productos_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_compras_productos_detalles_sucursales" Association="Self.FK_compras_productos_detalles_sucursales">
+      <End Role="sucursales" EntitySet="sucursales" />
+      <End Role="compras_productos_detalles" EntitySet="compras_productos_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_compras_productos_proveedores" Association="Self.FK_compras_productos_proveedores">
+      <End Role="proveedores" EntitySet="proveedores" />
+      <End Role="compras_productos" EntitySet="compras_productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_compras_productos_proveedores_sucursales" Association="Self.FK_compras_productos_proveedores_sucursales">
+      <End Role="proveedores_sucursales" EntitySet="proveedores_sucursales" />
+      <End Role="compras_productos" EntitySet="compras_productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_compras_productos_usuarios" Association="Self.FK_compras_productos_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="compras_productos" EntitySet="compras_productos" />
+    </AssociationSet>
     <AssociationSet Name="FK_departamentos_paises" Association="Self.FK_departamentos_paises">
       <End Role="paises" EntitySet="paises" />
       <End Role="departamentos" EntitySet="departamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_depositos_sucursales" Association="Self.FK_depositos_sucursales">
+      <End Role="sucursales" EntitySet="sucursales" />
+      <End Role="depositos" EntitySet="depositos" />
     </AssociationSet>
     <AssociationSet Name="FK_funcionarios_areas" Association="Self.FK_funcionarios_areas">
       <End Role="areas" EntitySet="areas" />
@@ -730,17 +1315,57 @@
       <End Role="habitaciones_tipos" EntitySet="habitaciones_tipos" />
       <End Role="habitaciones" EntitySet="habitaciones" />
     </AssociationSet>
+    <AssociationSet Name="FK_mesas_mesas_estados" Association="Self.FK_mesas_mesas_estados">
+      <End Role="mesas_estados" EntitySet="mesas_estados" />
+      <End Role="mesas" EntitySet="mesas" />
+    </AssociationSet>
     <AssociationSet Name="FK_modulos_operaciones_modulos" Association="Self.FK_modulos_operaciones_modulos">
       <End Role="modulos" EntitySet="modulos" />
       <End Role="modulos_operaciones" EntitySet="modulos_operaciones" />
     </AssociationSet>
-    <AssociationSet Name="FK_permisos_modulos" Association="Self.FK_permisos_modulos">
-      <End Role="modulos" EntitySet="modulos" />
+    <AssociationSet Name="FK_permisos_modulos_operaciones" Association="Self.FK_permisos_modulos_operaciones">
+      <End Role="modulos_operaciones" EntitySet="modulos_operaciones" />
       <End Role="permisos" EntitySet="permisos" />
     </AssociationSet>
     <AssociationSet Name="FK_permisos_perfiles" Association="Self.FK_permisos_perfiles">
       <End Role="perfiles" EntitySet="perfiles" />
       <End Role="permisos" EntitySet="permisos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_productos_categorias" Association="Self.FK_productos_categorias">
+      <End Role="categorias" EntitySet="categorias" />
+      <End Role="productos" EntitySet="productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_productos_lotes_ajustes_productos_lotes" Association="Self.FK_productos_lotes_ajustes_productos_lotes">
+      <End Role="productos_lotes" EntitySet="productos_lotes" />
+      <End Role="productos_lotes_ajustes" EntitySet="productos_lotes_ajustes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_productos_lotes_ajustes_usuarios" Association="Self.FK_productos_lotes_ajustes_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="productos_lotes_ajustes" EntitySet="productos_lotes_ajustes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_productos_lotes_depositos" Association="Self.FK_productos_lotes_depositos">
+      <End Role="depositos" EntitySet="depositos" />
+      <End Role="productos_lotes" EntitySet="productos_lotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_productos_lotes_productos" Association="Self.FK_productos_lotes_productos">
+      <End Role="productos" EntitySet="productos" />
+      <End Role="productos_lotes" EntitySet="productos_lotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_productos_lotes_sucursales" Association="Self.FK_productos_lotes_sucursales">
+      <End Role="sucursales" EntitySet="sucursales" />
+      <End Role="productos_lotes" EntitySet="productos_lotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_productos_marcas" Association="Self.FK_productos_marcas">
+      <End Role="marcas" EntitySet="marcas" />
+      <End Role="productos" EntitySet="productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_productos_tipos_ivas" Association="Self.FK_productos_tipos_ivas">
+      <End Role="tipos_ivas" EntitySet="tipos_ivas" />
+      <End Role="productos" EntitySet="productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_productos_unidades" Association="Self.FK_productos_unidades">
+      <End Role="unidades" EntitySet="unidades" />
+      <End Role="productos" EntitySet="productos" />
     </AssociationSet>
     <AssociationSet Name="FK_proveedores_actividades_economicas" Association="Self.FK_proveedores_actividades_economicas">
       <End Role="actividades_economicas" EntitySet="actividades_economicas" />
@@ -770,6 +1395,26 @@
       <End Role="paises" EntitySet="paises" />
       <End Role="proveedores" EntitySet="proveedores" />
     </AssociationSet>
+    <AssociationSet Name="FK_proveedores_sucursales_barrios" Association="Self.FK_proveedores_sucursales_barrios">
+      <End Role="barrios" EntitySet="barrios" />
+      <End Role="proveedores_sucursales" EntitySet="proveedores_sucursales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_sucursales_ciudades" Association="Self.FK_proveedores_sucursales_ciudades">
+      <End Role="ciudades" EntitySet="ciudades" />
+      <End Role="proveedores_sucursales" EntitySet="proveedores_sucursales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_sucursales_departamentos" Association="Self.FK_proveedores_sucursales_departamentos">
+      <End Role="departamentos" EntitySet="departamentos" />
+      <End Role="proveedores_sucursales" EntitySet="proveedores_sucursales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_sucursales_paises" Association="Self.FK_proveedores_sucursales_paises">
+      <End Role="paises" EntitySet="paises" />
+      <End Role="proveedores_sucursales" EntitySet="proveedores_sucursales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proveedores_sucursales_proveedores" Association="Self.FK_proveedores_sucursales_proveedores">
+      <End Role="proveedores" EntitySet="proveedores" />
+      <End Role="proveedores_sucursales" EntitySet="proveedores_sucursales" />
+    </AssociationSet>
     <AssociationSet Name="FK_proveedores_tipos_documentos" Association="Self.FK_proveedores_tipos_documentos">
       <End Role="tipos_documentos" EntitySet="tipos_documentos" />
       <End Role="proveedores" EntitySet="proveedores" />
@@ -789,6 +1434,22 @@
     <AssociationSet Name="FK_sucursales_paises" Association="Self.FK_sucursales_paises">
       <End Role="paises" EntitySet="paises" />
       <End Role="sucursales" EntitySet="sucursales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tarifas_detalles_habitaciones" Association="Self.FK_tarifas_detalles_habitaciones">
+      <End Role="habitaciones" EntitySet="habitaciones" />
+      <End Role="tarifas_detalles" EntitySet="tarifas_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tarifas_detalles_habitaciones_servicios" Association="Self.FK_tarifas_detalles_habitaciones_servicios">
+      <End Role="habitaciones_servicios" EntitySet="habitaciones_servicios" />
+      <End Role="tarifas_detalles" EntitySet="tarifas_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tarifas_detalles_tarifas" Association="Self.FK_tarifas_detalles_tarifas">
+      <End Role="tarifas" EntitySet="tarifas" />
+      <End Role="tarifas_detalles" EntitySet="tarifas_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tarifas_tarifas_tipos" Association="Self.FK_tarifas_tarifas_tipos">
+      <End Role="tarifas_tipos" EntitySet="tarifas_tipos" />
+      <End Role="tarifas" EntitySet="tarifas" />
     </AssociationSet>
     <AssociationSet Name="FK_usuarios_funcionarios" Association="Self.FK_usuarios_funcionarios">
       <End Role="funcionarios" EntitySet="funcionarios" />

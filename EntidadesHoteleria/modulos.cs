@@ -18,7 +18,6 @@ namespace EntidadesHoteleria
         public modulos()
         {
             this.modulos_operaciones = new HashSet<modulos_operaciones>();
-            this.permisos = new HashSet<permisos>();
         }
     
         public int id { get; set; }
@@ -27,7 +26,5 @@ namespace EntidadesHoteleria
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<modulos_operaciones> modulos_operaciones { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<permisos> permisos { get; set; }
     }
 }

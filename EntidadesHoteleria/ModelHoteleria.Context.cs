@@ -34,25 +34,44 @@ namespace EntidadesHoteleria
         public virtual DbSet<cargos> cargos { get; set; }
         public virtual DbSet<categorias> categorias { get; set; }
         public virtual DbSet<ciudades> ciudades { get; set; }
+        public virtual DbSet<compras_productos> compras_productos { get; set; }
+        public virtual DbSet<compras_productos_detalles> compras_productos_detalles { get; set; }
+        public virtual DbSet<condiciones_compras_ventas> condiciones_compras_ventas { get; set; }
         public virtual DbSet<departamentos> departamentos { get; set; }
+        public virtual DbSet<depositos> depositos { get; set; }
+        public virtual DbSet<estados_civiles> estados_civiles { get; set; }
         public virtual DbSet<funcionarios> funcionarios { get; set; }
+        public virtual DbSet<habitaciones> habitaciones { get; set; }
+        public virtual DbSet<habitaciones_estados> habitaciones_estados { get; set; }
+        public virtual DbSet<habitaciones_servicios> habitaciones_servicios { get; set; }
+        public virtual DbSet<habitaciones_tipos> habitaciones_tipos { get; set; }
+        public virtual DbSet<marcas> marcas { get; set; }
+        public virtual DbSet<mesas> mesas { get; set; }
+        public virtual DbSet<mesas_estados> mesas_estados { get; set; }
         public virtual DbSet<modulos> modulos { get; set; }
         public virtual DbSet<modulos_operaciones> modulos_operaciones { get; set; }
         public virtual DbSet<monedas> monedas { get; set; }
+        public virtual DbSet<mozos> mozos { get; set; }
         public virtual DbSet<paises> paises { get; set; }
         public virtual DbSet<parametros> parametros { get; set; }
         public virtual DbSet<perfiles> perfiles { get; set; }
         public virtual DbSet<permisos> permisos { get; set; }
+        public virtual DbSet<productos> productos { get; set; }
+        public virtual DbSet<productos_lotes> productos_lotes { get; set; }
+        public virtual DbSet<productos_lotes_ajustes> productos_lotes_ajustes { get; set; }
         public virtual DbSet<profesiones> profesiones { get; set; }
-        public virtual DbSet<sucursales> sucursales { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<tipos_documentos> tipos_documentos { get; set; }
-        public virtual DbSet<usuarios> usuarios { get; set; }
-        public virtual DbSet<habitaciones> habitaciones { get; set; }
-        public virtual DbSet<habitaciones_estados> habitaciones_estados { get; set; }
-        public virtual DbSet<habitaciones_tipos> habitaciones_tipos { get; set; }
         public virtual DbSet<proveedores> proveedores { get; set; }
         public virtual DbSet<proveedores_contactos> proveedores_contactos { get; set; }
+        public virtual DbSet<proveedores_sucursales> proveedores_sucursales { get; set; }
+        public virtual DbSet<sucursales> sucursales { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<tarifas> tarifas { get; set; }
+        public virtual DbSet<tarifas_detalles> tarifas_detalles { get; set; }
+        public virtual DbSet<tarifas_tipos> tarifas_tipos { get; set; }
         public virtual DbSet<tipos_contactos> tipos_contactos { get; set; }
+        public virtual DbSet<tipos_documentos> tipos_documentos { get; set; }
+        public virtual DbSet<tipos_ivas> tipos_ivas { get; set; }
+        public virtual DbSet<unidades> unidades { get; set; }
+        public virtual DbSet<usuarios> usuarios { get; set; }
     }
 }

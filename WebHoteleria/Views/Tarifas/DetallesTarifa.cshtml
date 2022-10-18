@@ -1,0 +1,414 @@
+﻿@model WebHoteleria.Models.TarifaDetalleModel
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#tablaDetalleTarifaEliminados").css("display", "none");
+
+        $("#IdTipoHabitacion").change(function () {
+            $("#IdHabitacion").val("");
+            var valorIdTipoHabitacion = $("#IdTipoHabitacion").val();
+            $.ajax({
+                url: '/Habitaciones/ObtenerListadoHabitaciones',
+                type: 'POST',
+                data: {
+                    tipoHabitacionId: valorIdTipoHabitacion
+                }
+            }).done(function (response) {
+                $("[name = IdHabitacion]").html(response);
+                $("[name = IdHabitacion]").prepend("<option value='' selected='selected'>--Seleccionar--</option>");
+            });
+        });
+
+        $("#btnAgregarDetalleTarifa").click(function () {
+
+            var tipoHabitacionId = $("#IdTipoHabitacion").val();
+            var habitacionId = $("#IdHabitacion").val();
+            var servicioHabitacionId = $("#IdServicioHabitacion").val();
+            var precio = $("#StrPrecio").val();
+            var tipoHabitacionNombre = $("#IdTipoHabitacion option:selected").text();
+            var habitacionNombre = $("#IdHabitacion option:selected").text();
+            var servicioHabitacionNombre = $("#IdServicioHabitacion option:selected").text();
+
+            if (Validaciones(tipoHabitacionId, habitacionId, servicioHabitacionId, precio)) {
+                if (VerificarSobreposicion(tipoHabitacionId, habitacionId, servicioHabitacionId)) {
+                    if (VerificarListaEliminados(tipoHabitacionId, habitacionId, servicioHabitacionId)) {
+                        AgregarFila(tipoHabitacionId, habitacionId, servicioHabitacionId, precio, tipoHabitacionNombre, habitacionNombre, servicioHabitacionNombre);
+                    }
+                } else {
+                    alertaSoloMensaje("La tarifa que quiere ingresar ya existe en la lista");
+                }
+            }
+
+        });
+
+        $("#tblDetalleTarifa").on('click', '.deleteLink', function () {
+            var $tr = $(this).closest('tr');
+
+            //OBTENEMOS LOS DATOS PARA AGREGAR A LA TABLA OCULTA
+            var tarifaDetalleId = $tr.find("td:eq(0)").html();
+            var tipoHabitacionNombre = $tr.find("td:eq(1)").html();
+            var habitacionNombre = $tr.find("td:eq(2)").html();
+            var servicioHabitacionNombre = $tr.find("td:eq(3)").html();
+            var precio = $tr.find("td:eq(4)").html();
+
+            var habitacionId = $tr.find('input:hidden[name=arrHabitacionId]').val();
+            var servicioHabitacionId = $tr.find('input:hidden[name=arrServicioHabitacionId]').val();
+
+            var eliminar = "<button type='button' class='btn btn-danger btn-xs deleteLinkEliminado'><i class='glyphicon glyphicon-remove'></i></button>";
+
+            var tr;
+            tr = $('<tr/>');
+            tr.append("<td>" + tarifaDetalleId + "</td>");
+            tr.append("<td>" + tipoHabitacionNombre + "</td>");
+            tr.append("<td>" + habitacionNombre + "</td>");
+            tr.append("<td>" + servicioHabitacionNombre + "</td>");
+            tr.append("<td>" + precio + "</td>");
+            tr.append("<td>" + eliminar + "</td>");
+            tr.append("<td><input type='hidden' name='arrIdEliminado'  value='" + tarifaDetalleId + "'/></td>");
+            tr.append("<td><input type='hidden' name='arrHabitacionIdEliminado'  value='" + habitacionId + "'/></td>");
+            tr.append("<td><input type='hidden' name='arrServicioHabitacionIdEliminado'  value='" + servicioHabitacionId + "'/></td>");
+            tr.append("<td><input type='hidden' name='arrPrecioEliminado'  value='" + precio + "'/></td>");
+            $('#tblDetalleTarifaEliminados').append(tr);
+
+
+            $tr.css("background-color", "#FF3700");
+            $tr.fadeOut(400, function () {
+                $tr.remove();
+            });
+            return false;
+        });
+
+    });
+
+    function Validaciones(tipoHabitacionId, habitacionId, servicioHabitacionId, precio) {
+
+        var retorno = true;
+
+        if (tipoHabitacionId == "") {
+            alertaSoloMensaje("Tiene que seleccionar el tipo de habitación");
+            retorno = false;
+        } else {
+            if (habitacionId == "") {
+                alertaSoloMensaje("Tiene que seleccionar una habitación");
+                retorno = false;
+            } else {
+                if (servicioHabitacionId == "") {
+                    alertaSoloMensaje("Tiene que seleccionar un servicio de habitación");
+                    retorno = false;
+                } else {
+                    if (precio == "" || precio == "0") {
+                        alertaSoloMensaje("El precio de la tarifa es incorrecto");
+                        retorno = false;
+                    }
+                }
+            }
+        }
+
+        return retorno;
+    }
+
+    function VerificarSobreposicion(tipoHabitacionId, habitacionId, servicioHabitacionId) {
+
+        var retorno = true;
+
+        if (parseInt(("#tblDetalleTarifa > tbody > tr").length) > 0) {
+            $('#tblDetalleTarifa >tbody >tr').each(function () {
+                var $tr = $(this).closest("tr");
+
+                var idDetalleTarifa = $tr.find('input:hidden[name=arrId]').val();
+                var idHabitacion = $tr.find('input:hidden[name=arrHabitacionId]').val();
+                var idServicioHabitacion = $tr.find('input:hidden[name=arrServicioHabitacionId]').val();
+
+                if (idHabitacion == habitacionId && idServicioHabitacion == servicioHabitacionId) {
+                    retorno = false;
+                }
+            });
+        }
+
+        return retorno;
+    }
+
+    function VerificarListaEliminados(tipoHabitacionId, habitacionId, servicioHabitacionId) {
+
+        var retorno = true;
+
+        if (parseInt(("#tablaDetalleTarifaEliminados > tbody > tr").length) > 0) {
+            $('#tablaDetalleTarifaEliminados >tbody >tr').each(function () {
+                var $tr = $(this).closest("tr");
+                var idHabitacionEliminado = $tr.find('input:hidden[name=arrHabitacionIdEliminado]').val();
+                var idServicioHabitacionEliminado = $tr.find('input:hidden[name=arrServicioHabitacionIdEliminado]').val();
+
+                if (idHabitacionEliminado == habitacionId && idServicioHabitacionEliminado == servicioHabitacionId) {
+                    $tr.css("background-color", "#FF3700");
+                    $tr.fadeOut(400, function () {
+                        $tr.remove();
+                    });
+                }
+            });
+        }
+
+        return retorno;
+    }
+
+    function AgregarFila(tipoHabitacionId, habitacionId, servicioHabitacionId, precio, tipoHabitacionNombre, habitacionNombre, servicioHabitacionNombre) {
+        var eliminar = "<button type='button' class='btn btn-danger btn-xs deleteLink'><i class='glyphicon glyphicon-remove'></i></button>";
+        var tarifaDetalleId = 0;
+
+        if (parseInt(("#tablaDetalleTarifaEliminados > tbody > tr").length) > 0) {
+            $('#tablaDetalleTarifaEliminados >tbody >tr').each(function () {
+                var $tr = $(this).closest("tr");
+                var id = $tr.find('input:hidden[name=arrIdEliminado]').val();
+                var idHabitacionEliminado = $tr.find('input:hidden[name=arrHabitacionIdEliminado]').val();
+                var idServicioHabitacionEliminado = $tr.find('input:hidden[name=arrServicioHabitacionIdEliminado]').val();
+
+                if (moduloDescripcion == moduloNombre && operacionDescripcion == moduloOperacionNombre) {
+                    tarifaDetalleId = id;
+                }
+
+            });
+        }
+
+        var tr;
+        tr = $('<tr/>');
+        tr.append("<td>" + tarifaDetalleId + "</td>");
+        tr.append("<td>" + tipoHabitacionNombre + "</td>");
+        tr.append("<td>" + habitacionNombre + "</td>");
+        tr.append("<td>" + servicioHabitacionNombre + "</td>");
+        tr.append("<td>" + precio + "</td>");
+        tr.append("<td>" + eliminar + "</td>");
+        tr.append("<td><input type='hidden' name='arrId'  value='" + tarifaDetalleId + "'/></td>");
+        tr.append("<td><input type='hidden' name='arrHabitacionId'  value='" + habitacionId + "'/></td>");
+        tr.append("<td><input type='hidden' name='arrServicioHabitacionId'  value='" + servicioHabitacionId + "'/></td>");
+        tr.append("<td><input type='hidden' name='arrPrecio'  value='" + precio + "'/></td>");
+        $('#tblDetalleTarifa').append(tr);
+    }
+
+    function alertaSoloMensaje(mensaje) {
+        bootbox.alert({
+            title: "<strong>Alerta</strong>",
+            message: mensaje,
+            size: 'medium'
+        });
+    }
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Tarifas Detalles <small></small></h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("DetallesTarifa", "Tarifas", FormMethod.Post, new { id = "frmDetallesTarifa" }))
+{
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    @if (@ViewBag.msg != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            @Html.ValidationMessage("SinDetalle")
+                            @Html.ValidationMessage("Error")
+                        </div>
+                    }
+
+                    @Html.HiddenFor(model => model.IdTarifa)
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.Label("* Tipo Tarifa", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.NombreTipoTarifa, null, new { @class = "form-control has-feedback-left", @readonly = "readonly" })
+                                <span class="fa fa-check-square-o form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.NombreTipoTarifa)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Tarifa", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.NombreTarifa, null, new { @class = "form-control has-feedback-left", @readonly = "readonly" })
+                                <span class="fa fa-check-square-o form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.NombreTarifa)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Tipo Habitación", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdTipoHabitacion, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdTipoHabitacion)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Habitación", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdHabitacion, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdHabitacion)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Servicio Habitación", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdServicioHabitacion, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdServicioHabitacion)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Precio", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.StrPrecio, null, new { @class = "form-control integer has-feedback-left" })
+                                <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.StrPrecio)
+                            </div>
+
+                            <div class="col-md-2">
+                                <input type="button" name="btnAgregarDetalleTarifa" id="btnAgregarDetalleTarifa" value="Agregar Detalle" class="btn btn-warning " />
+                            </div>
+                        </div>
+
+                        <script>
+                            $('.integer').setMask("integer");
+                        </script>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            <div class="col-md-12 ">
+                                <table class="table" id="tblDetalleTarifa">
+                                    <caption><strong>Listado de detalle tarifa:</strong>  </caption>
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tipo Habitación</th>
+                                            <th>N° Habitación</th>
+                                            <th>Servicio Habitación</th>
+                                            <th>Precio</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bdDetalleTarifa">
+                                        @if (ViewBag.ListaDetalleTarifa != null)
+                                        {
+                                            List<WebHoteleria.Models.TarifaDetalleModel> listaDetalle = (List<WebHoteleria.Models.TarifaDetalleModel>)ViewBag.ListaDetalleTarifa;
+                                            if (listaDetalle.Count > 0)
+                                            {
+                                                foreach (var item in listaDetalle)
+                                                {
+                                                    <tr>
+                                                        <td>@item.Id</td>
+                                                        <td>@item.NombreTipoHabitacion</td>
+                                                        <td>@item.NombreHabitacion</td>
+                                                        <td>@item.NombreServicioHabitacion</td>
+                                                        <td>@item.StrPrecio</td>
+                                                        <td><button type='button' class='btn btn-danger btn-xs deleteLink'><i class='glyphicon glyphicon-remove'></i></button></td>
+                                                        <td><input type='hidden' name='arrId' value='@item.Id' /></td>
+                                                        <td><input type='hidden' name='arrHabitacionId' value='@item.IdHabitacion' /></td>
+                                                        <td><input type='hidden' name='arrServicioHabitacionId' value='@item.IdServicioHabitacion' /></td>
+                                                        <td><input type='hidden' name='arrPrecio' value='@item.StrPrecio' /></td>
+                                                    </tr>
+                                                }
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="tablaDetalleTarifaEliminados">
+                            <div class="col-md-12 ">
+                                <table class="table" id="tblDetalleTarifaEliminados">
+                                    <caption><strong>Listado de detalle tarifa eliminados:</strong>  </caption>
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tipo Habitación</th>
+                                            <th>N° Habitación</th>
+                                            <th>Servicio Habitación</th>
+                                            <th>Precio</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bdDetalleTarifaEliminados">
+                                        @if (ViewBag.ListaDetalleTarifaEliminado != null)
+                                        {
+                                            List<WebHoteleria.Models.TarifaDetalleModel> listaDetalleEliminado = (List<WebHoteleria.Models.TarifaDetalleModel>)ViewBag.ListaDetalleTarifaEliminado;
+                                            if (listaDetalleEliminado.Count > 0)
+                                            {
+                                                foreach (var item in listaDetalleEliminado)
+                                                {
+                                                    <tr>
+                                                        <td>@item.Id</td>
+                                                        <td>@item.NombreTipoHabitacion</td>
+                                                        <td>@item.NombreHabitacion</td>
+                                                        <td>@item.NombreServicioHabitacion</td>
+                                                        <td>@item.StrPrecio</td>
+                                                        <td><button type='button' class='btn btn-danger btn-xs deleteLink'><i class='glyphicon glyphicon-remove'></i></button></td>
+                                                        <td><input type='hidden' name='arrIdEliminado' value='@item.Id' /></td>
+                                                        <td><input type='hidden' name='arrHabitacionIdEliminado' value='@item.IdHabitacion' /></td>
+                                                        <td><input type='hidden' name='arrServicioHabitacionIdEliminado' value='@item.IdServicioHabitacion' /></td>
+                                                        <td><input type='hidden' name='arrPrecioEliminado' value='@item.StrPrecio' /></td>
+                                                    </tr>
+                                                }
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                    @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-primary" })
+                    <input type="submit" value="Guardar" id="btnGuardar" class="btn btn-success" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

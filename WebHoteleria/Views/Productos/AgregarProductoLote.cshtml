@@ -1,0 +1,148 @@
+﻿@model WebHoteleria.Models.ProductoLoteModel
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#IdSucursal").change(function () {
+            $("#IdDeposito").val("");
+            var valorIdSucursal = $("#IdSucursal").val();
+            ObtenerListadoDepositos(valorIdSucursal);
+        });
+    });
+
+    function ObtenerListadoDepositos(valorIdSucursal) {
+        $.ajax({
+            url: '/Depositos/ObtenerListadoDepositos',
+            type: 'POST',
+            data: {
+                sucursalId: valorIdSucursal
+            }
+        }).done(function (response) {
+            $("[name = IdDeposito]").html(response);
+            $("[name = IdDeposito]").prepend("<option value='' selected='selected'>--Seleccionar--</option>");
+        });
+    }
+
+    function alertaSoloMensaje(mensaje) {
+        bootbox.alert({
+            title: "<strong>Alerta</strong>",
+            message: mensaje,
+            size: 'medium'
+        });
+    }
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Agregar producto lote <small></small></h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("AgregarProductoLote", "Productos", FormMethod.Post, new { id = "frmCrearProductoLote" }))
+{
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    @if (@ViewBag.msg != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            @Html.ValidationMessage("Duplicado")
+                            @Html.ValidationMessage("Error")
+                        </div>
+                    }
+
+                    @Html.HiddenFor(model => model.IdProducto)
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.Label("* Nombre Producto", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.NombreProducto, null, new { @class = "form-control has-feedback-left", @readonly = "readonly" })
+                                <span class="fa fa-sort-alpha-desc form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.NombreProducto, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Sucursal", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdSucursal, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdSucursal, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Deposito", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdDeposito, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdDeposito, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Cantidad", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.StrCantidad, null, new { @class = "form-control has-feedback-left integer" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.StrCantidad, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Observación", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextAreaFor(model => model.Observacion, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-edit form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Observacion, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label(" Ubicación", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.Ubicacion, null, new { @class = "form-control has-feedback-left integer" })
+                                <span class="fa fa-binoculars form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Ubicacion, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-primary" })
+                        <input type="submit" value="Guardar" id="btnGuardar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+<script>
+    $(".calendario").datepicker({ dateFormat: 'dd/mm/yy' });
+    $('.integer').setMask("integer");
+</script>

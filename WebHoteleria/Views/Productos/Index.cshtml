@@ -1,0 +1,281 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<WebHoteleria.Models.ProductoModel>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("[name=btnBuscar]").click(function () {
+            $("#frmListado").attr("action", "/Productos/Index/");
+            $("#frmListado").submit();
+        });
+
+    });
+
+    function EliminarProducto(id, nombreProducto) {
+        var pregunta = "<strong> ¿Estas seguro de eliminar el producto " + nombreProducto + "?</strong></br>";
+        var dialog = bootbox.dialog({
+            title: '<strong>Eliminación de Producto</strong>',
+            message: pregunta,
+            buttons: {
+                cancel: {
+                    label: "Cancelar",
+                    className: 'btn-danger',
+                    callback: function () {
+                        dialog.modal('hide');
+                    }
+                },
+                ok: {
+                    label: "Aceptar",
+                    className: 'btn-info',
+                    callback: function () {
+                        dialog.modal('hide');
+                        EjecutarEliminacionProducto(id);
+                    }
+                }
+            }
+        });
+    }
+
+    function EjecutarEliminacionProducto(idProducto) {
+        var send = {
+            productoId: idProducto
+        }
+        var dialog = bootbox.dialog({
+            title: 'Guardando datos',
+            message: '<p><i class="fa fa-spin fa-spinner"></i> Procesando...</p>'
+        });
+
+        $.ajax({
+            url: '/Productos/EliminarProducto',
+            type: 'POST',
+            data: JSON.stringify(send),
+            contentType: 'application/json',
+            error: function (xhr, status, error) {
+                alertaSoloMensaje(xhr.responseText);
+            },
+            success: function (data) {
+                if (data.success) {
+                    dialog.find('.bootbox-body').html('La eliminación del producto se ejecuto correctamente!!');
+                    setTimeout(function () {
+                        window.location.href = data.urlRedirect;
+                    }, 300);
+                }
+                else {
+                    dialog.modal('hide');
+                    if (data.respuesta != "") {
+                        alertaSoloMensaje(data.respuesta);
+                    } else {
+                        alertaSoloMensaje("Ocurrio un error al eliminar el producto seleccionado");
+                    }
+                }
+            }
+        });
+    }
+
+    function alertaSoloMensaje(mensaje) {
+        bootbox.alert({
+            title: "<strong>Alerta</strong>",
+            message: mensaje,
+            size: 'medium'
+        });
+    }
+
+    function DetallesStockSucursales(id) {
+        if (!$("#tbl_" + id).length) {
+            ListaDetalleStockSucursales(id);
+        }
+        else {
+            $("#detail_" + id).slideToggle("slow");
+            $("#extra_" + id).slideToggle("slow");
+        }
+    }
+
+    function ListaDetalleStockSucursales(id) {
+
+        var send = {
+            idPremio: id,
+        }
+
+        $.ajax({
+            url: '/Productos/ObtenerListadoDetalleStockSucursales',
+            type: 'POST',
+            data: JSON.stringify(send),
+            contentType: 'application/json',
+            error: function (xhr, status, error) {
+                alertaSoloMensaje(xhr.responseText);
+                hideLoadingImage();
+            },
+            success: function (data) {
+                if (data.success) {
+
+                    $("#extra_" + id).html(data.listaDetalle);
+                    $("#detail_" + id).slideToggle("slow");
+                    $("#extra_" + id).slideToggle("slow");
+                } else {
+                    alertaSoloMensaje(data.msg);
+                }
+            }
+        });
+    }
+
+</script>
+
+<script>
+    function showLoadingImage(elIDdiv) {
+        $(elIDdiv).html('</br></br></br><div id="loading-image"><img src="/Content/images/FhHRx.gif"/></br></br></br></div>');
+    }
+
+    function hideLoadingImage() {
+        $('#loading-image').remove();
+    }
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Productos <small></small></h3>
+    </div>
+</div>
+
+
+
+@using (Html.BeginForm("Index", "Productos", FormMethod.Post, new { id = "frmListado" }))
+{
+    <div class="row">
+        <div class="pull-right" style="margin-right: 10px;">
+            <a href="@Url.Action("Create", "Productos")" title="Agregar Producto" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Agregar Producto</a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Buscador <small>Ingrese los campos para la búsqueda</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="form-group">
+
+                        <div class="col-sm-4">
+                            <label>Nombre Producto</label>
+                            @Html.TextBox("txtProducto", null, new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label>Categoría</label>
+                            @Html.DropDownList("ddlCategorias", null, "--Seleccionar--", new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="" style="margin-top: 24px;"></div>
+                            <button name="btnBuscar" id="btnBuscar" class="btn btn-primary" style="margin-right: 5px;"><i class="fa fa-search"></i> Buscar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Listado de productos <small></small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                @if (@ViewBag.msg != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade in">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        @ViewBag.msg
+                    </div>
+                }
+
+                @if (Model.Count() == 0)
+                {
+                    <p>#No existen coincidencias</p>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="table" id="tbgrilla">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Producto</th>
+                                    <th>Categoria</th>
+                                    <th>Marca</th>
+                                    <th>Precio Venta</th>
+                                    <th>Precio Costo</th>
+                                    <th>Stock</th>
+                                    <th>Unidad</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr @item.ColorFila>
+                                        <td>@item.Id</td>
+                                        <td>@item.NombreProducto</td>
+                                        <td>@item.NombreCategoria</td>
+                                        <td>@item.NombreMarca</td>
+                                        <td>@String.Format("{0:#,##0.##}", item.PrecioVenta)</td>
+                                        <td>@String.Format("{0:#,##0.##}", item.PrecioCosto)</td>
+                                        <td>@String.Format("{0:#,##0.##}", item.Stock)</td>
+                                        <td>@item.NombreUnidad</td>
+                                        <td>@item.EstadoDescrip</td>
+                                        <td>
+                                            <a href="javascript:DetallesStockSucursales('@item.Id')" title="Detalles Rangos" class="btn btn-primary  btn-xs">
+                                                <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                            </a>
+                                            <a href="@Url.Action("AgregarProductoLote", "Productos", new { id = item.Id })" title="Agregar Producto" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-check"></span></a>
+                                            <a href="@Url.Action("DisminuirProductoLote", "Productos", new { id = item.Id })" title="Disminuir Producto" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-check"></span></a>
+                                            <a href="@Url.Action("Edit", "Productos", new { id = item.Id })" title="Editar" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            <a href="javascript:EliminarProducto('@item.Id','@item.NombreProducto')" title="Eliminar" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </td>
+                                    </tr>
+
+                                    <tr id="detail_@item.Id" style="display: none;">
+                                        <td colspan="8">
+                                            <div id="extra_@item.Id" style="display: none;">
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                        <div class="pagination" style="margin-left: 400px">
+                            Pág. @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                            de @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

@@ -14,6 +14,13 @@ namespace EntidadesHoteleria
     
     public partial class usuarios
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public usuarios()
+        {
+            this.compras_productos = new HashSet<compras_productos>();
+            this.productos_lotes_ajustes = new HashSet<productos_lotes_ajustes>();
+        }
+    
         public int id { get; set; }
         public Nullable<int> id_funcionario { get; set; }
         public Nullable<int> id_perfil { get; set; }
@@ -25,7 +32,11 @@ namespace EntidadesHoteleria
         public string token_recovery { get; set; }
         public Nullable<bool> estado { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<compras_productos> compras_productos { get; set; }
         public virtual funcionarios funcionarios { get; set; }
         public virtual perfiles perfiles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<productos_lotes_ajustes> productos_lotes_ajustes { get; set; }
     }
 }

@@ -17,7 +17,9 @@ namespace EntidadesHoteleria
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public proveedores()
         {
+            this.compras_productos = new HashSet<compras_productos>();
             this.proveedores_contactos = new HashSet<proveedores_contactos>();
+            this.proveedores_sucursales = new HashSet<proveedores_sucursales>();
         }
     
         public int id { get; set; }
@@ -39,10 +41,14 @@ namespace EntidadesHoteleria
         public virtual actividades_economicas actividades_economicas { get; set; }
         public virtual barrios barrios { get; set; }
         public virtual ciudades ciudades { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<compras_productos> compras_productos { get; set; }
         public virtual departamentos departamentos { get; set; }
         public virtual paises paises { get; set; }
-        public virtual tipos_documentos tipos_documentos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<proveedores_contactos> proveedores_contactos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<proveedores_sucursales> proveedores_sucursales { get; set; }
+        public virtual tipos_documentos tipos_documentos { get; set; }
     }
 }

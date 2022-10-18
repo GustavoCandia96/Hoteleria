@@ -16,10 +16,10 @@ namespace EntidadesHoteleria
     {
         public int id { get; set; }
         public Nullable<int> id_perfil { get; set; }
-        public Nullable<int> id_modulo { get; set; }
+        public Nullable<int> id_modulo_operacion { get; set; }
         public Nullable<bool> habilitado { get; set; }
     
-        public virtual modulos modulos { get; set; }
+        public virtual modulos_operaciones modulos_operaciones { get; set; }
         public virtual perfiles perfiles { get; set; }
     }
 }

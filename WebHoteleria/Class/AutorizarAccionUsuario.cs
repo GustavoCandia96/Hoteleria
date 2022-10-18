@@ -61,7 +61,7 @@ namespace WebHoteleria.Class
                                 if (registroOperacion.estado == true) //SI ESTA ACTIVO
                                 {
                                     //VERIFICAMOS SI TIENE PERMISO EL USUARIO CON SU PERFIL Y LA OPERACIÓN
-                                    var count = db.permisos.Where(p => p.id_perfil == usuario.id_perfil && p.id_modulo == registroOperacion.id && p.habilitado == true).Count();
+                                    var count = db.permisos.Where(p => p.id_perfil == usuario.id_perfil && p.id_modulo_operacion == registroOperacion.id && p.habilitado == true).Count();
                                     if (count == 0) //SI NO TIENE PERMISO RECHAZAMOS ACCESO AL MODULO
                                     {
                                         retorno = "PERMISONOEXISTE";
