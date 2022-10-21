@@ -13,6 +13,7 @@
     <EntitySet Name="compras_productos" EntityType="hoteleria_erp_dbModel.compras_productos" />
     <EntitySet Name="compras_productos_detalles" EntityType="hoteleria_erp_dbModel.compras_productos_detalles" />
     <EntitySet Name="condiciones_compras_ventas" EntityType="hoteleria_erp_dbModel.condiciones_compras_ventas" />
+    <EntitySet Name="cuentas_proveedores" EntityType="hoteleria_erp_dbModel.cuentas_proveedores" />
     <EntitySet Name="departamentos" EntityType="hoteleria_erp_dbModel.departamentos" />
     <EntitySet Name="depositos" EntityType="hoteleria_erp_dbModel.depositos" />
     <EntitySet Name="estados_civiles" EntityType="hoteleria_erp_dbModel.estados_civiles" />
@@ -44,6 +45,14 @@
     <EntitySet Name="tarifas" EntityType="hoteleria_erp_dbModel.tarifas" />
     <EntitySet Name="tarifas_detalles" EntityType="hoteleria_erp_dbModel.tarifas_detalles" />
     <EntitySet Name="tarifas_tipos" EntityType="hoteleria_erp_dbModel.tarifas_tipos" />
+    <EntitySet Name="timbrados" EntityType="hoteleria_erp_dbModel.timbrados" />
+    <EntitySet Name="timbrados_comprobantes_anulaciones" EntityType="hoteleria_erp_dbModel.timbrados_comprobantes_anulaciones" />
+    <EntitySet Name="timbrados_formatos" EntityType="hoteleria_erp_dbModel.timbrados_formatos" />
+    <EntitySet Name="timbrados_motivos_anulaciones" EntityType="hoteleria_erp_dbModel.timbrados_motivos_anulaciones" />
+    <EntitySet Name="timbrados_rangos" EntityType="hoteleria_erp_dbModel.timbrados_rangos" />
+    <EntitySet Name="timbrados_rangos_funcionarios" EntityType="hoteleria_erp_dbModel.timbrados_rangos_funcionarios" />
+    <EntitySet Name="timbrados_rangos_tipos" EntityType="hoteleria_erp_dbModel.timbrados_rangos_tipos" />
+    <EntitySet Name="timbrados_tipos_documentos" EntityType="hoteleria_erp_dbModel.timbrados_tipos_documentos" />
     <EntitySet Name="tipos_contactos" EntityType="hoteleria_erp_dbModel.tipos_contactos" />
     <EntitySet Name="tipos_documentos" EntityType="hoteleria_erp_dbModel.tipos_documentos" />
     <EntitySet Name="tipos_ivas" EntityType="hoteleria_erp_dbModel.tipos_ivas" />
@@ -137,9 +146,21 @@
       <End Role="depositos" EntitySet="depositos" />
       <End Role="compras_productos_detalles" EntitySet="compras_productos_detalles" />
     </AssociationSet>
+    <AssociationSet Name="FK_compras_productos_detalles_productos" Association="hoteleria_erp_dbModel.FK_compras_productos_detalles_productos">
+      <End Role="productos" EntitySet="productos" />
+      <End Role="compras_productos_detalles" EntitySet="compras_productos_detalles" />
+    </AssociationSet>
     <AssociationSet Name="FK_compras_productos_detalles_sucursales" Association="hoteleria_erp_dbModel.FK_compras_productos_detalles_sucursales">
       <End Role="sucursales" EntitySet="sucursales" />
       <End Role="compras_productos_detalles" EntitySet="compras_productos_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_proveedores_proveedores" Association="hoteleria_erp_dbModel.FK_cuentas_proveedores_proveedores">
+      <End Role="proveedores" EntitySet="proveedores" />
+      <End Role="cuentas_proveedores" EntitySet="cuentas_proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_proveedores_proveedores_sucursales" Association="hoteleria_erp_dbModel.FK_cuentas_proveedores_proveedores_sucursales">
+      <End Role="proveedores_sucursales" EntitySet="proveedores_sucursales" />
+      <End Role="cuentas_proveedores" EntitySet="cuentas_proveedores" />
     </AssociationSet>
     <AssociationSet Name="FK_departamentos_paises" Association="hoteleria_erp_dbModel.FK_departamentos_paises">
       <End Role="paises" EntitySet="paises" />
@@ -172,6 +193,10 @@
     <AssociationSet Name="FK_funcionarios_tipos_documentos" Association="hoteleria_erp_dbModel.FK_funcionarios_tipos_documentos">
       <End Role="tipos_documentos" EntitySet="tipos_documentos" />
       <End Role="funcionarios" EntitySet="funcionarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_rangos_funcionarios_funcionarios" Association="hoteleria_erp_dbModel.FK_timbrados_rangos_funcionarios_funcionarios">
+      <End Role="funcionarios" EntitySet="funcionarios" />
+      <End Role="timbrados_rangos_funcionarios" EntitySet="timbrados_rangos_funcionarios" />
     </AssociationSet>
     <AssociationSet Name="FK_usuarios_funcionarios" Association="hoteleria_erp_dbModel.FK_usuarios_funcionarios">
       <End Role="funcionarios" EntitySet="funcionarios" />
@@ -269,6 +294,10 @@
       <End Role="tipos_contactos" EntitySet="tipos_contactos" />
       <End Role="proveedores_contactos" EntitySet="proveedores_contactos" />
     </AssociationSet>
+    <AssociationSet Name="FK_timbrados_rangos_sucursales" Association="hoteleria_erp_dbModel.FK_timbrados_rangos_sucursales">
+      <End Role="sucursales" EntitySet="sucursales" />
+      <End Role="timbrados_rangos" EntitySet="timbrados_rangos" />
+    </AssociationSet>
     <AssociationSet Name="FK_tarifas_detalles_tarifas" Association="hoteleria_erp_dbModel.FK_tarifas_detalles_tarifas">
       <End Role="tarifas" EntitySet="tarifas" />
       <End Role="tarifas_detalles" EntitySet="tarifas_detalles" />
@@ -276,6 +305,34 @@
     <AssociationSet Name="FK_tarifas_tarifas_tipos" Association="hoteleria_erp_dbModel.FK_tarifas_tarifas_tipos">
       <End Role="tarifas_tipos" EntitySet="tarifas_tipos" />
       <End Role="tarifas" EntitySet="tarifas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_rangos_timbrados" Association="hoteleria_erp_dbModel.FK_timbrados_rangos_timbrados">
+      <End Role="timbrados" EntitySet="timbrados" />
+      <End Role="timbrados_rangos" EntitySet="timbrados_rangos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_timbrados_formatos" Association="hoteleria_erp_dbModel.FK_timbrados_timbrados_formatos">
+      <End Role="timbrados_formatos" EntitySet="timbrados_formatos" />
+      <End Role="timbrados" EntitySet="timbrados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_timbrados_tipos_documentos" Association="hoteleria_erp_dbModel.FK_timbrados_timbrados_tipos_documentos">
+      <End Role="timbrados_tipos_documentos" EntitySet="timbrados_tipos_documentos" />
+      <End Role="timbrados" EntitySet="timbrados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_comprobantes_anulaciones_timbrados_motivos_anulaciones" Association="hoteleria_erp_dbModel.FK_timbrados_comprobantes_anulaciones_timbrados_motivos_anulaciones">
+      <End Role="timbrados_motivos_anulaciones" EntitySet="timbrados_motivos_anulaciones" />
+      <End Role="timbrados_comprobantes_anulaciones" EntitySet="timbrados_comprobantes_anulaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_comprobantes_anulaciones_timbrados_rangos" Association="hoteleria_erp_dbModel.FK_timbrados_comprobantes_anulaciones_timbrados_rangos">
+      <End Role="timbrados_rangos" EntitySet="timbrados_rangos" />
+      <End Role="timbrados_comprobantes_anulaciones" EntitySet="timbrados_comprobantes_anulaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_rangos_funcionarios_timbrados_rangos" Association="hoteleria_erp_dbModel.FK_timbrados_rangos_funcionarios_timbrados_rangos">
+      <End Role="timbrados_rangos" EntitySet="timbrados_rangos" />
+      <End Role="timbrados_rangos_funcionarios" EntitySet="timbrados_rangos_funcionarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_rangos_timbrados_rangos_tipos" Association="hoteleria_erp_dbModel.FK_timbrados_rangos_timbrados_rangos_tipos">
+      <End Role="timbrados_rangos_tipos" EntitySet="timbrados_rangos_tipos" />
+      <End Role="timbrados_rangos" EntitySet="timbrados_rangos" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="actividades_economicas">
@@ -419,6 +476,7 @@
     <Property Name="estado" Type="Boolean" />
     <NavigationProperty Name="compras_productos" Relationship="hoteleria_erp_dbModel.FK_compras_productos_detalles_compras_productos" FromRole="compras_productos_detalles" ToRole="compras_productos" />
     <NavigationProperty Name="depositos" Relationship="hoteleria_erp_dbModel.FK_compras_productos_detalles_depositos" FromRole="compras_productos_detalles" ToRole="depositos" />
+    <NavigationProperty Name="productos" Relationship="hoteleria_erp_dbModel.FK_compras_productos_detalles_productos" FromRole="compras_productos_detalles" ToRole="productos" />
     <NavigationProperty Name="sucursales" Relationship="hoteleria_erp_dbModel.FK_compras_productos_detalles_sucursales" FromRole="compras_productos_detalles" ToRole="sucursales" />
   </EntityType>
   <EntityType Name="condiciones_compras_ventas">
@@ -429,6 +487,21 @@
     <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="Boolean" />
     <NavigationProperty Name="compras_productos" Relationship="hoteleria_erp_dbModel.FK_compras_productos_condiciones_compras_ventas" FromRole="condiciones_compras_ventas" ToRole="compras_productos" />
+  </EntityType>
+  <EntityType Name="cuentas_proveedores">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_proveedor" Type="Int32" />
+    <Property Name="id_proveedor_sucursal" Type="Int32" />
+    <Property Name="id_compra_producto" Type="Int32" />
+    <Property Name="deuda" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="saldo" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_modificado" Type="Boolean" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="proveedores" Relationship="hoteleria_erp_dbModel.FK_cuentas_proveedores_proveedores" FromRole="cuentas_proveedores" ToRole="proveedores" />
+    <NavigationProperty Name="proveedores_sucursales" Relationship="hoteleria_erp_dbModel.FK_cuentas_proveedores_proveedores_sucursales" FromRole="cuentas_proveedores" ToRole="proveedores_sucursales" />
   </EntityType>
   <EntityType Name="departamentos">
     <Key>
@@ -484,6 +557,7 @@
     <NavigationProperty Name="cargos" Relationship="hoteleria_erp_dbModel.FK_funcionarios_cargos" FromRole="funcionarios" ToRole="cargos" />
     <NavigationProperty Name="sucursales" Relationship="hoteleria_erp_dbModel.FK_funcionarios_sucursales" FromRole="funcionarios" ToRole="sucursales" />
     <NavigationProperty Name="tipos_documentos" Relationship="hoteleria_erp_dbModel.FK_funcionarios_tipos_documentos" FromRole="funcionarios" ToRole="tipos_documentos" />
+    <NavigationProperty Name="timbrados_rangos_funcionarios" Relationship="hoteleria_erp_dbModel.FK_timbrados_rangos_funcionarios_funcionarios" FromRole="funcionarios" ToRole="timbrados_rangos_funcionarios" />
     <NavigationProperty Name="usuarios" Relationship="hoteleria_erp_dbModel.FK_usuarios_funcionarios" FromRole="funcionarios" ToRole="usuarios" />
   </EntityType>
   <EntityType Name="habitaciones">
@@ -656,6 +730,7 @@
     <Property Name="id_tipo_iva" Type="Int32" />
     <Property Name="estado" Type="Boolean" />
     <NavigationProperty Name="categorias" Relationship="hoteleria_erp_dbModel.FK_productos_categorias" FromRole="productos" ToRole="categorias" />
+    <NavigationProperty Name="compras_productos_detalles" Relationship="hoteleria_erp_dbModel.FK_compras_productos_detalles_productos" FromRole="productos" ToRole="compras_productos_detalles" />
     <NavigationProperty Name="marcas" Relationship="hoteleria_erp_dbModel.FK_productos_marcas" FromRole="productos" ToRole="marcas" />
     <NavigationProperty Name="productos_lotes" Relationship="hoteleria_erp_dbModel.FK_productos_lotes_productos" FromRole="productos" ToRole="productos_lotes" />
     <NavigationProperty Name="tipos_ivas" Relationship="hoteleria_erp_dbModel.FK_productos_tipos_ivas" FromRole="productos" ToRole="tipos_ivas" />
@@ -723,6 +798,7 @@
     <NavigationProperty Name="barrios" Relationship="hoteleria_erp_dbModel.FK_proveedores_barrios" FromRole="proveedores" ToRole="barrios" />
     <NavigationProperty Name="ciudades" Relationship="hoteleria_erp_dbModel.FK_proveedores_ciudades" FromRole="proveedores" ToRole="ciudades" />
     <NavigationProperty Name="compras_productos" Relationship="hoteleria_erp_dbModel.FK_compras_productos_proveedores" FromRole="proveedores" ToRole="compras_productos" />
+    <NavigationProperty Name="cuentas_proveedores" Relationship="hoteleria_erp_dbModel.FK_cuentas_proveedores_proveedores" FromRole="proveedores" ToRole="cuentas_proveedores" />
     <NavigationProperty Name="departamentos" Relationship="hoteleria_erp_dbModel.FK_proveedores_departamentos" FromRole="proveedores" ToRole="departamentos" />
     <NavigationProperty Name="paises" Relationship="hoteleria_erp_dbModel.FK_proveedores_paises" FromRole="proveedores" ToRole="paises" />
     <NavigationProperty Name="proveedores_contactos" Relationship="hoteleria_erp_dbModel.FK_proveedores_contactos_proveedores" FromRole="proveedores" ToRole="proveedores_contactos" />
@@ -760,6 +836,7 @@
     <NavigationProperty Name="barrios" Relationship="hoteleria_erp_dbModel.FK_proveedores_sucursales_barrios" FromRole="proveedores_sucursales" ToRole="barrios" />
     <NavigationProperty Name="ciudades" Relationship="hoteleria_erp_dbModel.FK_proveedores_sucursales_ciudades" FromRole="proveedores_sucursales" ToRole="ciudades" />
     <NavigationProperty Name="compras_productos" Relationship="hoteleria_erp_dbModel.FK_compras_productos_proveedores_sucursales" FromRole="proveedores_sucursales" ToRole="compras_productos" />
+    <NavigationProperty Name="cuentas_proveedores" Relationship="hoteleria_erp_dbModel.FK_cuentas_proveedores_proveedores_sucursales" FromRole="proveedores_sucursales" ToRole="cuentas_proveedores" />
     <NavigationProperty Name="departamentos" Relationship="hoteleria_erp_dbModel.FK_proveedores_sucursales_departamentos" FromRole="proveedores_sucursales" ToRole="departamentos" />
     <NavigationProperty Name="paises" Relationship="hoteleria_erp_dbModel.FK_proveedores_sucursales_paises" FromRole="proveedores_sucursales" ToRole="paises" />
     <NavigationProperty Name="proveedores" Relationship="hoteleria_erp_dbModel.FK_proveedores_sucursales_proveedores" FromRole="proveedores_sucursales" ToRole="proveedores" />
@@ -785,6 +862,7 @@
     <NavigationProperty Name="funcionarios" Relationship="hoteleria_erp_dbModel.FK_funcionarios_sucursales" FromRole="sucursales" ToRole="funcionarios" />
     <NavigationProperty Name="paises" Relationship="hoteleria_erp_dbModel.FK_sucursales_paises" FromRole="sucursales" ToRole="paises" />
     <NavigationProperty Name="productos_lotes" Relationship="hoteleria_erp_dbModel.FK_productos_lotes_sucursales" FromRole="sucursales" ToRole="productos_lotes" />
+    <NavigationProperty Name="timbrados_rangos" Relationship="hoteleria_erp_dbModel.FK_timbrados_rangos_sucursales" FromRole="sucursales" ToRole="timbrados_rangos" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -831,6 +909,108 @@
     <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="Boolean" />
     <NavigationProperty Name="tarifas" Relationship="hoteleria_erp_dbModel.FK_tarifas_tarifas_tipos" FromRole="tarifas_tipos" ToRole="tarifas" />
+  </EntityType>
+  <EntityType Name="timbrados">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_timbrado_formato" Type="Int32" />
+    <Property Name="id_timbrado_tipo_documento" Type="Int32" />
+    <Property Name="nro_timbrado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="vigencia_desde" Type="DateTime" Precision="0" />
+    <Property Name="vigencia_hasta" Type="DateTime" Precision="0" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="timbrados_rangos" Relationship="hoteleria_erp_dbModel.FK_timbrados_rangos_timbrados" FromRole="timbrados" ToRole="timbrados_rangos" />
+    <NavigationProperty Name="timbrados_formatos" Relationship="hoteleria_erp_dbModel.FK_timbrados_timbrados_formatos" FromRole="timbrados" ToRole="timbrados_formatos" />
+    <NavigationProperty Name="timbrados_tipos_documentos" Relationship="hoteleria_erp_dbModel.FK_timbrados_timbrados_tipos_documentos" FromRole="timbrados" ToRole="timbrados_tipos_documentos" />
+  </EntityType>
+  <EntityType Name="timbrados_comprobantes_anulaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="DateTime" Precision="0" />
+    <Property Name="id_usuario" Type="Int32" />
+    <Property Name="id_motivo_anulacion" Type="Int32" />
+    <Property Name="id_timbrado_rango" Type="Int32" />
+    <Property Name="nro_comprobante" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="observacion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="timbrados_motivos_anulaciones" Relationship="hoteleria_erp_dbModel.FK_timbrados_comprobantes_anulaciones_timbrados_motivos_anulaciones" FromRole="timbrados_comprobantes_anulaciones" ToRole="timbrados_motivos_anulaciones" />
+    <NavigationProperty Name="timbrados_rangos" Relationship="hoteleria_erp_dbModel.FK_timbrados_comprobantes_anulaciones_timbrados_rangos" FromRole="timbrados_comprobantes_anulaciones" ToRole="timbrados_rangos" />
+  </EntityType>
+  <EntityType Name="timbrados_formatos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_formato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="timbrados" Relationship="hoteleria_erp_dbModel.FK_timbrados_timbrados_formatos" FromRole="timbrados_formatos" ToRole="timbrados" />
+  </EntityType>
+  <EntityType Name="timbrados_motivos_anulaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="motivo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="timbrados_comprobantes_anulaciones" Relationship="hoteleria_erp_dbModel.FK_timbrados_comprobantes_anulaciones_timbrados_motivos_anulaciones" FromRole="timbrados_motivos_anulaciones" ToRole="timbrados_comprobantes_anulaciones" />
+  </EntityType>
+  <EntityType Name="timbrados_rangos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_timbrado_tipo_rango" Type="Int32" />
+    <Property Name="id_timbrado" Type="Int32" />
+    <Property Name="id_sucursal" Type="Int32" />
+    <Property Name="codigo_sucursal" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="punto_expedicion" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="cantidad_ceros" Type="Int32" />
+    <Property Name="desde" Type="Int32" />
+    <Property Name="hasta" Type="Int32" />
+    <Property Name="numeracion_actual" Type="Int32" />
+    <Property Name="utilizado" Type="Boolean" />
+    <Property Name="cantidad_usada" Type="Int32" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="sucursales" Relationship="hoteleria_erp_dbModel.FK_timbrados_rangos_sucursales" FromRole="timbrados_rangos" ToRole="sucursales" />
+    <NavigationProperty Name="timbrados" Relationship="hoteleria_erp_dbModel.FK_timbrados_rangos_timbrados" FromRole="timbrados_rangos" ToRole="timbrados" />
+    <NavigationProperty Name="timbrados_comprobantes_anulaciones" Relationship="hoteleria_erp_dbModel.FK_timbrados_comprobantes_anulaciones_timbrados_rangos" FromRole="timbrados_rangos" ToRole="timbrados_comprobantes_anulaciones" />
+    <NavigationProperty Name="timbrados_rangos_funcionarios" Relationship="hoteleria_erp_dbModel.FK_timbrados_rangos_funcionarios_timbrados_rangos" FromRole="timbrados_rangos" ToRole="timbrados_rangos_funcionarios" />
+    <NavigationProperty Name="timbrados_rangos_tipos" Relationship="hoteleria_erp_dbModel.FK_timbrados_rangos_timbrados_rangos_tipos" FromRole="timbrados_rangos" ToRole="timbrados_rangos_tipos" />
+  </EntityType>
+  <EntityType Name="timbrados_rangos_funcionarios">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_timbrado_rango" Type="Int32" />
+    <Property Name="id_funcionario" Type="Int32" />
+    <Property Name="fecha" Type="DateTime" Precision="0" />
+    <Property Name="observacion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="funcionarios" Relationship="hoteleria_erp_dbModel.FK_timbrados_rangos_funcionarios_funcionarios" FromRole="timbrados_rangos_funcionarios" ToRole="funcionarios" />
+    <NavigationProperty Name="timbrados_rangos" Relationship="hoteleria_erp_dbModel.FK_timbrados_rangos_funcionarios_timbrados_rangos" FromRole="timbrados_rangos_funcionarios" ToRole="timbrados_rangos" />
+  </EntityType>
+  <EntityType Name="timbrados_rangos_tipos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="timbrados_rangos" Relationship="hoteleria_erp_dbModel.FK_timbrados_rangos_timbrados_rangos_tipos" FromRole="timbrados_rangos_tipos" ToRole="timbrados_rangos" />
+  </EntityType>
+  <EntityType Name="timbrados_tipos_documentos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="timbrados" Relationship="hoteleria_erp_dbModel.FK_timbrados_timbrados_tipos_documentos" FromRole="timbrados_tipos_documentos" ToRole="timbrados" />
   </EntityType>
   <EntityType Name="tipos_contactos">
     <Key>
@@ -1154,6 +1334,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_compras_productos_detalles_productos">
+    <End Type="hoteleria_erp_dbModel.productos" Role="productos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.compras_productos_detalles" Role="compras_productos_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="compras_productos_detalles">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_compras_productos_detalles_sucursales">
     <End Type="hoteleria_erp_dbModel.sucursales" Role="sucursales" Multiplicity="0..1" />
     <End Type="hoteleria_erp_dbModel.compras_productos_detalles" Role="compras_productos_detalles" Multiplicity="*" />
@@ -1163,6 +1355,30 @@
       </Principal>
       <Dependent Role="compras_productos_detalles">
         <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_proveedores_proveedores">
+    <End Type="hoteleria_erp_dbModel.proveedores" Role="proveedores" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cuentas_proveedores" Role="cuentas_proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cuentas_proveedores">
+        <PropertyRef Name="id_proveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_proveedores_proveedores_sucursales">
+    <End Type="hoteleria_erp_dbModel.proveedores_sucursales" Role="proveedores_sucursales" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cuentas_proveedores" Role="cuentas_proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedores_sucursales">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cuentas_proveedores">
+        <PropertyRef Name="id_proveedor_sucursal" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1259,6 +1475,18 @@
       </Principal>
       <Dependent Role="funcionarios">
         <PropertyRef Name="id_tipo_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timbrados_rangos_funcionarios_funcionarios">
+    <End Type="hoteleria_erp_dbModel.funcionarios" Role="funcionarios" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.timbrados_rangos_funcionarios" Role="timbrados_rangos_funcionarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="funcionarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados_rangos_funcionarios">
+        <PropertyRef Name="id_funcionario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1550,6 +1778,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_timbrados_rangos_sucursales">
+    <End Type="hoteleria_erp_dbModel.sucursales" Role="sucursales" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.timbrados_rangos" Role="timbrados_rangos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sucursales">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados_rangos">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tarifas_detalles_tarifas">
     <End Type="hoteleria_erp_dbModel.tarifas" Role="tarifas" Multiplicity="0..1" />
     <End Type="hoteleria_erp_dbModel.tarifas_detalles" Role="tarifas_detalles" Multiplicity="*" />
@@ -1571,6 +1811,90 @@
       </Principal>
       <Dependent Role="tarifas">
         <PropertyRef Name="id_tipo_tarifa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timbrados_rangos_timbrados">
+    <End Type="hoteleria_erp_dbModel.timbrados" Role="timbrados" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.timbrados_rangos" Role="timbrados_rangos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados_rangos">
+        <PropertyRef Name="id_timbrado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timbrados_timbrados_formatos">
+    <End Type="hoteleria_erp_dbModel.timbrados_formatos" Role="timbrados_formatos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.timbrados" Role="timbrados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados_formatos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados">
+        <PropertyRef Name="id_timbrado_formato" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timbrados_timbrados_tipos_documentos">
+    <End Type="hoteleria_erp_dbModel.timbrados_tipos_documentos" Role="timbrados_tipos_documentos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.timbrados" Role="timbrados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados_tipos_documentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados">
+        <PropertyRef Name="id_timbrado_tipo_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timbrados_comprobantes_anulaciones_timbrados_motivos_anulaciones">
+    <End Type="hoteleria_erp_dbModel.timbrados_motivos_anulaciones" Role="timbrados_motivos_anulaciones" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.timbrados_comprobantes_anulaciones" Role="timbrados_comprobantes_anulaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados_motivos_anulaciones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados_comprobantes_anulaciones">
+        <PropertyRef Name="id_motivo_anulacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timbrados_comprobantes_anulaciones_timbrados_rangos">
+    <End Type="hoteleria_erp_dbModel.timbrados_rangos" Role="timbrados_rangos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.timbrados_comprobantes_anulaciones" Role="timbrados_comprobantes_anulaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados_rangos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados_comprobantes_anulaciones">
+        <PropertyRef Name="id_timbrado_rango" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timbrados_rangos_funcionarios_timbrados_rangos">
+    <End Type="hoteleria_erp_dbModel.timbrados_rangos" Role="timbrados_rangos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.timbrados_rangos_funcionarios" Role="timbrados_rangos_funcionarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados_rangos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados_rangos_funcionarios">
+        <PropertyRef Name="id_timbrado_rango" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timbrados_rangos_timbrados_rangos_tipos">
+    <End Type="hoteleria_erp_dbModel.timbrados_rangos_tipos" Role="timbrados_rangos_tipos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.timbrados_rangos" Role="timbrados_rangos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados_rangos_tipos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados_rangos">
+        <PropertyRef Name="id_timbrado_tipo_rango" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

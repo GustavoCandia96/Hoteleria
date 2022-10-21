@@ -136,6 +136,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="cuentas_proveedores">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cuentas_proveedores">
+        <MappingFragment StoreEntitySet="cuentas_proveedores">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="saldo_modificado" ColumnName="saldo_modificado" />
+          <ScalarProperty Name="saldo" ColumnName="saldo" />
+          <ScalarProperty Name="deuda" ColumnName="deuda" />
+          <ScalarProperty Name="id_compra_producto" ColumnName="id_compra_producto" />
+          <ScalarProperty Name="id_proveedor_sucursal" ColumnName="id_proveedor_sucursal" />
+          <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="departamentos">
       <EntityTypeMapping TypeName="hoteleria_erp_dbModel.departamentos">
         <MappingFragment StoreEntitySet="departamentos">
@@ -489,6 +503,100 @@
         <MappingFragment StoreEntitySet="tarifas_tipos">
           <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="timbrados">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.timbrados">
+        <MappingFragment StoreEntitySet="timbrados">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="vigencia_hasta" ColumnName="vigencia_hasta" />
+          <ScalarProperty Name="vigencia_desde" ColumnName="vigencia_desde" />
+          <ScalarProperty Name="nro_timbrado" ColumnName="nro_timbrado" />
+          <ScalarProperty Name="id_timbrado_tipo_documento" ColumnName="id_timbrado_tipo_documento" />
+          <ScalarProperty Name="id_timbrado_formato" ColumnName="id_timbrado_formato" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="timbrados_comprobantes_anulaciones">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.timbrados_comprobantes_anulaciones">
+        <MappingFragment StoreEntitySet="timbrados_comprobantes_anulaciones">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="nro_comprobante" ColumnName="nro_comprobante" />
+          <ScalarProperty Name="id_timbrado_rango" ColumnName="id_timbrado_rango" />
+          <ScalarProperty Name="id_motivo_anulacion" ColumnName="id_motivo_anulacion" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="timbrados_formatos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.timbrados_formatos">
+        <MappingFragment StoreEntitySet="timbrados_formatos">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="nombre_formato" ColumnName="nombre_formato" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="timbrados_motivos_anulaciones">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.timbrados_motivos_anulaciones">
+        <MappingFragment StoreEntitySet="timbrados_motivos_anulaciones">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="motivo" ColumnName="motivo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="timbrados_rangos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.timbrados_rangos">
+        <MappingFragment StoreEntitySet="timbrados_rangos">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="cantidad_usada" ColumnName="cantidad_usada" />
+          <ScalarProperty Name="utilizado" ColumnName="utilizado" />
+          <ScalarProperty Name="numeracion_actual" ColumnName="numeracion_actual" />
+          <ScalarProperty Name="hasta" ColumnName="hasta" />
+          <ScalarProperty Name="desde" ColumnName="desde" />
+          <ScalarProperty Name="cantidad_ceros" ColumnName="cantidad_ceros" />
+          <ScalarProperty Name="punto_expedicion" ColumnName="punto_expedicion" />
+          <ScalarProperty Name="codigo_sucursal" ColumnName="codigo_sucursal" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="id_timbrado" ColumnName="id_timbrado" />
+          <ScalarProperty Name="id_timbrado_tipo_rango" ColumnName="id_timbrado_tipo_rango" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="timbrados_rangos_funcionarios">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.timbrados_rangos_funcionarios">
+        <MappingFragment StoreEntitySet="timbrados_rangos_funcionarios">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+          <ScalarProperty Name="id_timbrado_rango" ColumnName="id_timbrado_rango" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="timbrados_rangos_tipos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.timbrados_rangos_tipos">
+        <MappingFragment StoreEntitySet="timbrados_rangos_tipos">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="timbrados_tipos_documentos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.timbrados_tipos_documentos">
+        <MappingFragment StoreEntitySet="timbrados_tipos_documentos">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="nombre_documento" ColumnName="nombre_documento" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

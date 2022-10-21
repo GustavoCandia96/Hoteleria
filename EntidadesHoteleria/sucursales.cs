@@ -21,6 +21,7 @@ namespace EntidadesHoteleria
             this.depositos = new HashSet<depositos>();
             this.funcionarios = new HashSet<funcionarios>();
             this.productos_lotes = new HashSet<productos_lotes>();
+            this.timbrados_rangos = new HashSet<timbrados_rangos>();
         }
     
         public int id { get; set; }
@@ -45,5 +46,7 @@ namespace EntidadesHoteleria
         public virtual paises paises { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<productos_lotes> productos_lotes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<timbrados_rangos> timbrados_rangos { get; set; }
     }
 }

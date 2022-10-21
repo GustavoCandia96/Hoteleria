@@ -17,6 +17,7 @@ namespace EntidadesHoteleria
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public funcionarios()
         {
+            this.timbrados_rangos_funcionarios = new HashSet<timbrados_rangos_funcionarios>();
             this.usuarios = new HashSet<usuarios>();
         }
     
@@ -37,6 +38,8 @@ namespace EntidadesHoteleria
         public virtual cargos cargos { get; set; }
         public virtual sucursales sucursales { get; set; }
         public virtual tipos_documentos tipos_documentos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<timbrados_rangos_funcionarios> timbrados_rangos_funcionarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<usuarios> usuarios { get; set; }
     }

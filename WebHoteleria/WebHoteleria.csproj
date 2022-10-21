@@ -156,8 +156,10 @@
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\CerrarSesionController.cs" />
     <Compile Include="Controllers\CiudadesController.cs" />
+    <Compile Include="Controllers\ComprasProductosController.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\DepositosController.cs" />
+    <Compile Include="Controllers\FuncionariosController.cs" />
     <Compile Include="Controllers\HabitacionesController.cs" />
     <Compile Include="Controllers\HabitacionesEstadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -176,6 +178,7 @@
     <Compile Include="Controllers\ServiciosHabitacionesController.cs" />
     <Compile Include="Controllers\SucursalesController.cs" />
     <Compile Include="Controllers\TarifasController.cs" />
+    <Compile Include="Controllers\TimbradosRangosFuncionariosController.cs" />
     <Compile Include="Controllers\TiposHabitacionesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -188,8 +191,12 @@
     <Compile Include="Models\CargoModel.cs" />
     <Compile Include="Models\CategoriaModel.cs" />
     <Compile Include="Models\CiudadModel.cs" />
+    <Compile Include="Models\CompraProductoDetalleModel.cs" />
+    <Compile Include="Models\CompraProductoModel.cs" />
     <Compile Include="Models\DepartamentoModel.cs" />
     <Compile Include="Models\DepositoModel.cs" />
+    <Compile Include="Models\DetalleCompraModel.cs" />
+    <Compile Include="Models\FuncionarioModel.cs" />
     <Compile Include="Models\HabitacionEstadoModel.cs" />
     <Compile Include="Models\HabitacionModel.cs" />
     <Compile Include="Models\MarcaModel.cs" />
@@ -212,6 +219,8 @@
     <Compile Include="Models\SucursalModel.cs" />
     <Compile Include="Models\TarifaDetalleModel.cs" />
     <Compile Include="Models\TarifaModel.cs" />
+    <Compile Include="Models\TimbradoRangoFuncionarioModel.cs" />
+    <Compile Include="Models\TimbradoRangoModel.cs" />
     <Compile Include="Models\TipoHabitacionModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -4660,6 +4669,15 @@
     <Content Include="Views\ProveedoresSucursales\Create.cshtml" />
     <Content Include="Views\ProveedoresSucursales\Edit.cshtml" />
     <Content Include="Views\ProveedoresSucursales\Index.cshtml" />
+    <Content Include="Views\ComprasProductos\Create.cshtml" />
+    <Content Include="Views\ComprasProductos\Index.cshtml" />
+    <Content Include="Views\ComprasProductos\_modalProductos.cshtml" />
+    <Content Include="Views\Funcionarios\Create.cshtml" />
+    <Content Include="Views\Funcionarios\Edit.cshtml" />
+    <Content Include="Views\Funcionarios\Index.cshtml" />
+    <Content Include="Views\TimbradosRangosFuncionarios\Create.cshtml" />
+    <Content Include="Views\TimbradosRangosFuncionarios\Edit.cshtml" />
+    <Content Include="Views\TimbradosRangosFuncionarios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

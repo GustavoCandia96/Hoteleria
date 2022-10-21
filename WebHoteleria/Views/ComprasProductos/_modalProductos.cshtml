@@ -1,0 +1,91 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutModal.cshtml";
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#btnBuscarProductoModal").click(function () {
+            var producto = $("#txtBuscarProducto").val();
+            $("#bodyProducto").html('');
+
+            $.ajax({
+                url: '/Productos/ObtenerListadoProductos',
+                type: 'GET',
+                data: {
+                    descripcion: producto,
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                },
+                success: function (data) {
+                    if (data.respuesta == "Error") {
+                        alertaSoloMensaje("Hubo un error al buscar productos");
+                        return false;
+                    } else {
+                        $("#tblProducto > tbody ").append(data.row);
+                    }
+                }
+            });
+        });
+
+        $("#tblProducto").on('click', '.seleccionarProducto', function () {
+            var $tr = $(this).closest("tr");
+            var id = $tr.find("td:eq(0)").html();
+            var producto = $tr.find("td:eq(1)").html();
+            $tr.find("input[name=valorDivision]").val();
+            var idIvaProducto = $tr.find("input[name=ivaProducto]").val();
+            $("#IdProductoTemporal").val(id);
+            $("#txtProducto").val(producto);
+            $("#IdIvaProducto").val(idIvaProducto);
+            $("#listProductos").modal('hide');
+        });
+
+    });
+
+</script>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+                <div class="form-group">
+
+                    <div class="col-sm-6">
+                        <label>Producto</label>
+                        @Html.TextBox("txtBuscarProducto", null, new { @class = "form-control" })
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="" style="margin-top: 24px;"></div>
+                        <button name="btnBuscarProductoModal" id="btnBuscarProductoModal" class="btn btn-primary" style="margin-right: 5px;"><i class="fa fa-search"></i> Buscar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="form-group">
+
+    <div class="col-md-12 ">
+
+        <table class="table" id="tblProducto">
+            <caption><strong> </strong></caption>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="bodyProducto"></tbody>
+        </table>
+    </div>
+
+</div>
+
+

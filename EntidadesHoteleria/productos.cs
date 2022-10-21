@@ -17,6 +17,7 @@ namespace EntidadesHoteleria
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public productos()
         {
+            this.compras_productos_detalles = new HashSet<compras_productos_detalles>();
             this.productos_lotes = new HashSet<productos_lotes>();
         }
     
@@ -32,6 +33,8 @@ namespace EntidadesHoteleria
         public Nullable<bool> estado { get; set; }
     
         public virtual categorias categorias { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<compras_productos_detalles> compras_productos_detalles { get; set; }
         public virtual marcas marcas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<productos_lotes> productos_lotes { get; set; }

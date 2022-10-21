@@ -1,0 +1,149 @@
+﻿@model WebHoteleria.Models.FuncionarioModel
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#IdArea").change(function () {
+            $("#IdCargo").val("");
+            var valorIdArea = $("#IdArea").val();
+            $.ajax({
+                url: '/Cargos/ObtenerListadoCargos',
+                type: 'POST',
+                data: {
+                    areaId: valorIdArea
+                }
+            }).done(function (response) {
+                $("[name = IdCargo]").html(response);
+                $("[name = IdCargo]").prepend("<option value='' selected='selected'>--Seleccionar--</option>");
+            });
+        });
+
+    });
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Crear nuevo funcionario <small></small></h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("Create", "Funcionarios", FormMethod.Post, new { id = "frmCrearFuncionario" }))
+{
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    @if (@ViewBag.msg != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            @Html.ValidationMessage("Duplicado")
+                            @Html.ValidationMessage("Error")
+                        </div>
+                    }
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.Label("* Tipo Documento", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdTipoDocumento, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdTipoDocumento)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* N° Documento", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.NroDocumento, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-book form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.NroDocumento)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Nombre, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Nombre)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Apellido", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Apellido, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Apellido)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Sucursal", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdSucursal, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdSucursal)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Area", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdArea, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdArea)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Cargo", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdCargo, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdCargo)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Dirección", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Direccion, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Direccion)
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-primary" })
+                        <input type="submit" value="Guardar" id="btnGuardar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

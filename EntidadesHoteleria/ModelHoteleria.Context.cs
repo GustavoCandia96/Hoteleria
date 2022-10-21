@@ -37,6 +37,7 @@ namespace EntidadesHoteleria
         public virtual DbSet<compras_productos> compras_productos { get; set; }
         public virtual DbSet<compras_productos_detalles> compras_productos_detalles { get; set; }
         public virtual DbSet<condiciones_compras_ventas> condiciones_compras_ventas { get; set; }
+        public virtual DbSet<cuentas_proveedores> cuentas_proveedores { get; set; }
         public virtual DbSet<departamentos> departamentos { get; set; }
         public virtual DbSet<depositos> depositos { get; set; }
         public virtual DbSet<estados_civiles> estados_civiles { get; set; }
@@ -68,6 +69,14 @@ namespace EntidadesHoteleria
         public virtual DbSet<tarifas> tarifas { get; set; }
         public virtual DbSet<tarifas_detalles> tarifas_detalles { get; set; }
         public virtual DbSet<tarifas_tipos> tarifas_tipos { get; set; }
+        public virtual DbSet<timbrados> timbrados { get; set; }
+        public virtual DbSet<timbrados_comprobantes_anulaciones> timbrados_comprobantes_anulaciones { get; set; }
+        public virtual DbSet<timbrados_formatos> timbrados_formatos { get; set; }
+        public virtual DbSet<timbrados_motivos_anulaciones> timbrados_motivos_anulaciones { get; set; }
+        public virtual DbSet<timbrados_rangos> timbrados_rangos { get; set; }
+        public virtual DbSet<timbrados_rangos_funcionarios> timbrados_rangos_funcionarios { get; set; }
+        public virtual DbSet<timbrados_rangos_tipos> timbrados_rangos_tipos { get; set; }
+        public virtual DbSet<timbrados_tipos_documentos> timbrados_tipos_documentos { get; set; }
         public virtual DbSet<tipos_contactos> tipos_contactos { get; set; }
         public virtual DbSet<tipos_documentos> tipos_documentos { get; set; }
         public virtual DbSet<tipos_ivas> tipos_ivas { get; set; }

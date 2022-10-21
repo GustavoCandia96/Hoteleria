@@ -86,6 +86,9 @@
     <Compile Include="condiciones_compras_ventas.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
+    <Compile Include="cuentas_proveedores.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
     <Compile Include="departamentos.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
@@ -193,6 +196,30 @@
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
     <Compile Include="tarifas_tipos.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="timbrados.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="timbrados_comprobantes_anulaciones.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="timbrados_formatos.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="timbrados_motivos_anulaciones.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="timbrados_rangos.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="timbrados_rangos_funcionarios.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="timbrados_rangos_tipos.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="timbrados_tipos_documentos.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
     <Compile Include="tipos_contactos.cs">

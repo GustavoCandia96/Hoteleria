@@ -18,6 +18,7 @@ namespace EntidadesHoteleria
         public proveedores_sucursales()
         {
             this.compras_productos = new HashSet<compras_productos>();
+            this.cuentas_proveedores = new HashSet<cuentas_proveedores>();
         }
     
         public int id { get; set; }
@@ -37,6 +38,8 @@ namespace EntidadesHoteleria
         public virtual ciudades ciudades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<compras_productos> compras_productos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cuentas_proveedores> cuentas_proveedores { get; set; }
         public virtual departamentos departamentos { get; set; }
         public virtual paises paises { get; set; }
         public virtual proveedores proveedores { get; set; }

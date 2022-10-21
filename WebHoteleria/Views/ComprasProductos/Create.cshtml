@@ -1,0 +1,615 @@
+﻿@model WebHoteleria.Models.CompraProductoModel
+
+<script type="text/javascript">
+
+    var IdProducto;
+    var NombreProducto;
+    var Cantidad;
+    var PrecioCompra;
+    var SubTotal;
+    var GravadaExcenta;
+    var Gravada5;
+    var Gravada10;
+    var IdSucursal;
+    var IdDeposito;
+    var NombreSucursal;
+    var NombreDeposito;
+    var IdTipoIva;
+
+    $(document).ready(function () {
+
+        $("#btnGuardar").click(function () {
+            $("#btnGuardar").css("display", "none");
+            $("#frmCrearCompraProducto").submit();
+        });
+
+        $("#IdProveedor").change(function () {
+            $("#IdProveedorSucursal").val("");
+            var valorIdProveedor = $("#IdProveedor").val();
+            $.ajax({
+                url: '/ProveedoresSucursales/ObtenerListadoSucursalesProveedores',
+                type: 'POST',
+                data: {
+                    proveedorId: valorIdProveedor
+                }
+            }).done(function (response) {
+                $("[name = IdProveedorSucursal]").html(response);
+                $("[name = IdProveedorSucursal]").prepend("<option value='' selected='selected'>--Seleccionar--</option>");
+            });
+        });
+
+        $("#IdSucursal").change(function () {
+            $("#IdDeposito").val("");
+            var valorIdSucursal = $("#IdSucursal").val();
+            $.ajax({
+                url: '/Depositos/ObtenerListadoDepositos',
+                type: 'POST',
+                data: {
+                    sucursalId: valorIdSucursal
+                }
+            }).done(function (response) {
+                $("[name = IdDeposito]").html(response);
+                $("[name = IdDeposito]").prepend("<option value='' selected='selected'>--Seleccionar--</option>");
+            });
+        });
+
+        $("#btnBuscarProducto").click(function () {
+            $("#listProductos").modal();
+            $("#listProductos").modal('show');
+        });
+
+        $("#btnAgregarDetalle").click(function () {
+
+            //CARGAMOS LOS DATOS PARA AGREGAR EL DETALLE DE LA COMPRA
+            IdProducto = $("#IdProductoTemporal").val();
+            NombreProducto = $("#txtProducto").val();
+            Cantidad = $("#txtCantidad").val();
+            PrecioCompra = $("#txtPrecioCompra").val();
+            IdSucursal = $("#IdSucursal").val();
+            IdDeposito = $("#IdDeposito").val();
+            NombreSucursal = $("#IdSucursal option:selected").text();
+            NombreDeposito = $("#IdDeposito option:selected").text();
+            IdTipoIva = $("#IdIvaProducto").val();
+
+            var resultado = VerificarValidaciones();
+
+            if (resultado == true) {
+
+                var actualizar = "<button type=\'button\' class=\'btn btn-warning btn-xs editLink\'><i class=\'glyphicon glyphicon-pencil\'></i></button>";
+                var eliminar = "<button type='button' class='btn btn-danger btn-xs deleteLink'><i class='glyphicon glyphicon-remove'></i></button>";
+
+                var tr;
+                tr = $('<tr/>');
+                tr.append("<td>" + IdProducto + "</td>");
+                tr.append("<td>" + NombreProducto + "</td>");
+                tr.append("<td>" + Formatear(Cantidad) + "</td>");
+                tr.append("<td>" + Formatear(PrecioCompra) + "</td>");
+                tr.append("<td>" + Formatear(SubTotal) + "</td>");
+                tr.append("<td>" + Formatear(GravadaExcenta) + "</td>");
+                tr.append("<td>" + Formatear(Gravada5) + "</td>");
+                tr.append("<td>" + Formatear(Gravada10) + "</td>");
+                tr.append("<td>" + NombreSucursal + "</td>");
+                tr.append("<td>" + NombreDeposito + "</td>");
+                tr.append("<td>" /*+ actualizar*/ + eliminar + "</td>");
+
+                tr.append("<td><input type='hidden' name='arrIdProducto'  value='" + IdProducto + "'/><input type='hidden' name='arrProducto'  value='" + NombreProducto + "'/><input type='hidden' name='arrCantidad'  value='" + Formatear(Cantidad) + "'/><input type='hidden' name='arrPrecio'  value='" + Formatear(PrecioCompra) + "'/><input type='hidden' name='arrSubTotal'  value='" + Formatear(SubTotal) + "'/><input type='hidden' name='arrGravadaExcenta'  value='" + Formatear(GravadaExcenta) + "'/><input type='hidden' name='arrGravada5'  value='" + Formatear(Gravada5) + "'/><input type='hidden' name='arrGravada10'  value='" + Formatear(Gravada10) + "'/><input type='hidden' name='arrSucursal'  value='" + NombreSucursal + "'/><input type='hidden' name='arrDeposito'  value='" + NombreDeposito + "'/><input type='hidden' name='arrIdSucursal'  value='" + IdSucursal + "'/><input type='hidden' name='arrIdDeposito'  value='" + IdDeposito + "'/><input type='hidden' name='arrIdIvaProducto'  value='" + IdTipoIva + "'/></td>");
+                $('#tblDetalle').append(tr);
+
+                LimpiarDatos();
+                CalcularTotales();
+            }
+
+        });
+
+        $("#tblDetalle").on('click', '.editLink', function () {
+
+            var tr = $(this).closest('tr');
+
+            var productoId = tr.find("td:eq(0)").html();
+            var prod = tr.find("td:eq(1)").html();
+            var cant = tr.find("td:eq(2)").html();
+            var prec = tr.find("td:eq(3)").html();
+            var ivaProductoId = tr.find("input[name=arrIdIvaProducto]").val();
+            var sucursalId = tr.find("input[name=arrIdSucursal]").val();
+            var depositoId = tr.find("input[name=arrIdDeposito]").val();
+
+            $("#IdProductoTemporal").val(productoId);
+            $("#txtProducto").val(prod);
+            $("#txtCantidad").val(cant);
+            $("#txtPrecioCompra").val(Precio);
+            $("#IdIvaProducto").val(ivaProductoId);
+            $("#IdSucursal").val(sucursalId);
+            $("#IdDeposito").val(depositoId);
+
+            tr.css("background-color", "#FF3700");
+            tr.fadeOut(400, function () {
+                tr.remove();
+                CalcularTotales();
+            });
+
+            return false;
+        });
+
+        $("#tblDetalle").on('click', '.deleteLink', function () {
+            var tr = $(this).closest('tr');
+
+            tr.css("background-color", "#FF3700");
+            tr.fadeOut(400, function () {
+                tr.remove();
+                CalcularTotales();
+            });
+
+            return false;
+        });
+
+        $("#btnGuardar").click(function () {
+            $("#btnGuardar").css("display", "none");
+            $("#frmCrearCompraPremio").submit();
+        });
+
+    });
+
+    function VerificarValidaciones() {
+        var retorno = true;
+
+        if (IdProducto == "") {
+            retorno = false;
+            alertaSoloMensaje("Seleccione un producto para agregar a la compra");
+        } else {
+            if (PrecioCompra == "") {
+                retorno = false;
+                alertaSoloMensaje("Ingrese el precio del producto para agregar a la compra");
+            } else {
+                if (Cantidad == "") {
+                    retorno = false;
+                    alertaSoloMensaje("Ingrese la cantidad para agregar a la compra");
+                } else {
+                    PrecioCompra = PrecioCompra.split('.').join("").trim();
+                    PrecioCompra = PrecioCompra.split('.').join("").trim();
+                    PrecioCompra = parseFloat(PrecioCompra);
+                    Cantidad = Cantidad.split('.').join("").trim();
+                    Cantidad = Cantidad.split('.').join("").trim();
+                    Cantidad = parseFloat(Cantidad);
+
+                    if (Cantidad == 0) {
+                        alertaSoloMensaje("El precio tiene que ser mayor a 0");
+                        retorno = false;
+                    } else {
+                        if (PrecioCompra == 0) {
+                            alertaSoloMensaje("Seleccione la sucursal para agregar a la compra");
+                            retorno = false;
+                        } else {
+                            if (IdSucursal == "") {
+                                retorno = false;
+                                alertaSoloMensaje("La cantidad tiene que ser mayor a 0");
+                            } else {
+                                if (IdDeposito == "") {
+                                    retorno = false;
+                                    alertaSoloMensaje("Seleccione el deposito para agregar a la compra");
+                                } else {
+                                    //RECORREMOS LA TABLA DETALLE PREMIOS PARA VERIFICAR SI YA EXISTE
+                                    if (parseInt(("#tblDetalle > tbody > tr").length) > 0) {
+                                        $('#tblDetalle >tbody >tr').each(function () {
+                                            var $trFILAS = $(this).closest("tr");
+
+                                            var elId = $trFILAS.find("td:eq(0)").html();
+                                            var sucursalId = $trFILAS.find("input[name=arrIdSucursal]").val();
+                                            var depositoId = $trFILAS.find("input[name=arrIdDeposito]").val();
+                                            if (elId == IdProducto && sucursalId == IdSucursal && depositoId == IdDeposito) {
+                                                alertaSoloMensaje("Ya existe un producto en la misma sucursal y deposito agregado en el detalle");
+                                                retorno = false;
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (retorno == true) {
+            SubTotal = PrecioCompra * Cantidad;
+
+            GravadaExcenta = 0;
+            Gravada5 = 0;
+            Gravada10 = 0;
+
+            IdTipoIva = IdTipoIva.split('.').join("").trim();
+            IdTipoIva = IdTipoIva.split('.').join("").trim();
+            IdTipoIva = parseFloat(IdTipoIva);
+
+            if (IdTipoIva == 1) { //IVA 10%
+                Gravada10 = SubTotal / 11;
+                Gravada10 = Math.round(Gravada10);
+            } else if (IdTipoIva == 2) { //IVA 5%
+                Gravada5 = SubTotal / 21;
+                Gravada5 = Math.round(Gravada5);
+            } else if (IdTipoIva == 3) { //IVA EXCENTA
+
+            }
+        }
+
+        return retorno;
+    }
+
+    function LimpiarDatos() {
+        $("#IdProductoTemporal").val('');
+        $("#IdIvaProducto").val('');
+        $("#txtProducto").val('');
+        $("#txtCantidad").val('');
+        $("#txtPrecioCompra").val('');
+        $("#IdSucursal").val('');
+        $("#IdDeposito").val('');
+    }
+
+    function CalcularTotales() {
+        var totalBruto = 0;
+        var totalNeto = 0;
+        var totalGravada = 0;
+        if (parseInt(("#tblDetalle > tbody > tr").length) > 0) {
+            $('#tblDetalle >tbody >tr').each(function () {
+                var $trFILAS = $(this).closest("tr");
+
+                var subTotal = $trFILAS.find("td:eq(4)").html();
+                subTotal = subTotal.split('.').join("").trim();
+                subTotal = subTotal.split('.').join("").trim();
+                subTotal = parseFloat(subTotal);
+
+                var iva10 = $trFILAS.find("td:eq(6)").html();
+                iva10 = iva10.split('.').join("").trim();
+                iva10 = iva10.split('.').join("").trim();
+                iva10 = parseFloat(iva10);
+
+                var iva5 = $trFILAS.find("td:eq(7)").html();
+                iva5 = iva5.split('.').join("").trim();
+                iva5 = iva5.split('.').join("").trim();
+                iva5 = parseFloat(iva5);
+
+                totalBruto += subTotal;
+                totalNeto += subTotal;
+                totalGravada += iva10 + iva5;
+            });
+        }
+
+        if (totalBruto > 0) {
+            var descuento = $("#StrDescuento").val();
+            if (descuento == "") { descuento = "0"; }
+            descuento = descuento.split('.').join("").trim();
+            descuento = descuento.split('.').join("").trim();
+            descuento = parseFloat(descuento);
+            if (descuento >= totalBruto) {
+                $("#StrDescuento").val('');
+                alertaSoloMensaje("El descuento no puede ser mayor o igual que el monto total");
+            } else {
+                totalNeto = totalBruto - descuento;
+            }
+        }
+
+        $("#StrTotalBruto").val(Formatear(totalBruto));
+        $("#StrTotalNeto").val(Formatear(totalNeto));
+        $("#StrTotalGravada").val(Formatear(totalGravada));
+    }
+
+    function Formatear(num) {
+        var cadena = ""; var aux;
+        var cont = 1, m, k;
+        if (num < 0) aux = 1; else aux = 0;
+        num = num.toString();
+        for (m = num.length - 1; m >= 0; m--) {
+            cadena = num.charAt(m) + cadena;
+            if (cont % 3 == 0 && m > aux) cadena = "." + cadena; else cadena = cadena;
+            if (cont == 3) cont = 1; else cont++;
+        }
+        cadena = cadena.replace(/.,/, ",");
+        return cadena;
+    }
+
+    function alertaSoloMensaje(mensaje) {
+        bootbox.alert({
+            title: "<strong>Alerta</strong>",
+            message: mensaje,
+            size: 'medium'
+        });
+    }
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Crear compra producto <small></small></h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("Create", "ComprasProductos", FormMethod.Post, new { id = "frmCrearCompraProducto" }))
+{
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    @if (@ViewBag.msg != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            @Html.ValidationMessage("SinDetalle")
+                            @Html.ValidationMessage("Error")
+                        </div>
+                    }
+
+                    @Html.Hidden("IdProductoTemporal")
+                    @Html.Hidden("IdIvaProducto")
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.Label("* Condición Compra", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdCondicionCompra, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdCondicionCompra, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Fecha Compra", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.StrFecha, null, new { @class = "form-control has-feedback-left calendario" })
+                                <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.StrFecha, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Proveedor", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdProveedor, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdProveedor, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Sucursal Proveedor", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdProveedorSucursal, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdProveedorSucursal, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* N° Factura", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.NroFactura, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-newspaper-o form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.NroFactura, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Listado de compras productos <small>Agregue los productos de la compra</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content" style="display: block;">
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.Label("* Producto", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBox("txtProducto", null, new { @class = "form-control has-feedback-left", @readonly = "readonly" })
+                                <span class="fa fa-car form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="col-md-2">
+                                <input type="button" name="btnBuscarProducto" id="btnBuscarProducto" value="Buscar Producto" class="btn btn-primary " />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Cantidad", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.TextBox("txtCantidad", null, new { @class = "form-control has-feedback-left integer" })
+                                <span class="fa fa-sort-numeric-asc form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Precio", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.TextBox("txtPrecioCompra", null, new { @class = "form-control has-feedback-left integer" })
+                                <span class="fa fa-cc form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Sucursal", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.DropDownListFor(model => model.IdSucursal, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Deposito", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.DropDownListFor(model => model.IdDeposito, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="button" name="btnAgregarDetalle" id="btnAgregarDetalle" value="Agregar Detalle" class="btn btn-warning " />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="x_panel">
+
+                                    <div class="x_content">
+                                        <div class="table-responsive">
+                                            <table class="table" id="tblDetalle">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Producto</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Precio</th>
+                                                        <th>Sub Total</th>
+                                                        <th>Gravada Excenta</th>
+                                                        <th>Gravada 5%</th>
+                                                        <th>Gravada 10%</th>
+                                                        <th>Sucursal</th>
+                                                        <th>Deposito</th>
+                                                        <th colspan="2">Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    @if (ViewBag.ListaDetalleCompra != null)
+                                                    {
+                                                        foreach (WebHoteleria.Models.DetalleCompraModel datos in ((List<WebHoteleria.Models.DetalleCompraModel>)ViewBag.ListaDetalleCompra).ToList())
+                                                        {
+                                                            <tr>
+
+                                                                <td>@datos.IdProducto</td>
+                                                                <td>@datos.Producto</td>
+                                                                <td>@datos.Cantidad</td>
+                                                                <td>@datos.Precio</td>
+                                                                <td>@datos.SubTotal</td>
+                                                                <td>@datos.GravadaExcenta</td>
+                                                                <td>@datos.Gravada5</td>
+                                                                <td>@datos.Gravada10</td>
+                                                                <td>@datos.Sucursal</td>
+                                                                <td>@datos.Deposito</td>
+                                                                <td>
+                                                                    <button type='button' class='btn btn-warning btn-xs editLink'><i class='glyphicon glyphicon-pencil'></i></button>
+                                                                    <button type='button' class='btn btn-danger btn-xs deleteLink'><i class='glyphicon glyphicon-remove'></i></button>
+                                                                </td>
+                                                                <td><input type='hidden' name='arrIdProducto' value='@datos.IdProducto' /><input type='hidden' name='arrProducto' value='@datos.Producto' /><input type='hidden' name='arrCantidad' value='@datos.Cantidad' /><input type='hidden' name='arrPrecio' value='@datos.Precio' /><input type='hidden' name='arrSubTotal' value='@datos.SubTotal' /><input type='hidden' name='arrGravadaExcenta' value='@datos.GravadaExcenta' /><input type='hidden' name='arrGravada5' value='@datos.Gravada5' /><input type='hidden' name='arrGravada10' value='@datos.Gravada10' /><input type='hidden' name='arrSucursal' value='@datos.Sucursal' /><input type='hidden' name='arrDeposito' value='@datos.Deposito' /><input type='hidden' name='arrIdSucursal' value='@datos.IdSucursal' /><input type='hidden' name='arrIdDeposito' value='@datos.IdDeposito' /><input type='hidden' name='arrIdIvaProducto' value='@datos.IdIvaProducto' /></td>
+                                                            </tr>
+                                                        }
+                                                    }
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label>Total Bruto</label>
+                                @Html.TextBoxFor(model => model.StrTotalBruto, null, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.StrTotalBruto, "", new { @style = "color:red" })
+                            </div>
+                            <div class="col-md-3">
+                                <label>Total Neto</label>
+                                @Html.TextBoxFor(model => model.StrTotalNeto, null, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.StrTotalNeto, "", new { @style = "color:red" })
+                            </div>
+                            <div class="col-md-3">
+                                <label>Total Iva</label>
+                                @Html.TextBoxFor(model => model.StrTotalGravada, null, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.StrTotalGravada, "", new { @style = "color:red" })
+                            </div>
+                            <div class="col-md-3">
+                                <label>Descuento</label>
+                                @Html.TextBoxFor(model => model.StrDescuento, null, new { @class = "form-control integer", onBlur = "javascript:CalcularTotales()" })
+                                @Html.ValidationMessageFor(m => m.StrDescuento, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label>Observación</label>
+                                @Html.TextAreaFor(model => model.Observacion, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Observacion, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-primary" })
+                        <input type="button" value="Guardar" id="btnGuardar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+<div id="listProductos" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Listado de Productos</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("~/Views/ComprasProductos/_modalProductos.cshtml")
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(".calendario").datepicker({ dateFormat: 'dd/mm/yy' });
+    $('.integer').setMask("integer");
+</script>

@@ -123,6 +123,19 @@
     <Property Name="tipo" Type="varchar" MaxLength="50" />
     <Property Name="estado" Type="bit" />
   </EntityType>
+  <EntityType Name="cuentas_proveedores">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_proveedor" Type="int" />
+    <Property Name="id_proveedor_sucursal" Type="int" />
+    <Property Name="id_compra_producto" Type="int" />
+    <Property Name="deuda" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="saldo" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_modificado" Type="bit" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
   <EntityType Name="departamentos">
     <Key>
       <PropertyRef Name="id" />
@@ -449,6 +462,92 @@
     <Property Name="descripcion" Type="varchar" MaxLength="50" />
     <Property Name="estado" Type="bit" />
   </EntityType>
+  <EntityType Name="timbrados">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_timbrado_formato" Type="int" />
+    <Property Name="id_timbrado_tipo_documento" Type="int" />
+    <Property Name="nro_timbrado" Type="varchar" MaxLength="50" />
+    <Property Name="vigencia_desde" Type="date" />
+    <Property Name="vigencia_hasta" Type="date" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="timbrados_comprobantes_anulaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="id_usuario" Type="int" />
+    <Property Name="id_motivo_anulacion" Type="int" />
+    <Property Name="id_timbrado_rango" Type="int" />
+    <Property Name="nro_comprobante" Type="varchar" MaxLength="50" />
+    <Property Name="observacion" Type="varchar" MaxLength="300" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="timbrados_formatos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_formato" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="timbrados_motivos_anulaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="motivo" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="timbrados_rangos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_timbrado_tipo_rango" Type="int" />
+    <Property Name="id_timbrado" Type="int" />
+    <Property Name="id_sucursal" Type="int" />
+    <Property Name="codigo_sucursal" Type="varchar" MaxLength="3" />
+    <Property Name="punto_expedicion" Type="varchar" MaxLength="3" />
+    <Property Name="cantidad_ceros" Type="int" />
+    <Property Name="desde" Type="int" />
+    <Property Name="hasta" Type="int" />
+    <Property Name="numeracion_actual" Type="int" />
+    <Property Name="utilizado" Type="bit" />
+    <Property Name="cantidad_usada" Type="int" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="timbrados_rangos_funcionarios">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_timbrado_rango" Type="int" />
+    <Property Name="id_funcionario" Type="int" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="observacion" Type="varchar" MaxLength="500" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="timbrados_rangos_tipos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="timbrados_tipos_documentos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_documento" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
   <EntityType Name="tipos_contactos">
     <Key>
       <PropertyRef Name="id" />
@@ -606,6 +705,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_compras_productos_detalles_productos">
+    <End Role="productos" Type="Self.productos" Multiplicity="0..1" />
+    <End Role="compras_productos_detalles" Type="Self.compras_productos_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="compras_productos_detalles">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_compras_productos_detalles_sucursales">
     <End Role="sucursales" Type="Self.sucursales" Multiplicity="0..1" />
     <End Role="compras_productos_detalles" Type="Self.compras_productos_detalles" Multiplicity="*" />
@@ -651,6 +762,30 @@
       </Principal>
       <Dependent Role="compras_productos">
         <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_proveedores_proveedores">
+    <End Role="proveedores" Type="Self.proveedores" Multiplicity="0..1" />
+    <End Role="cuentas_proveedores" Type="Self.cuentas_proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cuentas_proveedores">
+        <PropertyRef Name="id_proveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_proveedores_proveedores_sucursales">
+    <End Role="proveedores_sucursales" Type="Self.proveedores_sucursales" Multiplicity="0..1" />
+    <End Role="cuentas_proveedores" Type="Self.cuentas_proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedores_sucursales">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cuentas_proveedores">
+        <PropertyRef Name="id_proveedor_sucursal" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1158,6 +1293,114 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_timbrados_comprobantes_anulaciones_timbrados_motivos_anulaciones">
+    <End Role="timbrados_motivos_anulaciones" Type="Self.timbrados_motivos_anulaciones" Multiplicity="0..1" />
+    <End Role="timbrados_comprobantes_anulaciones" Type="Self.timbrados_comprobantes_anulaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados_motivos_anulaciones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados_comprobantes_anulaciones">
+        <PropertyRef Name="id_motivo_anulacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timbrados_comprobantes_anulaciones_timbrados_rangos">
+    <End Role="timbrados_rangos" Type="Self.timbrados_rangos" Multiplicity="0..1" />
+    <End Role="timbrados_comprobantes_anulaciones" Type="Self.timbrados_comprobantes_anulaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados_rangos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados_comprobantes_anulaciones">
+        <PropertyRef Name="id_timbrado_rango" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timbrados_rangos_funcionarios_funcionarios">
+    <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="0..1" />
+    <End Role="timbrados_rangos_funcionarios" Type="Self.timbrados_rangos_funcionarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="funcionarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados_rangos_funcionarios">
+        <PropertyRef Name="id_funcionario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timbrados_rangos_funcionarios_timbrados_rangos">
+    <End Role="timbrados_rangos" Type="Self.timbrados_rangos" Multiplicity="0..1" />
+    <End Role="timbrados_rangos_funcionarios" Type="Self.timbrados_rangos_funcionarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados_rangos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados_rangos_funcionarios">
+        <PropertyRef Name="id_timbrado_rango" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timbrados_rangos_sucursales">
+    <End Role="sucursales" Type="Self.sucursales" Multiplicity="0..1" />
+    <End Role="timbrados_rangos" Type="Self.timbrados_rangos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sucursales">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados_rangos">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timbrados_rangos_timbrados">
+    <End Role="timbrados" Type="Self.timbrados" Multiplicity="0..1" />
+    <End Role="timbrados_rangos" Type="Self.timbrados_rangos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados_rangos">
+        <PropertyRef Name="id_timbrado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timbrados_rangos_timbrados_rangos_tipos">
+    <End Role="timbrados_rangos_tipos" Type="Self.timbrados_rangos_tipos" Multiplicity="0..1" />
+    <End Role="timbrados_rangos" Type="Self.timbrados_rangos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados_rangos_tipos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados_rangos">
+        <PropertyRef Name="id_timbrado_tipo_rango" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timbrados_timbrados_formatos">
+    <End Role="timbrados_formatos" Type="Self.timbrados_formatos" Multiplicity="0..1" />
+    <End Role="timbrados" Type="Self.timbrados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados_formatos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados">
+        <PropertyRef Name="id_timbrado_formato" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_timbrados_timbrados_tipos_documentos">
+    <End Role="timbrados_tipos_documentos" Type="Self.timbrados_tipos_documentos" Multiplicity="0..1" />
+    <End Role="timbrados" Type="Self.timbrados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados_tipos_documentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timbrados">
+        <PropertyRef Name="id_timbrado_tipo_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_usuarios_funcionarios">
     <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="0..1" />
     <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
@@ -1195,6 +1438,7 @@
     <EntitySet Name="compras_productos" EntityType="Self.compras_productos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="compras_productos_detalles" EntityType="Self.compras_productos_detalles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="condiciones_compras_ventas" EntityType="Self.condiciones_compras_ventas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cuentas_proveedores" EntityType="Self.cuentas_proveedores" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="departamentos" EntityType="Self.departamentos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="depositos" EntityType="Self.depositos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="estados_civiles" EntityType="Self.estados_civiles" Schema="dbo" store:Type="Tables" />
@@ -1226,6 +1470,14 @@
     <EntitySet Name="tarifas" EntityType="Self.tarifas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tarifas_detalles" EntityType="Self.tarifas_detalles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tarifas_tipos" EntityType="Self.tarifas_tipos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="timbrados" EntityType="Self.timbrados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="timbrados_comprobantes_anulaciones" EntityType="Self.timbrados_comprobantes_anulaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="timbrados_formatos" EntityType="Self.timbrados_formatos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="timbrados_motivos_anulaciones" EntityType="Self.timbrados_motivos_anulaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="timbrados_rangos" EntityType="Self.timbrados_rangos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="timbrados_rangos_funcionarios" EntityType="Self.timbrados_rangos_funcionarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="timbrados_rangos_tipos" EntityType="Self.timbrados_rangos_tipos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="timbrados_tipos_documentos" EntityType="Self.timbrados_tipos_documentos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tipos_contactos" EntityType="Self.tipos_contactos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tipos_documentos" EntityType="Self.tipos_documentos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tipos_ivas" EntityType="Self.tipos_ivas" Schema="dbo" store:Type="Tables" />
@@ -1267,6 +1519,10 @@
       <End Role="depositos" EntitySet="depositos" />
       <End Role="compras_productos_detalles" EntitySet="compras_productos_detalles" />
     </AssociationSet>
+    <AssociationSet Name="FK_compras_productos_detalles_productos" Association="Self.FK_compras_productos_detalles_productos">
+      <End Role="productos" EntitySet="productos" />
+      <End Role="compras_productos_detalles" EntitySet="compras_productos_detalles" />
+    </AssociationSet>
     <AssociationSet Name="FK_compras_productos_detalles_sucursales" Association="Self.FK_compras_productos_detalles_sucursales">
       <End Role="sucursales" EntitySet="sucursales" />
       <End Role="compras_productos_detalles" EntitySet="compras_productos_detalles" />
@@ -1282,6 +1538,14 @@
     <AssociationSet Name="FK_compras_productos_usuarios" Association="Self.FK_compras_productos_usuarios">
       <End Role="usuarios" EntitySet="usuarios" />
       <End Role="compras_productos" EntitySet="compras_productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_proveedores_proveedores" Association="Self.FK_cuentas_proveedores_proveedores">
+      <End Role="proveedores" EntitySet="proveedores" />
+      <End Role="cuentas_proveedores" EntitySet="cuentas_proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_proveedores_proveedores_sucursales" Association="Self.FK_cuentas_proveedores_proveedores_sucursales">
+      <End Role="proveedores_sucursales" EntitySet="proveedores_sucursales" />
+      <End Role="cuentas_proveedores" EntitySet="cuentas_proveedores" />
     </AssociationSet>
     <AssociationSet Name="FK_departamentos_paises" Association="Self.FK_departamentos_paises">
       <End Role="paises" EntitySet="paises" />
@@ -1450,6 +1714,42 @@
     <AssociationSet Name="FK_tarifas_tarifas_tipos" Association="Self.FK_tarifas_tarifas_tipos">
       <End Role="tarifas_tipos" EntitySet="tarifas_tipos" />
       <End Role="tarifas" EntitySet="tarifas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_comprobantes_anulaciones_timbrados_motivos_anulaciones" Association="Self.FK_timbrados_comprobantes_anulaciones_timbrados_motivos_anulaciones">
+      <End Role="timbrados_motivos_anulaciones" EntitySet="timbrados_motivos_anulaciones" />
+      <End Role="timbrados_comprobantes_anulaciones" EntitySet="timbrados_comprobantes_anulaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_comprobantes_anulaciones_timbrados_rangos" Association="Self.FK_timbrados_comprobantes_anulaciones_timbrados_rangos">
+      <End Role="timbrados_rangos" EntitySet="timbrados_rangos" />
+      <End Role="timbrados_comprobantes_anulaciones" EntitySet="timbrados_comprobantes_anulaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_rangos_funcionarios_funcionarios" Association="Self.FK_timbrados_rangos_funcionarios_funcionarios">
+      <End Role="funcionarios" EntitySet="funcionarios" />
+      <End Role="timbrados_rangos_funcionarios" EntitySet="timbrados_rangos_funcionarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_rangos_funcionarios_timbrados_rangos" Association="Self.FK_timbrados_rangos_funcionarios_timbrados_rangos">
+      <End Role="timbrados_rangos" EntitySet="timbrados_rangos" />
+      <End Role="timbrados_rangos_funcionarios" EntitySet="timbrados_rangos_funcionarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_rangos_sucursales" Association="Self.FK_timbrados_rangos_sucursales">
+      <End Role="sucursales" EntitySet="sucursales" />
+      <End Role="timbrados_rangos" EntitySet="timbrados_rangos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_rangos_timbrados" Association="Self.FK_timbrados_rangos_timbrados">
+      <End Role="timbrados" EntitySet="timbrados" />
+      <End Role="timbrados_rangos" EntitySet="timbrados_rangos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_rangos_timbrados_rangos_tipos" Association="Self.FK_timbrados_rangos_timbrados_rangos_tipos">
+      <End Role="timbrados_rangos_tipos" EntitySet="timbrados_rangos_tipos" />
+      <End Role="timbrados_rangos" EntitySet="timbrados_rangos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_timbrados_formatos" Association="Self.FK_timbrados_timbrados_formatos">
+      <End Role="timbrados_formatos" EntitySet="timbrados_formatos" />
+      <End Role="timbrados" EntitySet="timbrados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_timbrados_timbrados_tipos_documentos" Association="Self.FK_timbrados_timbrados_tipos_documentos">
+      <End Role="timbrados_tipos_documentos" EntitySet="timbrados_tipos_documentos" />
+      <End Role="timbrados" EntitySet="timbrados" />
     </AssociationSet>
     <AssociationSet Name="FK_usuarios_funcionarios" Association="Self.FK_usuarios_funcionarios">
       <End Role="funcionarios" EntitySet="funcionarios" />

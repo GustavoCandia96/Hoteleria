@@ -1,0 +1,171 @@
+﻿@model WebHoteleria.Models.TimbradoRangoFuncionarioModel
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#IdSucursal").change(function () {
+            $("#IdTipoRango").val("");
+            $("#IdTimbradoTipoDocumento").val("");
+
+            var valorIdSucursal = $("#IdSucursal").val();
+            $.ajax({
+                url: '/Funcionarios/ObtenerListadoFuncionarios',
+                type: 'POST',
+                data: {
+                    sucursalId: valorIdSucursal
+                }
+            }).done(function (response) {
+                $("[name = IdFuncionario]").html(response);
+                $("[name = IdFuncionario]").prepend("<option value='' selected='selected'>--Seleccionar--</option>");
+            });
+        });
+
+        $("#IdTimbradoTipoDocumento").change(function () {
+            $("#IdTipoRango").val("");
+        });
+
+        $("#IdTipoRango").change(function () {
+            var valorIdSucursal = $("#IdSucursal").val();
+            var valorIdTipoRango = $("#IdTipoRango").val();
+            var valorIdTimbradoTipoDocumento = $("#IdTimbradoTipoDocumento").val();
+
+            $.ajax({
+                url: '/TimbradosRangos/ObtenerListadoTimbradosRangos',
+                type: 'POST',
+                data: {
+                    sucursalId: valorIdSucursal,
+                    timbradoTipoRangoId: valorIdTipoRango,
+                    timbradoTipoDocumentoId: valorIdTimbradoTipoDocumento,
+                }
+            }).done(function (response) {
+                $("[name = IdTimbradoRango]").html(response);
+                $("[name = IdTimbradoRango]").prepend("<option value='' selected='selected'>--Seleccionar--</option>");
+            });
+        });
+
+    });
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Crear nuevo timbrado rango funcionario <small></small></h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("Create", "TimbradosRangosFuncionarios", FormMethod.Post, new { id = "frmCrearTimbradoRangoFuncionario" }))
+{
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    @if (@ViewBag.msg != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            @Html.ValidationMessage("Duplicado")
+                            @Html.ValidationMessage("Error")
+                        </div>
+                    }
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.Label("* Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.StrFecha, null, new { @class = "form-control has-feedback-left calendario" })
+                                <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.StrFecha)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Sucursal", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdSucursal, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdSucursal)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Funcionario", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdFuncionario, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdFuncionario)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Tipo Documento", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdTimbradoTipoDocumento, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdTimbradoTipoDocumento)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Tipo Rango", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdTipoRango, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdTipoRango)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Rangos Disponibles", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdTimbradoRango, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdTimbradoRango)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Observaciones", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-edit form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Observaciones)
+                            </div>
+                        </div>
+
+                        <script>
+                            $(".calendario").datepicker({ dateFormat: 'dd/mm/yy' });
+                        </script>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-primary" })
+                        <input type="submit" value="Guardar" id="btnGuardar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+

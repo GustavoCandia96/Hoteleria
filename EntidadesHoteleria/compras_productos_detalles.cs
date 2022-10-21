@@ -28,6 +28,7 @@ namespace EntidadesHoteleria
     
         public virtual compras_productos compras_productos { get; set; }
         public virtual depositos depositos { get; set; }
+        public virtual productos productos { get; set; }
         public virtual sucursales sucursales { get; set; }
     }
 }
