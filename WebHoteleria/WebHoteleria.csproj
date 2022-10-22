@@ -174,6 +174,7 @@
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\PermisosController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\ProfesionesController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\ProveedoresSucursalesController.cs" />
     <Compile Include="Controllers\ServiciosHabitacionesController.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Models\ProductoAjusteLoteModel.cs" />
     <Compile Include="Models\ProductoLoteModel.cs" />
     <Compile Include="Models\ProductoModel.cs" />
+    <Compile Include="Models\ProfesionModel.cs" />
     <Compile Include="Models\ProveedorContactoModel.cs" />
     <Compile Include="Models\ProveedorModel.cs" />
     <Compile Include="Models\ProveedorSucursalModel.cs" />
@@ -4697,6 +4699,9 @@
     <Content Include="Views\TiposContactos\Create.cshtml" />
     <Content Include="Views\TiposContactos\Edit.cshtml" />
     <Content Include="Views\TiposContactos\Index.cshtml" />
+    <Content Include="Views\Profesiones\Create.cshtml" />
+    <Content Include="Views\Profesiones\Edit.cshtml" />
+    <Content Include="Views\Profesiones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
