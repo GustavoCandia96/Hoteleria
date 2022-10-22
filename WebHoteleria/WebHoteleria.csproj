@@ -145,6 +145,7 @@
     <Compile Include="Class\ReportParameters.cs" />
     <Compile Include="Class\Sha256Encriptacion.cs" />
     <Compile Include="Class\Simple3Des.cs" />
+    <Compile Include="Class\TimbradoNumeracion.cs" />
     <Compile Include="Class\UsuarioLogin.cs" />
     <Compile Include="Class\VerificaSesion.cs" />
     <Compile Include="Controllers\ActividadesEconomicasController.cs" />
@@ -178,8 +179,11 @@
     <Compile Include="Controllers\ServiciosHabitacionesController.cs" />
     <Compile Include="Controllers\SucursalesController.cs" />
     <Compile Include="Controllers\TarifasController.cs" />
+    <Compile Include="Controllers\TimbradosMotivosAnulacionesController.cs" />
+    <Compile Include="Controllers\TimbradosRangosController.cs" />
     <Compile Include="Controllers\TimbradosRangosFuncionariosController.cs" />
     <Compile Include="Controllers\TiposHabitacionesController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -219,6 +223,7 @@
     <Compile Include="Models\SucursalModel.cs" />
     <Compile Include="Models\TarifaDetalleModel.cs" />
     <Compile Include="Models\TarifaModel.cs" />
+    <Compile Include="Models\TimbradoMotivoAnulacionModel.cs" />
     <Compile Include="Models\TimbradoRangoFuncionarioModel.cs" />
     <Compile Include="Models\TimbradoRangoModel.cs" />
     <Compile Include="Models\TipoHabitacionModel.cs" />
@@ -4678,6 +4683,15 @@
     <Content Include="Views\TimbradosRangosFuncionarios\Create.cshtml" />
     <Content Include="Views\TimbradosRangosFuncionarios\Edit.cshtml" />
     <Content Include="Views\TimbradosRangosFuncionarios\Index.cshtml" />
+    <Content Include="Views\TimbradosRangos\Create.cshtml" />
+    <Content Include="Views\TimbradosRangos\Edit.cshtml" />
+    <Content Include="Views\TimbradosRangos\Index.cshtml" />
+    <Content Include="Views\TimbradosMotivosAnulaciones\Create.cshtml" />
+    <Content Include="Views\TimbradosMotivosAnulaciones\Edit.cshtml" />
+    <Content Include="Views\TimbradosMotivosAnulaciones\Index.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml" />
+    <Content Include="Views\Usuarios\Edit.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

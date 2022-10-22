@@ -1,0 +1,117 @@
+﻿@model WebHoteleria.Models.UsuarioModel
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+    });
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Crear nuevo usuario <small></small></h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("Create", "Usuarios", FormMethod.Post, new { id = "frmCrearUsuario" }))
+{
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    @if (@ViewBag.msg != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            @Html.ValidationMessage("EmailDuplicado")
+                            @Html.ValidationMessage("Duplicado")
+                            @Html.ValidationMessage("Error")
+                        </div>
+                    }
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.Label("Funcionario", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdFuncionario, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdFuncionario)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Perfil", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdPerfil, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdPerfil)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Usuario", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Usuario, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Usuario)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Contraseña", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Clave, null, new { @class = "form-control has-feedback-left", @type = "password" })
+                                <span class="fa fa-key form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Clave)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Repetir Contraseña", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.RepetirClave, null, new { @class = "form-control has-feedback-left", @type = "password" })
+                                <span class="fa fa-key form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.RepetirClave)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* E-mail", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Email, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Email)
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-primary" })
+                        <input type="submit" value="Guardar" id="btnGuardar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

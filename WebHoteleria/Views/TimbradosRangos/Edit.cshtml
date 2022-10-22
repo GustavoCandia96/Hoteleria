@@ -1,0 +1,186 @@
+﻿@model WebHoteleria.Models.TimbradoRangoModel
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#IdTimbradoTipoDocumento").change(function () {
+            var idTimbradoFormato = $("#IdTimbradoFormato").val();
+            var idTimbradoTipoDocumento = $("#IdTimbradoTipoDocumento").val();
+            if (idTimbradoTipoDocumento != "") {
+                if (idTimbradoFormato != "") {
+                    $.ajax({
+                        url: '/Timbrados/ObtenerListadoTimbrados',
+                        type: 'POST',
+                        data: {
+                            timbradoFormatoId: idTimbradoFormato,
+                            timbradoTipoDocumentoId: idTimbradoTipoDocumento,
+                        }
+                    }).done(function (response) {
+                        $("[name = IdTimbrado]").html(response);
+                        $("[name = IdTimbrado]").prepend("<option value='' selected='selected'>--Seleccionar--</option>");
+                    });
+                } else {
+                    alertaSoloMensaje("Seleccione el formato del timbrado");
+                    $("#IdTimbradoTipoDocumento").val("");
+                }
+            }
+        });
+
+    });
+
+    function alertaSoloMensaje(mensaje) {
+        bootbox.alert({
+            title: "<strong>Alerta</strong>",
+            message: mensaje,
+            size: 'medium'
+        });
+    }
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Editar rango timbrado <small></small></h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("Edit", "TimbradosRangos", FormMethod.Post, new { id = "frmEditarTimbradoRango" }))
+{
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    @if (@ViewBag.msg != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            @Html.ValidationMessage("Duplicado")
+                            @Html.ValidationMessage("Error")
+                            @Html.ValidationMessage("RangoHastaMenor")
+                        </div>
+                    }
+
+                    @Html.HiddenFor(model => Model.Id)
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.Label("* Timbrado Formato", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdTimbradoFormato, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdTimbradoFormato)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Timbrado Tipo Documento", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdTimbradoTipoDocumento, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdTimbradoTipoDocumento)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* N° Timbrado", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdTimbrado, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdTimbrado)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Tipo Rango", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdTimbradoTipoRango, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdTimbradoTipoRango)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Sucursal", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdSucursal, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdSucursal)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Codigo Sucursal", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.CodigoSucursal, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-sort-numeric-desc form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.CodigoSucursal)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Punto Expedición", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.PuntoExpedicion, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-sort-numeric-desc form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.PuntoExpedicion)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Desde", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Desde, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-sort-numeric-desc form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Desde)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Hasta", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Hasta, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-sort-numeric-desc form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.Hasta)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Estado", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.EstadoDescrip, null, new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.EstadoDescrip)
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-primary" })
+                        <input type="submit" value="Guardar" id="btnGuardar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
