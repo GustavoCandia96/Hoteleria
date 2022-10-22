@@ -182,6 +182,7 @@
     <Compile Include="Controllers\TimbradosMotivosAnulacionesController.cs" />
     <Compile Include="Controllers\TimbradosRangosController.cs" />
     <Compile Include="Controllers\TimbradosRangosFuncionariosController.cs" />
+    <Compile Include="Controllers\TiposContactosController.cs" />
     <Compile Include="Controllers\TiposHabitacionesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -226,6 +227,7 @@
     <Compile Include="Models\TimbradoMotivoAnulacionModel.cs" />
     <Compile Include="Models\TimbradoRangoFuncionarioModel.cs" />
     <Compile Include="Models\TimbradoRangoModel.cs" />
+    <Compile Include="Models\TipoContactoModel.cs" />
     <Compile Include="Models\TipoHabitacionModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -4692,6 +4694,9 @@
     <Content Include="Views\Usuarios\Create.cshtml" />
     <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\TiposContactos\Create.cshtml" />
+    <Content Include="Views\TiposContactos\Edit.cshtml" />
+    <Content Include="Views\TiposContactos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,199 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<WebHoteleria.Models.TipoContactoModel>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("[name=btnBuscar]").click(function () {
+            $("#frmListado").attr("action", "/TiposContactos/Index/");
+            $("#frmListado").submit();
+        });
+
+    });
+
+    function EliminarTipoContacto(id, nombre) {
+        var pregunta = "<strong> ¿Estas seguro de eliminar el tipo contacto " + nombre + "?</strong></br>";
+        var dialog = bootbox.dialog({
+            title: '<strong>Eliminación de Tipo Contacto</strong>',
+            message: pregunta,
+            buttons: {
+                cancel: {
+                    label: "Cancelar",
+                    className: 'btn-danger',
+                    callback: function () {
+                        dialog.modal('hide');
+                    }
+                },
+                ok: {
+                    label: "Aceptar",
+                    className: 'btn-info',
+                    callback: function () {
+                        dialog.modal('hide');
+                        EjecutarEliminacionTipoContacto(id);
+                    }
+                }
+            }
+        });
+    }
+
+    function EjecutarEliminacionTipoContacto(idTipoContacto) {
+        var send = {
+            tipoContactoId: idTipoContacto
+        }
+        var dialog = bootbox.dialog({
+            title: 'Guardando datos',
+            message: '<p><i class="fa fa-spin fa-spinner"></i> Procesando...</p>'
+        });
+
+        $.ajax({
+            url: '/TiposContactos/EliminarTipoContacto',
+            type: 'POST',
+            data: JSON.stringify(send),
+            contentType: 'application/json',
+            error: function (xhr, status, error) {
+                alertaSoloMensaje(xhr.responseText);
+            },
+            success: function (data) {
+                if (data.success) {
+                    dialog.find('.bootbox-body').html('La eliminación del tipo contacto se ejecuto correctamente!!');
+                    setTimeout(function () {
+                        window.location.href = data.urlRedirect;
+                    }, 300);
+                }
+                else {
+                    dialog.modal('hide');
+                    if (data.respuesta != "") {
+                        alertaSoloMensaje(data.respuesta);
+                    } else {
+                        alertaSoloMensaje("Ocurrio un error al eliminar el tipo contacto seleccionado");
+                    }
+                }
+            }
+        });
+    }
+
+    function alertaSoloMensaje(mensaje) {
+        bootbox.alert({
+            title: "<strong>Alerta</strong>",
+            message: mensaje,
+            size: 'medium'
+        });
+    }
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Tipos Contactos <small></small></h3>
+    </div>
+</div>
+
+
+
+@using (Html.BeginForm("Index", "TiposContactos", FormMethod.Post, new { id = "frmListado" }))
+{
+    <div class="row">
+        <div class="pull-right" style="margin-right: 10px;">
+            <a href="@Url.Action("Create", "TiposContactos")" title="Agregar Tipo Contacto" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Agregar Tipo Contacto</a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Buscador <small>Ingrese los campos para la búsqueda</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="form-group">
+
+                        <div class="col-sm-4">
+                            <label>Descripción</label>
+                            @Html.TextBox("txtTipoContacto", null, new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="" style="margin-top: 24px;"></div>
+                            <button name="btnBuscar" id="btnBuscar" class="btn btn-primary" style="margin-right: 5px;"><i class="fa fa-search"></i> Buscar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Listado de tipos contactos <small></small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                @if (@ViewBag.msg != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade in">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        @ViewBag.msg
+                    </div>
+                }
+
+                @if (Model.Count() == 0)
+                {
+                    <p>#No existen coincidencias</p>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="table" id="tbgrilla">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tipo Contacto</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.Descripcion</td>
+                                        <td>@item.EstadoDescrip</td>
+                                        <td>
+                                            <a href="@Url.Action("Edit", "TiposContactos", new { id = item.Id })" title="Editar" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            <a href="javascript:EliminarTipoContacto('@item.Id','@item.Descripcion')" title="Eliminar" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                        <div class="pagination" style="margin-left: 400px">
+                            Pág. @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                            de @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
