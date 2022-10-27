@@ -136,6 +136,25 @@
     <Property Name="saldo_modificado" Type="bit" />
     <Property Name="estado" Type="bit" />
   </EntityType>
+  <EntityType Name="denominaciones_monedas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_tipo_denominacion" Type="int" />
+    <Property Name="denominacion" Type="varchar" MaxLength="50" />
+    <Property Name="id_moneda" Type="int" />
+    <Property Name="orden" Type="int" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="denominaciones_monedas_tipos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
   <EntityType Name="departamentos">
     <Key>
       <PropertyRef Name="id" />
@@ -789,6 +808,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_denominaciones_monedas_denominaciones_monedas_tipos">
+    <End Role="denominaciones_monedas_tipos" Type="Self.denominaciones_monedas_tipos" Multiplicity="0..1" />
+    <End Role="denominaciones_monedas" Type="Self.denominaciones_monedas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="denominaciones_monedas_tipos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="denominaciones_monedas">
+        <PropertyRef Name="id_tipo_denominacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_denominaciones_monedas_monedas">
+    <End Role="monedas" Type="Self.monedas" Multiplicity="0..1" />
+    <End Role="denominaciones_monedas" Type="Self.denominaciones_monedas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="monedas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="denominaciones_monedas">
+        <PropertyRef Name="id_moneda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_departamentos_paises">
     <End Role="paises" Type="Self.paises" Multiplicity="0..1" />
     <End Role="departamentos" Type="Self.departamentos" Multiplicity="*" />
@@ -1439,6 +1482,8 @@
     <EntitySet Name="compras_productos_detalles" EntityType="Self.compras_productos_detalles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="condiciones_compras_ventas" EntityType="Self.condiciones_compras_ventas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="cuentas_proveedores" EntityType="Self.cuentas_proveedores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="denominaciones_monedas" EntityType="Self.denominaciones_monedas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="denominaciones_monedas_tipos" EntityType="Self.denominaciones_monedas_tipos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="departamentos" EntityType="Self.departamentos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="depositos" EntityType="Self.depositos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="estados_civiles" EntityType="Self.estados_civiles" Schema="dbo" store:Type="Tables" />
@@ -1546,6 +1591,14 @@
     <AssociationSet Name="FK_cuentas_proveedores_proveedores_sucursales" Association="Self.FK_cuentas_proveedores_proveedores_sucursales">
       <End Role="proveedores_sucursales" EntitySet="proveedores_sucursales" />
       <End Role="cuentas_proveedores" EntitySet="cuentas_proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_denominaciones_monedas_denominaciones_monedas_tipos" Association="Self.FK_denominaciones_monedas_denominaciones_monedas_tipos">
+      <End Role="denominaciones_monedas_tipos" EntitySet="denominaciones_monedas_tipos" />
+      <End Role="denominaciones_monedas" EntitySet="denominaciones_monedas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_denominaciones_monedas_monedas" Association="Self.FK_denominaciones_monedas_monedas">
+      <End Role="monedas" EntitySet="monedas" />
+      <End Role="denominaciones_monedas" EntitySet="denominaciones_monedas" />
     </AssociationSet>
     <AssociationSet Name="FK_departamentos_paises" Association="Self.FK_departamentos_paises">
       <End Role="paises" EntitySet="paises" />

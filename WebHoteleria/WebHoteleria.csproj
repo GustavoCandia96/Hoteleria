@@ -158,6 +158,7 @@
     <Compile Include="Controllers\CerrarSesionController.cs" />
     <Compile Include="Controllers\CiudadesController.cs" />
     <Compile Include="Controllers\ComprasProductosController.cs" />
+    <Compile Include="Controllers\DenominacionesMonedasController.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\DepositosController.cs" />
     <Compile Include="Controllers\FuncionariosController.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Models\CiudadModel.cs" />
     <Compile Include="Models\CompraProductoDetalleModel.cs" />
     <Compile Include="Models\CompraProductoModel.cs" />
+    <Compile Include="Models\DenominacionMonedaModel.cs" />
     <Compile Include="Models\DepartamentoModel.cs" />
     <Compile Include="Models\DepositoModel.cs" />
     <Compile Include="Models\DetalleCompraModel.cs" />
@@ -4702,6 +4704,9 @@
     <Content Include="Views\Profesiones\Create.cshtml" />
     <Content Include="Views\Profesiones\Edit.cshtml" />
     <Content Include="Views\Profesiones\Index.cshtml" />
+    <Content Include="Views\DenominacionesMonedas\Create.cshtml" />
+    <Content Include="Views\DenominacionesMonedas\Edit.cshtml" />
+    <Content Include="Views\DenominacionesMonedas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

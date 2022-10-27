@@ -5,63 +5,65 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e9487656b9204edb8861d6daf9efb4d1" Name="Diagram1" ZoomLevel="10">
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.actividades_economicas" Width="1.5" PointX="10.5" PointY="26.375" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.areas" Width="1.5" PointX="9.75" PointY="11.25" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.bancos" Width="1.5" PointX="5.75" PointY="8.625" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.bancos_cuentas" Width="1.5" PointX="8" PointY="5.375" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.bancos_tipos_cuentas" Width="1.5" PointX="5.75" PointY="11.125" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.barrios" Width="1.5" PointX="7.5" PointY="18.5" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cargos" Width="1.5" PointX="9.75" PointY="14" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.categorias" Width="1.5" PointX="15.75" PointY="39.625" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.ciudades" Width="1.5" PointX="5.25" PointY="18.5" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.compras_productos" Width="1.5" PointX="18" PointY="17.5" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.compras_productos_detalles" Width="1.5" PointX="20.25" PointY="22.5" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.condiciones_compras_ventas" Width="1.5" PointX="15.75" PointY="4.625" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cuentas_proveedores" Width="1.5" PointX="17.25" PointY="13.125" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.departamentos" Width="1.5" PointX="3" PointY="18.5" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.depositos" Width="1.5" PointX="12" PointY="29.125" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.estados_civiles" Width="1.5" PointX="7.75" PointY="1.25" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.funcionarios" Width="1.5" PointX="12" PointY="11.625" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.habitaciones" Width="1.5" PointX="3" PointY="8.875" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.habitaciones_estados" Width="1.5" PointX="0.75" PointY="7.875" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.habitaciones_servicios" Width="1.5" PointX="3" PointY="5.375" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.habitaciones_tipos" Width="1.5" PointX="0.75" PointY="10.375" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.marcas" Width="1.5" PointX="15.75" PointY="31.625" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.mesas" Width="1.5" PointX="3" PointY="14.375" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.mesas_estados" Width="1.5" PointX="0.75" PointY="14.5" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.modulos" Width="1.5" PointX="12.75" PointY="2.5" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.modulos_operaciones" Width="1.5" PointX="15" PointY="0.75" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.monedas" Width="1.5" PointX="5.75" PointY="5.75" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.mozos" Width="1.5" PointX="9.75" PointY="1.25" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.paises" Width="1.5" PointX="0.75" PointY="18.625" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.parametros" Width="1.5" PointX="5.75" PointY="14.25" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.perfiles" Width="1.5" PointX="12" PointY="6" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.permisos" Width="1.5" PointX="17.25" PointY="7.875" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.productos" Width="1.5" PointX="18" PointY="34.5" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.productos_lotes" Width="1.5" PointX="17.25" PointY="23" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.productos_lotes_ajustes" Width="1.5" PointX="19.5" PointY="13.625" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.profesiones" Width="1.5" PointX="17.75" PointY="1.25" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.proveedores" Width="1.5" PointX="12.75" PointY="17" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.proveedores_contactos" Width="1.5" PointX="15" PointY="18.625" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.proveedores_sucursales" Width="1.5" PointX="15" PointY="12.5" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.sucursales" Width="1.5" PointX="9.75" PointY="17.625" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.sysdiagrams" Width="1.5" PointX="17.75" PointY="4.25" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.tarifas" Width="1.5" PointX="3" PointY="1.5" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.tarifas_detalles" Width="1.5" PointX="5.25" PointY="1.375" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.tarifas_tipos" Width="1.5" PointX="0.75" PointY="1.875" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.timbrados" Width="1.5" PointX="12.75" PointY="33.125" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.timbrados_comprobantes_anulaciones" Width="1.5" PointX="17.25" PointY="27.375" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.timbrados_formatos" Width="1.5" PointX="10.5" PointY="32.375" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.timbrados_motivos_anulaciones" Width="1.5" PointX="15" PointY="28" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.timbrados_rangos" Width="1.5" PointX="15" PointY="22.625" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.timbrados_rangos_funcionarios" Width="1.5" PointX="20.25" PointY="18.125" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.timbrados_rangos_tipos" Width="1.5" PointX="12.75" PointY="26.5" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.timbrados_tipos_documentos" Width="1.5" PointX="10.5" PointY="35" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.tipos_contactos" Width="1.5" PointX="12.75" PointY="24" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.tipos_documentos" Width="1.5" PointX="10.5" PointY="23.625" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.tipos_ivas" Width="1.5" PointX="15.75" PointY="34.125" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.unidades" Width="1.5" PointX="15.75" PointY="37.125" />
-        <EntityTypeShape EntityType="hoteleria_erp_dbModel.usuarios" Width="1.5" PointX="14.25" PointY="8" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.actividades_economicas" Width="1.5" PointX="10.5" PointY="27.375" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.areas" Width="1.5" PointX="9.75" PointY="15.5" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.bancos" Width="1.5" PointX="17.75" PointY="9" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.bancos_cuentas" Width="1.5" PointX="20" PointY="4.25" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.bancos_tipos_cuentas" Width="1.5" PointX="17.75" PointY="1.5" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.barrios" Width="1.5" PointX="7.5" PointY="19.5" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cargos" Width="1.5" PointX="9.75" PointY="12.375" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.categorias" Width="1.5" PointX="15.75" PointY="32.625" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.ciudades" Width="1.5" PointX="5.25" PointY="19.5" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.compras_productos" Width="1.5" PointX="18" PointY="18.5" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.compras_productos_detalles" Width="1.5" PointX="20.25" PointY="23.625" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.condiciones_compras_ventas" Width="1.5" PointX="15.75" PointY="5.75" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cuentas_proveedores" Width="1.5" PointX="17.25" PointY="14.25" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.denominaciones_monedas" Width="1.5" PointX="23" PointY="4.375" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.denominaciones_monedas_tipos" Width="1.5" PointX="20.75" PointY="0.75" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.departamentos" Width="1.5" PointX="3" PointY="19.5" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.depositos" Width="1.5" PointX="12" PointY="30.125" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.estados_civiles" Width="1.5" PointX="5.75" PointY="9.25" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.funcionarios" Width="1.5" PointX="12" PointY="12.625" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.habitaciones" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.habitaciones_estados" Width="1.5" PointX="0.75" PointY="6.875" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.habitaciones_servicios" Width="1.5" PointX="3" PointY="6.375" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.habitaciones_tipos" Width="1.5" PointX="0.75" PointY="2.875" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.marcas" Width="1.5" PointX="15.75" PointY="38.125" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.mesas" Width="1.5" PointX="8" PointY="6.375" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.mesas_estados" Width="1.5" PointX="5.75" PointY="6.5" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.modulos" Width="1.5" PointX="9.75" PointY="3.375" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.modulos_operaciones" Width="1.5" PointX="12" PointY="3.125" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.monedas" Width="1.5" PointX="17.75" PointY="4.5" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.mozos" Width="1.5" PointX="5.75" PointY="12.25" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.paises" Width="1.5" PointX="0.75" PointY="19.75" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.parametros" Width="1.5" PointX="7.75" PointY="9.25" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.perfiles" Width="1.5" PointX="12" PointY="7" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.permisos" Width="1.5" PointX="14.25" PointY="1.875" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.productos" Width="1.5" PointX="18" PointY="35.5" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.productos_lotes" Width="1.5" PointX="17.25" PointY="24" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.productos_lotes_ajustes" Width="1.5" PointX="19.5" PointY="14.625" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.profesiones" Width="1.5" PointX="0.75" PointY="13.25" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.proveedores" Width="1.5" PointX="12.75" PointY="18" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.proveedores_contactos" Width="1.5" PointX="15" PointY="19.75" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.proveedores_sucursales" Width="1.5" PointX="15" PointY="13.5" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.sucursales" Width="1.5" PointX="9.75" PointY="18.625" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="13.25" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.tarifas" Width="1.5" PointX="3" PointY="9.875" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.tarifas_detalles" Width="1.5" PointX="5.25" PointY="2.5" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.tarifas_tipos" Width="1.5" PointX="0.75" PointY="10.25" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.timbrados" Width="1.5" PointX="12.75" PointY="34.125" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.timbrados_comprobantes_anulaciones" Width="1.5" PointX="17.25" PointY="28.375" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.timbrados_formatos" Width="1.5" PointX="10.5" PointY="33.5" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.timbrados_motivos_anulaciones" Width="1.5" PointX="15" PointY="29" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.timbrados_rangos" Width="1.5" PointX="15" PointY="23.625" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.timbrados_rangos_funcionarios" Width="1.5" PointX="20.25" PointY="19.125" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.timbrados_rangos_tipos" Width="1.5" PointX="12.75" PointY="27.5" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.timbrados_tipos_documentos" Width="1.5" PointX="10.5" PointY="36" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.tipos_contactos" Width="1.5" PointX="12.75" PointY="25" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.tipos_documentos" Width="1.5" PointX="10.5" PointY="24.625" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.tipos_ivas" Width="1.5" PointX="15.75" PointY="35.25" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.unidades" Width="1.5" PointX="15.75" PointY="40.625" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.usuarios" Width="1.5" PointX="14.25" PointY="9" />
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_proveedores_actividades_economicas" />
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_cargos_areas" />
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_funcionarios_areas" />
@@ -88,6 +90,8 @@
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_compras_productos_detalles_sucursales" />
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_cuentas_proveedores_proveedores" />
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_cuentas_proveedores_proveedores_sucursales" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_denominaciones_monedas_denominaciones_monedas_tipos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_denominaciones_monedas_monedas" />
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_departamentos_paises" />
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_proveedores_departamentos" />
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_proveedores_sucursales_departamentos" />

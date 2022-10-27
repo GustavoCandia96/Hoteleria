@@ -14,6 +14,8 @@
     <EntitySet Name="compras_productos_detalles" EntityType="hoteleria_erp_dbModel.compras_productos_detalles" />
     <EntitySet Name="condiciones_compras_ventas" EntityType="hoteleria_erp_dbModel.condiciones_compras_ventas" />
     <EntitySet Name="cuentas_proveedores" EntityType="hoteleria_erp_dbModel.cuentas_proveedores" />
+    <EntitySet Name="denominaciones_monedas" EntityType="hoteleria_erp_dbModel.denominaciones_monedas" />
+    <EntitySet Name="denominaciones_monedas_tipos" EntityType="hoteleria_erp_dbModel.denominaciones_monedas_tipos" />
     <EntitySet Name="departamentos" EntityType="hoteleria_erp_dbModel.departamentos" />
     <EntitySet Name="depositos" EntityType="hoteleria_erp_dbModel.depositos" />
     <EntitySet Name="estados_civiles" EntityType="hoteleria_erp_dbModel.estados_civiles" />
@@ -161,6 +163,14 @@
     <AssociationSet Name="FK_cuentas_proveedores_proveedores_sucursales" Association="hoteleria_erp_dbModel.FK_cuentas_proveedores_proveedores_sucursales">
       <End Role="proveedores_sucursales" EntitySet="proveedores_sucursales" />
       <End Role="cuentas_proveedores" EntitySet="cuentas_proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_denominaciones_monedas_denominaciones_monedas_tipos" Association="hoteleria_erp_dbModel.FK_denominaciones_monedas_denominaciones_monedas_tipos">
+      <End Role="denominaciones_monedas_tipos" EntitySet="denominaciones_monedas_tipos" />
+      <End Role="denominaciones_monedas" EntitySet="denominaciones_monedas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_denominaciones_monedas_monedas" Association="hoteleria_erp_dbModel.FK_denominaciones_monedas_monedas">
+      <End Role="monedas" EntitySet="monedas" />
+      <End Role="denominaciones_monedas" EntitySet="denominaciones_monedas" />
     </AssociationSet>
     <AssociationSet Name="FK_departamentos_paises" Association="hoteleria_erp_dbModel.FK_departamentos_paises">
       <End Role="paises" EntitySet="paises" />
@@ -503,6 +513,28 @@
     <NavigationProperty Name="proveedores" Relationship="hoteleria_erp_dbModel.FK_cuentas_proveedores_proveedores" FromRole="cuentas_proveedores" ToRole="proveedores" />
     <NavigationProperty Name="proveedores_sucursales" Relationship="hoteleria_erp_dbModel.FK_cuentas_proveedores_proveedores_sucursales" FromRole="cuentas_proveedores" ToRole="proveedores_sucursales" />
   </EntityType>
+  <EntityType Name="denominaciones_monedas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_tipo_denominacion" Type="Int32" />
+    <Property Name="denominacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_moneda" Type="Int32" />
+    <Property Name="orden" Type="Int32" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="denominaciones_monedas_tipos" Relationship="hoteleria_erp_dbModel.FK_denominaciones_monedas_denominaciones_monedas_tipos" FromRole="denominaciones_monedas" ToRole="denominaciones_monedas_tipos" />
+    <NavigationProperty Name="monedas" Relationship="hoteleria_erp_dbModel.FK_denominaciones_monedas_monedas" FromRole="denominaciones_monedas" ToRole="monedas" />
+  </EntityType>
+  <EntityType Name="denominaciones_monedas_tipos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="denominaciones_monedas" Relationship="hoteleria_erp_dbModel.FK_denominaciones_monedas_denominaciones_monedas_tipos" FromRole="denominaciones_monedas_tipos" ToRole="denominaciones_monedas" />
+  </EntityType>
   <EntityType Name="departamentos">
     <Key>
       <PropertyRef Name="id" />
@@ -659,6 +691,7 @@
     <Property Name="simbolo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="Boolean" />
     <NavigationProperty Name="bancos_cuentas" Relationship="hoteleria_erp_dbModel.FK_bancos_cuentas_monedas" FromRole="monedas" ToRole="bancos_cuentas" />
+    <NavigationProperty Name="denominaciones_monedas" Relationship="hoteleria_erp_dbModel.FK_denominaciones_monedas_monedas" FromRole="monedas" ToRole="denominaciones_monedas" />
   </EntityType>
   <EntityType Name="mozos">
     <Key>
@@ -1379,6 +1412,30 @@
       </Principal>
       <Dependent Role="cuentas_proveedores">
         <PropertyRef Name="id_proveedor_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_denominaciones_monedas_denominaciones_monedas_tipos">
+    <End Type="hoteleria_erp_dbModel.denominaciones_monedas_tipos" Role="denominaciones_monedas_tipos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.denominaciones_monedas" Role="denominaciones_monedas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="denominaciones_monedas_tipos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="denominaciones_monedas">
+        <PropertyRef Name="id_tipo_denominacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_denominaciones_monedas_monedas">
+    <End Type="hoteleria_erp_dbModel.monedas" Role="monedas" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.denominaciones_monedas" Role="denominaciones_monedas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="monedas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="denominaciones_monedas">
+        <PropertyRef Name="id_moneda" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

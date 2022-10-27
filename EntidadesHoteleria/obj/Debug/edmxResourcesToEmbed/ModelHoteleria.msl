@@ -150,6 +150,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="denominaciones_monedas">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.denominaciones_monedas">
+        <MappingFragment StoreEntitySet="denominaciones_monedas">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="orden" ColumnName="orden" />
+          <ScalarProperty Name="id_moneda" ColumnName="id_moneda" />
+          <ScalarProperty Name="denominacion" ColumnName="denominacion" />
+          <ScalarProperty Name="id_tipo_denominacion" ColumnName="id_tipo_denominacion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="denominaciones_monedas_tipos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.denominaciones_monedas_tipos">
+        <MappingFragment StoreEntitySet="denominaciones_monedas_tipos">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="departamentos">
       <EntityTypeMapping TypeName="hoteleria_erp_dbModel.departamentos">
         <MappingFragment StoreEntitySet="departamentos">

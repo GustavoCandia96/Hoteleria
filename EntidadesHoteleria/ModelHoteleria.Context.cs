@@ -38,6 +38,8 @@ namespace EntidadesHoteleria
         public virtual DbSet<compras_productos_detalles> compras_productos_detalles { get; set; }
         public virtual DbSet<condiciones_compras_ventas> condiciones_compras_ventas { get; set; }
         public virtual DbSet<cuentas_proveedores> cuentas_proveedores { get; set; }
+        public virtual DbSet<denominaciones_monedas> denominaciones_monedas { get; set; }
+        public virtual DbSet<denominaciones_monedas_tipos> denominaciones_monedas_tipos { get; set; }
         public virtual DbSet<departamentos> departamentos { get; set; }
         public virtual DbSet<depositos> depositos { get; set; }
         public virtual DbSet<estados_civiles> estados_civiles { get; set; }

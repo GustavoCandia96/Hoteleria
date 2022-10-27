@@ -89,6 +89,12 @@
     <Compile Include="cuentas_proveedores.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>
+    <Compile Include="denominaciones_monedas.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="denominaciones_monedas_tipos.cs">
+      <DependentUpon>ModelHoteleria.tt</DependentUpon>
+    </Compile>
     <Compile Include="departamentos.cs">
       <DependentUpon>ModelHoteleria.tt</DependentUpon>
     </Compile>

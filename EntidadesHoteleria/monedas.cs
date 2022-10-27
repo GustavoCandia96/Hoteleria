@@ -18,6 +18,7 @@ namespace EntidadesHoteleria
         public monedas()
         {
             this.bancos_cuentas = new HashSet<bancos_cuentas>();
+            this.denominaciones_monedas = new HashSet<denominaciones_monedas>();
         }
     
         public int id { get; set; }
@@ -27,5 +28,7 @@ namespace EntidadesHoteleria
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<bancos_cuentas> bancos_cuentas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<denominaciones_monedas> denominaciones_monedas { get; set; }
     }
 }
