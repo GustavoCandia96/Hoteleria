@@ -155,6 +155,7 @@
     <Compile Include="Controllers\BarriosController.cs" />
     <Compile Include="Controllers\CajasAjustesController.cs" />
     <Compile Include="Controllers\CajasAperturasController.cs" />
+    <Compile Include="Controllers\CajasController.cs" />
     <Compile Include="Controllers\CargosController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\CerrarSesionController.cs" />
@@ -4745,6 +4746,9 @@
     <Content Include="Views\CajasAperturas\ComposicionCaja.cshtml" />
     <Content Include="Views\CajasAperturas\Create.cshtml" />
     <Content Include="Views\CajasAperturas\Index.cshtml" />
+    <Content Include="Views\Cajas\Create.cshtml" />
+    <Content Include="Views\Cajas\Edit.cshtml" />
+    <Content Include="Views\Cajas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
