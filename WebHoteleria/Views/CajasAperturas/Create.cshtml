@@ -1,0 +1,154 @@
+﻿@model WebHoteleria.Models.CajaAperturaModel
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#IdCaja").change(function () {
+            var idCaja = $("#IdCaja").val();
+            if (idCaja != "") {
+                ObtenerDatosCajaApertura(idCaja);
+            }
+        });
+
+        $("#btnGuardar").click(function () {
+            $("#btnGuardar").css("display", "none");
+            $("#frmCrearCajaApertura").submit();
+        });
+
+    });
+
+    function ObtenerDatosCajaApertura(idCaja) {
+        $.ajax({
+            url: '/Cajas/ObtenerDatosCajaApertura',
+            type: 'GET',
+            data: {
+                cajaId: idCaja,
+            },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+            },
+            success: function (data) {
+                if (data.respuesta == "Error") {
+                    alertaSoloMensaje("Hubo un error al verificar los datos de la caja apertura seleccionada");
+                } else {
+                    $("#NombreApertura").val(data.nombreApertura);
+                    $("#StrSaldoAnterior").val(data.saldoAnterior);
+                }
+            }
+        });
+    }
+
+    function alertaSoloMensaje(mensaje) {
+        bootbox.alert({
+            title: "<strong>Alerta</strong>",
+            message: mensaje,
+            size: 'medium'
+        });
+    }
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Cajas Aperturas <small></small></h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("Create", "CajasAperturas", FormMethod.Post, new { id = "frmCrearCajaApertura" }))
+{
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    @if (@ViewBag.msg != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            @Html.ValidationMessage("Error")
+                        </div>
+                    }
+
+                    @Html.HiddenFor(model => model.IdSucursal)
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.Label("* Sucursal", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.NombreSucursal, null, new { @class = "form-control has-feedback-left", @readonly = "readonly" })
+                                <span class="fa fa-home form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.NombreSucursal, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Cajas", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.IdCaja, null, "--Seleccionar--", new { @class = "form-control has-feedback-left" })
+                                <span class="fa fa-unsorted form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.IdCaja, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Saldo Inicial", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.StrSaldoEfectivoInicial, null, new { @class = "form-control integer has-feedback-left" })
+                                <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.StrSaldoEfectivoInicial, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Nombre Apertura", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.NombreApertura, null, new { @class = "form-control has-feedback-left", @readonly = "readonly" })
+                                <span class="fa fa-pencil form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.NombreApertura, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("* Saldo Anterior", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.StrSaldoAnterior, null, new { @class = "form-control has-feedback-left", @readonly = "readonly" })
+                                <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
+                                @Html.ValidationMessageFor(m => m.StrSaldoAnterior, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-primary" })
+                        <input type="button" value="Guardar" id="btnGuardar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+<script>
+    $('.integer').setMask("integer");
+</script>
+

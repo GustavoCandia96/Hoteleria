@@ -1,0 +1,401 @@
+﻿@model WebHoteleria.Models.CajaComposicionModel
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#btnGuardar").click(function () {
+
+            var idCajaApertura = $("#IdCajaApertura").val();
+            var billeteTotal = $("#txtTotalBilletes").val();
+            billeteTotal = billeteTotal.split('.').join("").trim();
+            billeteTotal = billeteTotal.split('.').join("").trim();
+            billeteTotal = parseFloat(billeteTotal);
+            var monedaTotal = $("#txtTotalMonedas").val();
+            monedaTotal = monedaTotal.split('.').join("").trim();
+            monedaTotal = monedaTotal.split('.').join("").trim();
+            monedaTotal = parseFloat(monedaTotal);
+
+            var listaDenominacion = [];
+
+            var composicionCaja = {
+                id: 0,
+                id_caja: null,
+                id_caja_apertura: parseInt(idCajaApertura),
+                id_usuario: null,
+                fecha: null,
+                total_billete: billeteTotal,
+                total_moneda: monedaTotal,
+                estado: null
+            };
+
+
+            //BILLETES
+            $("#bdbilletes > tr").each(function () {
+                var $tr = $(this).closest('tr');
+                var id_denominacion = toNumber($tr.find(".colId").text().trim());
+                var monto = toNumber($tr.find(".col1").text().trim());
+                var input_cantidad = $tr.find(".colCantidad");
+                var cantidad = 0;
+                $.each(input_cantidad, function () {
+                    cantidad = input_cantidad[0].children[0].value;
+                });
+                var dato_denominacion = {
+                    id: 0,
+                    id_caja_composicion: null,
+                    id_denominacion_moneda: id_denominacion,
+                    cantidad: cantidad,
+                    monto: monto,
+                    estado : null
+                }
+                listaDenominacion.push(dato_denominacion);
+            });
+
+            //MONEDAS
+            $("#bdMonedas > tr").each(function () {
+                var $tr = $(this).closest('tr');
+                var id_denominacion = toNumber($tr.find(".colId").text().trim());
+                var monto = toNumber($tr.find(".col1").text().trim());
+                var input_cantidad = $tr.find(".colCantidad");
+                var cantidad = 0;
+                $.each(input_cantidad, function () {
+                    cantidad = input_cantidad[0].children[0].value;
+                });
+                var dato_denominacion = {
+                    id: 0,
+                    id_caja_composicion: null,
+                    id_denominacion_moneda: id_denominacion,
+                    cantidad: cantidad,
+                    monto: monto,
+                    estado: null
+                }
+                listaDenominacion.push(dato_denominacion);
+            });
+
+            var send = {
+                cajaComposicion: composicionCaja,
+                cajaComposicionDetalles: listaDenominacion,
+            }
+
+            var dialog = bootbox.dialog({
+                title: 'Guardando datos',
+                message: '<p><i class="fa fa-spin fa-spinner"></i> Procesando...</p>'
+            });
+
+            $.ajax({
+                url: "/CajasAperturas/ComposicionCaja/",
+                type: "POST",
+                data: JSON.stringify(send),
+                contentType: "application/json",
+            }).done(function (data) {
+                if (data.success) {
+                    dialog.find('.bootbox-body').html('La composicion se guardo correctamente!!!');
+                    setTimeout(function () {
+                        window.location.href = data.urlRedirect;
+                    }, 800);
+                } else {
+                    dialog.modal("hide");
+                    alertaSoloMensaje(data.mensaje);
+                    return false;
+                }
+            })
+        });
+
+        $('td input[type="text"]').blur(function () {
+
+            if (this.value != '') {
+                if (this.value != '0') {
+                    var $row = $(this).closest("tr");
+                    var cantidad = parseFloat(this.value.split('.').join(""));
+                    var den = $row.find("td:nth-child(2)").text().split('.').join("");
+                    den = den.split(',').join(".");
+                    var denominacion = parseFloat(den);
+                    $tds = $row.find("td:nth-child(4)")
+                    $.each($tds, function () {
+                        var calculo = denominacion * cantidad;
+                        this.innerHTML = Formatear(calculo);
+                    });
+                } else {
+                    alertaSoloMensaje("Ingresar valor mayor a 0");
+                    var $row = $(this).closest("tr");
+
+                    $tds = $row.find("td:nth-child(4)")
+                    $.each($tds, function () {
+
+                        this.innerHTML = 0;
+                    });
+                    this.value = '';
+                }
+            } else {
+                var $row = $(this).closest("tr");
+
+                $tds = $row.find("td:nth-child(4)")
+                $.each($tds, function () {
+
+                    this.innerHTML = '0';
+                });
+                this.value = '';
+            }
+
+            if ($(this).closest('table').attr('id') == 'tblBilletes') {
+                var valorBillete = getSum("tblBilletes");
+                valorBillete = Formatear(valorBillete);
+                $("#txtTotalBilletes").val(valorBillete);
+            }
+            else {
+                var valorMoneda = getSum("tblMonedas");
+                valorMoneda = Formatear(valorMoneda);
+                $("#txtTotalMonedas").val(valorMoneda);
+            }
+            CalcularTotalComposicion();
+        });
+
+    });
+
+    function CalcularTotalComposicion() {
+        var parcialBilleteTotal = $("#txtTotalBilletes").val().split('.').join("").trim();
+        parcialBilleteTotal = parcialBilleteTotal.split(",").join(".").trim();
+        var billeteTotal = parseFloat(parcialBilleteTotal);
+        var parcialMonedaTotal = $("#txtTotalMonedas").val().split('.').join("").trim();
+        parcialMonedaTotal = parcialMonedaTotal.split(",").join(".").trim();
+        var monedaTotal = parseFloat(parcialMonedaTotal);
+        if (isNaN(billeteTotal)) {
+            billeteTotal = 0;
+        }
+        if (isNaN(monedaTotal)) {
+            monedaTotal = 0;
+        }
+        var resultado = billeteTotal + monedaTotal;
+        resultado = Formatear(resultado);
+        $("#MontoTotalComposicion").val(resultado);
+    }
+
+    var getSum = function (tabla) {
+        var sum = 0;
+        var selector = '.col1';
+        $('#' + tabla).find(selector).each(function (index, element) {
+            sum += toNumber($(element).text());
+        });
+        return sum;
+    };
+
+    function toNumber(cadena) {
+        numero = parseFloat(cadena.split(".").join("").split(",").join("."));
+        if (isNaN(numero)) {
+            numero = 0;
+        }
+        return numero;
+    }
+
+    function Formatear(num) {
+        var cadena = ""; var aux;
+        var cont = 1, m, k;
+        if (num < 0) aux = 1; else aux = 0;
+        num = num.toString();
+        for (m = num.length - 1; m >= 0; m--) {
+            cadena = num.charAt(m) + cadena;
+            if (cont % 3 == 0 && m > aux) cadena = "." + cadena; else cadena = cadena;
+            if (cont == 3) cont = 1; else cont++;
+        }
+        cadena = cadena.replace(/.,/, ",");
+        return cadena;
+    }
+
+    function alertaSoloMensaje(mensaje) {
+        bootbox.alert({
+            title: "<strong>Alerta</strong>",
+            message: mensaje,
+            size: 'medium'
+        });
+    }
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Composición Caja Apertura <small></small></h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("ComposicionCaja", "CajasAperturas", FormMethod.Post, new { id = "frmCrearComposicion" }))
+{
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    @if (@ViewBag.msg != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            @Html.ValidationMessage("Error")
+                        </div>
+                    }
+
+                    @Html.HiddenFor(model => model.IdCajaApertura)
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label>* Sucursal</label>
+                                @Html.TextBoxFor(model => model.NombreSucursal, null, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.NombreSucursal, "", new { @style = "color:red" })
+                            </div>
+                            <div class="col-md-4">
+                                <label>* Funcionario Caja</label>
+                                @Html.TextBoxFor(model => model.NombreUsuarioCaja, null, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.NombreUsuarioCaja, "", new { @style = "color:red" })
+                            </div>
+                            <div class="col-md-4">
+                                <label>* Fecha</label>
+                                @Html.TextBoxFor(model => model.StrFecha, null, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.StrFecha, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label>* Caja</label>
+                                @Html.TextBoxFor(model => model.NombreCaja, null, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.NombreCaja, "", new { @style = "color:red" })
+                            </div>
+                            <div class="col-md-4">
+                                <label>* Nombre Apertura</label>
+                                @Html.TextBoxFor(model => model.NombreApertura, null, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.NombreApertura, "", new { @style = "color:red" })
+                            </div>
+                            <div class="col-md-4">
+                                <label>* Total Efectivo</label>
+                                @Html.TextBoxFor(model => model.StrTotalEfectivo, null, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(m => m.StrTotalEfectivo, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <div class="ln_solid"></div>
+                                    <div class="x_panel">
+                                        <table class="table" id="tblBilletes">
+                                            <caption><strong>Billetes:</strong>  </caption>
+                                            <thead>
+                                                <tr>
+                                                    <th>Cod.</th>
+                                                    <th>Denominación</th>
+                                                    <th>Cantidad</th>
+                                                    <th>Monto</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="bdbilletes">
+                                                @if (ViewBag.ComposicionCajaDetalle != null)
+                                                {
+                                                    foreach (WebHoteleria.Models.CajaComposicionDetalleModel datos in ((List<WebHoteleria.Models.CajaComposicionDetalleModel>)ViewBag.ComposicionCajaDetalle).Where(x => x.IdTipoDenominacion.Trim() == "1").ToList())
+                                                    {
+                                                        <tr>
+                                                            <td class="colId">@datos.IdDenominacionMoneda</td>
+                                                            <td>@datos.Monto</td>
+                                                            <td class="colCantidad">@Html.TextBox("txtField" + datos.IdTipoDenominacion.ToString(), datos.Cantidad, new { @class = "integer" })</td>
+                                                            <td class="col1">@datos.SubTotal</td>
+                                                        </tr>
+                                                    }
+                                                }
+
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td> </td>
+                                                    <td> </td>
+                                                    <td><strong>Total:</strong></td>
+                                                    <td> <input disabled="disabled" id="txtTotalBilletes" name="txtTotalBilletes" type="text" value=@ViewBag.TotalBilletes></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <div class="ln_solid"></div>
+                                    <div class="x_panel">
+                                        <table class="table" id="tblMonedas">
+                                            <caption><strong>Monedas:</strong>  </caption>
+                                            <thead>
+                                                <tr>
+                                                    <th>Cod.</th>
+                                                    <th>Denominación</th>
+                                                    <th>Cantidad</th>
+                                                    <th>Monto</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="bdMonedas">
+                                                @if (ViewBag.ComposicionCajaDetalle != null)
+                                                {
+                                                    foreach (WebHoteleria.Models.CajaComposicionDetalleModel datos in ((List<WebHoteleria.Models.CajaComposicionDetalleModel>)ViewBag.ComposicionCajaDetalle).Where(x => x.IdTipoDenominacion.Trim() == "2").ToList())
+                                                    {
+                                                        <tr>
+                                                            <td class="colId">@datos.IdDenominacionMoneda</td>
+                                                            <td>@datos.Monto</td>
+                                                            <td class="colCantidad">@Html.TextBox("txtField" + datos.IdTipoDenominacion.ToString(), datos.Cantidad, new { @class = "integer" })</td>
+                                                            <td class="col1">@datos.SubTotal</td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td> </td>
+                                                    <td> </td>
+                                                    <td><strong>Total:</strong></td>
+                                                    <td> <input disabled="disabled" id="txtTotalMonedas" name="txtTotalMonedas" type="text" value=@ViewBag.TotalMonedas></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="ln_solid"></div>
+                        <div class="form-horizontal">
+                            <div align="right">
+                                @Html.Label("Composición Total", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBox("MontoTotalComposicion", null, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-primary" })
+                        <input type="button" value="Guardar" id="btnGuardar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+<script>
+    $('.integer').setMask("integer");
+</script>
+

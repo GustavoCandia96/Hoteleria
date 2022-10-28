@@ -1,0 +1,254 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<WebHoteleria.Models.CajaAperturaModel>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("[name=btnBuscar]").click(function () {
+            $("#frmListado").attr("action", "/CajasAperturas/Index/");
+            $("#frmListado").submit();
+        });
+
+        function alertaSoloMensaje(mensaje) {
+            bootbox.alert({
+                title: "<strong>Alerta</strong>",
+                message: mensaje,
+                size: 'medium'
+            });
+        }
+
+    });
+
+    function HistoricoArqueos(id) {
+        if (!$("#tbl_" + id).length) {
+            ListaHistoricoArqueos(id);
+        }
+        else {
+            $("#detail_" + id).slideToggle("slow");
+            $("#extra_" + id).slideToggle("slow");
+        }
+    }
+
+    function ListaHistoricoArqueos(id) {
+
+        var send = {
+            idCajaApertura: id,
+        }
+
+        $.ajax({
+            url: '/CajasAperturas/ObtenerListadoHistoricoArqueos',
+            type: 'POST',
+            data: JSON.stringify(send),
+            contentType: 'application/json',
+            error: function (xhr, status, error) {
+                alertaSoloMensaje(xhr.responseText);
+                hideLoadingImage();
+            },
+            success: function (data) {
+                if (data.success) {
+
+                    $("#extra_" + id).html(data.listaDetalle);
+                    $("#detail_" + id).slideToggle("slow");
+                    $("#extra_" + id).slideToggle("slow");
+                } else {
+                    alertaSoloMensaje(data.msg);
+                }
+            }
+        });
+    }
+
+    function alertaSoloMensaje(mensaje) {
+        bootbox.alert({
+            title: "<strong>Alerta</strong>",
+            message: mensaje,
+            size: 'medium'
+        });
+    }
+
+</script>
+
+<script>
+    function showLoadingImage(elIDdiv) {
+        $(elIDdiv).html('</br></br></br><div id="loading-image"><img src="/Content/images/FhHRx.gif"/></br></br></br></div>');
+    }
+
+    function hideLoadingImage() {
+        $('#loading-image').remove();
+    }
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Cajas Aperturas<small></small></h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("Index", "CajasAperturas", FormMethod.Post, new { id = "frmListado" }))
+{
+    <div class="row">
+        <div class="pull-right" style="margin-right: 10px;">
+            <a href="@Url.Action("Create", "CajasAperturas")" title="Agregar Caja Apertura" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Agregar Caja Apertura</a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Buscador <small>Ingrese los campos para la búsqueda</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="form-group">
+
+                        <div class="col-sm-4">
+                            <label>Sucursal</label>
+                            @Html.DropDownList("ddlSucursales", null, "--Seleccionar--", new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label>Fecha Apertura</label>
+                            @Html.TextBox("txtFechaApertura", null, new { @class = "form-control calendario" })
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="" style="margin-top: 24px;"></div>
+                            <button name="btnBuscar" id="btnBuscar" class="btn btn-primary" style="margin-right: 5px;"><i class="fa fa-search"></i> Buscar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Listado de cajas aperturas<small></small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                @if (@ViewBag.msg != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade in">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        @ViewBag.msg
+                    </div>
+                }
+
+                @if (Model.Count() == 0)
+                {
+                    <p>#No existen coincidencias</p>
+                }
+                else
+                {
+                    int? IdUsuarioLogueado = ViewBag.IdUsuarioLogueado != null ? Convert.ToInt32(ViewBag.IdUsuarioLogueado) : null;
+                    int? IdSucursalUsuarioLog = ViewBag.IdSucursalUsuarioLog != null ? Convert.ToInt32(ViewBag.IdSucursalUsuarioLog) : null;
+
+                    <div class="table-responsive">
+                        <table class="table" id="tbgrilla">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Denominación</th>
+                                    <th>Sucursal</th>
+                                    <th>Fecha Apertura</th>
+                                    <th>Funcionario</th>
+                                    <th>Nombre Apertura</th>
+                                    <th>Efectivo Inicial</th>
+                                    <th>Saldo Efectivo</th>
+                                    <th>Saldo Caja</th>
+                                    <th>Fecha Cierre</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.NombreCaja</td>
+                                        <td>@item.NombreSucursal</td>
+                                        <td>@item.FechaApertura.Value.ToString()</td>
+                                        <td>@item.NombreUsuario</td>
+                                        <td>@item.NombreApertura</td>
+                                        <td>@String.Format("{0:#,##0.##}", item.SaldoEfectivoInicial)</td>
+                                        <td>@String.Format("{0:#,##0.##}", item.SaldoEfectivoCierre)</td>
+                                        <td>@String.Format("{0:#,##0.##}", item.SaldoCajaCierre)</td>
+                                        @{
+                                            if (item.CajaAbierta == false)
+                                            {
+                                                <td>@item.FechaCierre.Value.ToShortDateString()</td>
+                                            }
+                                            else
+                                            {
+                                                <td></td>
+                                            }
+                                        }
+                                        <td>
+                                            @{
+                                                <a href="javascript:HistoricoArqueos('@item.Id')" title="Detalle Historico Arqueos" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
+                                                if (item.IdUsuario == IdUsuarioLogueado) //VERIFICAMOS SI ES EL USUARIO DUEÑO DE LA CAJA
+                                                {
+                                                    if (item.CajaAbierta == true) //VERIFICAMOS SI LA CAJA ESTE ABIERTA
+                                                    {
+                                                        <a href="@Url.Action("ComposicionCaja", "CajasAperturas", new { id = item.Id })" title="Composición Caja" class="btn btn-warning btn-xs">
+                                                            <span class="glyphicon glyphicon-sort-by-order"></span>
+                                                        </a>
+                                                        <a href="@Url.Action("CajaAjuste", "CajasAperturas", new { id = item.Id })" title="Ajuste de Caja" class="btn btn-default btn-xs">
+                                                            <span class="glyphicon glyphicon-cog"></span>
+                                                        </a>
+                                                        <a href="@Url.Action("ArqueoCajaParcial", "CajasAperturas", new { id = item.Id })" title="Arqueo Caja Parcial" class="btn btn-info btn-xs">
+                                                            <span class="glyphicon glyphicon-ok-circle"></span>
+                                                        </a>
+                                                        <a href="@Url.Action("ArqueoCajaFinal", "CajasAperturas", new { id = item.Id })" title="Arqueo Caja Final" class="btn btn-danger btn-xs">
+                                                            <span class="glyphicon glyphicon-ok-circle"></span>
+                                                        </a>
+                                                    }
+                                                }
+                                            }
+                                        </td>
+                                    </tr>
+
+                                    <tr id="detail_@item.Id" style="display: none;">
+                                        <td colspan="8">
+                                            <div id="extra_@item.Id" style="display: none;">
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                        <div class="pagination" style="margin-left: 400px">
+                            Pág. @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                            de @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(".calendario").datepicker({ dateFormat: 'dd/mm/yy' });
+</script>

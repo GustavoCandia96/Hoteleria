@@ -154,6 +154,7 @@
     <Compile Include="Controllers\BancosCuentasController.cs" />
     <Compile Include="Controllers\BarriosController.cs" />
     <Compile Include="Controllers\CajasAjustesController.cs" />
+    <Compile Include="Controllers\CajasAperturasController.cs" />
     <Compile Include="Controllers\CargosController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\CerrarSesionController.cs" />
@@ -4740,6 +4741,10 @@
     <Content Include="Views\CajasAjustes\Create.cshtml" />
     <Content Include="Views\CajasAjustes\Edit.cshtml" />
     <Content Include="Views\CajasAjustes\Index.cshtml" />
+    <Content Include="Views\CajasAperturas\CajaAjuste.cshtml" />
+    <Content Include="Views\CajasAperturas\ComposicionCaja.cshtml" />
+    <Content Include="Views\CajasAperturas\Create.cshtml" />
+    <Content Include="Views\CajasAperturas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
