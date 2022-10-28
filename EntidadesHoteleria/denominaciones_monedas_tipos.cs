@@ -18,6 +18,7 @@ namespace EntidadesHoteleria
         public denominaciones_monedas_tipos()
         {
             this.denominaciones_monedas = new HashSet<denominaciones_monedas>();
+            this.cajas_arqueos_composiciones = new HashSet<cajas_arqueos_composiciones>();
         }
     
         public int id { get; set; }
@@ -26,5 +27,7 @@ namespace EntidadesHoteleria
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<denominaciones_monedas> denominaciones_monedas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cajas_arqueos_composiciones> cajas_arqueos_composiciones { get; set; }
     }
 }

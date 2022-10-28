@@ -153,6 +153,7 @@
     <Compile Include="Controllers\BancosController.cs" />
     <Compile Include="Controllers\BancosCuentasController.cs" />
     <Compile Include="Controllers\BarriosController.cs" />
+    <Compile Include="Controllers\CajasAjustesController.cs" />
     <Compile Include="Controllers\CargosController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\CerrarSesionController.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Controllers\ProfesionesController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\ProveedoresSucursalesController.cs" />
+    <Compile Include="Controllers\ReservasHabitacionesController.cs" />
     <Compile Include="Controllers\ServiciosHabitacionesController.cs" />
     <Compile Include="Controllers\SucursalesController.cs" />
     <Compile Include="Controllers\TarifasController.cs" />
@@ -192,18 +194,40 @@
     </Compile>
     <Compile Include="Models\ActividadEconomicaModel.cs" />
     <Compile Include="Models\AreaModel.cs" />
+    <Compile Include="Models\ArqueoDetalleResumenModel.cs" />
     <Compile Include="Models\BancoCuentaModel.cs" />
     <Compile Include="Models\BancoModel.cs" />
     <Compile Include="Models\BarrioModel.cs" />
+    <Compile Include="Models\CajaAjusteModel.cs" />
+    <Compile Include="Models\CajaAperturaArqueoModel.cs" />
+    <Compile Include="Models\CajaAperturaArqueoResumenModel.cs" />
+    <Compile Include="Models\CajaAperturaModel.cs" />
+    <Compile Include="Models\CajaComposicionDetalleModel.cs" />
+    <Compile Include="Models\CajaComposicionModel.cs" />
+    <Compile Include="Models\CajaModel.cs" />
+    <Compile Include="Models\CajaTipoAjusteModel.cs" />
+    <Compile Include="Models\CargaCuentaAnulacionModel.cs" />
+    <Compile Include="Models\CargaCuentaModel.cs" />
+    <Compile Include="Models\CargarACuentaModel.cs" />
     <Compile Include="Models\CargoModel.cs" />
     <Compile Include="Models\CategoriaModel.cs" />
     <Compile Include="Models\CiudadModel.cs" />
+    <Compile Include="Models\ClienteContactoModel.cs" />
+    <Compile Include="Models\ClienteModel.cs" />
     <Compile Include="Models\CompraProductoDetalleModel.cs" />
     <Compile Include="Models\CompraProductoModel.cs" />
+    <Compile Include="Models\ComprobanteDocumentoModel.cs" />
+    <Compile Include="Models\ConsumicionModel.cs" />
     <Compile Include="Models\DenominacionMonedaModel.cs" />
     <Compile Include="Models\DepartamentoModel.cs" />
     <Compile Include="Models\DepositoModel.cs" />
     <Compile Include="Models\DetalleCompraModel.cs" />
+    <Compile Include="Models\DetalleFacturaModel.cs" />
+    <Compile Include="Models\DetalleFacturaTemporalModel.cs" />
+    <Compile Include="Models\DetallePagoFacturaModel.cs" />
+    <Compile Include="Models\FacturacionModel.cs" />
+    <Compile Include="Models\FacturacionTemporalAnulacionModel.cs" />
+    <Compile Include="Models\FacturacionTemporalModel.cs" />
     <Compile Include="Models\FuncionarioModel.cs" />
     <Compile Include="Models\HabitacionEstadoModel.cs" />
     <Compile Include="Models\HabitacionModel.cs" />
@@ -211,11 +235,13 @@
     <Compile Include="Models\MesaModel.cs" />
     <Compile Include="Models\ModuloModel.cs" />
     <Compile Include="Models\ModuloOperacionModel.cs" />
+    <Compile Include="Models\MotivoDescuentoModel.cs" />
     <Compile Include="Models\MozoModel.cs" />
     <Compile Include="Models\PaisModel.cs" />
     <Compile Include="Models\ParametroModel.cs" />
     <Compile Include="Models\PerfilModel.cs" />
     <Compile Include="Models\PermisoModel.cs" />
+    <Compile Include="Models\PlanningModel.cs" />
     <Compile Include="Models\ProductoAjusteLoteModel.cs" />
     <Compile Include="Models\ProductoLoteModel.cs" />
     <Compile Include="Models\ProductoModel.cs" />
@@ -224,6 +250,8 @@
     <Compile Include="Models\ProveedorModel.cs" />
     <Compile Include="Models\ProveedorSucursalModel.cs" />
     <Compile Include="Models\RecuperarPasswordModel.cs" />
+    <Compile Include="Models\ReporteVentaRestauranteModel.cs" />
+    <Compile Include="Models\ReservaHabitacionModel.cs" />
     <Compile Include="Models\ServicioHabitacionModel.cs" />
     <Compile Include="Models\SucursalModel.cs" />
     <Compile Include="Models\TarifaDetalleModel.cs" />
@@ -234,6 +262,7 @@
     <Compile Include="Models\TipoContactoModel.cs" />
     <Compile Include="Models\TipoHabitacionModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
+    <Compile Include="Models\VentaRestauranteModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -4707,6 +4736,10 @@
     <Content Include="Views\DenominacionesMonedas\Create.cshtml" />
     <Content Include="Views\DenominacionesMonedas\Edit.cshtml" />
     <Content Include="Views\DenominacionesMonedas\Index.cshtml" />
+    <Content Include="Views\ReservasHabitaciones\Index.cshtml" />
+    <Content Include="Views\CajasAjustes\Create.cshtml" />
+    <Content Include="Views\CajasAjustes\Edit.cshtml" />
+    <Content Include="Views\CajasAjustes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

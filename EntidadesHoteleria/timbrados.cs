@@ -18,6 +18,8 @@ namespace EntidadesHoteleria
         public timbrados()
         {
             this.timbrados_rangos = new HashSet<timbrados_rangos>();
+            this.facturaciones = new HashSet<facturaciones>();
+            this.facturaciones_temporales = new HashSet<facturaciones_temporales>();
         }
     
         public int id { get; set; }
@@ -32,5 +34,9 @@ namespace EntidadesHoteleria
         public virtual ICollection<timbrados_rangos> timbrados_rangos { get; set; }
         public virtual timbrados_formatos timbrados_formatos { get; set; }
         public virtual timbrados_tipos_documentos timbrados_tipos_documentos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<facturaciones> facturaciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<facturaciones_temporales> facturaciones_temporales { get; set; }
     }
 }

@@ -14,6 +14,12 @@ namespace EntidadesHoteleria
     
     public partial class mozos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public mozos()
+        {
+            this.consumisiones = new HashSet<consumisiones>();
+        }
+    
         public int id { get; set; }
         public string nro_documento { get; set; }
         public string nombre { get; set; }
@@ -21,5 +27,8 @@ namespace EntidadesHoteleria
         public string direccion { get; set; }
         public string celular { get; set; }
         public Nullable<bool> estado { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<consumisiones> consumisiones { get; set; }
     }
 }

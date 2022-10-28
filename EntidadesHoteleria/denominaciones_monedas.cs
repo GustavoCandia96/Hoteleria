@@ -14,6 +14,12 @@ namespace EntidadesHoteleria
     
     public partial class denominaciones_monedas
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public denominaciones_monedas()
+        {
+            this.cajas_composiciones_detalles = new HashSet<cajas_composiciones_detalles>();
+        }
+    
         public int id { get; set; }
         public Nullable<int> id_tipo_denominacion { get; set; }
         public string denominacion { get; set; }
@@ -23,5 +29,7 @@ namespace EntidadesHoteleria
     
         public virtual denominaciones_monedas_tipos denominaciones_monedas_tipos { get; set; }
         public virtual monedas monedas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cajas_composiciones_detalles> cajas_composiciones_detalles { get; set; }
     }
 }

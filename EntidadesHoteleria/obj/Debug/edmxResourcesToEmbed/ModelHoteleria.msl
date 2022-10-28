@@ -676,5 +676,453 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="clientes">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.clientes">
+        <MappingFragment StoreEntitySet="clientes">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="genero" ColumnName="genero" />
+          <ScalarProperty Name="id_estado_civil" ColumnName="id_estado_civil" />
+          <ScalarProperty Name="id_profesion" ColumnName="id_profesion" />
+          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+          <ScalarProperty Name="nro_telefono_principal" ColumnName="nro_telefono_principal" />
+          <ScalarProperty Name="email_principal" ColumnName="email_principal" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="id_barrio" ColumnName="id_barrio" />
+          <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+          <ScalarProperty Name="id_departamento" ColumnName="id_departamento" />
+          <ScalarProperty Name="id_pais" ColumnName="id_pais" />
+          <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="nro_documento" ColumnName="nro_documento" />
+          <ScalarProperty Name="id_tipo_documento" ColumnName="id_tipo_documento" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clientes_contactos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.clientes_contactos">
+        <MappingFragment StoreEntitySet="clientes_contactos">
+          <ScalarProperty Name="contacto" ColumnName="contacto" />
+          <ScalarProperty Name="id_tipo_contacto" ColumnName="id_tipo_contacto" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reservas_estados">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.reservas_estados">
+        <MappingFragment StoreEntitySet="reservas_estados">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reservas_habitaciones">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.reservas_habitaciones">
+        <MappingFragment StoreEntitySet="reservas_habitaciones">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="nombre_completo" ColumnName="nombre_completo" />
+          <ScalarProperty Name="nro_documento" ColumnName="nro_documento" />
+          <ScalarProperty Name="fecha_cierre" ColumnName="fecha_cierre" />
+          <ScalarProperty Name="id_usuario_cierre" ColumnName="id_usuario_cierre" />
+          <ScalarProperty Name="cantidad_menores" ColumnName="cantidad_menores" />
+          <ScalarProperty Name="cantidad_adultos" ColumnName="cantidad_adultos" />
+          <ScalarProperty Name="check_out" ColumnName="check_out" />
+          <ScalarProperty Name="check_in" ColumnName="check_in" />
+          <ScalarProperty Name="id_reserva_estado" ColumnName="id_reserva_estado" />
+          <ScalarProperty Name="id_habitacion" ColumnName="id_habitacion" />
+          <ScalarProperty Name="id_tipo_habitacion" ColumnName="id_tipo_habitacion" />
+          <ScalarProperty Name="fecha_hasta" ColumnName="fecha_hasta" />
+          <ScalarProperty Name="fecha_desde" ColumnName="fecha_desde" />
+          <ScalarProperty Name="id_usuario_apertura" ColumnName="id_usuario_apertura" />
+          <ScalarProperty Name="fecha_alta" ColumnName="fecha_alta" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="consumisiones">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.consumisiones">
+        <MappingFragment StoreEntitySet="consumisiones">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="total_consumision" ColumnName="total_consumision" />
+          <ScalarProperty Name="consumision_terminado" ColumnName="consumision_terminado" />
+          <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
+          <ScalarProperty Name="ruc_cliente" ColumnName="ruc_cliente" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_mozo" ColumnName="id_mozo" />
+          <ScalarProperty Name="id_mesa" ColumnName="id_mesa" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="fecha_alta" ColumnName="fecha_alta" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="consumisiones_detalles">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.consumisiones_detalles">
+        <MappingFragment StoreEntitySet="consumisiones_detalles">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="precio_unitario" ColumnName="precio_unitario" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="id_producto_lote" ColumnName="id_producto_lote" />
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+          <ScalarProperty Name="id_consumision" ColumnName="id_consumision" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cajas">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cajas">
+        <MappingFragment StoreEntitySet="cajas">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="faltante" ColumnName="faltante" />
+          <ScalarProperty Name="sobrante" ColumnName="sobrante" />
+          <ScalarProperty Name="saldo_efectivo" ColumnName="saldo_efectivo" />
+          <ScalarProperty Name="saldo_caja" ColumnName="saldo_caja" />
+          <ScalarProperty Name="abierto" ColumnName="abierto" />
+          <ScalarProperty Name="denominacion" ColumnName="denominacion" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id_moneda" ColumnName="id_moneda" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cajas_ajustes">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cajas_ajustes">
+        <MappingFragment StoreEntitySet="cajas_ajustes">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="justificacion" ColumnName="justificacion" />
+          <ScalarProperty Name="monto_ajuste" ColumnName="monto_ajuste" />
+          <ScalarProperty Name="faltante" ColumnName="faltante" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id_caja_apertura" ColumnName="id_caja_apertura" />
+          <ScalarProperty Name="id_caja" ColumnName="id_caja" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cajas_aperturas">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cajas_aperturas">
+        <MappingFragment StoreEntitySet="cajas_aperturas">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="caja_abierta" ColumnName="caja_abierta" />
+          <ScalarProperty Name="saldo_sobrante_cierre" ColumnName="saldo_sobrante_cierre" />
+          <ScalarProperty Name="saldo_faltante_cierre" ColumnName="saldo_faltante_cierre" />
+          <ScalarProperty Name="saldo_efectivo_cierre" ColumnName="saldo_efectivo_cierre" />
+          <ScalarProperty Name="saldo_caja_cierre" ColumnName="saldo_caja_cierre" />
+          <ScalarProperty Name="fecha_cierre" ColumnName="fecha_cierre" />
+          <ScalarProperty Name="saldo_efectivo_anterior" ColumnName="saldo_efectivo_anterior" />
+          <ScalarProperty Name="saldo_caja_anterior" ColumnName="saldo_caja_anterior" />
+          <ScalarProperty Name="saldo_efectivo_inicial" ColumnName="saldo_efectivo_inicial" />
+          <ScalarProperty Name="nombre_apertura" ColumnName="nombre_apertura" />
+          <ScalarProperty Name="fecha_apertura" ColumnName="fecha_apertura" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id_caja" ColumnName="id_caja" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cajas_arqueos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cajas_arqueos">
+        <MappingFragment StoreEntitySet="cajas_arqueos">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="arqueo_final" ColumnName="arqueo_final" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="diferencia" ColumnName="diferencia" />
+          <ScalarProperty Name="total_ajuste_sobrante" ColumnName="total_ajuste_sobrante" />
+          <ScalarProperty Name="total_ajuste_faltante" ColumnName="total_ajuste_faltante" />
+          <ScalarProperty Name="sobrante" ColumnName="sobrante" />
+          <ScalarProperty Name="faltante" ColumnName="faltante" />
+          <ScalarProperty Name="saldo_caja" ColumnName="saldo_caja" />
+          <ScalarProperty Name="saldo_efectivo" ColumnName="saldo_efectivo" />
+          <ScalarProperty Name="total_composicion" ColumnName="total_composicion" />
+          <ScalarProperty Name="total_egreso" ColumnName="total_egreso" />
+          <ScalarProperty Name="total_ingreso" ColumnName="total_ingreso" />
+          <ScalarProperty Name="id_caja_apertura" ColumnName="id_caja_apertura" />
+          <ScalarProperty Name="fecha_alta" ColumnName="fecha_alta" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cajas_arqueos_ajustes">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cajas_arqueos_ajustes">
+        <MappingFragment StoreEntitySet="cajas_arqueos_ajustes">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="justificacion" ColumnName="justificacion" />
+          <ScalarProperty Name="tipo_ajuste" ColumnName="tipo_ajuste" />
+          <ScalarProperty Name="id_caja_arqueo" ColumnName="id_caja_arqueo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cajas_arqueos_composiciones">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cajas_arqueos_composiciones">
+        <MappingFragment StoreEntitySet="cajas_arqueos_composiciones">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="id_tipo_denominacion" ColumnName="id_tipo_denominacion" />
+          <ScalarProperty Name="sub_total" ColumnName="sub_total" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="id_caja_arqueo" ColumnName="id_caja_arqueo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cajas_arqueos_detalles">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cajas_arqueos_detalles">
+        <MappingFragment StoreEntitySet="cajas_arqueos_detalles">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="saldo" ColumnName="saldo" />
+          <ScalarProperty Name="egreso" ColumnName="egreso" />
+          <ScalarProperty Name="ingreso" ColumnName="ingreso" />
+          <ScalarProperty Name="concepto" ColumnName="concepto" />
+          <ScalarProperty Name="id_caja_arqueo" ColumnName="id_caja_arqueo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cajas_arqueos_ventas">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cajas_arqueos_ventas">
+        <MappingFragment StoreEntitySet="cajas_arqueos_ventas">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="nro_factura" ColumnName="nro_factura" />
+          <ScalarProperty Name="descuento" ColumnName="descuento" />
+          <ScalarProperty Name="total_neto" ColumnName="total_neto" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="id_caja_arqueo" ColumnName="id_caja_arqueo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cajas_composiciones">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cajas_composiciones">
+        <MappingFragment StoreEntitySet="cajas_composiciones">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="total_moneda" ColumnName="total_moneda" />
+          <ScalarProperty Name="total_billete" ColumnName="total_billete" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id_caja_apertura" ColumnName="id_caja_apertura" />
+          <ScalarProperty Name="id_caja" ColumnName="id_caja" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cajas_composiciones_detalles">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cajas_composiciones_detalles">
+        <MappingFragment StoreEntitySet="cajas_composiciones_detalles">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="id_denominacion_moneda" ColumnName="id_denominacion_moneda" />
+          <ScalarProperty Name="id_caja_composicion" ColumnName="id_caja_composicion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cargas_cuentas">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cargas_cuentas">
+        <MappingFragment StoreEntitySet="cargas_cuentas">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="anulado" ColumnName="anulado" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="total_consumision" ColumnName="total_consumision" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="fecha_alta" ColumnName="fecha_alta" />
+          <ScalarProperty Name="id_consumision" ColumnName="id_consumision" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cargas_cuentas_anulaciones">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cargas_cuentas_anulaciones">
+        <MappingFragment StoreEntitySet="cargas_cuentas_anulaciones">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="motivo_anulacion" ColumnName="motivo_anulacion" />
+          <ScalarProperty Name="id_carga_cuenta" ColumnName="id_carga_cuenta" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="fecha_alta" ColumnName="fecha_alta" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cargas_cuentas_detalles">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cargas_cuentas_detalles">
+        <MappingFragment StoreEntitySet="cargas_cuentas_detalles">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="precio_unitario" ColumnName="precio_unitario" />
+          <ScalarProperty Name="id_producto_lote" ColumnName="id_producto_lote" />
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="id_carga_cuenta" ColumnName="id_carga_cuenta" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cuentas_clientes">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cuentas_clientes">
+        <MappingFragment StoreEntitySet="cuentas_clientes">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="saldo_pendiente" ColumnName="saldo_pendiente" />
+          <ScalarProperty Name="total_pagar" ColumnName="total_pagar" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_reserva" ColumnName="id_reserva" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cuentas_clientes_detalles">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cuentas_clientes_detalles">
+        <MappingFragment StoreEntitySet="cuentas_clientes_detalles">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="sub_total" ColumnName="sub_total" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="id_tarifa_detalle" ColumnName="id_tarifa_detalle" />
+          <ScalarProperty Name="id_cuenta_cliente" ColumnName="id_cuenta_cliente" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cuentas_clientes_pagos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.cuentas_clientes_pagos">
+        <MappingFragment StoreEntitySet="cuentas_clientes_pagos">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="cenha" ColumnName="cenha" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="id_tipo_pago" ColumnName="id_tipo_pago" />
+          <ScalarProperty Name="id_cuenta_cliente" ColumnName="id_cuenta_cliente" />
+          <ScalarProperty Name="fecha_pago" ColumnName="fecha_pago" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="facturaciones">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.facturaciones">
+        <MappingFragment StoreEntitySet="facturaciones">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="anulado" ColumnName="anulado" />
+          <ScalarProperty Name="saldo_modificado" ColumnName="saldo_modificado" />
+          <ScalarProperty Name="saldo_factura" ColumnName="saldo_factura" />
+          <ScalarProperty Name="total_bruto" ColumnName="total_bruto" />
+          <ScalarProperty Name="total_neto" ColumnName="total_neto" />
+          <ScalarProperty Name="total_descuento" ColumnName="total_descuento" />
+          <ScalarProperty Name="id_motivo_descuento" ColumnName="id_motivo_descuento" />
+          <ScalarProperty Name="nro_factura" ColumnName="nro_factura" />
+          <ScalarProperty Name="id_timbrado_rango" ColumnName="id_timbrado_rango" />
+          <ScalarProperty Name="id_timbrado" ColumnName="id_timbrado" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="fecha_emision" ColumnName="fecha_emision" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="fecha_alta" ColumnName="fecha_alta" />
+          <ScalarProperty Name="id_condicion_venta" ColumnName="id_condicion_venta" />
+          <ScalarProperty Name="id_consumicion" ColumnName="id_consumicion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="facturaciones_detalles">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.facturaciones_detalles">
+        <MappingFragment StoreEntitySet="facturaciones_detalles">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="gravada_10" ColumnName="gravada_10" />
+          <ScalarProperty Name="gravada_5" ColumnName="gravada_5" />
+          <ScalarProperty Name="gravada_excenta" ColumnName="gravada_excenta" />
+          <ScalarProperty Name="iva_10" ColumnName="iva_10" />
+          <ScalarProperty Name="iva_5" ColumnName="iva_5" />
+          <ScalarProperty Name="iva_excenta" ColumnName="iva_excenta" />
+          <ScalarProperty Name="precio_unitario" ColumnName="precio_unitario" />
+          <ScalarProperty Name="id_producto_lote" ColumnName="id_producto_lote" />
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="id_facturacion" ColumnName="id_facturacion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="facturaciones_temporales">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.facturaciones_temporales">
+        <MappingFragment StoreEntitySet="facturaciones_temporales">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="anulado" ColumnName="anulado" />
+          <ScalarProperty Name="total_bruto" ColumnName="total_bruto" />
+          <ScalarProperty Name="total_neto" ColumnName="total_neto" />
+          <ScalarProperty Name="total_descuento" ColumnName="total_descuento" />
+          <ScalarProperty Name="id_motivo_descuento" ColumnName="id_motivo_descuento" />
+          <ScalarProperty Name="nro_factura" ColumnName="nro_factura" />
+          <ScalarProperty Name="id_timbrado_rango" ColumnName="id_timbrado_rango" />
+          <ScalarProperty Name="id_timbrado" ColumnName="id_timbrado" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+          <ScalarProperty Name="ruc" ColumnName="ruc" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="fecha_emision" ColumnName="fecha_emision" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="fecha_alta" ColumnName="fecha_alta" />
+          <ScalarProperty Name="id_condicion_venta" ColumnName="id_condicion_venta" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="facturaciones_temporales_detalles">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.facturaciones_temporales_detalles">
+        <MappingFragment StoreEntitySet="facturaciones_temporales_detalles">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="gravada_10" ColumnName="gravada_10" />
+          <ScalarProperty Name="gravada_5" ColumnName="gravada_5" />
+          <ScalarProperty Name="gravada_excenta" ColumnName="gravada_excenta" />
+          <ScalarProperty Name="iva_10" ColumnName="iva_10" />
+          <ScalarProperty Name="iva_5" ColumnName="iva_5" />
+          <ScalarProperty Name="iva_excenta" ColumnName="iva_excenta" />
+          <ScalarProperty Name="precio_unitario" ColumnName="precio_unitario" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="id_facturacion_temporal" ColumnName="id_facturacion_temporal" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="facturaciones_temporales_pagos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.facturaciones_temporales_pagos">
+        <MappingFragment StoreEntitySet="facturaciones_temporales_pagos">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="monto_pagado" ColumnName="monto_pagado" />
+          <ScalarProperty Name="id_tipo_pago" ColumnName="id_tipo_pago" />
+          <ScalarProperty Name="id_factura_temporal" ColumnName="id_factura_temporal" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="motivos_descuentos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.motivos_descuentos">
+        <MappingFragment StoreEntitySet="motivos_descuentos">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="motivo" ColumnName="motivo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipos_pagos">
+      <EntityTypeMapping TypeName="hoteleria_erp_dbModel.tipos_pagos">
+        <MappingFragment StoreEntitySet="tipos_pagos">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

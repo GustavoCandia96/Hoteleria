@@ -53,6 +53,188 @@
     <Property Name="localidad" Type="bit" />
     <Property Name="estado" Type="bit" />
   </EntityType>
+  <EntityType Name="cajas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_sucursal" Type="int" />
+    <Property Name="id_moneda" Type="int" />
+    <Property Name="id_usuario" Type="int" />
+    <Property Name="denominacion" Type="varchar" MaxLength="50" />
+    <Property Name="abierto" Type="bit" />
+    <Property Name="saldo_caja" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_efectivo" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="sobrante" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="faltante" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cajas_ajustes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_caja" Type="int" />
+    <Property Name="id_caja_apertura" Type="int" />
+    <Property Name="id_usuario" Type="int" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="faltante" Type="bit" />
+    <Property Name="monto_ajuste" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="justificacion" Type="varchar" MaxLength="100" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cajas_aperturas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_caja" Type="int" />
+    <Property Name="id_usuario" Type="int" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="fecha_apertura" Type="datetime" />
+    <Property Name="nombre_apertura" Type="varchar" MaxLength="50" />
+    <Property Name="saldo_efectivo_inicial" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_caja_anterior" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_efectivo_anterior" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="fecha_cierre" Type="datetime" />
+    <Property Name="saldo_caja_cierre" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_efectivo_cierre" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_faltante_cierre" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_sobrante_cierre" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="caja_abierta" Type="bit" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cajas_arqueos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_usuario" Type="int" />
+    <Property Name="fecha_alta" Type="datetime" />
+    <Property Name="id_caja_apertura" Type="int" />
+    <Property Name="total_ingreso" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="total_egreso" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="total_composicion" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_efectivo" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_caja" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="faltante" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="sobrante" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="total_ajuste_faltante" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="total_ajuste_sobrante" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="diferencia" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="observacion" Type="varchar" MaxLength="100" />
+    <Property Name="arqueo_final" Type="bit" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cajas_arqueos_ajustes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_caja_arqueo" Type="int" />
+    <Property Name="tipo_ajuste" Type="varchar" MaxLength="50" />
+    <Property Name="justificacion" Type="varchar" MaxLength="100" />
+    <Property Name="monto" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cajas_arqueos_composiciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_caja_arqueo" Type="int" />
+    <Property Name="cantidad" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="monto" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="sub_total" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="id_tipo_denominacion" Type="int" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cajas_arqueos_detalles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_caja_arqueo" Type="int" />
+    <Property Name="concepto" Type="varchar" MaxLength="50" />
+    <Property Name="ingreso" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="egreso" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="saldo" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cajas_arqueos_ventas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_caja_arqueo" Type="int" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+    <Property Name="total_neto" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="descuento" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="nro_factura" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cajas_composiciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_caja" Type="int" />
+    <Property Name="id_caja_apertura" Type="int" />
+    <Property Name="id_usuario" Type="int" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="total_billete" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="total_moneda" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cajas_composiciones_detalles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_caja_composicion" Type="int" />
+    <Property Name="id_denominacion_moneda" Type="int" />
+    <Property Name="cantidad" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="monto" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cargas_cuentas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_consumision" Type="int" />
+    <Property Name="fecha_alta" Type="datetime" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="id_usuario" Type="int" />
+    <Property Name="total_consumision" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="observacion" Type="varchar" MaxLength="100" />
+    <Property Name="anulado" Type="bit" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cargas_cuentas_anulaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha_alta" Type="datetime" />
+    <Property Name="id_usuario" Type="int" />
+    <Property Name="id_carga_cuenta" Type="int" />
+    <Property Name="motivo_anulacion" Type="varchar" MaxLength="100" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cargas_cuentas_detalles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_carga_cuenta" Type="int" />
+    <Property Name="cantidad" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="id_producto" Type="int" />
+    <Property Name="id_producto_lote" Type="int" />
+    <Property Name="precio_unitario" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
   <EntityType Name="cargos">
     <Key>
       <PropertyRef Name="id" />
@@ -79,6 +261,38 @@
     <Property Name="id_departamento" Type="int" />
     <Property Name="nombre_ciudad" Type="varchar" MaxLength="50" />
     <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="clientes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_tipo_documento" Type="int" />
+    <Property Name="nro_documento" Type="varchar" MaxLength="50" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" />
+    <Property Name="apellido" Type="varchar" MaxLength="100" />
+    <Property Name="razon_social" Type="varchar" MaxLength="200" />
+    <Property Name="id_pais" Type="int" />
+    <Property Name="id_departamento" Type="int" />
+    <Property Name="id_ciudad" Type="int" />
+    <Property Name="id_barrio" Type="int" />
+    <Property Name="direccion" Type="varchar" MaxLength="300" />
+    <Property Name="email_principal" Type="varchar" MaxLength="200" />
+    <Property Name="nro_telefono_principal" Type="varchar" MaxLength="50" />
+    <Property Name="fecha_nacimiento" Type="date" />
+    <Property Name="id_profesion" Type="int" />
+    <Property Name="id_estado_civil" Type="int" />
+    <Property Name="genero" Type="char" MaxLength="1" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="clientes_contactos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_cliente" Type="int" />
+    <Property Name="id_tipo_contacto" Type="int" />
+    <Property Name="contacto" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="compras_productos">
     <Key>
@@ -121,6 +335,71 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="tipo" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="consumisiones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha_alta" Type="datetime" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="id_mesa" Type="int" />
+    <Property Name="id_mozo" Type="int" />
+    <Property Name="id_cliente" Type="int" />
+    <Property Name="ruc_cliente" Type="varchar" MaxLength="50" />
+    <Property Name="nombre_cliente" Type="varchar" MaxLength="100" />
+    <Property Name="consumision_terminado" Type="bit" />
+    <Property Name="total_consumision" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="consumisiones_detalles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_consumision" Type="int" />
+    <Property Name="id_producto" Type="int" />
+    <Property Name="id_producto_lote" Type="int" />
+    <Property Name="cantidad" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="precio_unitario" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cuentas_clientes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_reserva" Type="int" />
+    <Property Name="id_cliente" Type="int" />
+    <Property Name="total_pagar" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_pendiente" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cuentas_clientes_detalles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_cuenta_cliente" Type="int" />
+    <Property Name="id_tarifa_detalle" Type="int" />
+    <Property Name="cantidad" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="descripcion" Type="varchar" MaxLength="200" />
+    <Property Name="precio" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="sub_total" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="cuentas_clientes_pagos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha_pago" Type="datetime" />
+    <Property Name="id_cuenta_cliente" Type="int" />
+    <Property Name="id_tipo_pago" Type="int" />
+    <Property Name="monto" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="observacion" Type="varchar" MaxLength="50" />
+    <Property Name="cenha" Type="bit" />
     <Property Name="estado" Type="bit" />
   </EntityType>
   <EntityType Name="cuentas_proveedores">
@@ -179,6 +458,99 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="facturaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_consumicion" Type="int" />
+    <Property Name="id_condicion_venta" Type="int" />
+    <Property Name="fecha_alta" Type="datetime" />
+    <Property Name="id_usuario" Type="int" />
+    <Property Name="fecha_emision" Type="date" />
+    <Property Name="id_cliente" Type="int" />
+    <Property Name="id_timbrado" Type="int" />
+    <Property Name="id_timbrado_rango" Type="int" />
+    <Property Name="nro_factura" Type="varchar" MaxLength="50" />
+    <Property Name="id_motivo_descuento" Type="int" />
+    <Property Name="total_descuento" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="total_neto" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="total_bruto" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_factura" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_modificado" Type="bit" />
+    <Property Name="anulado" Type="bit" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="facturaciones_detalles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_facturacion" Type="int" />
+    <Property Name="cantidad" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="id_producto" Type="int" />
+    <Property Name="id_producto_lote" Type="int" />
+    <Property Name="precio_unitario" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="iva_excenta" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="iva_5" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="iva_10" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="gravada_excenta" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="gravada_5" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="gravada_10" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="facturaciones_temporales">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_condicion_venta" Type="int" />
+    <Property Name="fecha_alta" Type="datetime" />
+    <Property Name="id_usuario" Type="int" />
+    <Property Name="fecha_emision" Type="date" />
+    <Property Name="id_cliente" Type="int" />
+    <Property Name="ruc" Type="varchar" MaxLength="50" />
+    <Property Name="razon_social" Type="varchar" MaxLength="100" />
+    <Property Name="direccion" Type="varchar" MaxLength="200" />
+    <Property Name="telefono" Type="varchar" MaxLength="50" />
+    <Property Name="id_timbrado" Type="int" />
+    <Property Name="id_timbrado_rango" Type="int" />
+    <Property Name="nro_factura" Type="varchar" MaxLength="50" />
+    <Property Name="id_motivo_descuento" Type="int" />
+    <Property Name="total_descuento" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="total_neto" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="total_bruto" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="anulado" Type="bit" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="facturaciones_temporales_detalles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_facturacion_temporal" Type="int" />
+    <Property Name="cantidad" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+    <Property Name="precio_unitario" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="iva_excenta" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="iva_5" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="iva_10" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="gravada_excenta" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="gravada_5" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="gravada_10" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="facturaciones_temporales_pagos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_factura_temporal" Type="int" />
+    <Property Name="id_tipo_pago" Type="int" />
+    <Property Name="monto_pagado" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="observacion" Type="varchar" MaxLength="100" />
     <Property Name="estado" Type="bit" />
   </EntityType>
   <EntityType Name="funcionarios">
@@ -283,6 +655,14 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre_moneda" Type="varchar" MaxLength="50" />
     <Property Name="simbolo" Type="varchar" MaxLength="2" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="motivos_descuentos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="motivo" Type="varchar" MaxLength="50" />
     <Property Name="estado" Type="bit" />
   </EntityType>
   <EntityType Name="mozos">
@@ -425,6 +805,37 @@
     <Property Name="email_principal" Type="varchar" MaxLength="200" />
     <Property Name="nro_telefono_principal" Type="varchar" MaxLength="50" />
     <Property Name="casa_matriz" Type="bit" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="reservas_estados">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="reservas_habitaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_cliente" Type="int" />
+    <Property Name="fecha_alta" Type="datetime" />
+    <Property Name="id_usuario_apertura" Type="int" />
+    <Property Name="fecha_desde" Type="date" />
+    <Property Name="fecha_hasta" Type="date" />
+    <Property Name="id_tipo_habitacion" Type="int" />
+    <Property Name="id_habitacion" Type="int" />
+    <Property Name="id_reserva_estado" Type="int" />
+    <Property Name="check_in" Type="datetime" />
+    <Property Name="check_out" Type="datetime" />
+    <Property Name="cantidad_adultos" Type="int" />
+    <Property Name="cantidad_menores" Type="int" />
+    <Property Name="id_usuario_cierre" Type="int" />
+    <Property Name="fecha_cierre" Type="datetime" />
+    <Property Name="nro_documento" Type="varchar" MaxLength="50" />
+    <Property Name="nombre_completo" Type="varchar" MaxLength="100" />
     <Property Name="estado" Type="bit" />
   </EntityType>
   <EntityType Name="sucursales">
@@ -593,6 +1004,14 @@
     <Property Name="valor_division" Type="decimal" Precision="18" Scale="0" />
     <Property Name="estado" Type="bit" />
   </EntityType>
+  <EntityType Name="tipos_pagos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
   <EntityType Name="unidades">
     <Key>
       <PropertyRef Name="id" />
@@ -664,6 +1083,330 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_cajas_ajustes_cajas">
+    <End Role="cajas" Type="Self.cajas" Multiplicity="0..1" />
+    <End Role="cajas_ajustes" Type="Self.cajas_ajustes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_ajustes">
+        <PropertyRef Name="id_caja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_ajustes_cajas_aperturas">
+    <End Role="cajas_aperturas" Type="Self.cajas_aperturas" Multiplicity="0..1" />
+    <End Role="cajas_ajustes" Type="Self.cajas_ajustes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas_aperturas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_ajustes">
+        <PropertyRef Name="id_caja_apertura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_ajustes_usuarios">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="cajas_ajustes" Type="Self.cajas_ajustes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_ajustes">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_aperturas_cajas">
+    <End Role="cajas" Type="Self.cajas" Multiplicity="0..1" />
+    <End Role="cajas_aperturas" Type="Self.cajas_aperturas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_aperturas">
+        <PropertyRef Name="id_caja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_aperturas_usuarios">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="cajas_aperturas" Type="Self.cajas_aperturas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_aperturas">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_arqueos_ajustes_cajas_arqueos">
+    <End Role="cajas_arqueos" Type="Self.cajas_arqueos" Multiplicity="0..1" />
+    <End Role="cajas_arqueos_ajustes" Type="Self.cajas_arqueos_ajustes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas_arqueos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_arqueos_ajustes">
+        <PropertyRef Name="id_caja_arqueo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_arqueos_cajas_aperturas">
+    <End Role="cajas_aperturas" Type="Self.cajas_aperturas" Multiplicity="0..1" />
+    <End Role="cajas_arqueos" Type="Self.cajas_arqueos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas_aperturas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_arqueos">
+        <PropertyRef Name="id_caja_apertura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_arqueos_composiciones_cajas_arqueos">
+    <End Role="cajas_arqueos" Type="Self.cajas_arqueos" Multiplicity="0..1" />
+    <End Role="cajas_arqueos_composiciones" Type="Self.cajas_arqueos_composiciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas_arqueos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_arqueos_composiciones">
+        <PropertyRef Name="id_caja_arqueo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_arqueos_composiciones_denominaciones_monedas_tipos">
+    <End Role="denominaciones_monedas_tipos" Type="Self.denominaciones_monedas_tipos" Multiplicity="0..1" />
+    <End Role="cajas_arqueos_composiciones" Type="Self.cajas_arqueos_composiciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="denominaciones_monedas_tipos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_arqueos_composiciones">
+        <PropertyRef Name="id_tipo_denominacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_arqueos_detalles_cajas_arqueos">
+    <End Role="cajas_arqueos" Type="Self.cajas_arqueos" Multiplicity="0..1" />
+    <End Role="cajas_arqueos_detalles" Type="Self.cajas_arqueos_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas_arqueos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_arqueos_detalles">
+        <PropertyRef Name="id_caja_arqueo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_arqueos_usuarios">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="cajas_arqueos" Type="Self.cajas_arqueos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_arqueos">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_arqueos_ventas_cajas_arqueos">
+    <End Role="cajas_arqueos" Type="Self.cajas_arqueos" Multiplicity="0..1" />
+    <End Role="cajas_arqueos_ventas" Type="Self.cajas_arqueos_ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas_arqueos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_arqueos_ventas">
+        <PropertyRef Name="id_caja_arqueo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_composiciones_cajas">
+    <End Role="cajas" Type="Self.cajas" Multiplicity="0..1" />
+    <End Role="cajas_composiciones" Type="Self.cajas_composiciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_composiciones">
+        <PropertyRef Name="id_caja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_composiciones_cajas_aperturas">
+    <End Role="cajas_aperturas" Type="Self.cajas_aperturas" Multiplicity="0..1" />
+    <End Role="cajas_composiciones" Type="Self.cajas_composiciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas_aperturas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_composiciones">
+        <PropertyRef Name="id_caja_apertura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_composiciones_detalles_cajas_composiciones">
+    <End Role="cajas_composiciones" Type="Self.cajas_composiciones" Multiplicity="0..1" />
+    <End Role="cajas_composiciones_detalles" Type="Self.cajas_composiciones_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas_composiciones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_composiciones_detalles">
+        <PropertyRef Name="id_caja_composicion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_composiciones_detalles_denominaciones_monedas">
+    <End Role="denominaciones_monedas" Type="Self.denominaciones_monedas" Multiplicity="0..1" />
+    <End Role="cajas_composiciones_detalles" Type="Self.cajas_composiciones_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="denominaciones_monedas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_composiciones_detalles">
+        <PropertyRef Name="id_denominacion_moneda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_composiciones_usuarios">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="cajas_composiciones" Type="Self.cajas_composiciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_composiciones">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_monedas">
+    <End Role="monedas" Type="Self.monedas" Multiplicity="0..1" />
+    <End Role="cajas" Type="Self.cajas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="monedas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas">
+        <PropertyRef Name="id_moneda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_sucursales">
+    <End Role="sucursales" Type="Self.sucursales" Multiplicity="0..1" />
+    <End Role="cajas" Type="Self.cajas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sucursales">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_usuarios">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="cajas" Type="Self.cajas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cargas_cuentas_anulaciones_cargas_cuentas">
+    <End Role="cargas_cuentas" Type="Self.cargas_cuentas" Multiplicity="0..1" />
+    <End Role="cargas_cuentas_anulaciones" Type="Self.cargas_cuentas_anulaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cargas_cuentas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargas_cuentas_anulaciones">
+        <PropertyRef Name="id_carga_cuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cargas_cuentas_anulaciones_usuarios">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="cargas_cuentas_anulaciones" Type="Self.cargas_cuentas_anulaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargas_cuentas_anulaciones">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cargas_cuentas_consumisiones">
+    <End Role="consumisiones" Type="Self.consumisiones" Multiplicity="0..1" />
+    <End Role="cargas_cuentas" Type="Self.cargas_cuentas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="consumisiones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargas_cuentas">
+        <PropertyRef Name="id_consumision" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cargas_cuentas_detalles_cargas_cuentas">
+    <End Role="cargas_cuentas" Type="Self.cargas_cuentas" Multiplicity="0..1" />
+    <End Role="cargas_cuentas_detalles" Type="Self.cargas_cuentas_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cargas_cuentas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargas_cuentas_detalles">
+        <PropertyRef Name="id_carga_cuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cargas_cuentas_detalles_productos">
+    <End Role="productos" Type="Self.productos" Multiplicity="0..1" />
+    <End Role="cargas_cuentas_detalles" Type="Self.cargas_cuentas_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargas_cuentas_detalles">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cargas_cuentas_detalles_productos_lotes">
+    <End Role="productos_lotes" Type="Self.productos_lotes" Multiplicity="0..1" />
+    <End Role="cargas_cuentas_detalles" Type="Self.cargas_cuentas_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos_lotes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargas_cuentas_detalles">
+        <PropertyRef Name="id_producto_lote" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cargas_cuentas_usuarios">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="cargas_cuentas" Type="Self.cargas_cuentas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargas_cuentas">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_cargos_areas">
     <End Role="areas" Type="Self.areas" Multiplicity="0..1" />
     <End Role="cargos" Type="Self.cargos" Multiplicity="*" />
@@ -685,6 +1428,102 @@
       </Principal>
       <Dependent Role="ciudades">
         <PropertyRef Name="id_departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clientes_barrios">
+    <End Role="barrios" Type="Self.barrios" Multiplicity="0..1" />
+    <End Role="clientes" Type="Self.clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="barrios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="id_barrio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clientes_contactos_clientes">
+    <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+    <End Role="clientes_contactos" Type="Self.clientes_contactos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientes_contactos">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clientes_contactos_tipos_contactos">
+    <End Role="tipos_contactos" Type="Self.tipos_contactos" Multiplicity="0..1" />
+    <End Role="clientes_contactos" Type="Self.clientes_contactos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_contactos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientes_contactos">
+        <PropertyRef Name="id_tipo_contacto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clientes_departamentos">
+    <End Role="departamentos" Type="Self.departamentos" Multiplicity="0..1" />
+    <End Role="clientes" Type="Self.clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departamentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="id_departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clientes_estados_civiles">
+    <End Role="estados_civiles" Type="Self.estados_civiles" Multiplicity="0..1" />
+    <End Role="clientes" Type="Self.clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estados_civiles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="id_estado_civil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clientes_paises">
+    <End Role="paises" Type="Self.paises" Multiplicity="0..1" />
+    <End Role="clientes" Type="Self.clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="paises">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="id_pais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clientes_profesiones">
+    <End Role="profesiones" Type="Self.profesiones" Multiplicity="0..1" />
+    <End Role="clientes" Type="Self.clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profesiones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="id_profesion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clientes_tipos_documentos">
+    <End Role="tipos_documentos" Type="Self.tipos_documentos" Multiplicity="0..1" />
+    <End Role="clientes" Type="Self.clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_documentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="id_tipo_documento" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -784,6 +1623,150 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_consumisiones_clientes">
+    <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+    <End Role="consumisiones" Type="Self.consumisiones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consumisiones">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_consumisiones_detalles_consumisiones">
+    <End Role="consumisiones" Type="Self.consumisiones" Multiplicity="0..1" />
+    <End Role="consumisiones_detalles" Type="Self.consumisiones_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="consumisiones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consumisiones_detalles">
+        <PropertyRef Name="id_consumision" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_consumisiones_detalles_productos">
+    <End Role="productos" Type="Self.productos" Multiplicity="0..1" />
+    <End Role="consumisiones_detalles" Type="Self.consumisiones_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consumisiones_detalles">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_consumisiones_detalles_productos_lotes">
+    <End Role="productos_lotes" Type="Self.productos_lotes" Multiplicity="0..1" />
+    <End Role="consumisiones_detalles" Type="Self.consumisiones_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos_lotes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consumisiones_detalles">
+        <PropertyRef Name="id_producto_lote" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_consumisiones_mesas">
+    <End Role="mesas" Type="Self.mesas" Multiplicity="0..1" />
+    <End Role="consumisiones" Type="Self.consumisiones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mesas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consumisiones">
+        <PropertyRef Name="id_mesa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_consumisiones_mozos">
+    <End Role="mozos" Type="Self.mozos" Multiplicity="0..1" />
+    <End Role="consumisiones" Type="Self.consumisiones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mozos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consumisiones">
+        <PropertyRef Name="id_mozo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_clientes_clientes">
+    <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+    <End Role="cuentas_clientes" Type="Self.cuentas_clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cuentas_clientes">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_clientes_detalles_cuentas_clientes">
+    <End Role="cuentas_clientes" Type="Self.cuentas_clientes" Multiplicity="0..1" />
+    <End Role="cuentas_clientes_detalles" Type="Self.cuentas_clientes_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cuentas_clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cuentas_clientes_detalles">
+        <PropertyRef Name="id_cuenta_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_clientes_detalles_tarifas_detalles">
+    <End Role="tarifas_detalles" Type="Self.tarifas_detalles" Multiplicity="0..1" />
+    <End Role="cuentas_clientes_detalles" Type="Self.cuentas_clientes_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tarifas_detalles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cuentas_clientes_detalles">
+        <PropertyRef Name="id_tarifa_detalle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_clientes_pagos_cuentas_clientes">
+    <End Role="cuentas_clientes" Type="Self.cuentas_clientes" Multiplicity="0..1" />
+    <End Role="cuentas_clientes_pagos" Type="Self.cuentas_clientes_pagos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cuentas_clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cuentas_clientes_pagos">
+        <PropertyRef Name="id_cuenta_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_clientes_pagos_tipos_pagos">
+    <End Role="tipos_pagos" Type="Self.tipos_pagos" Multiplicity="0..1" />
+    <End Role="cuentas_clientes_pagos" Type="Self.cuentas_clientes_pagos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_pagos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cuentas_clientes_pagos">
+        <PropertyRef Name="id_tipo_pago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_clientes_reservas_habitaciones">
+    <End Role="reservas_habitaciones" Type="Self.reservas_habitaciones" Multiplicity="0..1" />
+    <End Role="cuentas_clientes" Type="Self.cuentas_clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="reservas_habitaciones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cuentas_clientes">
+        <PropertyRef Name="id_reserva" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_cuentas_proveedores_proveedores">
     <End Role="proveedores" Type="Self.proveedores" Multiplicity="0..1" />
     <End Role="cuentas_proveedores" Type="Self.cuentas_proveedores" Multiplicity="*" />
@@ -853,6 +1836,234 @@
       </Principal>
       <Dependent Role="depositos">
         <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_clientes">
+    <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+    <End Role="facturaciones" Type="Self.facturaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_condiciones_compras_ventas">
+    <End Role="condiciones_compras_ventas" Type="Self.condiciones_compras_ventas" Multiplicity="0..1" />
+    <End Role="facturaciones" Type="Self.facturaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="condiciones_compras_ventas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones">
+        <PropertyRef Name="id_condicion_venta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_consumisiones">
+    <End Role="consumisiones" Type="Self.consumisiones" Multiplicity="0..1" />
+    <End Role="facturaciones" Type="Self.facturaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="consumisiones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones">
+        <PropertyRef Name="id_consumicion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_detalles_facturaciones">
+    <End Role="facturaciones" Type="Self.facturaciones" Multiplicity="0..1" />
+    <End Role="facturaciones_detalles" Type="Self.facturaciones_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="facturaciones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_detalles">
+        <PropertyRef Name="id_facturacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_detalles_productos">
+    <End Role="productos" Type="Self.productos" Multiplicity="0..1" />
+    <End Role="facturaciones_detalles" Type="Self.facturaciones_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_detalles">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_detalles_productos_lotes">
+    <End Role="productos_lotes" Type="Self.productos_lotes" Multiplicity="0..1" />
+    <End Role="facturaciones_detalles" Type="Self.facturaciones_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos_lotes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_detalles">
+        <PropertyRef Name="id_producto_lote" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_motivos_descuentos">
+    <End Role="motivos_descuentos" Type="Self.motivos_descuentos" Multiplicity="0..1" />
+    <End Role="facturaciones" Type="Self.facturaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="motivos_descuentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones">
+        <PropertyRef Name="id_motivo_descuento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_clientes">
+    <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+    <End Role="facturaciones_temporales" Type="Self.facturaciones_temporales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_condiciones_compras_ventas">
+    <End Role="condiciones_compras_ventas" Type="Self.condiciones_compras_ventas" Multiplicity="0..1" />
+    <End Role="facturaciones_temporales" Type="Self.facturaciones_temporales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="condiciones_compras_ventas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales">
+        <PropertyRef Name="id_condicion_venta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_detalles_facturaciones_temporales">
+    <End Role="facturaciones_temporales" Type="Self.facturaciones_temporales" Multiplicity="0..1" />
+    <End Role="facturaciones_temporales_detalles" Type="Self.facturaciones_temporales_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="facturaciones_temporales">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales_detalles">
+        <PropertyRef Name="id_facturacion_temporal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_motivos_descuentos">
+    <End Role="motivos_descuentos" Type="Self.motivos_descuentos" Multiplicity="0..1" />
+    <End Role="facturaciones_temporales" Type="Self.facturaciones_temporales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="motivos_descuentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales">
+        <PropertyRef Name="id_motivo_descuento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_pagos_facturaciones_temporales">
+    <End Role="facturaciones_temporales" Type="Self.facturaciones_temporales" Multiplicity="0..1" />
+    <End Role="facturaciones_temporales_pagos" Type="Self.facturaciones_temporales_pagos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="facturaciones_temporales">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales_pagos">
+        <PropertyRef Name="id_factura_temporal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_pagos_tipos_pagos">
+    <End Role="tipos_pagos" Type="Self.tipos_pagos" Multiplicity="0..1" />
+    <End Role="facturaciones_temporales_pagos" Type="Self.facturaciones_temporales_pagos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_pagos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales_pagos">
+        <PropertyRef Name="id_tipo_pago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_timbrados">
+    <End Role="timbrados" Type="Self.timbrados" Multiplicity="0..1" />
+    <End Role="facturaciones_temporales" Type="Self.facturaciones_temporales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales">
+        <PropertyRef Name="id_timbrado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_timbrados_rangos">
+    <End Role="timbrados_rangos" Type="Self.timbrados_rangos" Multiplicity="0..1" />
+    <End Role="facturaciones_temporales" Type="Self.facturaciones_temporales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados_rangos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales">
+        <PropertyRef Name="id_timbrado_rango" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_usuarios">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="facturaciones_temporales" Type="Self.facturaciones_temporales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_timbrados">
+    <End Role="timbrados" Type="Self.timbrados" Multiplicity="0..1" />
+    <End Role="facturaciones" Type="Self.facturaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones">
+        <PropertyRef Name="id_timbrado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_timbrados_rangos">
+    <End Role="timbrados_rangos" Type="Self.timbrados_rangos" Multiplicity="0..1" />
+    <End Role="facturaciones" Type="Self.facturaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados_rangos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones">
+        <PropertyRef Name="id_timbrado_rango" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_usuarios">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="facturaciones" Type="Self.facturaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones">
+        <PropertyRef Name="id_usuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1240,6 +2451,78 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_reservas_habitaciones_clientes">
+    <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+    <End Role="reservas_habitaciones" Type="Self.reservas_habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="reservas_habitaciones">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservas_habitaciones_habitaciones">
+    <End Role="habitaciones" Type="Self.habitaciones" Multiplicity="0..1" />
+    <End Role="reservas_habitaciones" Type="Self.reservas_habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="habitaciones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="reservas_habitaciones">
+        <PropertyRef Name="id_habitacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservas_habitaciones_habitaciones_tipos">
+    <End Role="habitaciones_tipos" Type="Self.habitaciones_tipos" Multiplicity="0..1" />
+    <End Role="reservas_habitaciones" Type="Self.reservas_habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="habitaciones_tipos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="reservas_habitaciones">
+        <PropertyRef Name="id_tipo_habitacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservas_habitaciones_reservas_estados">
+    <End Role="reservas_estados" Type="Self.reservas_estados" Multiplicity="0..1" />
+    <End Role="reservas_habitaciones" Type="Self.reservas_habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="reservas_estados">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="reservas_habitaciones">
+        <PropertyRef Name="id_reserva_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservas_habitaciones_usuarios">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="reservas_habitaciones" Type="Self.reservas_habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="reservas_habitaciones">
+        <PropertyRef Name="id_usuario_apertura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservas_habitaciones_usuarios1">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="reservas_habitaciones" Type="Self.reservas_habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="reservas_habitaciones">
+        <PropertyRef Name="id_usuario_cierre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_sucursales_barrios">
     <End Role="barrios" Type="Self.barrios" Multiplicity="0..1" />
     <End Role="sucursales" Type="Self.sucursales" Multiplicity="*" />
@@ -1475,18 +2758,43 @@
     <EntitySet Name="bancos_cuentas" EntityType="Self.bancos_cuentas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="bancos_tipos_cuentas" EntityType="Self.bancos_tipos_cuentas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="barrios" EntityType="Self.barrios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cajas" EntityType="Self.cajas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cajas_ajustes" EntityType="Self.cajas_ajustes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cajas_aperturas" EntityType="Self.cajas_aperturas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cajas_arqueos" EntityType="Self.cajas_arqueos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cajas_arqueos_ajustes" EntityType="Self.cajas_arqueos_ajustes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cajas_arqueos_composiciones" EntityType="Self.cajas_arqueos_composiciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cajas_arqueos_detalles" EntityType="Self.cajas_arqueos_detalles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cajas_arqueos_ventas" EntityType="Self.cajas_arqueos_ventas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cajas_composiciones" EntityType="Self.cajas_composiciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cajas_composiciones_detalles" EntityType="Self.cajas_composiciones_detalles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cargas_cuentas" EntityType="Self.cargas_cuentas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cargas_cuentas_anulaciones" EntityType="Self.cargas_cuentas_anulaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cargas_cuentas_detalles" EntityType="Self.cargas_cuentas_detalles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="cargos" EntityType="Self.cargos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="categorias" EntityType="Self.categorias" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ciudades" EntityType="Self.ciudades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="clientes" EntityType="Self.clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="clientes_contactos" EntityType="Self.clientes_contactos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="compras_productos" EntityType="Self.compras_productos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="compras_productos_detalles" EntityType="Self.compras_productos_detalles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="condiciones_compras_ventas" EntityType="Self.condiciones_compras_ventas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="consumisiones" EntityType="Self.consumisiones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="consumisiones_detalles" EntityType="Self.consumisiones_detalles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cuentas_clientes" EntityType="Self.cuentas_clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cuentas_clientes_detalles" EntityType="Self.cuentas_clientes_detalles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cuentas_clientes_pagos" EntityType="Self.cuentas_clientes_pagos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="cuentas_proveedores" EntityType="Self.cuentas_proveedores" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="denominaciones_monedas" EntityType="Self.denominaciones_monedas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="denominaciones_monedas_tipos" EntityType="Self.denominaciones_monedas_tipos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="departamentos" EntityType="Self.departamentos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="depositos" EntityType="Self.depositos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="estados_civiles" EntityType="Self.estados_civiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="facturaciones" EntityType="Self.facturaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="facturaciones_detalles" EntityType="Self.facturaciones_detalles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="facturaciones_temporales" EntityType="Self.facturaciones_temporales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="facturaciones_temporales_detalles" EntityType="Self.facturaciones_temporales_detalles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="facturaciones_temporales_pagos" EntityType="Self.facturaciones_temporales_pagos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="funcionarios" EntityType="Self.funcionarios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="habitaciones" EntityType="Self.habitaciones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="habitaciones_estados" EntityType="Self.habitaciones_estados" Schema="dbo" store:Type="Tables" />
@@ -1498,6 +2806,7 @@
     <EntitySet Name="modulos" EntityType="Self.modulos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="modulos_operaciones" EntityType="Self.modulos_operaciones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="monedas" EntityType="Self.monedas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="motivos_descuentos" EntityType="Self.motivos_descuentos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="mozos" EntityType="Self.mozos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="paises" EntityType="Self.paises" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="parametros" EntityType="Self.parametros" Schema="dbo" store:Type="Tables" />
@@ -1510,6 +2819,8 @@
     <EntitySet Name="proveedores" EntityType="Self.proveedores" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="proveedores_contactos" EntityType="Self.proveedores_contactos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="proveedores_sucursales" EntityType="Self.proveedores_sucursales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="reservas_estados" EntityType="Self.reservas_estados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="reservas_habitaciones" EntityType="Self.reservas_habitaciones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sucursales" EntityType="Self.sucursales" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tarifas" EntityType="Self.tarifas" Schema="dbo" store:Type="Tables" />
@@ -1526,6 +2837,7 @@
     <EntitySet Name="tipos_contactos" EntityType="Self.tipos_contactos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tipos_documentos" EntityType="Self.tipos_documentos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tipos_ivas" EntityType="Self.tipos_ivas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tipos_pagos" EntityType="Self.tipos_pagos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="unidades" EntityType="Self.unidades" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_bancos_cuentas_bancos" Association="Self.FK_bancos_cuentas_bancos">
@@ -1544,6 +2856,114 @@
       <End Role="ciudades" EntitySet="ciudades" />
       <End Role="barrios" EntitySet="barrios" />
     </AssociationSet>
+    <AssociationSet Name="FK_cajas_ajustes_cajas" Association="Self.FK_cajas_ajustes_cajas">
+      <End Role="cajas" EntitySet="cajas" />
+      <End Role="cajas_ajustes" EntitySet="cajas_ajustes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_ajustes_cajas_aperturas" Association="Self.FK_cajas_ajustes_cajas_aperturas">
+      <End Role="cajas_aperturas" EntitySet="cajas_aperturas" />
+      <End Role="cajas_ajustes" EntitySet="cajas_ajustes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_ajustes_usuarios" Association="Self.FK_cajas_ajustes_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cajas_ajustes" EntitySet="cajas_ajustes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_aperturas_cajas" Association="Self.FK_cajas_aperturas_cajas">
+      <End Role="cajas" EntitySet="cajas" />
+      <End Role="cajas_aperturas" EntitySet="cajas_aperturas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_aperturas_usuarios" Association="Self.FK_cajas_aperturas_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cajas_aperturas" EntitySet="cajas_aperturas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_arqueos_ajustes_cajas_arqueos" Association="Self.FK_cajas_arqueos_ajustes_cajas_arqueos">
+      <End Role="cajas_arqueos" EntitySet="cajas_arqueos" />
+      <End Role="cajas_arqueos_ajustes" EntitySet="cajas_arqueos_ajustes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_arqueos_cajas_aperturas" Association="Self.FK_cajas_arqueos_cajas_aperturas">
+      <End Role="cajas_aperturas" EntitySet="cajas_aperturas" />
+      <End Role="cajas_arqueos" EntitySet="cajas_arqueos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_arqueos_composiciones_cajas_arqueos" Association="Self.FK_cajas_arqueos_composiciones_cajas_arqueos">
+      <End Role="cajas_arqueos" EntitySet="cajas_arqueos" />
+      <End Role="cajas_arqueos_composiciones" EntitySet="cajas_arqueos_composiciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_arqueos_composiciones_denominaciones_monedas_tipos" Association="Self.FK_cajas_arqueos_composiciones_denominaciones_monedas_tipos">
+      <End Role="denominaciones_monedas_tipos" EntitySet="denominaciones_monedas_tipos" />
+      <End Role="cajas_arqueos_composiciones" EntitySet="cajas_arqueos_composiciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_arqueos_detalles_cajas_arqueos" Association="Self.FK_cajas_arqueos_detalles_cajas_arqueos">
+      <End Role="cajas_arqueos" EntitySet="cajas_arqueos" />
+      <End Role="cajas_arqueos_detalles" EntitySet="cajas_arqueos_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_arqueos_usuarios" Association="Self.FK_cajas_arqueos_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cajas_arqueos" EntitySet="cajas_arqueos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_arqueos_ventas_cajas_arqueos" Association="Self.FK_cajas_arqueos_ventas_cajas_arqueos">
+      <End Role="cajas_arqueos" EntitySet="cajas_arqueos" />
+      <End Role="cajas_arqueos_ventas" EntitySet="cajas_arqueos_ventas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_composiciones_cajas" Association="Self.FK_cajas_composiciones_cajas">
+      <End Role="cajas" EntitySet="cajas" />
+      <End Role="cajas_composiciones" EntitySet="cajas_composiciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_composiciones_cajas_aperturas" Association="Self.FK_cajas_composiciones_cajas_aperturas">
+      <End Role="cajas_aperturas" EntitySet="cajas_aperturas" />
+      <End Role="cajas_composiciones" EntitySet="cajas_composiciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_composiciones_detalles_cajas_composiciones" Association="Self.FK_cajas_composiciones_detalles_cajas_composiciones">
+      <End Role="cajas_composiciones" EntitySet="cajas_composiciones" />
+      <End Role="cajas_composiciones_detalles" EntitySet="cajas_composiciones_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_composiciones_detalles_denominaciones_monedas" Association="Self.FK_cajas_composiciones_detalles_denominaciones_monedas">
+      <End Role="denominaciones_monedas" EntitySet="denominaciones_monedas" />
+      <End Role="cajas_composiciones_detalles" EntitySet="cajas_composiciones_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_composiciones_usuarios" Association="Self.FK_cajas_composiciones_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cajas_composiciones" EntitySet="cajas_composiciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_monedas" Association="Self.FK_cajas_monedas">
+      <End Role="monedas" EntitySet="monedas" />
+      <End Role="cajas" EntitySet="cajas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_sucursales" Association="Self.FK_cajas_sucursales">
+      <End Role="sucursales" EntitySet="sucursales" />
+      <End Role="cajas" EntitySet="cajas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_usuarios" Association="Self.FK_cajas_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cajas" EntitySet="cajas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cargas_cuentas_anulaciones_cargas_cuentas" Association="Self.FK_cargas_cuentas_anulaciones_cargas_cuentas">
+      <End Role="cargas_cuentas" EntitySet="cargas_cuentas" />
+      <End Role="cargas_cuentas_anulaciones" EntitySet="cargas_cuentas_anulaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cargas_cuentas_anulaciones_usuarios" Association="Self.FK_cargas_cuentas_anulaciones_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cargas_cuentas_anulaciones" EntitySet="cargas_cuentas_anulaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cargas_cuentas_consumisiones" Association="Self.FK_cargas_cuentas_consumisiones">
+      <End Role="consumisiones" EntitySet="consumisiones" />
+      <End Role="cargas_cuentas" EntitySet="cargas_cuentas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cargas_cuentas_detalles_cargas_cuentas" Association="Self.FK_cargas_cuentas_detalles_cargas_cuentas">
+      <End Role="cargas_cuentas" EntitySet="cargas_cuentas" />
+      <End Role="cargas_cuentas_detalles" EntitySet="cargas_cuentas_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cargas_cuentas_detalles_productos" Association="Self.FK_cargas_cuentas_detalles_productos">
+      <End Role="productos" EntitySet="productos" />
+      <End Role="cargas_cuentas_detalles" EntitySet="cargas_cuentas_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cargas_cuentas_detalles_productos_lotes" Association="Self.FK_cargas_cuentas_detalles_productos_lotes">
+      <End Role="productos_lotes" EntitySet="productos_lotes" />
+      <End Role="cargas_cuentas_detalles" EntitySet="cargas_cuentas_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cargas_cuentas_usuarios" Association="Self.FK_cargas_cuentas_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cargas_cuentas" EntitySet="cargas_cuentas" />
+    </AssociationSet>
     <AssociationSet Name="FK_cargos_areas" Association="Self.FK_cargos_areas">
       <End Role="areas" EntitySet="areas" />
       <End Role="cargos" EntitySet="cargos" />
@@ -1551,6 +2971,38 @@
     <AssociationSet Name="FK_ciudades_departamentos" Association="Self.FK_ciudades_departamentos">
       <End Role="departamentos" EntitySet="departamentos" />
       <End Role="ciudades" EntitySet="ciudades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clientes_barrios" Association="Self.FK_clientes_barrios">
+      <End Role="barrios" EntitySet="barrios" />
+      <End Role="clientes" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clientes_contactos_clientes" Association="Self.FK_clientes_contactos_clientes">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="clientes_contactos" EntitySet="clientes_contactos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clientes_contactos_tipos_contactos" Association="Self.FK_clientes_contactos_tipos_contactos">
+      <End Role="tipos_contactos" EntitySet="tipos_contactos" />
+      <End Role="clientes_contactos" EntitySet="clientes_contactos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clientes_departamentos" Association="Self.FK_clientes_departamentos">
+      <End Role="departamentos" EntitySet="departamentos" />
+      <End Role="clientes" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clientes_estados_civiles" Association="Self.FK_clientes_estados_civiles">
+      <End Role="estados_civiles" EntitySet="estados_civiles" />
+      <End Role="clientes" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clientes_paises" Association="Self.FK_clientes_paises">
+      <End Role="paises" EntitySet="paises" />
+      <End Role="clientes" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clientes_profesiones" Association="Self.FK_clientes_profesiones">
+      <End Role="profesiones" EntitySet="profesiones" />
+      <End Role="clientes" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clientes_tipos_documentos" Association="Self.FK_clientes_tipos_documentos">
+      <End Role="tipos_documentos" EntitySet="tipos_documentos" />
+      <End Role="clientes" EntitySet="clientes" />
     </AssociationSet>
     <AssociationSet Name="FK_compras_productos_condiciones_compras_ventas" Association="Self.FK_compras_productos_condiciones_compras_ventas">
       <End Role="condiciones_compras_ventas" EntitySet="condiciones_compras_ventas" />
@@ -1584,6 +3036,54 @@
       <End Role="usuarios" EntitySet="usuarios" />
       <End Role="compras_productos" EntitySet="compras_productos" />
     </AssociationSet>
+    <AssociationSet Name="FK_consumisiones_clientes" Association="Self.FK_consumisiones_clientes">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="consumisiones" EntitySet="consumisiones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_consumisiones_detalles_consumisiones" Association="Self.FK_consumisiones_detalles_consumisiones">
+      <End Role="consumisiones" EntitySet="consumisiones" />
+      <End Role="consumisiones_detalles" EntitySet="consumisiones_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_consumisiones_detalles_productos" Association="Self.FK_consumisiones_detalles_productos">
+      <End Role="productos" EntitySet="productos" />
+      <End Role="consumisiones_detalles" EntitySet="consumisiones_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_consumisiones_detalles_productos_lotes" Association="Self.FK_consumisiones_detalles_productos_lotes">
+      <End Role="productos_lotes" EntitySet="productos_lotes" />
+      <End Role="consumisiones_detalles" EntitySet="consumisiones_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_consumisiones_mesas" Association="Self.FK_consumisiones_mesas">
+      <End Role="mesas" EntitySet="mesas" />
+      <End Role="consumisiones" EntitySet="consumisiones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_consumisiones_mozos" Association="Self.FK_consumisiones_mozos">
+      <End Role="mozos" EntitySet="mozos" />
+      <End Role="consumisiones" EntitySet="consumisiones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_clientes_clientes" Association="Self.FK_cuentas_clientes_clientes">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="cuentas_clientes" EntitySet="cuentas_clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_clientes_detalles_cuentas_clientes" Association="Self.FK_cuentas_clientes_detalles_cuentas_clientes">
+      <End Role="cuentas_clientes" EntitySet="cuentas_clientes" />
+      <End Role="cuentas_clientes_detalles" EntitySet="cuentas_clientes_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_clientes_detalles_tarifas_detalles" Association="Self.FK_cuentas_clientes_detalles_tarifas_detalles">
+      <End Role="tarifas_detalles" EntitySet="tarifas_detalles" />
+      <End Role="cuentas_clientes_detalles" EntitySet="cuentas_clientes_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_clientes_pagos_cuentas_clientes" Association="Self.FK_cuentas_clientes_pagos_cuentas_clientes">
+      <End Role="cuentas_clientes" EntitySet="cuentas_clientes" />
+      <End Role="cuentas_clientes_pagos" EntitySet="cuentas_clientes_pagos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_clientes_pagos_tipos_pagos" Association="Self.FK_cuentas_clientes_pagos_tipos_pagos">
+      <End Role="tipos_pagos" EntitySet="tipos_pagos" />
+      <End Role="cuentas_clientes_pagos" EntitySet="cuentas_clientes_pagos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_clientes_reservas_habitaciones" Association="Self.FK_cuentas_clientes_reservas_habitaciones">
+      <End Role="reservas_habitaciones" EntitySet="reservas_habitaciones" />
+      <End Role="cuentas_clientes" EntitySet="cuentas_clientes" />
+    </AssociationSet>
     <AssociationSet Name="FK_cuentas_proveedores_proveedores" Association="Self.FK_cuentas_proveedores_proveedores">
       <End Role="proveedores" EntitySet="proveedores" />
       <End Role="cuentas_proveedores" EntitySet="cuentas_proveedores" />
@@ -1607,6 +3107,82 @@
     <AssociationSet Name="FK_depositos_sucursales" Association="Self.FK_depositos_sucursales">
       <End Role="sucursales" EntitySet="sucursales" />
       <End Role="depositos" EntitySet="depositos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_clientes" Association="Self.FK_facturaciones_clientes">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="facturaciones" EntitySet="facturaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_condiciones_compras_ventas" Association="Self.FK_facturaciones_condiciones_compras_ventas">
+      <End Role="condiciones_compras_ventas" EntitySet="condiciones_compras_ventas" />
+      <End Role="facturaciones" EntitySet="facturaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_consumisiones" Association="Self.FK_facturaciones_consumisiones">
+      <End Role="consumisiones" EntitySet="consumisiones" />
+      <End Role="facturaciones" EntitySet="facturaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_detalles_facturaciones" Association="Self.FK_facturaciones_detalles_facturaciones">
+      <End Role="facturaciones" EntitySet="facturaciones" />
+      <End Role="facturaciones_detalles" EntitySet="facturaciones_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_detalles_productos" Association="Self.FK_facturaciones_detalles_productos">
+      <End Role="productos" EntitySet="productos" />
+      <End Role="facturaciones_detalles" EntitySet="facturaciones_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_detalles_productos_lotes" Association="Self.FK_facturaciones_detalles_productos_lotes">
+      <End Role="productos_lotes" EntitySet="productos_lotes" />
+      <End Role="facturaciones_detalles" EntitySet="facturaciones_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_motivos_descuentos" Association="Self.FK_facturaciones_motivos_descuentos">
+      <End Role="motivos_descuentos" EntitySet="motivos_descuentos" />
+      <End Role="facturaciones" EntitySet="facturaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_clientes" Association="Self.FK_facturaciones_temporales_clientes">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="facturaciones_temporales" EntitySet="facturaciones_temporales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_condiciones_compras_ventas" Association="Self.FK_facturaciones_temporales_condiciones_compras_ventas">
+      <End Role="condiciones_compras_ventas" EntitySet="condiciones_compras_ventas" />
+      <End Role="facturaciones_temporales" EntitySet="facturaciones_temporales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_detalles_facturaciones_temporales" Association="Self.FK_facturaciones_temporales_detalles_facturaciones_temporales">
+      <End Role="facturaciones_temporales" EntitySet="facturaciones_temporales" />
+      <End Role="facturaciones_temporales_detalles" EntitySet="facturaciones_temporales_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_motivos_descuentos" Association="Self.FK_facturaciones_temporales_motivos_descuentos">
+      <End Role="motivos_descuentos" EntitySet="motivos_descuentos" />
+      <End Role="facturaciones_temporales" EntitySet="facturaciones_temporales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_pagos_facturaciones_temporales" Association="Self.FK_facturaciones_temporales_pagos_facturaciones_temporales">
+      <End Role="facturaciones_temporales" EntitySet="facturaciones_temporales" />
+      <End Role="facturaciones_temporales_pagos" EntitySet="facturaciones_temporales_pagos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_pagos_tipos_pagos" Association="Self.FK_facturaciones_temporales_pagos_tipos_pagos">
+      <End Role="tipos_pagos" EntitySet="tipos_pagos" />
+      <End Role="facturaciones_temporales_pagos" EntitySet="facturaciones_temporales_pagos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_timbrados" Association="Self.FK_facturaciones_temporales_timbrados">
+      <End Role="timbrados" EntitySet="timbrados" />
+      <End Role="facturaciones_temporales" EntitySet="facturaciones_temporales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_timbrados_rangos" Association="Self.FK_facturaciones_temporales_timbrados_rangos">
+      <End Role="timbrados_rangos" EntitySet="timbrados_rangos" />
+      <End Role="facturaciones_temporales" EntitySet="facturaciones_temporales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_usuarios" Association="Self.FK_facturaciones_temporales_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="facturaciones_temporales" EntitySet="facturaciones_temporales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_timbrados" Association="Self.FK_facturaciones_timbrados">
+      <End Role="timbrados" EntitySet="timbrados" />
+      <End Role="facturaciones" EntitySet="facturaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_timbrados_rangos" Association="Self.FK_facturaciones_timbrados_rangos">
+      <End Role="timbrados_rangos" EntitySet="timbrados_rangos" />
+      <End Role="facturaciones" EntitySet="facturaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_usuarios" Association="Self.FK_facturaciones_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="facturaciones" EntitySet="facturaciones" />
     </AssociationSet>
     <AssociationSet Name="FK_funcionarios_areas" Association="Self.FK_funcionarios_areas">
       <End Role="areas" EntitySet="areas" />
@@ -1735,6 +3311,30 @@
     <AssociationSet Name="FK_proveedores_tipos_documentos" Association="Self.FK_proveedores_tipos_documentos">
       <End Role="tipos_documentos" EntitySet="tipos_documentos" />
       <End Role="proveedores" EntitySet="proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservas_habitaciones_clientes" Association="Self.FK_reservas_habitaciones_clientes">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="reservas_habitaciones" EntitySet="reservas_habitaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservas_habitaciones_habitaciones" Association="Self.FK_reservas_habitaciones_habitaciones">
+      <End Role="habitaciones" EntitySet="habitaciones" />
+      <End Role="reservas_habitaciones" EntitySet="reservas_habitaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservas_habitaciones_habitaciones_tipos" Association="Self.FK_reservas_habitaciones_habitaciones_tipos">
+      <End Role="habitaciones_tipos" EntitySet="habitaciones_tipos" />
+      <End Role="reservas_habitaciones" EntitySet="reservas_habitaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservas_habitaciones_reservas_estados" Association="Self.FK_reservas_habitaciones_reservas_estados">
+      <End Role="reservas_estados" EntitySet="reservas_estados" />
+      <End Role="reservas_habitaciones" EntitySet="reservas_habitaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservas_habitaciones_usuarios" Association="Self.FK_reservas_habitaciones_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="reservas_habitaciones" EntitySet="reservas_habitaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservas_habitaciones_usuarios1" Association="Self.FK_reservas_habitaciones_usuarios1">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="reservas_habitaciones" EntitySet="reservas_habitaciones" />
     </AssociationSet>
     <AssociationSet Name="FK_sucursales_barrios" Association="Self.FK_sucursales_barrios">
       <End Role="barrios" EntitySet="barrios" />

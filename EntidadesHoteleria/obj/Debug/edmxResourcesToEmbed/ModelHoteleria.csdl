@@ -344,6 +344,323 @@
       <End Role="timbrados_rangos_tipos" EntitySet="timbrados_rangos_tipos" />
       <End Role="timbrados_rangos" EntitySet="timbrados_rangos" />
     </AssociationSet>
+    <EntitySet Name="clientes" EntityType="hoteleria_erp_dbModel.clientes" />
+    <EntitySet Name="clientes_contactos" EntityType="hoteleria_erp_dbModel.clientes_contactos" />
+    <EntitySet Name="reservas_estados" EntityType="hoteleria_erp_dbModel.reservas_estados" />
+    <EntitySet Name="reservas_habitaciones" EntityType="hoteleria_erp_dbModel.reservas_habitaciones" />
+    <AssociationSet Name="FK_clientes_barrios" Association="hoteleria_erp_dbModel.FK_clientes_barrios">
+      <End Role="barrios" EntitySet="barrios" />
+      <End Role="clientes" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clientes_contactos_clientes" Association="hoteleria_erp_dbModel.FK_clientes_contactos_clientes">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="clientes_contactos" EntitySet="clientes_contactos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clientes_departamentos" Association="hoteleria_erp_dbModel.FK_clientes_departamentos">
+      <End Role="departamentos" EntitySet="departamentos" />
+      <End Role="clientes" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clientes_estados_civiles" Association="hoteleria_erp_dbModel.FK_clientes_estados_civiles">
+      <End Role="estados_civiles" EntitySet="estados_civiles" />
+      <End Role="clientes" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clientes_paises" Association="hoteleria_erp_dbModel.FK_clientes_paises">
+      <End Role="paises" EntitySet="paises" />
+      <End Role="clientes" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clientes_profesiones" Association="hoteleria_erp_dbModel.FK_clientes_profesiones">
+      <End Role="profesiones" EntitySet="profesiones" />
+      <End Role="clientes" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clientes_tipos_documentos" Association="hoteleria_erp_dbModel.FK_clientes_tipos_documentos">
+      <End Role="tipos_documentos" EntitySet="tipos_documentos" />
+      <End Role="clientes" EntitySet="clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservas_habitaciones_clientes" Association="hoteleria_erp_dbModel.FK_reservas_habitaciones_clientes">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="reservas_habitaciones" EntitySet="reservas_habitaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_clientes_contactos_tipos_contactos" Association="hoteleria_erp_dbModel.FK_clientes_contactos_tipos_contactos">
+      <End Role="tipos_contactos" EntitySet="tipos_contactos" />
+      <End Role="clientes_contactos" EntitySet="clientes_contactos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservas_habitaciones_habitaciones" Association="hoteleria_erp_dbModel.FK_reservas_habitaciones_habitaciones">
+      <End Role="habitaciones" EntitySet="habitaciones" />
+      <End Role="reservas_habitaciones" EntitySet="reservas_habitaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservas_habitaciones_habitaciones_tipos" Association="hoteleria_erp_dbModel.FK_reservas_habitaciones_habitaciones_tipos">
+      <End Role="habitaciones_tipos" EntitySet="habitaciones_tipos" />
+      <End Role="reservas_habitaciones" EntitySet="reservas_habitaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservas_habitaciones_reservas_estados" Association="hoteleria_erp_dbModel.FK_reservas_habitaciones_reservas_estados">
+      <End Role="reservas_estados" EntitySet="reservas_estados" />
+      <End Role="reservas_habitaciones" EntitySet="reservas_habitaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservas_habitaciones_usuarios" Association="hoteleria_erp_dbModel.FK_reservas_habitaciones_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="reservas_habitaciones" EntitySet="reservas_habitaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservas_habitaciones_usuarios1" Association="hoteleria_erp_dbModel.FK_reservas_habitaciones_usuarios1">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="reservas_habitaciones" EntitySet="reservas_habitaciones" />
+    </AssociationSet>
+    <EntitySet Name="consumisiones" EntityType="hoteleria_erp_dbModel.consumisiones" />
+    <EntitySet Name="consumisiones_detalles" EntityType="hoteleria_erp_dbModel.consumisiones_detalles" />
+    <AssociationSet Name="FK_consumisiones_clientes" Association="hoteleria_erp_dbModel.FK_consumisiones_clientes">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="consumisiones" EntitySet="consumisiones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_consumisiones_detalles_consumisiones" Association="hoteleria_erp_dbModel.FK_consumisiones_detalles_consumisiones">
+      <End Role="consumisiones" EntitySet="consumisiones" />
+      <End Role="consumisiones_detalles" EntitySet="consumisiones_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_consumisiones_mesas" Association="hoteleria_erp_dbModel.FK_consumisiones_mesas">
+      <End Role="mesas" EntitySet="mesas" />
+      <End Role="consumisiones" EntitySet="consumisiones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_consumisiones_mozos" Association="hoteleria_erp_dbModel.FK_consumisiones_mozos">
+      <End Role="mozos" EntitySet="mozos" />
+      <End Role="consumisiones" EntitySet="consumisiones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_consumisiones_detalles_productos" Association="hoteleria_erp_dbModel.FK_consumisiones_detalles_productos">
+      <End Role="productos" EntitySet="productos" />
+      <End Role="consumisiones_detalles" EntitySet="consumisiones_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_consumisiones_detalles_productos_lotes" Association="hoteleria_erp_dbModel.FK_consumisiones_detalles_productos_lotes">
+      <End Role="productos_lotes" EntitySet="productos_lotes" />
+      <End Role="consumisiones_detalles" EntitySet="consumisiones_detalles" />
+    </AssociationSet>
+    <EntitySet Name="cajas" EntityType="hoteleria_erp_dbModel.cajas" />
+    <EntitySet Name="cajas_ajustes" EntityType="hoteleria_erp_dbModel.cajas_ajustes" />
+    <EntitySet Name="cajas_aperturas" EntityType="hoteleria_erp_dbModel.cajas_aperturas" />
+    <EntitySet Name="cajas_arqueos" EntityType="hoteleria_erp_dbModel.cajas_arqueos" />
+    <EntitySet Name="cajas_arqueos_ajustes" EntityType="hoteleria_erp_dbModel.cajas_arqueos_ajustes" />
+    <EntitySet Name="cajas_arqueos_composiciones" EntityType="hoteleria_erp_dbModel.cajas_arqueos_composiciones" />
+    <EntitySet Name="cajas_arqueos_detalles" EntityType="hoteleria_erp_dbModel.cajas_arqueos_detalles" />
+    <EntitySet Name="cajas_arqueos_ventas" EntityType="hoteleria_erp_dbModel.cajas_arqueos_ventas" />
+    <EntitySet Name="cajas_composiciones" EntityType="hoteleria_erp_dbModel.cajas_composiciones" />
+    <EntitySet Name="cajas_composiciones_detalles" EntityType="hoteleria_erp_dbModel.cajas_composiciones_detalles" />
+    <EntitySet Name="cargas_cuentas" EntityType="hoteleria_erp_dbModel.cargas_cuentas" />
+    <EntitySet Name="cargas_cuentas_anulaciones" EntityType="hoteleria_erp_dbModel.cargas_cuentas_anulaciones" />
+    <EntitySet Name="cargas_cuentas_detalles" EntityType="hoteleria_erp_dbModel.cargas_cuentas_detalles" />
+    <EntitySet Name="cuentas_clientes" EntityType="hoteleria_erp_dbModel.cuentas_clientes" />
+    <EntitySet Name="cuentas_clientes_detalles" EntityType="hoteleria_erp_dbModel.cuentas_clientes_detalles" />
+    <EntitySet Name="cuentas_clientes_pagos" EntityType="hoteleria_erp_dbModel.cuentas_clientes_pagos" />
+    <EntitySet Name="facturaciones" EntityType="hoteleria_erp_dbModel.facturaciones" />
+    <EntitySet Name="facturaciones_detalles" EntityType="hoteleria_erp_dbModel.facturaciones_detalles" />
+    <EntitySet Name="facturaciones_temporales" EntityType="hoteleria_erp_dbModel.facturaciones_temporales" />
+    <EntitySet Name="facturaciones_temporales_detalles" EntityType="hoteleria_erp_dbModel.facturaciones_temporales_detalles" />
+    <EntitySet Name="facturaciones_temporales_pagos" EntityType="hoteleria_erp_dbModel.facturaciones_temporales_pagos" />
+    <EntitySet Name="motivos_descuentos" EntityType="hoteleria_erp_dbModel.motivos_descuentos" />
+    <EntitySet Name="tipos_pagos" EntityType="hoteleria_erp_dbModel.tipos_pagos" />
+    <AssociationSet Name="FK_cajas_ajustes_cajas" Association="hoteleria_erp_dbModel.FK_cajas_ajustes_cajas">
+      <End Role="cajas" EntitySet="cajas" />
+      <End Role="cajas_ajustes" EntitySet="cajas_ajustes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_aperturas_cajas" Association="hoteleria_erp_dbModel.FK_cajas_aperturas_cajas">
+      <End Role="cajas" EntitySet="cajas" />
+      <End Role="cajas_aperturas" EntitySet="cajas_aperturas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_composiciones_cajas" Association="hoteleria_erp_dbModel.FK_cajas_composiciones_cajas">
+      <End Role="cajas" EntitySet="cajas" />
+      <End Role="cajas_composiciones" EntitySet="cajas_composiciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_monedas" Association="hoteleria_erp_dbModel.FK_cajas_monedas">
+      <End Role="monedas" EntitySet="monedas" />
+      <End Role="cajas" EntitySet="cajas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_sucursales" Association="hoteleria_erp_dbModel.FK_cajas_sucursales">
+      <End Role="sucursales" EntitySet="sucursales" />
+      <End Role="cajas" EntitySet="cajas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_usuarios" Association="hoteleria_erp_dbModel.FK_cajas_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cajas" EntitySet="cajas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_ajustes_cajas_aperturas" Association="hoteleria_erp_dbModel.FK_cajas_ajustes_cajas_aperturas">
+      <End Role="cajas_aperturas" EntitySet="cajas_aperturas" />
+      <End Role="cajas_ajustes" EntitySet="cajas_ajustes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_ajustes_usuarios" Association="hoteleria_erp_dbModel.FK_cajas_ajustes_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cajas_ajustes" EntitySet="cajas_ajustes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_aperturas_usuarios" Association="hoteleria_erp_dbModel.FK_cajas_aperturas_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cajas_aperturas" EntitySet="cajas_aperturas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_arqueos_cajas_aperturas" Association="hoteleria_erp_dbModel.FK_cajas_arqueos_cajas_aperturas">
+      <End Role="cajas_aperturas" EntitySet="cajas_aperturas" />
+      <End Role="cajas_arqueos" EntitySet="cajas_arqueos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_composiciones_cajas_aperturas" Association="hoteleria_erp_dbModel.FK_cajas_composiciones_cajas_aperturas">
+      <End Role="cajas_aperturas" EntitySet="cajas_aperturas" />
+      <End Role="cajas_composiciones" EntitySet="cajas_composiciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_arqueos_ajustes_cajas_arqueos" Association="hoteleria_erp_dbModel.FK_cajas_arqueos_ajustes_cajas_arqueos">
+      <End Role="cajas_arqueos" EntitySet="cajas_arqueos" />
+      <End Role="cajas_arqueos_ajustes" EntitySet="cajas_arqueos_ajustes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_arqueos_composiciones_cajas_arqueos" Association="hoteleria_erp_dbModel.FK_cajas_arqueos_composiciones_cajas_arqueos">
+      <End Role="cajas_arqueos" EntitySet="cajas_arqueos" />
+      <End Role="cajas_arqueos_composiciones" EntitySet="cajas_arqueos_composiciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_arqueos_detalles_cajas_arqueos" Association="hoteleria_erp_dbModel.FK_cajas_arqueos_detalles_cajas_arqueos">
+      <End Role="cajas_arqueos" EntitySet="cajas_arqueos" />
+      <End Role="cajas_arqueos_detalles" EntitySet="cajas_arqueos_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_arqueos_usuarios" Association="hoteleria_erp_dbModel.FK_cajas_arqueos_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cajas_arqueos" EntitySet="cajas_arqueos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_arqueos_ventas_cajas_arqueos" Association="hoteleria_erp_dbModel.FK_cajas_arqueos_ventas_cajas_arqueos">
+      <End Role="cajas_arqueos" EntitySet="cajas_arqueos" />
+      <End Role="cajas_arqueos_ventas" EntitySet="cajas_arqueos_ventas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_arqueos_composiciones_denominaciones_monedas_tipos" Association="hoteleria_erp_dbModel.FK_cajas_arqueos_composiciones_denominaciones_monedas_tipos">
+      <End Role="denominaciones_monedas_tipos" EntitySet="denominaciones_monedas_tipos" />
+      <End Role="cajas_arqueos_composiciones" EntitySet="cajas_arqueos_composiciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_composiciones_detalles_cajas_composiciones" Association="hoteleria_erp_dbModel.FK_cajas_composiciones_detalles_cajas_composiciones">
+      <End Role="cajas_composiciones" EntitySet="cajas_composiciones" />
+      <End Role="cajas_composiciones_detalles" EntitySet="cajas_composiciones_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_composiciones_usuarios" Association="hoteleria_erp_dbModel.FK_cajas_composiciones_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cajas_composiciones" EntitySet="cajas_composiciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cajas_composiciones_detalles_denominaciones_monedas" Association="hoteleria_erp_dbModel.FK_cajas_composiciones_detalles_denominaciones_monedas">
+      <End Role="denominaciones_monedas" EntitySet="denominaciones_monedas" />
+      <End Role="cajas_composiciones_detalles" EntitySet="cajas_composiciones_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cargas_cuentas_anulaciones_cargas_cuentas" Association="hoteleria_erp_dbModel.FK_cargas_cuentas_anulaciones_cargas_cuentas">
+      <End Role="cargas_cuentas" EntitySet="cargas_cuentas" />
+      <End Role="cargas_cuentas_anulaciones" EntitySet="cargas_cuentas_anulaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cargas_cuentas_consumisiones" Association="hoteleria_erp_dbModel.FK_cargas_cuentas_consumisiones">
+      <End Role="consumisiones" EntitySet="consumisiones" />
+      <End Role="cargas_cuentas" EntitySet="cargas_cuentas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cargas_cuentas_detalles_cargas_cuentas" Association="hoteleria_erp_dbModel.FK_cargas_cuentas_detalles_cargas_cuentas">
+      <End Role="cargas_cuentas" EntitySet="cargas_cuentas" />
+      <End Role="cargas_cuentas_detalles" EntitySet="cargas_cuentas_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cargas_cuentas_usuarios" Association="hoteleria_erp_dbModel.FK_cargas_cuentas_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cargas_cuentas" EntitySet="cargas_cuentas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cargas_cuentas_anulaciones_usuarios" Association="hoteleria_erp_dbModel.FK_cargas_cuentas_anulaciones_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="cargas_cuentas_anulaciones" EntitySet="cargas_cuentas_anulaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cargas_cuentas_detalles_productos" Association="hoteleria_erp_dbModel.FK_cargas_cuentas_detalles_productos">
+      <End Role="productos" EntitySet="productos" />
+      <End Role="cargas_cuentas_detalles" EntitySet="cargas_cuentas_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cargas_cuentas_detalles_productos_lotes" Association="hoteleria_erp_dbModel.FK_cargas_cuentas_detalles_productos_lotes">
+      <End Role="productos_lotes" EntitySet="productos_lotes" />
+      <End Role="cargas_cuentas_detalles" EntitySet="cargas_cuentas_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_clientes_clientes" Association="hoteleria_erp_dbModel.FK_cuentas_clientes_clientes">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="cuentas_clientes" EntitySet="cuentas_clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_clientes" Association="hoteleria_erp_dbModel.FK_facturaciones_clientes">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="facturaciones" EntitySet="facturaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_clientes" Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_clientes">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="facturaciones_temporales" EntitySet="facturaciones_temporales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_condiciones_compras_ventas" Association="hoteleria_erp_dbModel.FK_facturaciones_condiciones_compras_ventas">
+      <End Role="condiciones_compras_ventas" EntitySet="condiciones_compras_ventas" />
+      <End Role="facturaciones" EntitySet="facturaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_condiciones_compras_ventas" Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_condiciones_compras_ventas">
+      <End Role="condiciones_compras_ventas" EntitySet="condiciones_compras_ventas" />
+      <End Role="facturaciones_temporales" EntitySet="facturaciones_temporales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_consumisiones" Association="hoteleria_erp_dbModel.FK_facturaciones_consumisiones">
+      <End Role="consumisiones" EntitySet="consumisiones" />
+      <End Role="facturaciones" EntitySet="facturaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_clientes_detalles_cuentas_clientes" Association="hoteleria_erp_dbModel.FK_cuentas_clientes_detalles_cuentas_clientes">
+      <End Role="cuentas_clientes" EntitySet="cuentas_clientes" />
+      <End Role="cuentas_clientes_detalles" EntitySet="cuentas_clientes_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_clientes_pagos_cuentas_clientes" Association="hoteleria_erp_dbModel.FK_cuentas_clientes_pagos_cuentas_clientes">
+      <End Role="cuentas_clientes" EntitySet="cuentas_clientes" />
+      <End Role="cuentas_clientes_pagos" EntitySet="cuentas_clientes_pagos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_clientes_reservas_habitaciones" Association="hoteleria_erp_dbModel.FK_cuentas_clientes_reservas_habitaciones">
+      <End Role="reservas_habitaciones" EntitySet="reservas_habitaciones" />
+      <End Role="cuentas_clientes" EntitySet="cuentas_clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_clientes_detalles_tarifas_detalles" Association="hoteleria_erp_dbModel.FK_cuentas_clientes_detalles_tarifas_detalles">
+      <End Role="tarifas_detalles" EntitySet="tarifas_detalles" />
+      <End Role="cuentas_clientes_detalles" EntitySet="cuentas_clientes_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cuentas_clientes_pagos_tipos_pagos" Association="hoteleria_erp_dbModel.FK_cuentas_clientes_pagos_tipos_pagos">
+      <End Role="tipos_pagos" EntitySet="tipos_pagos" />
+      <End Role="cuentas_clientes_pagos" EntitySet="cuentas_clientes_pagos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_detalles_facturaciones" Association="hoteleria_erp_dbModel.FK_facturaciones_detalles_facturaciones">
+      <End Role="facturaciones" EntitySet="facturaciones" />
+      <End Role="facturaciones_detalles" EntitySet="facturaciones_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_motivos_descuentos" Association="hoteleria_erp_dbModel.FK_facturaciones_motivos_descuentos">
+      <End Role="motivos_descuentos" EntitySet="motivos_descuentos" />
+      <End Role="facturaciones" EntitySet="facturaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_timbrados" Association="hoteleria_erp_dbModel.FK_facturaciones_timbrados">
+      <End Role="timbrados" EntitySet="timbrados" />
+      <End Role="facturaciones" EntitySet="facturaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_timbrados_rangos" Association="hoteleria_erp_dbModel.FK_facturaciones_timbrados_rangos">
+      <End Role="timbrados_rangos" EntitySet="timbrados_rangos" />
+      <End Role="facturaciones" EntitySet="facturaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_usuarios" Association="hoteleria_erp_dbModel.FK_facturaciones_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="facturaciones" EntitySet="facturaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_detalles_productos" Association="hoteleria_erp_dbModel.FK_facturaciones_detalles_productos">
+      <End Role="productos" EntitySet="productos" />
+      <End Role="facturaciones_detalles" EntitySet="facturaciones_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_detalles_productos_lotes" Association="hoteleria_erp_dbModel.FK_facturaciones_detalles_productos_lotes">
+      <End Role="productos_lotes" EntitySet="productos_lotes" />
+      <End Role="facturaciones_detalles" EntitySet="facturaciones_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_detalles_facturaciones_temporales" Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_detalles_facturaciones_temporales">
+      <End Role="facturaciones_temporales" EntitySet="facturaciones_temporales" />
+      <End Role="facturaciones_temporales_detalles" EntitySet="facturaciones_temporales_detalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_motivos_descuentos" Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_motivos_descuentos">
+      <End Role="motivos_descuentos" EntitySet="motivos_descuentos" />
+      <End Role="facturaciones_temporales" EntitySet="facturaciones_temporales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_pagos_facturaciones_temporales" Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_pagos_facturaciones_temporales">
+      <End Role="facturaciones_temporales" EntitySet="facturaciones_temporales" />
+      <End Role="facturaciones_temporales_pagos" EntitySet="facturaciones_temporales_pagos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_timbrados" Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_timbrados">
+      <End Role="timbrados" EntitySet="timbrados" />
+      <End Role="facturaciones_temporales" EntitySet="facturaciones_temporales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_timbrados_rangos" Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_timbrados_rangos">
+      <End Role="timbrados_rangos" EntitySet="timbrados_rangos" />
+      <End Role="facturaciones_temporales" EntitySet="facturaciones_temporales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_usuarios" Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="facturaciones_temporales" EntitySet="facturaciones_temporales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturaciones_temporales_pagos_tipos_pagos" Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_pagos_tipos_pagos">
+      <End Role="tipos_pagos" EntitySet="tipos_pagos" />
+      <End Role="facturaciones_temporales_pagos" EntitySet="facturaciones_temporales_pagos" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="actividades_economicas">
     <Key>
@@ -409,6 +726,7 @@
     <NavigationProperty Name="proveedores" Relationship="hoteleria_erp_dbModel.FK_proveedores_barrios" FromRole="barrios" ToRole="proveedores" />
     <NavigationProperty Name="proveedores_sucursales" Relationship="hoteleria_erp_dbModel.FK_proveedores_sucursales_barrios" FromRole="barrios" ToRole="proveedores_sucursales" />
     <NavigationProperty Name="sucursales" Relationship="hoteleria_erp_dbModel.FK_sucursales_barrios" FromRole="barrios" ToRole="sucursales" />
+    <NavigationProperty Name="clientes" Relationship="hoteleria_erp_dbModel.FK_clientes_barrios" FromRole="barrios" ToRole="clientes" />
   </EntityType>
   <EntityType Name="cargos">
     <Key>
@@ -497,6 +815,8 @@
     <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="Boolean" />
     <NavigationProperty Name="compras_productos" Relationship="hoteleria_erp_dbModel.FK_compras_productos_condiciones_compras_ventas" FromRole="condiciones_compras_ventas" ToRole="compras_productos" />
+    <NavigationProperty Name="facturaciones" Relationship="hoteleria_erp_dbModel.FK_facturaciones_condiciones_compras_ventas" FromRole="condiciones_compras_ventas" ToRole="facturaciones" />
+    <NavigationProperty Name="facturaciones_temporales" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_condiciones_compras_ventas" FromRole="condiciones_compras_ventas" ToRole="facturaciones_temporales" />
   </EntityType>
   <EntityType Name="cuentas_proveedores">
     <Key>
@@ -525,6 +845,7 @@
     <Property Name="estado" Type="Boolean" />
     <NavigationProperty Name="denominaciones_monedas_tipos" Relationship="hoteleria_erp_dbModel.FK_denominaciones_monedas_denominaciones_monedas_tipos" FromRole="denominaciones_monedas" ToRole="denominaciones_monedas_tipos" />
     <NavigationProperty Name="monedas" Relationship="hoteleria_erp_dbModel.FK_denominaciones_monedas_monedas" FromRole="denominaciones_monedas" ToRole="monedas" />
+    <NavigationProperty Name="cajas_composiciones_detalles" Relationship="hoteleria_erp_dbModel.FK_cajas_composiciones_detalles_denominaciones_monedas" FromRole="denominaciones_monedas" ToRole="cajas_composiciones_detalles" />
   </EntityType>
   <EntityType Name="denominaciones_monedas_tipos">
     <Key>
@@ -534,6 +855,7 @@
     <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="Boolean" />
     <NavigationProperty Name="denominaciones_monedas" Relationship="hoteleria_erp_dbModel.FK_denominaciones_monedas_denominaciones_monedas_tipos" FromRole="denominaciones_monedas_tipos" ToRole="denominaciones_monedas" />
+    <NavigationProperty Name="cajas_arqueos_composiciones" Relationship="hoteleria_erp_dbModel.FK_cajas_arqueos_composiciones_denominaciones_monedas_tipos" FromRole="denominaciones_monedas_tipos" ToRole="cajas_arqueos_composiciones" />
   </EntityType>
   <EntityType Name="departamentos">
     <Key>
@@ -548,6 +870,7 @@
     <NavigationProperty Name="proveedores" Relationship="hoteleria_erp_dbModel.FK_proveedores_departamentos" FromRole="departamentos" ToRole="proveedores" />
     <NavigationProperty Name="proveedores_sucursales" Relationship="hoteleria_erp_dbModel.FK_proveedores_sucursales_departamentos" FromRole="departamentos" ToRole="proveedores_sucursales" />
     <NavigationProperty Name="sucursales" Relationship="hoteleria_erp_dbModel.FK_sucursales_departamentos" FromRole="departamentos" ToRole="sucursales" />
+    <NavigationProperty Name="clientes" Relationship="hoteleria_erp_dbModel.FK_clientes_departamentos" FromRole="departamentos" ToRole="clientes" />
   </EntityType>
   <EntityType Name="depositos">
     <Key>
@@ -568,6 +891,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="clientes" Relationship="hoteleria_erp_dbModel.FK_clientes_estados_civiles" FromRole="estados_civiles" ToRole="clientes" />
   </EntityType>
   <EntityType Name="funcionarios">
     <Key>
@@ -604,6 +928,7 @@
     <NavigationProperty Name="habitaciones_estados" Relationship="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_estados" FromRole="habitaciones" ToRole="habitaciones_estados" />
     <NavigationProperty Name="habitaciones_tipos" Relationship="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_tipos" FromRole="habitaciones" ToRole="habitaciones_tipos" />
     <NavigationProperty Name="tarifas_detalles" Relationship="hoteleria_erp_dbModel.FK_tarifas_detalles_habitaciones" FromRole="habitaciones" ToRole="tarifas_detalles" />
+    <NavigationProperty Name="reservas_habitaciones" Relationship="hoteleria_erp_dbModel.FK_reservas_habitaciones_habitaciones" FromRole="habitaciones" ToRole="reservas_habitaciones" />
   </EntityType>
   <EntityType Name="habitaciones_estados">
     <Key>
@@ -632,6 +957,7 @@
     <Property Name="abreviatura" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="Boolean" />
     <NavigationProperty Name="habitaciones" Relationship="hoteleria_erp_dbModel.FK_habitaciones_habitaciones_tipos" FromRole="habitaciones_tipos" ToRole="habitaciones" />
+    <NavigationProperty Name="reservas_habitaciones" Relationship="hoteleria_erp_dbModel.FK_reservas_habitaciones_habitaciones_tipos" FromRole="habitaciones_tipos" ToRole="reservas_habitaciones" />
   </EntityType>
   <EntityType Name="marcas">
     <Key>
@@ -651,6 +977,7 @@
     <Property Name="denominacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="Boolean" />
     <NavigationProperty Name="mesas_estados" Relationship="hoteleria_erp_dbModel.FK_mesas_mesas_estados" FromRole="mesas" ToRole="mesas_estados" />
+    <NavigationProperty Name="consumisiones" Relationship="hoteleria_erp_dbModel.FK_consumisiones_mesas" FromRole="mesas" ToRole="consumisiones" />
   </EntityType>
   <EntityType Name="mesas_estados">
     <Key>
@@ -692,6 +1019,7 @@
     <Property Name="estado" Type="Boolean" />
     <NavigationProperty Name="bancos_cuentas" Relationship="hoteleria_erp_dbModel.FK_bancos_cuentas_monedas" FromRole="monedas" ToRole="bancos_cuentas" />
     <NavigationProperty Name="denominaciones_monedas" Relationship="hoteleria_erp_dbModel.FK_denominaciones_monedas_monedas" FromRole="monedas" ToRole="denominaciones_monedas" />
+    <NavigationProperty Name="cajas" Relationship="hoteleria_erp_dbModel.FK_cajas_monedas" FromRole="monedas" ToRole="cajas" />
   </EntityType>
   <EntityType Name="mozos">
     <Key>
@@ -704,6 +1032,7 @@
     <Property Name="direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="celular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="consumisiones" Relationship="hoteleria_erp_dbModel.FK_consumisiones_mozos" FromRole="mozos" ToRole="consumisiones" />
   </EntityType>
   <EntityType Name="paises">
     <Key>
@@ -716,6 +1045,7 @@
     <NavigationProperty Name="proveedores" Relationship="hoteleria_erp_dbModel.FK_proveedores_paises" FromRole="paises" ToRole="proveedores" />
     <NavigationProperty Name="proveedores_sucursales" Relationship="hoteleria_erp_dbModel.FK_proveedores_sucursales_paises" FromRole="paises" ToRole="proveedores_sucursales" />
     <NavigationProperty Name="sucursales" Relationship="hoteleria_erp_dbModel.FK_sucursales_paises" FromRole="paises" ToRole="sucursales" />
+    <NavigationProperty Name="clientes" Relationship="hoteleria_erp_dbModel.FK_clientes_paises" FromRole="paises" ToRole="clientes" />
   </EntityType>
   <EntityType Name="parametros">
     <Key>
@@ -768,6 +1098,9 @@
     <NavigationProperty Name="productos_lotes" Relationship="hoteleria_erp_dbModel.FK_productos_lotes_productos" FromRole="productos" ToRole="productos_lotes" />
     <NavigationProperty Name="tipos_ivas" Relationship="hoteleria_erp_dbModel.FK_productos_tipos_ivas" FromRole="productos" ToRole="tipos_ivas" />
     <NavigationProperty Name="unidades" Relationship="hoteleria_erp_dbModel.FK_productos_unidades" FromRole="productos" ToRole="unidades" />
+    <NavigationProperty Name="consumisiones_detalles" Relationship="hoteleria_erp_dbModel.FK_consumisiones_detalles_productos" FromRole="productos" ToRole="consumisiones_detalles" />
+    <NavigationProperty Name="cargas_cuentas_detalles" Relationship="hoteleria_erp_dbModel.FK_cargas_cuentas_detalles_productos" FromRole="productos" ToRole="cargas_cuentas_detalles" />
+    <NavigationProperty Name="facturaciones_detalles" Relationship="hoteleria_erp_dbModel.FK_facturaciones_detalles_productos" FromRole="productos" ToRole="facturaciones_detalles" />
   </EntityType>
   <EntityType Name="productos_lotes">
     <Key>
@@ -784,6 +1117,9 @@
     <NavigationProperty Name="productos" Relationship="hoteleria_erp_dbModel.FK_productos_lotes_productos" FromRole="productos_lotes" ToRole="productos" />
     <NavigationProperty Name="productos_lotes_ajustes" Relationship="hoteleria_erp_dbModel.FK_productos_lotes_ajustes_productos_lotes" FromRole="productos_lotes" ToRole="productos_lotes_ajustes" />
     <NavigationProperty Name="sucursales" Relationship="hoteleria_erp_dbModel.FK_productos_lotes_sucursales" FromRole="productos_lotes" ToRole="sucursales" />
+    <NavigationProperty Name="consumisiones_detalles" Relationship="hoteleria_erp_dbModel.FK_consumisiones_detalles_productos_lotes" FromRole="productos_lotes" ToRole="consumisiones_detalles" />
+    <NavigationProperty Name="cargas_cuentas_detalles" Relationship="hoteleria_erp_dbModel.FK_cargas_cuentas_detalles_productos_lotes" FromRole="productos_lotes" ToRole="cargas_cuentas_detalles" />
+    <NavigationProperty Name="facturaciones_detalles" Relationship="hoteleria_erp_dbModel.FK_facturaciones_detalles_productos_lotes" FromRole="productos_lotes" ToRole="facturaciones_detalles" />
   </EntityType>
   <EntityType Name="productos_lotes_ajustes">
     <Key>
@@ -807,6 +1143,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre_profesion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="clientes" Relationship="hoteleria_erp_dbModel.FK_clientes_profesiones" FromRole="profesiones" ToRole="clientes" />
   </EntityType>
   <EntityType Name="proveedores">
     <Key>
@@ -896,6 +1233,7 @@
     <NavigationProperty Name="paises" Relationship="hoteleria_erp_dbModel.FK_sucursales_paises" FromRole="sucursales" ToRole="paises" />
     <NavigationProperty Name="productos_lotes" Relationship="hoteleria_erp_dbModel.FK_productos_lotes_sucursales" FromRole="sucursales" ToRole="productos_lotes" />
     <NavigationProperty Name="timbrados_rangos" Relationship="hoteleria_erp_dbModel.FK_timbrados_rangos_sucursales" FromRole="sucursales" ToRole="timbrados_rangos" />
+    <NavigationProperty Name="cajas" Relationship="hoteleria_erp_dbModel.FK_cajas_sucursales" FromRole="sucursales" ToRole="cajas" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -933,6 +1271,7 @@
     <NavigationProperty Name="habitaciones" Relationship="hoteleria_erp_dbModel.FK_tarifas_detalles_habitaciones" FromRole="tarifas_detalles" ToRole="habitaciones" />
     <NavigationProperty Name="habitaciones_servicios" Relationship="hoteleria_erp_dbModel.FK_tarifas_detalles_habitaciones_servicios" FromRole="tarifas_detalles" ToRole="habitaciones_servicios" />
     <NavigationProperty Name="tarifas" Relationship="hoteleria_erp_dbModel.FK_tarifas_detalles_tarifas" FromRole="tarifas_detalles" ToRole="tarifas" />
+    <NavigationProperty Name="cuentas_clientes_detalles" Relationship="hoteleria_erp_dbModel.FK_cuentas_clientes_detalles_tarifas_detalles" FromRole="tarifas_detalles" ToRole="cuentas_clientes_detalles" />
   </EntityType>
   <EntityType Name="tarifas_tipos">
     <Key>
@@ -957,6 +1296,8 @@
     <NavigationProperty Name="timbrados_rangos" Relationship="hoteleria_erp_dbModel.FK_timbrados_rangos_timbrados" FromRole="timbrados" ToRole="timbrados_rangos" />
     <NavigationProperty Name="timbrados_formatos" Relationship="hoteleria_erp_dbModel.FK_timbrados_timbrados_formatos" FromRole="timbrados" ToRole="timbrados_formatos" />
     <NavigationProperty Name="timbrados_tipos_documentos" Relationship="hoteleria_erp_dbModel.FK_timbrados_timbrados_tipos_documentos" FromRole="timbrados" ToRole="timbrados_tipos_documentos" />
+    <NavigationProperty Name="facturaciones" Relationship="hoteleria_erp_dbModel.FK_facturaciones_timbrados" FromRole="timbrados" ToRole="facturaciones" />
+    <NavigationProperty Name="facturaciones_temporales" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_timbrados" FromRole="timbrados" ToRole="facturaciones_temporales" />
   </EntityType>
   <EntityType Name="timbrados_comprobantes_anulaciones">
     <Key>
@@ -1013,6 +1354,8 @@
     <NavigationProperty Name="timbrados_comprobantes_anulaciones" Relationship="hoteleria_erp_dbModel.FK_timbrados_comprobantes_anulaciones_timbrados_rangos" FromRole="timbrados_rangos" ToRole="timbrados_comprobantes_anulaciones" />
     <NavigationProperty Name="timbrados_rangos_funcionarios" Relationship="hoteleria_erp_dbModel.FK_timbrados_rangos_funcionarios_timbrados_rangos" FromRole="timbrados_rangos" ToRole="timbrados_rangos_funcionarios" />
     <NavigationProperty Name="timbrados_rangos_tipos" Relationship="hoteleria_erp_dbModel.FK_timbrados_rangos_timbrados_rangos_tipos" FromRole="timbrados_rangos" ToRole="timbrados_rangos_tipos" />
+    <NavigationProperty Name="facturaciones" Relationship="hoteleria_erp_dbModel.FK_facturaciones_timbrados_rangos" FromRole="timbrados_rangos" ToRole="facturaciones" />
+    <NavigationProperty Name="facturaciones_temporales" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_timbrados_rangos" FromRole="timbrados_rangos" ToRole="facturaciones_temporales" />
   </EntityType>
   <EntityType Name="timbrados_rangos_funcionarios">
     <Key>
@@ -1053,6 +1396,7 @@
     <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="Boolean" />
     <NavigationProperty Name="proveedores_contactos" Relationship="hoteleria_erp_dbModel.FK_proveedores_contactos_tipos_contactos" FromRole="tipos_contactos" ToRole="proveedores_contactos" />
+    <NavigationProperty Name="clientes_contactos" Relationship="hoteleria_erp_dbModel.FK_clientes_contactos_tipos_contactos" FromRole="tipos_contactos" ToRole="clientes_contactos" />
   </EntityType>
   <EntityType Name="tipos_documentos">
     <Key>
@@ -1063,6 +1407,7 @@
     <Property Name="estado" Type="Boolean" />
     <NavigationProperty Name="funcionarios" Relationship="hoteleria_erp_dbModel.FK_funcionarios_tipos_documentos" FromRole="tipos_documentos" ToRole="funcionarios" />
     <NavigationProperty Name="proveedores" Relationship="hoteleria_erp_dbModel.FK_proveedores_tipos_documentos" FromRole="tipos_documentos" ToRole="proveedores" />
+    <NavigationProperty Name="clientes" Relationship="hoteleria_erp_dbModel.FK_clientes_tipos_documentos" FromRole="tipos_documentos" ToRole="clientes" />
   </EntityType>
   <EntityType Name="tipos_ivas">
     <Key>
@@ -1102,6 +1447,17 @@
     <NavigationProperty Name="funcionarios" Relationship="hoteleria_erp_dbModel.FK_usuarios_funcionarios" FromRole="usuarios" ToRole="funcionarios" />
     <NavigationProperty Name="perfiles" Relationship="hoteleria_erp_dbModel.FK_usuarios_perfiles" FromRole="usuarios" ToRole="perfiles" />
     <NavigationProperty Name="productos_lotes_ajustes" Relationship="hoteleria_erp_dbModel.FK_productos_lotes_ajustes_usuarios" FromRole="usuarios" ToRole="productos_lotes_ajustes" />
+    <NavigationProperty Name="reservas_habitaciones" Relationship="hoteleria_erp_dbModel.FK_reservas_habitaciones_usuarios" FromRole="usuarios" ToRole="reservas_habitaciones" />
+    <NavigationProperty Name="reservas_habitaciones1" Relationship="hoteleria_erp_dbModel.FK_reservas_habitaciones_usuarios1" FromRole="usuarios" ToRole="reservas_habitaciones" />
+    <NavigationProperty Name="cajas" Relationship="hoteleria_erp_dbModel.FK_cajas_usuarios" FromRole="usuarios" ToRole="cajas" />
+    <NavigationProperty Name="cajas_ajustes" Relationship="hoteleria_erp_dbModel.FK_cajas_ajustes_usuarios" FromRole="usuarios" ToRole="cajas_ajustes" />
+    <NavigationProperty Name="cajas_aperturas" Relationship="hoteleria_erp_dbModel.FK_cajas_aperturas_usuarios" FromRole="usuarios" ToRole="cajas_aperturas" />
+    <NavigationProperty Name="cajas_arqueos" Relationship="hoteleria_erp_dbModel.FK_cajas_arqueos_usuarios" FromRole="usuarios" ToRole="cajas_arqueos" />
+    <NavigationProperty Name="cajas_composiciones" Relationship="hoteleria_erp_dbModel.FK_cajas_composiciones_usuarios" FromRole="usuarios" ToRole="cajas_composiciones" />
+    <NavigationProperty Name="cargas_cuentas" Relationship="hoteleria_erp_dbModel.FK_cargas_cuentas_usuarios" FromRole="usuarios" ToRole="cargas_cuentas" />
+    <NavigationProperty Name="cargas_cuentas_anulaciones" Relationship="hoteleria_erp_dbModel.FK_cargas_cuentas_anulaciones_usuarios" FromRole="usuarios" ToRole="cargas_cuentas_anulaciones" />
+    <NavigationProperty Name="facturaciones" Relationship="hoteleria_erp_dbModel.FK_facturaciones_usuarios" FromRole="usuarios" ToRole="facturaciones" />
+    <NavigationProperty Name="facturaciones_temporales" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_usuarios" FromRole="usuarios" ToRole="facturaciones_temporales" />
   </EntityType>
   <Association Name="FK_proveedores_actividades_economicas">
     <End Type="hoteleria_erp_dbModel.actividades_economicas" Role="actividades_economicas" Multiplicity="0..1" />
@@ -1952,6 +2308,1394 @@
       </Principal>
       <Dependent Role="timbrados_rangos">
         <PropertyRef Name="id_timbrado_tipo_rango" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="clientes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_tipo_documento" Type="Int32" />
+    <Property Name="nro_documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="razon_social" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="id_pais" Type="Int32" />
+    <Property Name="id_departamento" Type="Int32" />
+    <Property Name="id_ciudad" Type="Int32" />
+    <Property Name="id_barrio" Type="Int32" />
+    <Property Name="direccion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="email_principal" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="nro_telefono_principal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+    <Property Name="id_profesion" Type="Int32" />
+    <Property Name="id_estado_civil" Type="Int32" />
+    <Property Name="genero" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="barrios" Relationship="hoteleria_erp_dbModel.FK_clientes_barrios" FromRole="clientes" ToRole="barrios" />
+    <NavigationProperty Name="clientes_contactos" Relationship="hoteleria_erp_dbModel.FK_clientes_contactos_clientes" FromRole="clientes" ToRole="clientes_contactos" />
+    <NavigationProperty Name="departamentos" Relationship="hoteleria_erp_dbModel.FK_clientes_departamentos" FromRole="clientes" ToRole="departamentos" />
+    <NavigationProperty Name="estados_civiles" Relationship="hoteleria_erp_dbModel.FK_clientes_estados_civiles" FromRole="clientes" ToRole="estados_civiles" />
+    <NavigationProperty Name="paises" Relationship="hoteleria_erp_dbModel.FK_clientes_paises" FromRole="clientes" ToRole="paises" />
+    <NavigationProperty Name="profesiones" Relationship="hoteleria_erp_dbModel.FK_clientes_profesiones" FromRole="clientes" ToRole="profesiones" />
+    <NavigationProperty Name="tipos_documentos" Relationship="hoteleria_erp_dbModel.FK_clientes_tipos_documentos" FromRole="clientes" ToRole="tipos_documentos" />
+    <NavigationProperty Name="reservas_habitaciones" Relationship="hoteleria_erp_dbModel.FK_reservas_habitaciones_clientes" FromRole="clientes" ToRole="reservas_habitaciones" />
+    <NavigationProperty Name="consumisiones" Relationship="hoteleria_erp_dbModel.FK_consumisiones_clientes" FromRole="clientes" ToRole="consumisiones" />
+    <NavigationProperty Name="cuentas_clientes" Relationship="hoteleria_erp_dbModel.FK_cuentas_clientes_clientes" FromRole="clientes" ToRole="cuentas_clientes" />
+    <NavigationProperty Name="facturaciones" Relationship="hoteleria_erp_dbModel.FK_facturaciones_clientes" FromRole="clientes" ToRole="facturaciones" />
+    <NavigationProperty Name="facturaciones_temporales" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_clientes" FromRole="clientes" ToRole="facturaciones_temporales" />
+  </EntityType>
+  <EntityType Name="clientes_contactos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_cliente" Type="Int32" />
+    <Property Name="id_tipo_contacto" Type="Int32" />
+    <Property Name="contacto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="clientes" Relationship="hoteleria_erp_dbModel.FK_clientes_contactos_clientes" FromRole="clientes_contactos" ToRole="clientes" />
+    <NavigationProperty Name="tipos_contactos" Relationship="hoteleria_erp_dbModel.FK_clientes_contactos_tipos_contactos" FromRole="clientes_contactos" ToRole="tipos_contactos" />
+  </EntityType>
+  <EntityType Name="reservas_estados">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="reservas_habitaciones" Relationship="hoteleria_erp_dbModel.FK_reservas_habitaciones_reservas_estados" FromRole="reservas_estados" ToRole="reservas_habitaciones" />
+  </EntityType>
+  <EntityType Name="reservas_habitaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_cliente" Type="Int32" />
+    <Property Name="fecha_alta" Type="DateTime" Precision="3" />
+    <Property Name="id_usuario_apertura" Type="Int32" />
+    <Property Name="fecha_desde" Type="DateTime" Precision="0" />
+    <Property Name="fecha_hasta" Type="DateTime" Precision="0" />
+    <Property Name="id_tipo_habitacion" Type="Int32" />
+    <Property Name="id_habitacion" Type="Int32" />
+    <Property Name="id_reserva_estado" Type="Int32" />
+    <Property Name="check_in" Type="DateTime" Precision="3" />
+    <Property Name="check_out" Type="DateTime" Precision="3" />
+    <Property Name="cantidad_adultos" Type="Int32" />
+    <Property Name="cantidad_menores" Type="Int32" />
+    <Property Name="id_usuario_cierre" Type="Int32" />
+    <Property Name="fecha_cierre" Type="DateTime" Precision="3" />
+    <Property Name="nro_documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nombre_completo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="clientes" Relationship="hoteleria_erp_dbModel.FK_reservas_habitaciones_clientes" FromRole="reservas_habitaciones" ToRole="clientes" />
+    <NavigationProperty Name="habitaciones" Relationship="hoteleria_erp_dbModel.FK_reservas_habitaciones_habitaciones" FromRole="reservas_habitaciones" ToRole="habitaciones" />
+    <NavigationProperty Name="habitaciones_tipos" Relationship="hoteleria_erp_dbModel.FK_reservas_habitaciones_habitaciones_tipos" FromRole="reservas_habitaciones" ToRole="habitaciones_tipos" />
+    <NavigationProperty Name="reservas_estados" Relationship="hoteleria_erp_dbModel.FK_reservas_habitaciones_reservas_estados" FromRole="reservas_habitaciones" ToRole="reservas_estados" />
+    <NavigationProperty Name="usuarios" Relationship="hoteleria_erp_dbModel.FK_reservas_habitaciones_usuarios" FromRole="reservas_habitaciones" ToRole="usuarios" />
+    <NavigationProperty Name="usuarios1" Relationship="hoteleria_erp_dbModel.FK_reservas_habitaciones_usuarios1" FromRole="reservas_habitaciones" ToRole="usuarios" />
+    <NavigationProperty Name="cuentas_clientes" Relationship="hoteleria_erp_dbModel.FK_cuentas_clientes_reservas_habitaciones" FromRole="reservas_habitaciones" ToRole="cuentas_clientes" />
+  </EntityType>
+  <Association Name="FK_clientes_barrios">
+    <End Type="hoteleria_erp_dbModel.barrios" Role="barrios" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.clientes" Role="clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="barrios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="id_barrio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clientes_contactos_clientes">
+    <End Type="hoteleria_erp_dbModel.clientes" Role="clientes" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.clientes_contactos" Role="clientes_contactos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientes_contactos">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clientes_departamentos">
+    <End Type="hoteleria_erp_dbModel.departamentos" Role="departamentos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.clientes" Role="clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departamentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="id_departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clientes_estados_civiles">
+    <End Type="hoteleria_erp_dbModel.estados_civiles" Role="estados_civiles" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.clientes" Role="clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estados_civiles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="id_estado_civil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clientes_paises">
+    <End Type="hoteleria_erp_dbModel.paises" Role="paises" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.clientes" Role="clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="paises">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="id_pais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clientes_profesiones">
+    <End Type="hoteleria_erp_dbModel.profesiones" Role="profesiones" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.clientes" Role="clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profesiones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="id_profesion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clientes_tipos_documentos">
+    <End Type="hoteleria_erp_dbModel.tipos_documentos" Role="tipos_documentos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.clientes" Role="clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_documentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientes">
+        <PropertyRef Name="id_tipo_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservas_habitaciones_clientes">
+    <End Type="hoteleria_erp_dbModel.clientes" Role="clientes" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.reservas_habitaciones" Role="reservas_habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="reservas_habitaciones">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_clientes_contactos_tipos_contactos">
+    <End Type="hoteleria_erp_dbModel.tipos_contactos" Role="tipos_contactos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.clientes_contactos" Role="clientes_contactos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_contactos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="clientes_contactos">
+        <PropertyRef Name="id_tipo_contacto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservas_habitaciones_habitaciones">
+    <End Type="hoteleria_erp_dbModel.habitaciones" Role="habitaciones" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.reservas_habitaciones" Role="reservas_habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="habitaciones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="reservas_habitaciones">
+        <PropertyRef Name="id_habitacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservas_habitaciones_habitaciones_tipos">
+    <End Type="hoteleria_erp_dbModel.habitaciones_tipos" Role="habitaciones_tipos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.reservas_habitaciones" Role="reservas_habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="habitaciones_tipos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="reservas_habitaciones">
+        <PropertyRef Name="id_tipo_habitacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservas_habitaciones_reservas_estados">
+    <End Type="hoteleria_erp_dbModel.reservas_estados" Role="reservas_estados" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.reservas_habitaciones" Role="reservas_habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="reservas_estados">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="reservas_habitaciones">
+        <PropertyRef Name="id_reserva_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservas_habitaciones_usuarios">
+    <End Type="hoteleria_erp_dbModel.usuarios" Role="usuarios" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.reservas_habitaciones" Role="reservas_habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="reservas_habitaciones">
+        <PropertyRef Name="id_usuario_apertura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservas_habitaciones_usuarios1">
+    <End Type="hoteleria_erp_dbModel.usuarios" Role="usuarios" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.reservas_habitaciones" Role="reservas_habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="reservas_habitaciones">
+        <PropertyRef Name="id_usuario_cierre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="consumisiones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha_alta" Type="DateTime" Precision="3" />
+    <Property Name="fecha" Type="DateTime" Precision="0" />
+    <Property Name="id_mesa" Type="Int32" />
+    <Property Name="id_mozo" Type="Int32" />
+    <Property Name="id_cliente" Type="Int32" />
+    <Property Name="ruc_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nombre_cliente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="consumision_terminado" Type="Boolean" />
+    <Property Name="total_consumision" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="clientes" Relationship="hoteleria_erp_dbModel.FK_consumisiones_clientes" FromRole="consumisiones" ToRole="clientes" />
+    <NavigationProperty Name="consumisiones_detalles" Relationship="hoteleria_erp_dbModel.FK_consumisiones_detalles_consumisiones" FromRole="consumisiones" ToRole="consumisiones_detalles" />
+    <NavigationProperty Name="mesas" Relationship="hoteleria_erp_dbModel.FK_consumisiones_mesas" FromRole="consumisiones" ToRole="mesas" />
+    <NavigationProperty Name="mozos" Relationship="hoteleria_erp_dbModel.FK_consumisiones_mozos" FromRole="consumisiones" ToRole="mozos" />
+    <NavigationProperty Name="cargas_cuentas" Relationship="hoteleria_erp_dbModel.FK_cargas_cuentas_consumisiones" FromRole="consumisiones" ToRole="cargas_cuentas" />
+    <NavigationProperty Name="facturaciones" Relationship="hoteleria_erp_dbModel.FK_facturaciones_consumisiones" FromRole="consumisiones" ToRole="facturaciones" />
+  </EntityType>
+  <EntityType Name="consumisiones_detalles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_consumision" Type="Int32" />
+    <Property Name="id_producto" Type="Int32" />
+    <Property Name="id_producto_lote" Type="Int32" />
+    <Property Name="cantidad" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="precio_unitario" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="consumisiones" Relationship="hoteleria_erp_dbModel.FK_consumisiones_detalles_consumisiones" FromRole="consumisiones_detalles" ToRole="consumisiones" />
+    <NavigationProperty Name="productos" Relationship="hoteleria_erp_dbModel.FK_consumisiones_detalles_productos" FromRole="consumisiones_detalles" ToRole="productos" />
+    <NavigationProperty Name="productos_lotes" Relationship="hoteleria_erp_dbModel.FK_consumisiones_detalles_productos_lotes" FromRole="consumisiones_detalles" ToRole="productos_lotes" />
+  </EntityType>
+  <Association Name="FK_consumisiones_clientes">
+    <End Type="hoteleria_erp_dbModel.clientes" Role="clientes" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.consumisiones" Role="consumisiones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consumisiones">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_consumisiones_detalles_consumisiones">
+    <End Type="hoteleria_erp_dbModel.consumisiones" Role="consumisiones" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.consumisiones_detalles" Role="consumisiones_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="consumisiones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consumisiones_detalles">
+        <PropertyRef Name="id_consumision" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_consumisiones_mesas">
+    <End Type="hoteleria_erp_dbModel.mesas" Role="mesas" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.consumisiones" Role="consumisiones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mesas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consumisiones">
+        <PropertyRef Name="id_mesa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_consumisiones_mozos">
+    <End Type="hoteleria_erp_dbModel.mozos" Role="mozos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.consumisiones" Role="consumisiones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mozos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consumisiones">
+        <PropertyRef Name="id_mozo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_consumisiones_detalles_productos">
+    <End Type="hoteleria_erp_dbModel.productos" Role="productos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.consumisiones_detalles" Role="consumisiones_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consumisiones_detalles">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_consumisiones_detalles_productos_lotes">
+    <End Type="hoteleria_erp_dbModel.productos_lotes" Role="productos_lotes" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.consumisiones_detalles" Role="consumisiones_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos_lotes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consumisiones_detalles">
+        <PropertyRef Name="id_producto_lote" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="cajas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_sucursal" Type="Int32" />
+    <Property Name="id_moneda" Type="Int32" />
+    <Property Name="id_usuario" Type="Int32" />
+    <Property Name="denominacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="abierto" Type="Boolean" />
+    <Property Name="saldo_caja" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_efectivo" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="sobrante" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="faltante" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="cajas_ajustes" Relationship="hoteleria_erp_dbModel.FK_cajas_ajustes_cajas" FromRole="cajas" ToRole="cajas_ajustes" />
+    <NavigationProperty Name="cajas_aperturas" Relationship="hoteleria_erp_dbModel.FK_cajas_aperturas_cajas" FromRole="cajas" ToRole="cajas_aperturas" />
+    <NavigationProperty Name="cajas_composiciones" Relationship="hoteleria_erp_dbModel.FK_cajas_composiciones_cajas" FromRole="cajas" ToRole="cajas_composiciones" />
+    <NavigationProperty Name="monedas" Relationship="hoteleria_erp_dbModel.FK_cajas_monedas" FromRole="cajas" ToRole="monedas" />
+    <NavigationProperty Name="sucursales" Relationship="hoteleria_erp_dbModel.FK_cajas_sucursales" FromRole="cajas" ToRole="sucursales" />
+    <NavigationProperty Name="usuarios" Relationship="hoteleria_erp_dbModel.FK_cajas_usuarios" FromRole="cajas" ToRole="usuarios" />
+  </EntityType>
+  <EntityType Name="cajas_ajustes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_caja" Type="Int32" />
+    <Property Name="id_caja_apertura" Type="Int32" />
+    <Property Name="id_usuario" Type="Int32" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="faltante" Type="Boolean" />
+    <Property Name="monto_ajuste" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="justificacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="cajas" Relationship="hoteleria_erp_dbModel.FK_cajas_ajustes_cajas" FromRole="cajas_ajustes" ToRole="cajas" />
+    <NavigationProperty Name="cajas_aperturas" Relationship="hoteleria_erp_dbModel.FK_cajas_ajustes_cajas_aperturas" FromRole="cajas_ajustes" ToRole="cajas_aperturas" />
+    <NavigationProperty Name="usuarios" Relationship="hoteleria_erp_dbModel.FK_cajas_ajustes_usuarios" FromRole="cajas_ajustes" ToRole="usuarios" />
+  </EntityType>
+  <EntityType Name="cajas_aperturas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_caja" Type="Int32" />
+    <Property Name="id_usuario" Type="Int32" />
+    <Property Name="fecha" Type="DateTime" Precision="0" />
+    <Property Name="fecha_apertura" Type="DateTime" Precision="3" />
+    <Property Name="nombre_apertura" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="saldo_efectivo_inicial" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_caja_anterior" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_efectivo_anterior" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="fecha_cierre" Type="DateTime" Precision="3" />
+    <Property Name="saldo_caja_cierre" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_efectivo_cierre" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_faltante_cierre" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_sobrante_cierre" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="caja_abierta" Type="Boolean" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="cajas" Relationship="hoteleria_erp_dbModel.FK_cajas_aperturas_cajas" FromRole="cajas_aperturas" ToRole="cajas" />
+    <NavigationProperty Name="cajas_ajustes" Relationship="hoteleria_erp_dbModel.FK_cajas_ajustes_cajas_aperturas" FromRole="cajas_aperturas" ToRole="cajas_ajustes" />
+    <NavigationProperty Name="usuarios" Relationship="hoteleria_erp_dbModel.FK_cajas_aperturas_usuarios" FromRole="cajas_aperturas" ToRole="usuarios" />
+    <NavigationProperty Name="cajas_arqueos" Relationship="hoteleria_erp_dbModel.FK_cajas_arqueos_cajas_aperturas" FromRole="cajas_aperturas" ToRole="cajas_arqueos" />
+    <NavigationProperty Name="cajas_composiciones" Relationship="hoteleria_erp_dbModel.FK_cajas_composiciones_cajas_aperturas" FromRole="cajas_aperturas" ToRole="cajas_composiciones" />
+  </EntityType>
+  <EntityType Name="cajas_arqueos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_usuario" Type="Int32" />
+    <Property Name="fecha_alta" Type="DateTime" Precision="3" />
+    <Property Name="id_caja_apertura" Type="Int32" />
+    <Property Name="total_ingreso" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="total_egreso" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="total_composicion" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_efectivo" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_caja" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="faltante" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="sobrante" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="total_ajuste_faltante" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="total_ajuste_sobrante" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="diferencia" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="observacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="arqueo_final" Type="Boolean" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="cajas_aperturas" Relationship="hoteleria_erp_dbModel.FK_cajas_arqueos_cajas_aperturas" FromRole="cajas_arqueos" ToRole="cajas_aperturas" />
+    <NavigationProperty Name="cajas_arqueos_ajustes" Relationship="hoteleria_erp_dbModel.FK_cajas_arqueos_ajustes_cajas_arqueos" FromRole="cajas_arqueos" ToRole="cajas_arqueos_ajustes" />
+    <NavigationProperty Name="cajas_arqueos_composiciones" Relationship="hoteleria_erp_dbModel.FK_cajas_arqueos_composiciones_cajas_arqueos" FromRole="cajas_arqueos" ToRole="cajas_arqueos_composiciones" />
+    <NavigationProperty Name="cajas_arqueos_detalles" Relationship="hoteleria_erp_dbModel.FK_cajas_arqueos_detalles_cajas_arqueos" FromRole="cajas_arqueos" ToRole="cajas_arqueos_detalles" />
+    <NavigationProperty Name="usuarios" Relationship="hoteleria_erp_dbModel.FK_cajas_arqueos_usuarios" FromRole="cajas_arqueos" ToRole="usuarios" />
+    <NavigationProperty Name="cajas_arqueos_ventas" Relationship="hoteleria_erp_dbModel.FK_cajas_arqueos_ventas_cajas_arqueos" FromRole="cajas_arqueos" ToRole="cajas_arqueos_ventas" />
+  </EntityType>
+  <EntityType Name="cajas_arqueos_ajustes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_caja_arqueo" Type="Int32" />
+    <Property Name="tipo_ajuste" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="justificacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="monto" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="cajas_arqueos" Relationship="hoteleria_erp_dbModel.FK_cajas_arqueos_ajustes_cajas_arqueos" FromRole="cajas_arqueos_ajustes" ToRole="cajas_arqueos" />
+  </EntityType>
+  <EntityType Name="cajas_arqueos_composiciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_caja_arqueo" Type="Int32" />
+    <Property Name="cantidad" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="monto" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="sub_total" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="id_tipo_denominacion" Type="Int32" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="cajas_arqueos" Relationship="hoteleria_erp_dbModel.FK_cajas_arqueos_composiciones_cajas_arqueos" FromRole="cajas_arqueos_composiciones" ToRole="cajas_arqueos" />
+    <NavigationProperty Name="denominaciones_monedas_tipos" Relationship="hoteleria_erp_dbModel.FK_cajas_arqueos_composiciones_denominaciones_monedas_tipos" FromRole="cajas_arqueos_composiciones" ToRole="denominaciones_monedas_tipos" />
+  </EntityType>
+  <EntityType Name="cajas_arqueos_detalles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_caja_arqueo" Type="Int32" />
+    <Property Name="concepto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ingreso" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="egreso" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="saldo" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="cajas_arqueos" Relationship="hoteleria_erp_dbModel.FK_cajas_arqueos_detalles_cajas_arqueos" FromRole="cajas_arqueos_detalles" ToRole="cajas_arqueos" />
+  </EntityType>
+  <EntityType Name="cajas_arqueos_ventas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_caja_arqueo" Type="Int32" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="total_neto" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="descuento" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="nro_factura" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="cajas_arqueos" Relationship="hoteleria_erp_dbModel.FK_cajas_arqueos_ventas_cajas_arqueos" FromRole="cajas_arqueos_ventas" ToRole="cajas_arqueos" />
+  </EntityType>
+  <EntityType Name="cajas_composiciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_caja" Type="Int32" />
+    <Property Name="id_caja_apertura" Type="Int32" />
+    <Property Name="id_usuario" Type="Int32" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="total_billete" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="total_moneda" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="cajas" Relationship="hoteleria_erp_dbModel.FK_cajas_composiciones_cajas" FromRole="cajas_composiciones" ToRole="cajas" />
+    <NavigationProperty Name="cajas_aperturas" Relationship="hoteleria_erp_dbModel.FK_cajas_composiciones_cajas_aperturas" FromRole="cajas_composiciones" ToRole="cajas_aperturas" />
+    <NavigationProperty Name="cajas_composiciones_detalles" Relationship="hoteleria_erp_dbModel.FK_cajas_composiciones_detalles_cajas_composiciones" FromRole="cajas_composiciones" ToRole="cajas_composiciones_detalles" />
+    <NavigationProperty Name="usuarios" Relationship="hoteleria_erp_dbModel.FK_cajas_composiciones_usuarios" FromRole="cajas_composiciones" ToRole="usuarios" />
+  </EntityType>
+  <EntityType Name="cajas_composiciones_detalles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_caja_composicion" Type="Int32" />
+    <Property Name="id_denominacion_moneda" Type="Int32" />
+    <Property Name="cantidad" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="monto" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="cajas_composiciones" Relationship="hoteleria_erp_dbModel.FK_cajas_composiciones_detalles_cajas_composiciones" FromRole="cajas_composiciones_detalles" ToRole="cajas_composiciones" />
+    <NavigationProperty Name="denominaciones_monedas" Relationship="hoteleria_erp_dbModel.FK_cajas_composiciones_detalles_denominaciones_monedas" FromRole="cajas_composiciones_detalles" ToRole="denominaciones_monedas" />
+  </EntityType>
+  <EntityType Name="cargas_cuentas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_consumision" Type="Int32" />
+    <Property Name="fecha_alta" Type="DateTime" Precision="3" />
+    <Property Name="fecha" Type="DateTime" Precision="0" />
+    <Property Name="id_usuario" Type="Int32" />
+    <Property Name="total_consumision" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="observacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="anulado" Type="Boolean" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="cargas_cuentas_anulaciones" Relationship="hoteleria_erp_dbModel.FK_cargas_cuentas_anulaciones_cargas_cuentas" FromRole="cargas_cuentas" ToRole="cargas_cuentas_anulaciones" />
+    <NavigationProperty Name="consumisiones" Relationship="hoteleria_erp_dbModel.FK_cargas_cuentas_consumisiones" FromRole="cargas_cuentas" ToRole="consumisiones" />
+    <NavigationProperty Name="cargas_cuentas_detalles" Relationship="hoteleria_erp_dbModel.FK_cargas_cuentas_detalles_cargas_cuentas" FromRole="cargas_cuentas" ToRole="cargas_cuentas_detalles" />
+    <NavigationProperty Name="usuarios" Relationship="hoteleria_erp_dbModel.FK_cargas_cuentas_usuarios" FromRole="cargas_cuentas" ToRole="usuarios" />
+  </EntityType>
+  <EntityType Name="cargas_cuentas_anulaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha_alta" Type="DateTime" Precision="3" />
+    <Property Name="id_usuario" Type="Int32" />
+    <Property Name="id_carga_cuenta" Type="Int32" />
+    <Property Name="motivo_anulacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="cargas_cuentas" Relationship="hoteleria_erp_dbModel.FK_cargas_cuentas_anulaciones_cargas_cuentas" FromRole="cargas_cuentas_anulaciones" ToRole="cargas_cuentas" />
+    <NavigationProperty Name="usuarios" Relationship="hoteleria_erp_dbModel.FK_cargas_cuentas_anulaciones_usuarios" FromRole="cargas_cuentas_anulaciones" ToRole="usuarios" />
+  </EntityType>
+  <EntityType Name="cargas_cuentas_detalles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_carga_cuenta" Type="Int32" />
+    <Property Name="cantidad" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="id_producto" Type="Int32" />
+    <Property Name="id_producto_lote" Type="Int32" />
+    <Property Name="precio_unitario" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="cargas_cuentas" Relationship="hoteleria_erp_dbModel.FK_cargas_cuentas_detalles_cargas_cuentas" FromRole="cargas_cuentas_detalles" ToRole="cargas_cuentas" />
+    <NavigationProperty Name="productos" Relationship="hoteleria_erp_dbModel.FK_cargas_cuentas_detalles_productos" FromRole="cargas_cuentas_detalles" ToRole="productos" />
+    <NavigationProperty Name="productos_lotes" Relationship="hoteleria_erp_dbModel.FK_cargas_cuentas_detalles_productos_lotes" FromRole="cargas_cuentas_detalles" ToRole="productos_lotes" />
+  </EntityType>
+  <EntityType Name="cuentas_clientes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_reserva" Type="Int32" />
+    <Property Name="id_cliente" Type="Int32" />
+    <Property Name="total_pagar" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_pendiente" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="clientes" Relationship="hoteleria_erp_dbModel.FK_cuentas_clientes_clientes" FromRole="cuentas_clientes" ToRole="clientes" />
+    <NavigationProperty Name="cuentas_clientes_detalles" Relationship="hoteleria_erp_dbModel.FK_cuentas_clientes_detalles_cuentas_clientes" FromRole="cuentas_clientes" ToRole="cuentas_clientes_detalles" />
+    <NavigationProperty Name="cuentas_clientes_pagos" Relationship="hoteleria_erp_dbModel.FK_cuentas_clientes_pagos_cuentas_clientes" FromRole="cuentas_clientes" ToRole="cuentas_clientes_pagos" />
+    <NavigationProperty Name="reservas_habitaciones" Relationship="hoteleria_erp_dbModel.FK_cuentas_clientes_reservas_habitaciones" FromRole="cuentas_clientes" ToRole="reservas_habitaciones" />
+  </EntityType>
+  <EntityType Name="cuentas_clientes_detalles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_cuenta_cliente" Type="Int32" />
+    <Property Name="id_tarifa_detalle" Type="Int32" />
+    <Property Name="cantidad" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="precio" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="sub_total" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="cuentas_clientes" Relationship="hoteleria_erp_dbModel.FK_cuentas_clientes_detalles_cuentas_clientes" FromRole="cuentas_clientes_detalles" ToRole="cuentas_clientes" />
+    <NavigationProperty Name="tarifas_detalles" Relationship="hoteleria_erp_dbModel.FK_cuentas_clientes_detalles_tarifas_detalles" FromRole="cuentas_clientes_detalles" ToRole="tarifas_detalles" />
+  </EntityType>
+  <EntityType Name="cuentas_clientes_pagos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha_pago" Type="DateTime" Precision="3" />
+    <Property Name="id_cuenta_cliente" Type="Int32" />
+    <Property Name="id_tipo_pago" Type="Int32" />
+    <Property Name="monto" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="observacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cenha" Type="Boolean" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="cuentas_clientes" Relationship="hoteleria_erp_dbModel.FK_cuentas_clientes_pagos_cuentas_clientes" FromRole="cuentas_clientes_pagos" ToRole="cuentas_clientes" />
+    <NavigationProperty Name="tipos_pagos" Relationship="hoteleria_erp_dbModel.FK_cuentas_clientes_pagos_tipos_pagos" FromRole="cuentas_clientes_pagos" ToRole="tipos_pagos" />
+  </EntityType>
+  <EntityType Name="facturaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_consumicion" Type="Int32" />
+    <Property Name="id_condicion_venta" Type="Int32" />
+    <Property Name="fecha_alta" Type="DateTime" Precision="3" />
+    <Property Name="id_usuario" Type="Int32" />
+    <Property Name="fecha_emision" Type="DateTime" Precision="0" />
+    <Property Name="id_cliente" Type="Int32" />
+    <Property Name="id_timbrado" Type="Int32" />
+    <Property Name="id_timbrado_rango" Type="Int32" />
+    <Property Name="nro_factura" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_motivo_descuento" Type="Int32" />
+    <Property Name="total_descuento" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="total_neto" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="total_bruto" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_factura" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="saldo_modificado" Type="Boolean" />
+    <Property Name="anulado" Type="Boolean" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="clientes" Relationship="hoteleria_erp_dbModel.FK_facturaciones_clientes" FromRole="facturaciones" ToRole="clientes" />
+    <NavigationProperty Name="condiciones_compras_ventas" Relationship="hoteleria_erp_dbModel.FK_facturaciones_condiciones_compras_ventas" FromRole="facturaciones" ToRole="condiciones_compras_ventas" />
+    <NavigationProperty Name="consumisiones" Relationship="hoteleria_erp_dbModel.FK_facturaciones_consumisiones" FromRole="facturaciones" ToRole="consumisiones" />
+    <NavigationProperty Name="facturaciones_detalles" Relationship="hoteleria_erp_dbModel.FK_facturaciones_detalles_facturaciones" FromRole="facturaciones" ToRole="facturaciones_detalles" />
+    <NavigationProperty Name="motivos_descuentos" Relationship="hoteleria_erp_dbModel.FK_facturaciones_motivos_descuentos" FromRole="facturaciones" ToRole="motivos_descuentos" />
+    <NavigationProperty Name="timbrados" Relationship="hoteleria_erp_dbModel.FK_facturaciones_timbrados" FromRole="facturaciones" ToRole="timbrados" />
+    <NavigationProperty Name="timbrados_rangos" Relationship="hoteleria_erp_dbModel.FK_facturaciones_timbrados_rangos" FromRole="facturaciones" ToRole="timbrados_rangos" />
+    <NavigationProperty Name="usuarios" Relationship="hoteleria_erp_dbModel.FK_facturaciones_usuarios" FromRole="facturaciones" ToRole="usuarios" />
+  </EntityType>
+  <EntityType Name="facturaciones_detalles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_facturacion" Type="Int32" />
+    <Property Name="cantidad" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="id_producto" Type="Int32" />
+    <Property Name="id_producto_lote" Type="Int32" />
+    <Property Name="precio_unitario" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="iva_excenta" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="iva_5" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="iva_10" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="gravada_excenta" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="gravada_5" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="gravada_10" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="facturaciones" Relationship="hoteleria_erp_dbModel.FK_facturaciones_detalles_facturaciones" FromRole="facturaciones_detalles" ToRole="facturaciones" />
+    <NavigationProperty Name="productos" Relationship="hoteleria_erp_dbModel.FK_facturaciones_detalles_productos" FromRole="facturaciones_detalles" ToRole="productos" />
+    <NavigationProperty Name="productos_lotes" Relationship="hoteleria_erp_dbModel.FK_facturaciones_detalles_productos_lotes" FromRole="facturaciones_detalles" ToRole="productos_lotes" />
+  </EntityType>
+  <EntityType Name="facturaciones_temporales">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_condicion_venta" Type="Int32" />
+    <Property Name="fecha_alta" Type="DateTime" Precision="3" />
+    <Property Name="id_usuario" Type="Int32" />
+    <Property Name="fecha_emision" Type="DateTime" Precision="0" />
+    <Property Name="id_cliente" Type="Int32" />
+    <Property Name="ruc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="razon_social" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_timbrado" Type="Int32" />
+    <Property Name="id_timbrado_rango" Type="Int32" />
+    <Property Name="nro_factura" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_motivo_descuento" Type="Int32" />
+    <Property Name="total_descuento" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="total_neto" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="total_bruto" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="anulado" Type="Boolean" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="clientes" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_clientes" FromRole="facturaciones_temporales" ToRole="clientes" />
+    <NavigationProperty Name="condiciones_compras_ventas" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_condiciones_compras_ventas" FromRole="facturaciones_temporales" ToRole="condiciones_compras_ventas" />
+    <NavigationProperty Name="facturaciones_temporales_detalles" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_detalles_facturaciones_temporales" FromRole="facturaciones_temporales" ToRole="facturaciones_temporales_detalles" />
+    <NavigationProperty Name="motivos_descuentos" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_motivos_descuentos" FromRole="facturaciones_temporales" ToRole="motivos_descuentos" />
+    <NavigationProperty Name="facturaciones_temporales_pagos" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_pagos_facturaciones_temporales" FromRole="facturaciones_temporales" ToRole="facturaciones_temporales_pagos" />
+    <NavigationProperty Name="timbrados" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_timbrados" FromRole="facturaciones_temporales" ToRole="timbrados" />
+    <NavigationProperty Name="timbrados_rangos" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_timbrados_rangos" FromRole="facturaciones_temporales" ToRole="timbrados_rangos" />
+    <NavigationProperty Name="usuarios" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_usuarios" FromRole="facturaciones_temporales" ToRole="usuarios" />
+  </EntityType>
+  <EntityType Name="facturaciones_temporales_detalles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_facturacion_temporal" Type="Int32" />
+    <Property Name="cantidad" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="precio_unitario" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="iva_excenta" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="iva_5" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="iva_10" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="gravada_excenta" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="gravada_5" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="gravada_10" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="facturaciones_temporales" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_detalles_facturaciones_temporales" FromRole="facturaciones_temporales_detalles" ToRole="facturaciones_temporales" />
+  </EntityType>
+  <EntityType Name="facturaciones_temporales_pagos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_factura_temporal" Type="Int32" />
+    <Property Name="id_tipo_pago" Type="Int32" />
+    <Property Name="monto_pagado" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="observacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="facturaciones_temporales" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_pagos_facturaciones_temporales" FromRole="facturaciones_temporales_pagos" ToRole="facturaciones_temporales" />
+    <NavigationProperty Name="tipos_pagos" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_pagos_tipos_pagos" FromRole="facturaciones_temporales_pagos" ToRole="tipos_pagos" />
+  </EntityType>
+  <EntityType Name="motivos_descuentos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="motivo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="facturaciones" Relationship="hoteleria_erp_dbModel.FK_facturaciones_motivos_descuentos" FromRole="motivos_descuentos" ToRole="facturaciones" />
+    <NavigationProperty Name="facturaciones_temporales" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_motivos_descuentos" FromRole="motivos_descuentos" ToRole="facturaciones_temporales" />
+  </EntityType>
+  <EntityType Name="tipos_pagos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="cuentas_clientes_pagos" Relationship="hoteleria_erp_dbModel.FK_cuentas_clientes_pagos_tipos_pagos" FromRole="tipos_pagos" ToRole="cuentas_clientes_pagos" />
+    <NavigationProperty Name="facturaciones_temporales_pagos" Relationship="hoteleria_erp_dbModel.FK_facturaciones_temporales_pagos_tipos_pagos" FromRole="tipos_pagos" ToRole="facturaciones_temporales_pagos" />
+  </EntityType>
+  <Association Name="FK_cajas_ajustes_cajas">
+    <End Type="hoteleria_erp_dbModel.cajas" Role="cajas" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_ajustes" Role="cajas_ajustes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_ajustes">
+        <PropertyRef Name="id_caja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_aperturas_cajas">
+    <End Type="hoteleria_erp_dbModel.cajas" Role="cajas" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_aperturas" Role="cajas_aperturas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_aperturas">
+        <PropertyRef Name="id_caja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_composiciones_cajas">
+    <End Type="hoteleria_erp_dbModel.cajas" Role="cajas" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_composiciones" Role="cajas_composiciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_composiciones">
+        <PropertyRef Name="id_caja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_monedas">
+    <End Type="hoteleria_erp_dbModel.monedas" Role="monedas" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas" Role="cajas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="monedas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas">
+        <PropertyRef Name="id_moneda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_sucursales">
+    <End Type="hoteleria_erp_dbModel.sucursales" Role="sucursales" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas" Role="cajas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sucursales">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_usuarios">
+    <End Type="hoteleria_erp_dbModel.usuarios" Role="usuarios" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas" Role="cajas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_ajustes_cajas_aperturas">
+    <End Type="hoteleria_erp_dbModel.cajas_aperturas" Role="cajas_aperturas" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_ajustes" Role="cajas_ajustes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas_aperturas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_ajustes">
+        <PropertyRef Name="id_caja_apertura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_ajustes_usuarios">
+    <End Type="hoteleria_erp_dbModel.usuarios" Role="usuarios" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_ajustes" Role="cajas_ajustes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_ajustes">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_aperturas_usuarios">
+    <End Type="hoteleria_erp_dbModel.usuarios" Role="usuarios" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_aperturas" Role="cajas_aperturas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_aperturas">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_arqueos_cajas_aperturas">
+    <End Type="hoteleria_erp_dbModel.cajas_aperturas" Role="cajas_aperturas" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_arqueos" Role="cajas_arqueos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas_aperturas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_arqueos">
+        <PropertyRef Name="id_caja_apertura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_composiciones_cajas_aperturas">
+    <End Type="hoteleria_erp_dbModel.cajas_aperturas" Role="cajas_aperturas" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_composiciones" Role="cajas_composiciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas_aperturas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_composiciones">
+        <PropertyRef Name="id_caja_apertura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_arqueos_ajustes_cajas_arqueos">
+    <End Type="hoteleria_erp_dbModel.cajas_arqueos" Role="cajas_arqueos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_arqueos_ajustes" Role="cajas_arqueos_ajustes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas_arqueos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_arqueos_ajustes">
+        <PropertyRef Name="id_caja_arqueo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_arqueos_composiciones_cajas_arqueos">
+    <End Type="hoteleria_erp_dbModel.cajas_arqueos" Role="cajas_arqueos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_arqueos_composiciones" Role="cajas_arqueos_composiciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas_arqueos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_arqueos_composiciones">
+        <PropertyRef Name="id_caja_arqueo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_arqueos_detalles_cajas_arqueos">
+    <End Type="hoteleria_erp_dbModel.cajas_arqueos" Role="cajas_arqueos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_arqueos_detalles" Role="cajas_arqueos_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas_arqueos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_arqueos_detalles">
+        <PropertyRef Name="id_caja_arqueo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_arqueos_usuarios">
+    <End Type="hoteleria_erp_dbModel.usuarios" Role="usuarios" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_arqueos" Role="cajas_arqueos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_arqueos">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_arqueos_ventas_cajas_arqueos">
+    <End Type="hoteleria_erp_dbModel.cajas_arqueos" Role="cajas_arqueos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_arqueos_ventas" Role="cajas_arqueos_ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas_arqueos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_arqueos_ventas">
+        <PropertyRef Name="id_caja_arqueo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_arqueos_composiciones_denominaciones_monedas_tipos">
+    <End Type="hoteleria_erp_dbModel.denominaciones_monedas_tipos" Role="denominaciones_monedas_tipos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_arqueos_composiciones" Role="cajas_arqueos_composiciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="denominaciones_monedas_tipos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_arqueos_composiciones">
+        <PropertyRef Name="id_tipo_denominacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_composiciones_detalles_cajas_composiciones">
+    <End Type="hoteleria_erp_dbModel.cajas_composiciones" Role="cajas_composiciones" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_composiciones_detalles" Role="cajas_composiciones_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cajas_composiciones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_composiciones_detalles">
+        <PropertyRef Name="id_caja_composicion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_composiciones_usuarios">
+    <End Type="hoteleria_erp_dbModel.usuarios" Role="usuarios" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_composiciones" Role="cajas_composiciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_composiciones">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cajas_composiciones_detalles_denominaciones_monedas">
+    <End Type="hoteleria_erp_dbModel.denominaciones_monedas" Role="denominaciones_monedas" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cajas_composiciones_detalles" Role="cajas_composiciones_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="denominaciones_monedas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cajas_composiciones_detalles">
+        <PropertyRef Name="id_denominacion_moneda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cargas_cuentas_anulaciones_cargas_cuentas">
+    <End Type="hoteleria_erp_dbModel.cargas_cuentas" Role="cargas_cuentas" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cargas_cuentas_anulaciones" Role="cargas_cuentas_anulaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cargas_cuentas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargas_cuentas_anulaciones">
+        <PropertyRef Name="id_carga_cuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cargas_cuentas_consumisiones">
+    <End Type="hoteleria_erp_dbModel.consumisiones" Role="consumisiones" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cargas_cuentas" Role="cargas_cuentas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="consumisiones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargas_cuentas">
+        <PropertyRef Name="id_consumision" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cargas_cuentas_detalles_cargas_cuentas">
+    <End Type="hoteleria_erp_dbModel.cargas_cuentas" Role="cargas_cuentas" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cargas_cuentas_detalles" Role="cargas_cuentas_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cargas_cuentas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargas_cuentas_detalles">
+        <PropertyRef Name="id_carga_cuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cargas_cuentas_usuarios">
+    <End Type="hoteleria_erp_dbModel.usuarios" Role="usuarios" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cargas_cuentas" Role="cargas_cuentas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargas_cuentas">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cargas_cuentas_anulaciones_usuarios">
+    <End Type="hoteleria_erp_dbModel.usuarios" Role="usuarios" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cargas_cuentas_anulaciones" Role="cargas_cuentas_anulaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargas_cuentas_anulaciones">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cargas_cuentas_detalles_productos">
+    <End Type="hoteleria_erp_dbModel.productos" Role="productos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cargas_cuentas_detalles" Role="cargas_cuentas_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargas_cuentas_detalles">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cargas_cuentas_detalles_productos_lotes">
+    <End Type="hoteleria_erp_dbModel.productos_lotes" Role="productos_lotes" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cargas_cuentas_detalles" Role="cargas_cuentas_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos_lotes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargas_cuentas_detalles">
+        <PropertyRef Name="id_producto_lote" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_clientes_clientes">
+    <End Type="hoteleria_erp_dbModel.clientes" Role="clientes" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cuentas_clientes" Role="cuentas_clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cuentas_clientes">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_clientes">
+    <End Type="hoteleria_erp_dbModel.clientes" Role="clientes" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones" Role="facturaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_clientes">
+    <End Type="hoteleria_erp_dbModel.clientes" Role="clientes" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones_temporales" Role="facturaciones_temporales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_condiciones_compras_ventas">
+    <End Type="hoteleria_erp_dbModel.condiciones_compras_ventas" Role="condiciones_compras_ventas" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones" Role="facturaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="condiciones_compras_ventas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones">
+        <PropertyRef Name="id_condicion_venta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_condiciones_compras_ventas">
+    <End Type="hoteleria_erp_dbModel.condiciones_compras_ventas" Role="condiciones_compras_ventas" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones_temporales" Role="facturaciones_temporales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="condiciones_compras_ventas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales">
+        <PropertyRef Name="id_condicion_venta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_consumisiones">
+    <End Type="hoteleria_erp_dbModel.consumisiones" Role="consumisiones" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones" Role="facturaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="consumisiones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones">
+        <PropertyRef Name="id_consumicion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_clientes_detalles_cuentas_clientes">
+    <End Type="hoteleria_erp_dbModel.cuentas_clientes" Role="cuentas_clientes" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cuentas_clientes_detalles" Role="cuentas_clientes_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cuentas_clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cuentas_clientes_detalles">
+        <PropertyRef Name="id_cuenta_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_clientes_pagos_cuentas_clientes">
+    <End Type="hoteleria_erp_dbModel.cuentas_clientes" Role="cuentas_clientes" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cuentas_clientes_pagos" Role="cuentas_clientes_pagos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cuentas_clientes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cuentas_clientes_pagos">
+        <PropertyRef Name="id_cuenta_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_clientes_reservas_habitaciones">
+    <End Type="hoteleria_erp_dbModel.reservas_habitaciones" Role="reservas_habitaciones" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cuentas_clientes" Role="cuentas_clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="reservas_habitaciones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cuentas_clientes">
+        <PropertyRef Name="id_reserva" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_clientes_detalles_tarifas_detalles">
+    <End Type="hoteleria_erp_dbModel.tarifas_detalles" Role="tarifas_detalles" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cuentas_clientes_detalles" Role="cuentas_clientes_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tarifas_detalles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cuentas_clientes_detalles">
+        <PropertyRef Name="id_tarifa_detalle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cuentas_clientes_pagos_tipos_pagos">
+    <End Type="hoteleria_erp_dbModel.tipos_pagos" Role="tipos_pagos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.cuentas_clientes_pagos" Role="cuentas_clientes_pagos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_pagos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cuentas_clientes_pagos">
+        <PropertyRef Name="id_tipo_pago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_detalles_facturaciones">
+    <End Type="hoteleria_erp_dbModel.facturaciones" Role="facturaciones" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones_detalles" Role="facturaciones_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="facturaciones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_detalles">
+        <PropertyRef Name="id_facturacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_motivos_descuentos">
+    <End Type="hoteleria_erp_dbModel.motivos_descuentos" Role="motivos_descuentos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones" Role="facturaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="motivos_descuentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones">
+        <PropertyRef Name="id_motivo_descuento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_timbrados">
+    <End Type="hoteleria_erp_dbModel.timbrados" Role="timbrados" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones" Role="facturaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones">
+        <PropertyRef Name="id_timbrado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_timbrados_rangos">
+    <End Type="hoteleria_erp_dbModel.timbrados_rangos" Role="timbrados_rangos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones" Role="facturaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados_rangos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones">
+        <PropertyRef Name="id_timbrado_rango" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_usuarios">
+    <End Type="hoteleria_erp_dbModel.usuarios" Role="usuarios" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones" Role="facturaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_detalles_productos">
+    <End Type="hoteleria_erp_dbModel.productos" Role="productos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones_detalles" Role="facturaciones_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_detalles">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_detalles_productos_lotes">
+    <End Type="hoteleria_erp_dbModel.productos_lotes" Role="productos_lotes" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones_detalles" Role="facturaciones_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos_lotes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_detalles">
+        <PropertyRef Name="id_producto_lote" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_detalles_facturaciones_temporales">
+    <End Type="hoteleria_erp_dbModel.facturaciones_temporales" Role="facturaciones_temporales" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones_temporales_detalles" Role="facturaciones_temporales_detalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="facturaciones_temporales">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales_detalles">
+        <PropertyRef Name="id_facturacion_temporal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_motivos_descuentos">
+    <End Type="hoteleria_erp_dbModel.motivos_descuentos" Role="motivos_descuentos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones_temporales" Role="facturaciones_temporales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="motivos_descuentos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales">
+        <PropertyRef Name="id_motivo_descuento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_pagos_facturaciones_temporales">
+    <End Type="hoteleria_erp_dbModel.facturaciones_temporales" Role="facturaciones_temporales" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones_temporales_pagos" Role="facturaciones_temporales_pagos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="facturaciones_temporales">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales_pagos">
+        <PropertyRef Name="id_factura_temporal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_timbrados">
+    <End Type="hoteleria_erp_dbModel.timbrados" Role="timbrados" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones_temporales" Role="facturaciones_temporales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales">
+        <PropertyRef Name="id_timbrado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_timbrados_rangos">
+    <End Type="hoteleria_erp_dbModel.timbrados_rangos" Role="timbrados_rangos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones_temporales" Role="facturaciones_temporales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="timbrados_rangos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales">
+        <PropertyRef Name="id_timbrado_rango" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_usuarios">
+    <End Type="hoteleria_erp_dbModel.usuarios" Role="usuarios" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones_temporales" Role="facturaciones_temporales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturaciones_temporales_pagos_tipos_pagos">
+    <End Type="hoteleria_erp_dbModel.tipos_pagos" Role="tipos_pagos" Multiplicity="0..1" />
+    <End Type="hoteleria_erp_dbModel.facturaciones_temporales_pagos" Role="facturaciones_temporales_pagos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos_pagos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="facturaciones_temporales_pagos">
+        <PropertyRef Name="id_tipo_pago" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

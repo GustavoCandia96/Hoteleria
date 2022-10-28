@@ -14,11 +14,19 @@ namespace EntidadesHoteleria
     
     public partial class mesas
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public mesas()
+        {
+            this.consumisiones = new HashSet<consumisiones>();
+        }
+    
         public int id { get; set; }
         public Nullable<int> id_estado_mesa { get; set; }
         public string denominacion { get; set; }
         public Nullable<bool> estado { get; set; }
     
         public virtual mesas_estados mesas_estados { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<consumisiones> consumisiones { get; set; }
     }
 }

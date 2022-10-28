@@ -14,8 +14,17 @@ namespace EntidadesHoteleria
     
     public partial class profesiones
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public profesiones()
+        {
+            this.clientes = new HashSet<clientes>();
+        }
+    
         public int id { get; set; }
         public string nombre_profesion { get; set; }
         public Nullable<bool> estado { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<clientes> clientes { get; set; }
     }
 }

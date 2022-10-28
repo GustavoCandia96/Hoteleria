@@ -135,6 +135,107 @@
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_timbrados_comprobantes_anulaciones_timbrados_rangos" />
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_timbrados_rangos_funcionarios_timbrados_rangos" />
         <AssociationConnector Association="hoteleria_erp_dbModel.FK_timbrados_rangos_timbrados_rangos_tipos" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.clientes" Width="1.5" PointX="21.75" PointY="12" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.clientes_contactos" Width="1.5" PointX="24" PointY="18.375" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.reservas_estados" Width="1.5" PointX="21.75" PointY="9.375" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.reservas_habitaciones" Width="1.5" PointX="24" PointY="8.5" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_clientes_barrios" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_clientes_contactos_clientes" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_clientes_departamentos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_clientes_estados_civiles" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_clientes_paises" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_clientes_profesiones" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_clientes_tipos_documentos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_reservas_habitaciones_clientes" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_clientes_contactos_tipos_contactos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_reservas_habitaciones_habitaciones" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_reservas_habitaciones_habitaciones_tipos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_reservas_habitaciones_reservas_estados" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_reservas_habitaciones_usuarios" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_reservas_habitaciones_usuarios1" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.consumisiones" Width="1.5" PointX="27" PointY="10.375" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.consumisiones_detalles" Width="1.5" PointX="29.25" PointY="23.625" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_consumisiones_clientes" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_consumisiones_detalles_consumisiones" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_consumisiones_mesas" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_consumisiones_mozos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_consumisiones_detalles_productos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_consumisiones_detalles_productos_lotes" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cajas" Width="1.5" PointX="27" PointY="15.75" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cajas_ajustes" Width="1.5" PointX="37.5" PointY="12.875" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cajas_aperturas" Width="1.5" PointX="34.25" PointY="9" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cajas_arqueos" Width="1.5" PointX="36.5" PointY="6.25" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cajas_arqueos_ajustes" Width="1.5" PointX="38.75" PointY="7.875" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cajas_arqueos_composiciones" Width="1.5" PointX="38.75" PointY="3.875" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cajas_arqueos_detalles" Width="1.5" PointX="38.75" PointY="20.5" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cajas_arqueos_ventas" Width="1.5" PointX="38.75" PointY="17" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cajas_composiciones" Width="1.5" PointX="40.5" PointY="12.875" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cajas_composiciones_detalles" Width="1.5" PointX="42.75" PointY="9" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cargas_cuentas" Width="1.5" PointX="29.25" PointY="10.125" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cargas_cuentas_anulaciones" Width="1.5" PointX="31.5" PointY="12.625" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cargas_cuentas_detalles" Width="1.5" PointX="31.5" PointY="23.75" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cuentas_clientes" Width="1.5" PointX="29.25" PointY="15.125" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cuentas_clientes_detalles" Width="1.5" PointX="31.5" PointY="8.875" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.cuentas_clientes_pagos" Width="1.5" PointX="34.5" PointY="15.125" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.facturaciones" Width="1.5" PointX="32.25" PointY="16.625" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.facturaciones_detalles" Width="1.5" PointX="34.5" PointY="26.375" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.facturaciones_temporales" Width="1.5" PointX="24" PointY="21.5" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.facturaciones_temporales_detalles" Width="1.5" PointX="26.25" PointY="26.125" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.facturaciones_temporales_pagos" Width="1.5" PointX="26.25" PointY="22.375" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.motivos_descuentos" Width="1.5" PointX="30" PointY="19.625" />
+        <EntityTypeShape EntityType="hoteleria_erp_dbModel.tipos_pagos" Width="1.5" PointX="32.25" PointY="5.625" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_ajustes_cajas" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_aperturas_cajas" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_composiciones_cajas" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_monedas" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_sucursales" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_usuarios" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_ajustes_cajas_aperturas" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_ajustes_usuarios" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_aperturas_usuarios" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_arqueos_cajas_aperturas" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_composiciones_cajas_aperturas" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_arqueos_ajustes_cajas_arqueos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_arqueos_composiciones_cajas_arqueos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_arqueos_detalles_cajas_arqueos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_arqueos_usuarios" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_arqueos_ventas_cajas_arqueos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_arqueos_composiciones_denominaciones_monedas_tipos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_composiciones_detalles_cajas_composiciones" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_composiciones_usuarios" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cajas_composiciones_detalles_denominaciones_monedas" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cargas_cuentas_anulaciones_cargas_cuentas" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cargas_cuentas_consumisiones" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cargas_cuentas_detalles_cargas_cuentas" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cargas_cuentas_usuarios" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cargas_cuentas_anulaciones_usuarios" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cargas_cuentas_detalles_productos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cargas_cuentas_detalles_productos_lotes" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cuentas_clientes_clientes" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_clientes" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_clientes" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_condiciones_compras_ventas" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_condiciones_compras_ventas" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_consumisiones" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cuentas_clientes_detalles_cuentas_clientes" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cuentas_clientes_pagos_cuentas_clientes" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cuentas_clientes_reservas_habitaciones" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cuentas_clientes_detalles_tarifas_detalles" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_cuentas_clientes_pagos_tipos_pagos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_detalles_facturaciones" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_motivos_descuentos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_timbrados" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_timbrados_rangos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_usuarios" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_detalles_productos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_detalles_productos_lotes" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_detalles_facturaciones_temporales" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_motivos_descuentos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_pagos_facturaciones_temporales" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_timbrados" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_timbrados_rangos" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_usuarios" />
+        <AssociationConnector Association="hoteleria_erp_dbModel.FK_facturaciones_temporales_pagos_tipos_pagos" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

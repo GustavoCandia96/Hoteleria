@@ -19,6 +19,8 @@ namespace EntidadesHoteleria
         {
             this.timbrados_comprobantes_anulaciones = new HashSet<timbrados_comprobantes_anulaciones>();
             this.timbrados_rangos_funcionarios = new HashSet<timbrados_rangos_funcionarios>();
+            this.facturaciones = new HashSet<facturaciones>();
+            this.facturaciones_temporales = new HashSet<facturaciones_temporales>();
         }
     
         public int id { get; set; }
@@ -42,5 +44,9 @@ namespace EntidadesHoteleria
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<timbrados_rangos_funcionarios> timbrados_rangos_funcionarios { get; set; }
         public virtual timbrados_rangos_tipos timbrados_rangos_tipos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<facturaciones> facturaciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<facturaciones_temporales> facturaciones_temporales { get; set; }
     }
 }

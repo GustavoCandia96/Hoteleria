@@ -18,6 +18,9 @@ namespace EntidadesHoteleria
         public productos_lotes()
         {
             this.productos_lotes_ajustes = new HashSet<productos_lotes_ajustes>();
+            this.consumisiones_detalles = new HashSet<consumisiones_detalles>();
+            this.cargas_cuentas_detalles = new HashSet<cargas_cuentas_detalles>();
+            this.facturaciones_detalles = new HashSet<facturaciones_detalles>();
         }
     
         public int id { get; set; }
@@ -33,5 +36,11 @@ namespace EntidadesHoteleria
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<productos_lotes_ajustes> productos_lotes_ajustes { get; set; }
         public virtual sucursales sucursales { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<consumisiones_detalles> consumisiones_detalles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cargas_cuentas_detalles> cargas_cuentas_detalles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<facturaciones_detalles> facturaciones_detalles { get; set; }
     }
 }

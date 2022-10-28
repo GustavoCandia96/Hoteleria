@@ -18,6 +18,7 @@ namespace EntidadesHoteleria
         public habitaciones_tipos()
         {
             this.habitaciones = new HashSet<habitaciones>();
+            this.reservas_habitaciones = new HashSet<reservas_habitaciones>();
         }
     
         public int id { get; set; }
@@ -27,5 +28,7 @@ namespace EntidadesHoteleria
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<habitaciones> habitaciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<reservas_habitaciones> reservas_habitaciones { get; set; }
     }
 }

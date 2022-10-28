@@ -19,6 +19,17 @@ namespace EntidadesHoteleria
         {
             this.compras_productos = new HashSet<compras_productos>();
             this.productos_lotes_ajustes = new HashSet<productos_lotes_ajustes>();
+            this.reservas_habitaciones = new HashSet<reservas_habitaciones>();
+            this.reservas_habitaciones1 = new HashSet<reservas_habitaciones>();
+            this.cajas = new HashSet<cajas>();
+            this.cajas_ajustes = new HashSet<cajas_ajustes>();
+            this.cajas_aperturas = new HashSet<cajas_aperturas>();
+            this.cajas_arqueos = new HashSet<cajas_arqueos>();
+            this.cajas_composiciones = new HashSet<cajas_composiciones>();
+            this.cargas_cuentas = new HashSet<cargas_cuentas>();
+            this.cargas_cuentas_anulaciones = new HashSet<cargas_cuentas_anulaciones>();
+            this.facturaciones = new HashSet<facturaciones>();
+            this.facturaciones_temporales = new HashSet<facturaciones_temporales>();
         }
     
         public int id { get; set; }
@@ -38,5 +49,27 @@ namespace EntidadesHoteleria
         public virtual perfiles perfiles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<productos_lotes_ajustes> productos_lotes_ajustes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<reservas_habitaciones> reservas_habitaciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<reservas_habitaciones> reservas_habitaciones1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cajas> cajas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cajas_ajustes> cajas_ajustes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cajas_aperturas> cajas_aperturas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cajas_arqueos> cajas_arqueos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cajas_composiciones> cajas_composiciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cargas_cuentas> cargas_cuentas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cargas_cuentas_anulaciones> cargas_cuentas_anulaciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<facturaciones> facturaciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<facturaciones_temporales> facturaciones_temporales { get; set; }
     }
 }

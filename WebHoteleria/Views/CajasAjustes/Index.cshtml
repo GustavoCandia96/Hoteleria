@@ -1,0 +1,228 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<WebHoteleria.Models.CajaAjusteModel>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("[name=btnBuscar]").click(function () {
+            $("#frmListado").attr("action", "/CajasAjustes/Index/");
+            $("#frmListado").submit();
+        });
+
+    });
+
+    function EliminarCajaAjuste(id, nombreCaja, nombreSucursal, monto) {
+        var pregunta = "<strong> ¿Estas seguro de eliminar el ajuste de la caja " + nombreCaja + " de la sucursal " + nombreSucursal + " con monto de " + monto + "?</strong></br>";
+        var dialog = bootbox.dialog({
+            title: '<strong>Eliminación de Caja Ajuste</strong>',
+            message: pregunta,
+            buttons: {
+                cancel: {
+                    label: "Cancelar",
+                    className: 'btn-danger',
+                    callback: function () {
+                        dialog.modal('hide');
+                    }
+                },
+                ok: {
+                    label: "Aceptar",
+                    className: 'btn-info',
+                    callback: function () {
+                        dialog.modal('hide');
+                        EjecutarEliminacionCajaAjuste(id);
+                    }
+                }
+            }
+        });
+    }
+
+    function EjecutarEliminacionCajaAjuste(idCajaAjuste) {
+        var send = {
+            cajaAjusteId: idCajaAjuste
+        }
+        var dialog = bootbox.dialog({
+            title: 'Guardando datos',
+            message: '<p><i class="fa fa-spin fa-spinner"></i> Procesando...</p>'
+        });
+
+        $.ajax({
+            url: '/CajasAjustes/EliminarCajaAjuste',
+            type: 'POST',
+            data: JSON.stringify(send),
+            contentType: 'application/json',
+            error: function (xhr, status, error) {
+                alertaSoloMensaje(xhr.responseText);
+            },
+            success: function (data) {
+                if (data.success) {
+                    dialog.find('.bootbox-body').html('La eliminación del ajuste de caja se ejecuto correctamente!!');
+                    setTimeout(function () {
+                        window.location.href = data.urlRedirect;
+                    }, 300);
+                }
+                else {
+                    dialog.modal('hide');
+                    if (data.respuesta != "") {
+                        alertaSoloMensaje(data.respuesta);
+                    } else {
+                        alertaSoloMensaje("Ocurrio un error al eliminar el ajuste de caja seleccionado");
+                    }
+                }
+            }
+        });
+    }
+
+    function alertaSoloMensaje(mensaje) {
+        bootbox.alert({
+            title: "<strong>Alerta</strong>",
+            message: mensaje,
+            size: 'medium'
+        });
+    }
+
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Cajas Ajustes <small></small></h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("Index", "CajasAjustes", FormMethod.Post, new { id = "frmListado" }))
+{
+    <div class="row">
+        <div class="pull-right" style="margin-right: 10px;">
+            <a href="@Url.Action("Create", "CajasAjustes")" title="Agregar Caja Ajuste" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Agregar Caja Ajuste</a>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Buscador <small>Ingrese los campos para la búsqueda</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="form-group">
+
+                        <div class="col-sm-4">
+                            <label>Fecha</label>
+                            @Html.TextBox("txtFecha", null, new { @class = "form-control calendario" })
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label>Sucursal</label>
+                            @Html.DropDownList("ddlSucursales", null, "--Seleccionar--", new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="" style="margin-top: 24px;"></div>
+                            <button name="btnBuscar" id="btnBuscar" class="btn btn-primary" style="margin-right: 5px;"><i class="fa fa-search"></i> Buscar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Listado de cajas ajustes <small></small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                @if (@ViewBag.msg != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade in">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        @ViewBag.msg
+                    </div>
+                }
+
+                @if (Model.Count() == 0)
+                {
+                    <p>#No existen coincidencias</p>
+                }
+                else
+                {
+                    bool esFuncionario = Convert.ToBoolean(ViewBag.EsFuncionario);
+                    int? IdUsuarioLog = ViewBag.IdUsuarioLog != null ? Convert.ToInt32(ViewBag.IdUsuarioLog) : null;
+
+                    <div class="table-responsive">
+                        <table class="table" id="tbgrilla">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Fecha</th>
+                                    <th>Funcionario</th>
+                                    <th>Sucursal</th>
+                                    <th>Caja</th>
+                                    <th>Nombre Apertura</th>
+                                    <th>Tipo Ajuste</th>
+                                    <th>Monto</th>
+                                    <th>Justificación</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.Fecha.Value.ToShortDateString()</td>
+                                        <td>@item.NombreUsuarioCaja</td>
+                                        <td>@item.NombreSucursal</td>
+                                        <td>@item.NombreCaja</td>
+                                        <td>@item.NombreApertura</td>
+                                        <td>@item.NombreTipoAjuste</td>
+                                        <td>@String.Format("{0:#,##0.##}", item.MontoAjuste)</td>
+                                        <td>@item.Justificacion</td>
+                                        <td>@item.EstadoDescrip</td>
+                                        <td>
+                                            @{
+                                                if (item.HabilitadoEdicion == true && item.IdUsuario == IdUsuarioLog)
+                                                {
+                                                    <a href="@Url.Action("Edit", "CajasAjustes", new { id = item.Id })" title="Editar" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+                                                    <a href="javascript:EliminarCajaAjuste('@item.Id','@item.NombreApertura','@item.NombreSucursal','@String.Format("{0:#,##0.##}", item.MontoAjuste)')" title="Eliminar" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+                                                }
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                        <div class="pagination" style="margin-left: 400px">
+                            Pág. @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                            de @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(".calendario").datepicker({ dateFormat: 'dd/mm/yy' });
+</script>

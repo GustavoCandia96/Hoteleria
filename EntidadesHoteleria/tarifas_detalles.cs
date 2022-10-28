@@ -14,6 +14,12 @@ namespace EntidadesHoteleria
     
     public partial class tarifas_detalles
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tarifas_detalles()
+        {
+            this.cuentas_clientes_detalles = new HashSet<cuentas_clientes_detalles>();
+        }
+    
         public int id { get; set; }
         public Nullable<int> id_tarifa { get; set; }
         public Nullable<int> id_habitacion { get; set; }
@@ -24,5 +30,7 @@ namespace EntidadesHoteleria
         public virtual habitaciones habitaciones { get; set; }
         public virtual habitaciones_servicios habitaciones_servicios { get; set; }
         public virtual tarifas tarifas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cuentas_clientes_detalles> cuentas_clientes_detalles { get; set; }
     }
 }

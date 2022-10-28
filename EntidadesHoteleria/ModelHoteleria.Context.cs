@@ -84,5 +84,34 @@ namespace EntidadesHoteleria
         public virtual DbSet<tipos_ivas> tipos_ivas { get; set; }
         public virtual DbSet<unidades> unidades { get; set; }
         public virtual DbSet<usuarios> usuarios { get; set; }
+        public virtual DbSet<clientes> clientes { get; set; }
+        public virtual DbSet<clientes_contactos> clientes_contactos { get; set; }
+        public virtual DbSet<reservas_estados> reservas_estados { get; set; }
+        public virtual DbSet<reservas_habitaciones> reservas_habitaciones { get; set; }
+        public virtual DbSet<consumisiones> consumisiones { get; set; }
+        public virtual DbSet<consumisiones_detalles> consumisiones_detalles { get; set; }
+        public virtual DbSet<cajas> cajas { get; set; }
+        public virtual DbSet<cajas_ajustes> cajas_ajustes { get; set; }
+        public virtual DbSet<cajas_aperturas> cajas_aperturas { get; set; }
+        public virtual DbSet<cajas_arqueos> cajas_arqueos { get; set; }
+        public virtual DbSet<cajas_arqueos_ajustes> cajas_arqueos_ajustes { get; set; }
+        public virtual DbSet<cajas_arqueos_composiciones> cajas_arqueos_composiciones { get; set; }
+        public virtual DbSet<cajas_arqueos_detalles> cajas_arqueos_detalles { get; set; }
+        public virtual DbSet<cajas_arqueos_ventas> cajas_arqueos_ventas { get; set; }
+        public virtual DbSet<cajas_composiciones> cajas_composiciones { get; set; }
+        public virtual DbSet<cajas_composiciones_detalles> cajas_composiciones_detalles { get; set; }
+        public virtual DbSet<cargas_cuentas> cargas_cuentas { get; set; }
+        public virtual DbSet<cargas_cuentas_anulaciones> cargas_cuentas_anulaciones { get; set; }
+        public virtual DbSet<cargas_cuentas_detalles> cargas_cuentas_detalles { get; set; }
+        public virtual DbSet<cuentas_clientes> cuentas_clientes { get; set; }
+        public virtual DbSet<cuentas_clientes_detalles> cuentas_clientes_detalles { get; set; }
+        public virtual DbSet<cuentas_clientes_pagos> cuentas_clientes_pagos { get; set; }
+        public virtual DbSet<facturaciones> facturaciones { get; set; }
+        public virtual DbSet<facturaciones_detalles> facturaciones_detalles { get; set; }
+        public virtual DbSet<facturaciones_temporales> facturaciones_temporales { get; set; }
+        public virtual DbSet<facturaciones_temporales_detalles> facturaciones_temporales_detalles { get; set; }
+        public virtual DbSet<facturaciones_temporales_pagos> facturaciones_temporales_pagos { get; set; }
+        public virtual DbSet<motivos_descuentos> motivos_descuentos { get; set; }
+        public virtual DbSet<tipos_pagos> tipos_pagos { get; set; }
     }
 }

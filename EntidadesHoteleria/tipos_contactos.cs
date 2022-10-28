@@ -18,6 +18,7 @@ namespace EntidadesHoteleria
         public tipos_contactos()
         {
             this.proveedores_contactos = new HashSet<proveedores_contactos>();
+            this.clientes_contactos = new HashSet<clientes_contactos>();
         }
     
         public int id { get; set; }
@@ -26,5 +27,7 @@ namespace EntidadesHoteleria
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<proveedores_contactos> proveedores_contactos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<clientes_contactos> clientes_contactos { get; set; }
     }
 }
