@@ -156,6 +156,7 @@
     <Compile Include="Controllers\CajasAjustesController.cs" />
     <Compile Include="Controllers\CajasAperturasController.cs" />
     <Compile Include="Controllers\CajasController.cs" />
+    <Compile Include="Controllers\CargasCuentasController.cs" />
     <Compile Include="Controllers\CargosController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\CerrarSesionController.cs" />
@@ -164,6 +165,7 @@
     <Compile Include="Controllers\DenominacionesMonedasController.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\DepositosController.cs" />
+    <Compile Include="Controllers\FacturacionTemporalController.cs" />
     <Compile Include="Controllers\FuncionariosController.cs" />
     <Compile Include="Controllers\HabitacionesController.cs" />
     <Compile Include="Controllers\HabitacionesEstadosController.cs" />
@@ -172,11 +174,14 @@
     <Compile Include="Controllers\MarcasController.cs" />
     <Compile Include="Controllers\ModulosController.cs" />
     <Compile Include="Controllers\ModulosOperacionesController.cs" />
+    <Compile Include="Controllers\MotivosDescuentosController.cs" />
     <Compile Include="Controllers\MozosController.cs" />
     <Compile Include="Controllers\PaisesController.cs" />
     <Compile Include="Controllers\ParametrosController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\PermisosController.cs" />
+    <Compile Include="Controllers\PlanningController.cs" />
+    <Compile Include="Controllers\ProductosAjustesStockController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ProfesionesController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
@@ -4749,10 +4754,20 @@
     <Content Include="Views\Cajas\Create.cshtml" />
     <Content Include="Views\Cajas\Edit.cshtml" />
     <Content Include="Views\Cajas\Index.cshtml" />
+    <Content Include="Views\CargasCuentas\Anular.cshtml" />
+    <Content Include="Views\CargasCuentas\Index.cshtml" />
+    <Content Include="Views\CargasCuentas\Reporte.cshtml" />
+    <Content Include="Views\MotivosDescuentos\Create.cshtml" />
+    <Content Include="Views\MotivosDescuentos\Edit.cshtml" />
+    <Content Include="Views\MotivosDescuentos\Index.cshtml" />
+    <Content Include="Views\Planning\Index.cshtml" />
+    <Content Include="Views\ProductosAjustesStock\Create.cshtml" />
+    <Content Include="Views\ProductosAjustesStock\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\CerrarSesion\" />
+    <Folder Include="Views\FacturacionTemporal\" />
     <Folder Include="Views\Mesas\" />
   </ItemGroup>
   <ItemGroup>

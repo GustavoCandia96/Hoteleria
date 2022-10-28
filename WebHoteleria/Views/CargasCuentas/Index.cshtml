@@ -1,0 +1,217 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<WebHoteleria.Models.CargaCuentaModel>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("[name=btnBuscar]").click(function () {
+            $("#frmListado").attr("action", "/CargasCuentas/Index/");
+            $("#frmListado").submit();
+        });
+
+    });
+
+    function alertaSoloMensaje(mensaje) {
+        bootbox.alert({
+            title: "<strong>Alerta</strong>",
+            message: mensaje,
+            size: 'medium'
+        });
+    }
+
+    function DetallesCargaCuenta(id) {
+        if (!$("#tbl_" + id).length) {
+            ListaDetallesCargaCuenta(id);
+        }
+        else {
+            $("#detail_" + id).slideToggle("slow");
+            $("#extra_" + id).slideToggle("slow");
+        }
+    }
+
+    function ListaDetallesCargaCuenta(id) {
+
+        var send = {
+            idCargaCuenta: id,
+        }
+
+        $.ajax({
+            url: '/CargasCuentas/ObtenerDetalleCargaCuenta',
+            type: 'POST',
+            data: JSON.stringify(send),
+            contentType: 'application/json',
+            error: function (xhr, status, error) {
+                alertaSoloMensaje(xhr.responseText);
+                hideLoadingImage();
+            },
+            success: function (data) {
+                if (data.success) {
+
+                    $("#extra_" + id).html(data.listaDetalle);
+                    $("#detail_" + id).slideToggle("slow");
+                    $("#extra_" + id).slideToggle("slow");
+                } else {
+                    alertaSoloMensaje(data.msg);
+                }
+            }
+        });
+    }
+
+</script>
+
+<script>
+    function showLoadingImage(elIDdiv) {
+        $(elIDdiv).html('</br></br></br><div id="loading-image"><img src="/Content/images/FhHRx.gif"/></br></br></br></div>');
+    }
+
+    function hideLoadingImage() {
+        $('#loading-image').remove();
+    }
+</script>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Cargas a Cuentas <small></small></h3>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("Index", "CargasCuentas", FormMethod.Post, new { id = "frmListado" }))
+{
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Buscador <small>Ingrese los campos para la búsqueda</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="form-group">
+
+                        <div class="col-sm-2">
+                            <label>Fecha Desde</label>
+                            @Html.TextBox("txtFecha", null, new { @class = "form-control calendario" })
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label>Fecha Hasta</label>
+                            @Html.TextBox("txtFechaHasta", null, new { @class = "form-control calendario" })
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="" style="margin-top: 24px;"></div>
+                            <button name="btnBuscar" id="btnBuscar" class="btn btn-primary" style="margin-right: 5px;"><i class="fa fa-search"></i> Buscar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Listado de facturaciones temporales <small></small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                @if (@ViewBag.msg != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade in">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        @ViewBag.msg
+                    </div>
+                }
+
+                @if (Model.Count() == 0)
+                {
+                    <p>#No existen coincidencias</p>
+                }
+                else
+                {
+                    bool esFuncionario = Convert.ToBoolean(ViewBag.EsFuncionario);
+                    int? IdSucursalUsuarioLog = ViewBag.IdSucursalUsuarioLog != null ? Convert.ToInt32(ViewBag.IdSucursalUsuarioLog) : null;
+
+                    <div class="table-responsive">
+                        <table class="table" id="tbgrilla">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Fecha</th>
+                                    <th>Observación</th>
+                                    <th>Total Consumisión</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.Fecha.Value.ToShortDateString()</td>
+                                        <td>@item.Observacion</td>
+                                        <td>@String.Format("{0:#,##0.##}", item.TotalConsumision)</td>
+                                        <td>@item.EstadoDescrip</td>
+                                        <td>
+                                            <a href="javascript:DetallesCargaCuenta('@item.Id')" title="Detalles Carga a Cuenta" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
+
+                                            <a href="@Url.Action("Anular", "CargasCuentas", new { id = item.Id })" title="Anular Carga a Cuenta" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+
+                                            <a href="@Url.Action("ReimprimirCargaCuenta","CargasCuentas" , new { id = item.Id })" title="Reimprimir Carga a Cuenta" class="btn btn-success btn-xs">
+                                                <span class="glyphicon glyphicon-print"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr id="detail_@item.Id" style="display: none;">
+                                        <td colspan="8">
+                                            <div id="extra_@item.Id" style="display: none;">
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                }
+
+                            </tbody>
+                        </table>
+
+                        <div class="pagination" style="margin-left: 400px">
+                            Pág. @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                            de @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(".calendario").datepicker({ dateFormat: 'dd/mm/yy' });
+</script>
+
+
+
+
